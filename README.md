@@ -54,4 +54,6 @@ LWSS(me) - Founder
 [praydog](https://github.com/praydog) - His [research](http://praydog.com/index.php/2015/06/24/an-analysis-of-the-source-2-engine-part-1-the-schema-system/) into the SchemaSystem helped me especially when I was starting the project.
 
 
-( All Code License is GPL v3, i'll add a license file later )
+## License
+GPL3 - 
+see LICENSE.txt
