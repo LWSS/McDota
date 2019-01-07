@@ -1,0 +1,127 @@
+#!/usr/bin/env bash
+
+#skidded from Marc @ spookware
+
+prefix="\e[34m\e[1mMcDota >\e[0m"
+error_prefix="\e[91m\e[1mMcDota >\e[0m"
+success_prefix="\e[32m\e[1mMcDota >\e[0m"
+
+dota=$(pidof dota2)
+
+if [ -z "dota" ]; then
+    echo -e "$error_prefix Dota is not open!."
+    exit -1
+fi
+
+last_library=""
+
+if [ -e "/tmp/.mcdota" ]; then
+    last_library=$(cat /tmp/.mcdota)
+fi
+
+# Credit to aixxe from AimTuxOfficial
+if [ "$last_library" != "" ] && grep -q "$last_library" /proc/${dota}/maps; then
+    echo -e "$error_prefix McDota has already been injected."
+    exit -1
+else
+    rm -rf /tmp/.mcdota
+fi
+
+# Get the full path of the .so that we'll be faking
+victim_lib=$(cat /proc/${dota}/maps | grep /usr/lib64/ | shuf -n 1)
+victim_lib=${victim_lib##* }
+
+# Some magic that I copied straight from Stackoverflow
+victim_lib_array=(${victim_lib//./ })
+number_to_spoof=${victim_lib_array[-1]}
+library_path=$(IFS=. ; echo "${victim_lib_array[*]}")
+
+if ! [[ "$number_to_spoof" =~ ^[0-9]+$ ]]; then
+    # If the shared library doesn't have multiple versions, let's just append .0 at the end.
+    number_to_spoof="$number_to_spoof.0"
+else
+    # else we'll increase the found version by one
+    number_to_spoof=$(($number_to_spoof + 1))
+fi
+
+victim_lib_array[-1]="$number_to_spoof"
+library_path=$(IFS=. ; echo "${victim_lib_array[*]}")
+
+if [ -e "$library_path" ]; then
+    echo -e "$error_prefix McDota refuses to overwrite existing library files. Please re-run the script."
+    exit -1
+else
+    sudo cp "libMcDota.so" "$library_path"
+    sudo patchelf --set-soname "$library_path" "$library_path"
+fi
+
+echo "$library_path" > /tmp/.mcdota
+
+echo -e "$prefix Attaching McDota spoofed as $library_path to PID dota"
+
+# Allows only root to use ptrace. This is temporary until the user reboots the machine.
+ptrace_input=$(sudo echo "2" | sudo tee /proc/sys/kernel/yama/ptrace_scope)
+
+ptrace_last_line="${ptrace_input##*$'\n'}"
+
+if [ "$ptrace_last_line" != "2" ]; then
+    echo -e "$error_prefix Failed to set ptrace scope to root only. This \e[4mmay\e[24m be unsafe."
+    while true; do
+        echo -e -n "$error_prefix "
+        read -p $'Do you wish to continue? (y/N) ' yn
+        case $yn in
+            [Yy]* ) break;;
+            [Nn]* ) exit -1;;
+            * ) echo -e "$error_prefix Please answer yes or no.";;
+        esac
+    done
+fi
+
+# Prevent crash dumps from being sent to kisak
+sudo rm -rf /tmp/dumps
+sudo mkdir /tmp/dumps
+sudo chmod 000 /tmp/dumps
+
+sudo killall -19 steam
+sudo killall -19 steamwebhelper
+
+# Uses dlmopen instead of normal dlopen - Credit to LWSS
+input="$(
+sudo gdb -n -q -batch \
+  -ex "set logging on" \
+  -ex "set logging file /dev/null" \
+  -ex "attach $dota" \
+  -ex "set \$linkMapID = (long int)0" \
+  -ex "set \$dlopen = (void*(*)(char*, int)) dlopen" \
+  -ex "set \$dlmopen = (void*(*)(long int, char*, int)) dlmopen" \
+  -ex "set \$dlinfo = (int (*)(void*, int, void*)) dlinfo" \
+  -ex "set \$malloc = (void*(*)(long long)) malloc" \
+  -ex "set \$dlerror = (char*(*)(void)) dlerror" \
+  -ex "set \$target = \$dlopen(\"$library_path\", 2)" \
+  -ex "p \$target" \
+  -ex "p \$linkMapID" \
+  -ex "call \$dlmopen(0, \"$library_path\", 1)" \
+  -ex "set \$error = call dlerror()" \
+  -ex "x/s \$error" \
+  -ex "detach" \
+  -ex "quit"
+)"
+
+sleep 1
+sudo killall -18 steamwebhelper
+sudo killall -18 steam
+
+sudo rm -f "$library_path"
+
+last_line="${input}"
+
+if grep -q "$library_path" /proc/${dota}/maps; then
+    echo -e "$success_prefix McDota has been successfully injected."
+else
+    echo -e ${last_line}
+    echo -e "$error_prefix McDota has failed to inject. See the above GDB Spew."
+fi
+
+if [ -f "$(pwd)/gdb.txt" ]; then
+    sudo rm -f gdb.txt
+fi

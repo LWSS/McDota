@@ -1,0 +1,5 @@
+#!/bin/bash
+
+sudo killall -9 dota2
+sudo killall -9 dota.sh
+sudo killall -9 gdb

@@ -1,0 +1,64 @@
+#!/bin/bash
+
+prefix="\e[34m\e[1mMcDota >\e[0m"
+error_prefix="\e[91m\e[1mMcDota >\e[0m"
+success_prefix="\e[32m\e[1mMcDota >\e[0m"
+
+dota=$(pidof dota2)
+
+if [ -z "$dota" ]; then
+	echo -e "$error_prefix Dota 2 is not open!"
+	exit -1
+fi
+
+if [ -e "/tmp/.mcdota" ]; then
+    last_library=$(cat /tmp/.mcdota)
+else
+    echo -e "$error_prefix Could not find old filename. You'll have to restart Dota."
+    exit -1
+fi
+
+if ! grep -q "$last_library" /proc/$dota/maps; then
+    echo -e "$error_prefix McDota is not Injected..."
+    exit -1
+fi
+
+sudo killall -19 steam
+sudo killall -19 steamwebhelper
+
+#Send signal SIGXCPU, which will signal McDota to get ready for unloading.
+kill -24 "$dota_pid"
+
+input="$(
+sudo gdb -n -q -batch \
+    -ex "set logging on" \
+    -ex "set logging file /dev/null" \
+    -ex "attach $dota" \
+    -ex "set \$dlopen = (void*(*)(char*, int)) dlopen" \
+    -ex "set \$dlclose = (int(*)(void*)) dlclose" \
+    -ex "set \$library = \$dlopen(\"$last_library\", 6)" \
+    -ex "call \$dlclose(\$library)" \
+    -ex "call \$dlclose(\$library)" \
+    -ex "call \$dlclose(\$library)" \
+    -ex "call \$dlerror()" \
+    -ex "detach" \
+    -ex "quit"
+)"
+
+last_line="${input##*$'\n'}"
+echo ${last_line}
+
+sleep 1
+sudo killall -18 steamwebhelper
+sudo killall -18 steam
+
+if ! grep -q "$last_library" /proc/$dota/maps; then
+    echo -e "$success_prefix McDota has been successfully uninjected."
+else
+    echo -e "$error_prefix McDota has failed to uninject and Dota 2 has gone rogue. Exterminating with extreme prejudice..."
+    ./zombies
+fi
+
+if [ -f "$(pwd)/gdb.txt" ]; then
+    sudo rm -f gdb.txt
+fi

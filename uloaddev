@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Credit: Aixxe @ aixxe.net
+
+dota_pid=$(pidof dota2)
+filename="libMcDota.so"
+fullpath="$(pwd)/$filename"
+echo $fullpath
+
+sudo killall -19 steam
+sudo killall -19 steamwebhelper
+
+#Send signal SIGXCPU, which will signal McDota to get ready for unloading.
+kill -24 "$dota_pid"
+
+if grep -q "$filename" "/proc/$dota_pid/maps"; then
+echo "Unloading..."
+sudo gdb -n -q -batch-silent \
+	-ex "set logging on" \
+	-ex "set logging file /dev/null" \
+	-ex "set logging redirect on" \
+	-ex "attach $dota_pid" \
+	-ex "set \$dlopen = (void*(*)(char*, int)) dlopen" \
+	-ex "set \$dlclose = (int(*)(void*)) dlclose" \
+	-ex "set \$library = \$dlopen(\"$filename\", 6)" \
+	-ex "call \$dlclose(\$library)" \
+	-ex "call \$dlclose(\$library)" \
+	-ex "call \$dlclose(\$library)" \
+	-ex "detach" \
+	-ex "quit"
+fi
+
+sleep 1
+sudo killall -18 steamwebhelper
+sudo killall -18 steam
+
+echo "Done."

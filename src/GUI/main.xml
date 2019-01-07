@@ -1,0 +1,176 @@
+R"zz(
+<root>
+	<styles>
+		<include src='s2r://panorama/styles/dotastyles.vcss_c' />
+		<include src='s2r://panorama/styles/popups/popups_shared.vcss_c' />
+		<include src='s2r://panorama/styles/battle_pass/current_battle_pass.vcss_c' />
+		<include src='s2r://panorama/styles/popups/popup_settings.vcss_c' />
+	</styles>
+
+	<script>
+
+		function changeTab( nTab )
+		{
+			/* All tabs set invis first */
+			$( '#McTabGeneral' ).visible = false;
+			$( '#McTabAbout' ).visible = false;
+			$( '#McTabVisuals' ).visible = false;
+			$( '#McTabLogging' ).visible = false;
+
+			switch( nTab ){
+				case 0:
+					$( '#McTabGeneral' ).visible = true;
+					break;
+				case 1:
+					$( '#McTabVisuals' ).visible = true ;
+					break;
+				case 2:
+					$( '#McTabLogging' ).visible = true ;
+					break;
+				case 10:
+					$( '#McTabAbout' ).visible = true;
+					break;
+			}
+		}
+		function closeSelf()
+		{
+			$( '#McDotaMain' ).visible = false;
+		}
+		function setAboutText( nContributor )
+		{
+			switch( nContributor ){
+				case 0:
+					$( '#aboutText' ).text = 'LWSS: Main Developer and Founder';
+					break;
+				case 1:
+					$( '#aboutText' ).text = 'Praydog: Dota 2 Schemasystem Research';
+					break;
+			}
+		}
+		function clearAboutText(){
+			$( '#aboutText' ).text = '';
+		}
+
+		function clickSound(){
+            $.DispatchEvent( 'PlaySoundEffect', 'ui_team_select_pick_team' );
+		}
+		function executeJS(){
+			/* eval - It just werks */
+			eval( $( '#JSText' ).text );
+		}
+	</script>
+
+	<!-- Empty onactivate prevents clicking panels beneath this one -->
+	<Panel class='McMain' onactivate='' style='width: 640px; height: 480px; horizontal-align: center; vertical-align: center; background-color: gradient( linear, 0% 0%, 0% 25%, from( #232326 ), to( #1c1d20 ) );'>
+
+		<!-- Nav Bar -->
+		<Panel id='SettingsNavBar'>
+			<Button id='DOTACloseSettingsButton' class='ControlIconButton' onactivate='closeSelf()' />
+			<RadioButton class='SettingsNavBarButton' group='SettingsTopMenu' onactivate='changeTab( 0 )' >
+				<Label text='General' />
+			</RadioButton>
+			<Label class='SettingsTabSeparator'	text='/' />
+			<RadioButton class='SettingsNavBarButton' group='SettingsTopMenu' onactivate='changeTab( 1 )' >
+				<Label text='Visuals' />
+			</RadioButton>
+			<Label class='SettingsTabSeparator'	text='/' />
+			<RadioButton class='SettingsNavBarButton' group='SettingsTopMenu' onactivate='changeTab( 2 )' >
+				<Label text='Logging' />
+			</RadioButton>
+
+			<Panel class='SettingsTabFiller' />
+			<RadioButton class='SettingsNavBarButton' group='SettingsTopMenu' onactivate='changeTab( 10 )' >
+				<Label text='McDota' />
+			</RadioButton>
+		</Panel>
+
+
+		<!-- TABS -->
+		<!-- General -->
+		<Panel id='McTabGeneral' style='width: 640px; height: 430px; horizontal-align: center; vertical-align: bottom;'>
+			<Panel id='BasicOptions' class='SettingsColumnContainer FullHeight'>
+				<Panel id='LeftColumn' class='SettingsColumn' style='width: 50%;'>
+					<Panel class='SettingsSection'>
+						<DOTASettingsCheckbox convar='mc_end_createmove' text='End CreateMove' onactivate='clickSound()' />
+						<DOTASettingsCheckbox convar='mc_command_repeater' text='cmd repeater' onactivate='clickSound()' />
+						<DOTASettingsCheckbox convar='mc_airstuck_on' text='Airstuck' onactivate='clickSound()' />
+						<DOTASettingsCheckbox convar='mc_autoaccept_on' text='AutoAccept' onactivate='clickSound()'/>
+						<DOTASettingsCheckbox convar='mc_fog_disable' text='No Fog' onactivate='clickSound()'/>
+						<DOTASettingsCheckbox convar='mc_fow_disable' text='No FoW' onactivate='clickSound()'/>
+						<DOTASettingsSlider convar='mc_camera_pitch_add' min='-1.0' max='360.0' text='Pitch Add' />
+						<DOTASettingsSlider convar='mc_camera_yaw_add' min='0.0' max='360.0' text='Yaw Add' />
+						<DOTASettingsSlider convar='mc_camera_distance' min='1134.0' max='4000.0' text='Camera Distance' />
+					</Panel>
+				</Panel>
+				<Panel id='RightColumn' class='SettingsColumn' style='width: 50%;'>
+					<Panel class='SettingsSection'>
+						<TextEntry id='JSText' class='TextEntryNormal' style='height: 300px;' placeholder='Execute Panorama JS here' multiline='true' />
+						<Button id='JSExecute' class='ControlIconButton' text='execute' onactivate='executeJS()'/>
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<!-- Visuals -->
+		<Panel id='McTabVisuals' style='width: 640px; height: 430px; horizontal-align: center; vertical-align: bottom;'>
+			<Panel id='BasicOptions' class='SettingsColumnContainer FullHeight'>
+				<Panel id='LeftColumn' class='SettingsColumn' style='width: 50%;'>
+					<Panel class='SettingsSection'>
+						<DOTASettingsCheckbox convar='mc_esp_type_bbox' text='BBox' onactivate='clickSound()'/>
+						<DOTASettingsCheckbox convar='mc_esp_type_absbox' text='AbsBox' onactivate='clickSound()'/>
+						<DOTASettingsCheckbox convar='mc_esp_type_rbox' text='RBox' onactivate='clickSound()'/>
+						<DOTASettingsCheckbox convar='mc_esp_type_entbounds' text='Entity bounds' onactivate='clickSound()'/>
+						<DOTASettingsCheckbox convar='mc_esp_type_entattachments' text='Entity attachments' onactivate='clickSound()'/>
+						<DOTASettingsCheckbox convar='mc_esp_type_entjointinfo' text='Entity joint info' onactivate='clickSound()'/>
+						<DOTASettingsCheckbox convar='mc_esp_type_entskele' text='Entity skeleton(Lag!)' onactivate='clickSound()'/>
+						<DOTASettingsCheckbox convar='mc_esp_type_enthitboxes' text='Entity Hitboxes' onactivate='clickSound()'/>
+						<DOTASettingsCheckbox convar='mc_esp_type_entviewoffset' text='Entity ViewOffset' onactivate='clickSound()'/>
+						<DOTASettingsCheckbox convar='mc_esp_type_infotext' text='Info Text' onactivate='clickSound()'/>
+					</Panel>
+				</Panel>
+				<Panel id='RightColumn' class='SettingsColumn' style='width: 50%;'>
+					<Panel class='SettingsSection'>
+						<DOTASettingsCheckbox convar='mc_esp_filter_all' text='All' onactivate='clickSound()' />
+						<Label text='Allied'/>
+						<DOTASettingsCheckbox convar='mc_esp_filter_heroes_friend' text='Heroes' onactivate='clickSound()'/>
+						<DOTASettingsCheckbox convar='mc_esp_filter_heroes_friend_seenby_enemy' text='Spotted Heroes' onactivate='clickSound()'/>
+						<DOTASettingsCheckbox convar='mc_esp_filter_creeps_friend' text='Creeps' onactivate='clickSound()'/>
+
+						<Label text='Enemy'/>
+						<DOTASettingsCheckbox convar='mc_esp_filter_heroes_enemy' text='Heroes' onactivate='clickSound()'/>
+						<DOTASettingsCheckbox convar='mc_esp_filter_creeps_enemy' text='Creeps' onactivate='clickSound()'/>
+					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<!-- Logging -->
+		<Panel id='McTabLogging' style='width: 640px; height: 430px; horizontal-align: center; vertical-align: bottom;'>
+			<Panel id='BasicOptions' class='SettingsColumnContainer FullHeight'>
+				<Panel class='SettingsSection'>
+					<DOTASettingsCheckbox convar='mc_log_createmove' text='CreateMove' onactivate='clickSound()' />
+					<DOTASettingsCheckbox convar='mc_log_sendnetmsg' text='SendNetMsg' onactivate='clickSound()' />
+					<DOTASettingsCheckbox convar='mc_log_sendnetmsg_filter_commons' text='^ Filter Commons' onactivate='clickSound()' />
+					<DOTASettingsCheckbox convar='mc_log_prepareunitorders' text='PrepUnitOrders' onactivate='clickSound()' />
+					<DOTASettingsCheckbox convar='mc_log_runscript' text='RunScript' onactivate='clickSound()' />
+					<DOTASettingsCheckbox convar='mc_send_voice' text='Kisak voice' onactivate='clickSound()' />
+					<DOTASettingsCheckbox convar='mc_send_status' text='Send Status' onactivate='clickSound()' />
+					<DOTASettingsSlider convar='mc_send_freq' min='5.0' max='2000.0' text='Send Freq' />
+				</Panel>
+			</Panel>
+		</Panel>
+		<!-- About -->
+		<Panel id='McTabAbout' style='width: 640px; height: 430px; horizontal-align: center; vertical-align: bottom; background-color: gradient( linear, 0% 0%, 0% 25%, from( #232326 ), to( #1c1d20 ) );'>
+			<Label id='aboutText' text=''/>
+			<Panel style='vertical-align: middle; horizontal-align: middle; flow-children: right;'>
+				<Panel style='vertical-align: middle; horizontal-align: middle; flow-children: down; margin-right: 25px;'>
+					<Image src='https://avatars0.githubusercontent.com/u/8827133' style='width: 92px; height: 92px;' onmouseover='setAboutText(0)' onmouseout='clearAboutText()'/>
+				</Panel>
+				<Panel style='vertical-align: middle; horizontal-align: middle; flow-children: down; margin-right: 25px;'>
+					<Image src='https://avatars3.githubusercontent.com/u/2909949' style='width: 92px; height: 92px;' onmouseover='setAboutText(1)' onmouseout='clearAboutText()'/>
+				</Panel>
+			</Panel>
+		</Panel>
+
+	</Panel>
+</root>
+
+)zz"
