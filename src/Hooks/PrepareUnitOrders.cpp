@@ -125,14 +125,11 @@ void Hooks::PrepareUnitOrders( CDotaPlayer *thisptr, DotaUnitOrder_t order, int 
                                CDotaBaseNPC *entity, bool queue, OrderQueueBehavior_t queueBehavior, bool showEffects ) {
     //std::raise(SIGINT);
 
-    /*
-    if( order == DotaUnitOrder_t::DOTA_UNIT_ORDER_CAST_POSITION ){
-        movePosition.x = cvar->FindVar("mc_target_x")->GetFloat();
-        movePosition.y = cvar->FindVar("mc_target_y")->GetFloat();
-        movePosition.z = cvar->FindVar("mc_target_z")->GetFloat();
-
-        targetPosition = movePosition;
-    }*/
+    if( mc_retarget_orders->GetBool() ){
+        if( targetIndex ){
+            targetIndex = mc_ent_select->GetInt();
+        }
+    }
 
     if( mc_command_repeater->GetBool() ){
         cvar->ConsoleDPrintf("Repeating 30x\n");

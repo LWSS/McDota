@@ -12,7 +12,9 @@ bool Integrity::VMTsHaveMisMatch( ) {
     uint32_t viewRenderNum = 34;
     uint32_t vScriptGameSystemNum = 75;
     uint32_t panoramaEngineNum = 204;
+    uint32_t networkClientServiceNum = 77;
     uint32_t networkGameClientNum = 172;
+    uint32_t engineServiceMgrNum = 53;
 
     bool mismatchFound = false;
 
@@ -69,9 +71,17 @@ bool Integrity::VMTsHaveMisMatch( ) {
         cvar->ConsoleDPrintf("[%s]ERROR: Panorama UI Engine VM count does not match; Is: (%d), should be: (%d)\n", __func__,  CountVMs(panoramaEngine->AccessUIEngine()), panoramaEngineNum);
         mismatchFound = true;
     }
-    if( CountVMs(networkClientService->GetIGameClient()) != networkGameClientNum ){
-        cvar->ConsoleDPrintf("[%s]ERROR: Panorama UI Engine VM count does not match; Is: (%d), should be: (%d)\n", __func__,  CountVMs(networkClientService->GetIGameClient()), networkGameClientNum);
+    if( CountVMs(networkClientService) != networkClientServiceNum ){
+        cvar->ConsoleDPrintf("[%s]ERROR: networkClientService VM count does not match; Is: (%d), should be: (%d)\n", __func__,  CountVMs(networkClientService), networkClientServiceNum);
+        mismatchFound = true;
+    } else if( CountVMs(networkClientService->GetIGameClient()) != networkGameClientNum ){
+        cvar->ConsoleDPrintf("[%s]ERROR: networkClientService->IGameClient() VM count does not match; Is: (%d), should be: (%d)\n", __func__,  CountVMs(networkClientService->GetIGameClient()), networkGameClientNum);
         mismatchFound = true;
     }
+    if( CountVMs(engineServiceMgr) != engineServiceMgrNum ){
+        cvar->ConsoleDPrintf("[%s]ERROR: EngineServiceMgr VM count does not match; Is: (%d), should be: (%d)\n", __func__,  CountVMs(engineServiceMgr), engineServiceMgrNum);
+        mismatchFound = true;
+    }
+
     return mismatchFound;
 }

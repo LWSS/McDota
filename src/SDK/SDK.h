@@ -33,3 +33,5 @@
 #include "CGameEventManger.h"
 #include "CNetworkGameClient.h"
 #include "CSoundOPSystem.h"
+#include "CEngineServiceMgr.h"
+#include "CDOTARichPresence.h"

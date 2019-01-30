@@ -6,8 +6,6 @@
 
 typedef bool (* SendNetMessageFn)( INetChannel *thisptr, NetMessageHandle_t *, void const*, NetChannelBufType_t );
 
-static char saved[2048];
-
 
 static const char* Type2String( NetChannelBufType_t type )
 {
@@ -37,16 +35,21 @@ void ToString( void const * thisptr, CUtlString *str )
     bindingVMT->GetOriginalMethod<ToStringFn>( 2 )( thisptr, str );
 }
 
+long lastSetConVarMsg = 0;
 bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHandle, void const* something, NetChannelBufType_t type ) {
 
     NetMessageInfo_t *info;
     const char *name;
-    static bool bFirst = true;
-    if( bFirst ){
-        cvar->ConsoleDPrintf("Net Msg! Handle: %d, Type: %d(%s), something @ (%p)\n", *messageHandle, type, Type2String(type), something );
-        memcpy(saved, something, 2048);
-        cvar->ConsoleDPrintf("Copying 2048 bytes to: (%p)\n", (void*)saved);
-        bFirst = false;
+
+    if( mc_allow_customnames->GetBool() ){
+        info = networkMessages->GetNetMessageInfo(messageHandle);
+        name = info->pProtobufBinding->GetName();
+        if( strstr( name, "CNETMsg_SetConVar" ) != NULL ){
+            if( Util::GetEpochMs() - lastSetConVarMsg < 100 ){
+                return true;
+            }
+            lastSetConVarMsg = Util::GetEpochMs();
+        }
     }
 
     if( mc_send_status->GetBool() ){

@@ -37,9 +37,6 @@ bool Settings::RegisterCustomConvars( ) {
 	mc_command_repeater = Util::RegisterConVar( "mc_command_repeater", "true" );
 
 	mc_ent_select = Util::RegisterConVar( "mc_ent_select", "1" );
-	mc_target_x = Util::RegisterConVar( "mc_target_x", "0.0" );
-	mc_target_y = Util::RegisterConVar( "mc_target_y", "0.0" );
-	mc_target_z = Util::RegisterConVar( "mc_target_z", "0.0" );
 
 	mc_log_createmove = Util::RegisterConVar( "mc_log_createmove", "false" );
 	mc_log_sendnetmsg = Util::RegisterConVar( "mc_log_sendnetmsg", "false" );
@@ -53,6 +50,10 @@ bool Settings::RegisterCustomConvars( ) {
 	mc_send_voice = Util::RegisterConVar( "mc_send_voice", "false" );
 	mc_send_freq = Util::RegisterConVar( "mc_send_freq", "25" );
 	mc_send_status = Util::RegisterConVar( "mc_send_status", "false" );
+
+	mc_retarget_orders = Util::RegisterConVar( "mc_retarget_orders", "false" );
+    mc_allow_customnames = Util::RegisterConVar( "mc_allow_customnames", "false" );
+    mc_custom_str = Util::RegisterConVar( "mc_custom_str", "#as Mars (Lvl 25)" );
 
 	for ( ConCommandBase *var : Util::createdConvars ) {
 		if( !cvar->FindVar(var->name) ){

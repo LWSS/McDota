@@ -11,7 +11,8 @@ struct InterfaceMetaData
 	void* interface;
 };
 
-inline std::vector<InterfaceMetaData> interfacesMetaDataList = {};
+inline std::vector<InterfaceMetaData> requestedInterfaces = {}; // requested but failed
+inline std::vector<InterfaceMetaData> grabbedInterfaces = {}; // grabbed and can be used
 
 typedef void* (*InstantiateInterfaceFn) ();
 
@@ -39,12 +40,17 @@ inline Fn getvfunc(const void* inst, size_t index, size_t offset = 0)
 }
 
 template <typename interface>
-interface* GetInterface(const char* filename, const char* version, bool exact = true, uint32_t expectedVMs = 0)
+interface* GetInterface(const char* filename, const char* version, uint32_t expectedVMs = 0)
 {
+	InterfaceMetaData data = {};
+	data.name = version;
+	data.numVMs = expectedVMs;
+
 	void* library = dlopen(filename, RTLD_NOLOAD | RTLD_NOW | RTLD_LOCAL);
 
 	if ( !library ){
 		ConMsg( "GetInterface(): Could not open library: %s\n", filename );
+		requestedInterfaces.push_back(data);
 		return NULL;
 	}
 
@@ -53,6 +59,7 @@ interface* GetInterface(const char* filename, const char* version, bool exact = 
 	if ( !createInterfaceSym ) {
 		dlclose(library);
 		ConMsg( "GetInterface(): Could not find \"CreateInterface\" for library: %s\n", filename );
+		requestedInterfaces.push_back(data);
 		return NULL;
 	}
 
@@ -68,26 +75,22 @@ interface* GetInterface(const char* filename, const char* version, bool exact = 
 
 	if( !interface_list ){
 		ConMsg( "GetInterface(): Could not grab InterfaceList for library: %s\n", filename );
+		requestedInterfaces.push_back(data);
 		return NULL;
 	}
 
     for ( InterfaceReg *cur_interface = *reinterpret_cast<InterfaceReg**>(interface_list); cur_interface; cur_interface = cur_interface->m_pNext ){
-        if (exact) {
-			if ( strcmp( cur_interface->m_pName, version ) != 0 )
-				continue;
-		} else if ( !strstr(cur_interface->m_pName, version) )
-            continue;
+		if ( strcmp( cur_interface->m_pName, version ) != 0 )
+			continue;
 
-		InterfaceMetaData data = {};
-		data.name = version;
 		data.interface = (void*)cur_interface->m_CreateFn();
-		data.numVMs = expectedVMs;
-		interfacesMetaDataList.push_back(data);
+		grabbedInterfaces.push_back(data);
 		return reinterpret_cast<interface*>(cur_interface->m_CreateFn());
     }
 
     ConMsg( "GetInterface(): Could not find Interface Named: %s in library %s\n", version, filename );
-    return NULL;
+	requestedInterfaces.push_back(data);
+	return NULL;
 }
 
 inline uintptr_t GetAbsoluteAddress(uintptr_t instruction_ptr, int offset, int size)

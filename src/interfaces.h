@@ -23,6 +23,8 @@ inline CDotaCamera* camera;
 inline CGameEventManager* gameEventManager;
 inline CSoundOpSystem* soundOpSystem;
 inline CFontManager* fontManager;
+inline CEngineServiceMgr* engineServiceMgr;
+inline CDOTARichPresence* richPresence;
 
 // VMT's
 inline VMT* cameraVMT;
@@ -34,6 +36,7 @@ inline VMT* localPlayerVMT;
 inline VMT* netChannelVMT;
 inline VMT* clientModeVMT;
 inline VMT* soundOpSystemVMT;
+inline VMT* gameEventManagerVMT;
 
 // Special Panels
 inline panorama::CPanel2D* gDBPlayPanel;

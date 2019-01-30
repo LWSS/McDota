@@ -46,7 +46,11 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             for( int i = 0; i <= entitySystem->GetHighestEntityIndex(); i++ ){
                 entity = entitySystem->GetBaseEntity(i);
                 if( entity ){
-                    cvar->ConsoleDPrintf("Entity#%d(%p) - Name:(%s) \n", i, (void*)entity, entity->Schema_DynamicBinding()->bindingName );
+                    cvar->ConsoleDPrintf("Entity#%d(%p) - Name:(%s)", i, (void*)entity, entity->Schema_DynamicBinding()->bindingName );
+                    if( entity->GetOwnerID() >= 0 ){
+                        cvar->ConsoleDPrintf(" - Owner:(%d)", entity->GetOwnerID());
+                    }
+                    cvar->ConsoleDPrintf("\n");
                 }
             }
             break;
@@ -85,9 +89,11 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             engine->ServerCmd(mc_cmd_src->GetInt(), mc_raw_command->strValue);
             break;
         case ButtonCode_t::SCROLLLOCK:
-            //snprintf(bytes, 256, "say \"I got a whole lotta money\x0D\x0D\nswag nigga\nswag\"");
-            //engine->ClientCmd_Unrestricted(bytes);
-            Util::DumpLinkMaps();
+            cvar->ConsoleDPrintf("Scrolllock...\n");
+            richPresence->SetStatus(mc_custom_str->strValue);
+            break;
+        case ButtonCode_t::PRINTSCREEN:
+            cvar->ConsoleDPrintf("PrintScreen...\n");
             break;
         default:
             break;

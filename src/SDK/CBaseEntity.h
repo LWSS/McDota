@@ -48,17 +48,43 @@ class CBaseEntity
 public:
     inline const DOTATeam_t GetTeam( )
     {
-        static bool bFirst = true;
-        static int offset = 0;
-        if( bFirst ){
-            offset = Util::FindDataMapElementOffset( this->C_DOTAPlayer__GetPredDescMap(), "m_iTeamNum" );
-            bFirst = false;
-        }
+        static int offset = Util::FindDataMapElementOffset( this->C_DOTAPlayer__GetPredDescMap(), "m_iTeamNum" );
         if( !offset ){
             Util::Log("ERROR GetTeam offset is Zero!\n");
             return DOTA_TEAM_INVALID;
         }
-        return *( DOTATeam_t * )( ((uintptr_t)this) + offset );
+        return *( DOTATeam_t* )( ((uintptr_t)this) + offset );
+    }
+    inline QAngle* const GetNetworkAngles( )
+    {
+        static int offset = Util::FindDataMapElementOffset( this->C_DOTAPlayer__GetPredDescMap(), "m_angNetworkAngles" );
+        if( !offset ){
+            Util::Log("ERROR NetworkAngles offset is Zero!\n");
+            return NULL;
+        }
+        return ( QAngle* )( ((uintptr_t)this) + offset );
+    }
+    inline Vector* const GetNetworkOrigin( )
+    {
+        static int offset = Util::FindDataMapElementOffset( this->C_DOTAPlayer__GetPredDescMap(), "m_vecNetworkOrigin" );
+        if( !offset ){
+            Util::Log("ERROR NetworkOrigin offset is Zero!\n");
+            return NULL;
+        }
+        return ( Vector* )( ((uintptr_t)this) + offset );
+    }
+    inline const int GetOwnerID( )
+    {
+        static int offset = Util::FindDataMapElementOffset( this->C_DOTAPlayer__GetPredDescMap(), "m_hOwnerEntity" );
+        if( !offset ){
+            Util::Log("ERROR OwnerEntity offset is Zero!\n");
+            return -1;
+        }
+        int *ptr = ( int* )( ((uintptr_t)this) + offset );
+        if( ptr[0] < 0 ){
+            return -1;
+        }
+        return ptr[0] & 0xFFF;
     }
     virtual CSchemaClassBinding* Schema_DynamicBinding(void);
     virtual void DESTROY();

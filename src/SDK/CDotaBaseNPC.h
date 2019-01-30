@@ -113,7 +113,7 @@ public:
     virtual void sub_2ED6960() = 0;
     virtual void sub_2ED6980() = 0;
     virtual void sub_2EB9C60() = 0;
-    virtual void* C_DOTA_BaseNPC__GetChosenTarget(void) = 0;
+    virtual CDotaBaseNPC* C_DOTA_BaseNPC__GetChosenTarget(void) = 0;
     virtual int C_DOTA_BaseNPC__GetDamageMin(void) = 0;
     virtual int C_DOTA_BaseNPC__GetDamageMax(void) = 0;
     virtual float C_DOTA_BaseNPC__GetDamageBonus(void) = 0;
@@ -126,7 +126,7 @@ public:
     virtual bool C_DOTA_BaseNPC__IsMuted(void) = 0;
     virtual bool C_DOTA_BaseNPC__IsStunned(void) = 0;
     virtual bool C_DOTA_BaseNPC__IsHexed(void) = 0;
-    virtual bool C_DOTA_BaseNPC__IsInvisible(void) = 0;
+    virtual bool C_DOTA_BaseNPC__IsInvisible(void) = 0; // not usable on enemies
     virtual bool C_DOTA_BaseNPC__IsInvulnerable(void) = 0;
     virtual bool C_DOTA_BaseNPC__IsMagicImmune(void) = 0;
     virtual bool C_DOTA_BaseNPC__NoUnitCollision(void) = 0;
@@ -165,7 +165,7 @@ public:
     virtual void C_DOTA_BaseNPC__GetSelectionGroup(void) = 0;
     virtual void C_DOTA_BaseNPC__GainedModifier(void* CDOTA_Buff) = 0;
     virtual void C_DOTA_BaseNPC__LostModifier(void* CDOTA_Buff) = 0;
-    virtual bool C_DOTA_BaseNPC__IsIllusion(void) = 0;
+    virtual bool C_DOTA_BaseNPC__IsIllusion(void) = 0; // not usable on enemies
     virtual void sub_2EDC3A0() = 0;
     virtual bool C_DOTA_BaseNPC__UnitStatsNeedsRefresh() = 0;
     virtual void sub_2D3F930() = 0;

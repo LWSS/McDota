@@ -7,58 +7,26 @@
 
 bool Interfaces::FindInterfaces()
 {
-    client = GetInterface<CSource2Client>("../../dota/bin/linuxsteamrt64/libclient.so", "Source2Client002", true, 134 );
-    cvar = GetInterface<ICvar>( "./libvstdlib.so", "VEngineCvar007", true, 52 );
-    engine = GetInterface<IEngineClient>( "./libengine2.so", "Source2EngineToClient001", true, 166 );
-    inputSystem = GetInterface<IInputSystem>( "./libinputsystem.so", "InputSystemVersion001", true, 88 );
-    inputInternal = GetInterface<IInputInternal>("./libvgui2.so", "VGUI_InputInternal001", true, 101 );
-    networkClientService = GetInterface<INetworkClientService>("./libengine2.so", "NetworkClientService_001", true, 77 );
-    panel = GetInterface<IVPanel>("./libvgui2.so", "VGUI_Panel010", true, 82 );
-    splitScreenService = GetInterface<CSplitScreenService>("./libengine2.so", "SplitScreenService_001", true, 44 );
-    panoramaEngine = GetInterface<IPanoramaUIEngine>("./libpanorama.so", "PanoramaUIEngine001", true, 17 );
-    fontManager = GetInterface<CFontManager>("./libmaterialsystem2.so", "FontManager_001", true, 48 );
+    client = GetInterface<CSource2Client>("../../dota/bin/linuxsteamrt64/libclient.so", "Source2Client002", 134 );
+    cvar = GetInterface<ICvar>( "./libvstdlib.so", "VEngineCvar007", 52 );
+    engine = GetInterface<IEngineClient>( "./libengine2.so", "Source2EngineToClient001", 166 );
+    inputSystem = GetInterface<IInputSystem>( "./libinputsystem.so", "InputSystemVersion001", 88 );
+    inputInternal = GetInterface<IInputInternal>("./libvgui2.so", "VGUI_InputInternal001", 101 );
+    networkClientService = GetInterface<INetworkClientService>("./libengine2.so", "NetworkClientService_001", 77 );
+    panel = GetInterface<IVPanel>("./libvgui2.so", "VGUI_Panel010", 82 );
+    splitScreenService = GetInterface<CSplitScreenService>("./libengine2.so", "SplitScreenService_001", 44 );
+    panoramaEngine = GetInterface<IPanoramaUIEngine>("./libpanorama.so", "PanoramaUIEngine001", 17 );
+    fontManager = GetInterface<CFontManager>("./libmaterialsystem2.so", "FontManager_001", 48 );
+    engineServiceMgr = GetInterface<CEngineServiceMgr>("./libengine2.so", "EngineServiceMgr001", 53 );
 
-    if( !client ){
-        ConMsg( "client Interface is Null!\n" );
+    if( !requestedInterfaces.empty() ){
+        for( long unsigned int i = 0; i < requestedInterfaces.size(); i ++ ){
+            if( !requestedInterfaces[i].interface ){
+                ConMsg( "Interface: (%s) is Null!\n", requestedInterfaces[i].name );
+            }
+        }
         return false;
     }
-    if( !cvar ){
-        ConMsg( "cvar Interface is Null!\n" );
-        return false;
-    }
-    if( !engine ){
-        ConMsg( "engine Interface is Null!\n" );
-        return false;
-    }
-    if( !inputInternal ){
-        ConMsg( "inputInternal Interface is Null!\n" );
-        return false;
-    }
-    if( !inputSystem ){
-        ConMsg( "inputSystem Interface is Null!\n" );
-        return false;
-    }
-    if( !networkClientService ){
-        ConMsg( "networkClientService Interface is Null!\n" );
-        return false;
-    }
-    if( !panel ){
-        ConMsg( "Panel Interface is Null!\n" );
-        return false;
-    }
-    if( !splitScreenService ){
-        ConMsg( "splitScreenService Interface is Null!\n" );
-        return false;
-    }
-    if( !panoramaEngine ){
-        ConMsg( "panoramaEngine Interface is Null!\n" );
-        return false;
-    }
-    if( !fontManager ){
-        ConMsg( "panoramaEngine Interface is Null!\n" );
-        return false;
-    }
-
     return true;
 }
 
@@ -148,16 +116,17 @@ void Interfaces::DumpInterfaces( const char *fileName )
 bool Interfaces::CheckInterfaceVMs( )
 {
     bool areVMsGood = true;
-    for( unsigned int i = 0; i < interfacesMetaDataList.size(); i++ ){
-        if( interfacesMetaDataList[i].numVMs == 0 )
+    for( unsigned int i = 0; i < grabbedInterfaces.size(); i++ ){
+        if( grabbedInterfaces[i].numVMs == 0 )
             continue;
-        uint32_t vmCount = CountVMs(interfacesMetaDataList[i].interface);
+        uint32_t vmCount = CountVMs(grabbedInterfaces[i].interface);
 
-        if( interfacesMetaDataList[i].numVMs != vmCount ){
+        if( grabbedInterfaces[i].numVMs != vmCount ){
             ConMsg("Warning: Interface \"%s\" Has Changed. Expected it to have %d VMs; has %d VMs. Check for Broken offsets and Update interfaces.cpp \n",
-                                     interfacesMetaDataList[i].name,
-                                     interfacesMetaDataList[i].numVMs,
-                                     vmCount);
+                   grabbedInterfaces[i].name,
+                   grabbedInterfaces[i].numVMs,
+                   vmCount);
+
             areVMsGood = false;
         }
     }

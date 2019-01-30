@@ -10,10 +10,11 @@ echo $fullpath
 sudo killall -19 steam
 sudo killall -19 steamwebhelper
 
+if grep -q "$filename" "/proc/$dota_pid/maps"; then
+
 #Send signal SIGXCPU, which will signal McDota to get ready for unloading.
 kill -24 "$dota_pid"
 
-if grep -q "$filename" "/proc/$dota_pid/maps"; then
 echo "Unloading..."
 sudo gdb -n -q -batch-silent \
 	-ex "set logging on" \

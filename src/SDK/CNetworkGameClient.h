@@ -60,7 +60,7 @@ struct SignonState_t;
 
 
 // xref "Connection lost" to ProcessConnectionCrashed()  (libengine2)
-class CNetworkGameClient
+class CNetworkGameClient // AKA: CNetworkGameClientBase
 {
 public:
     virtual void Init(void) = 0;

@@ -55,7 +55,7 @@ void Main()
     sa.sa_sigaction = SignalHandler;
     sigaction(SIGXCPU, &sa, &oldSa); // set ours and backup the old one at the same time.
 
-    //Interfaces::DumpInterfaces( "/tmp/dotainterfaces.txt" );
+    Interfaces::DumpInterfaces( "/tmp/dotainterfaces.txt" );
 
     if( !Interfaces::FindInterfaces() ){
         ConMsg( "FindInterfaces() Failed. Stopping...\n" );
@@ -80,6 +80,7 @@ void Main()
     sigsOK &= Scanner::FindSoundOpSystem();
     sigsOK &= Scanner::FindAcceptMatch();
     sigsOK &= Scanner::FindWorldToScreen();
+    sigsOK &= Scanner::FindRichPresence();
     if( !sigsOK ){
         cvar->ConsoleColorPrintf(ColorRGBA(225, 5, 5),"Failed to find one of the Signatures. Stopping...\n");
         return;
@@ -115,12 +116,20 @@ void Main()
     cvar->ConsoleDPrintf( "NetworkGameClient @ %p\n",(void*)networkClientService->GetIGameClient() );
     cvar->ConsoleDPrintf( "SoundOpSystem @ %p\n", (void*)soundOpSystem );
     cvar->ConsoleDPrintf( "VScriptSystem @ %p\n", (void*)vscriptSystem );
+    cvar->ConsoleDPrintf( "CFontManager @ %p\n", (void*)fontManager );
+    cvar->ConsoleDPrintf( "CEngineServiceMgr @ %p\n", (void*)engineServiceMgr );
+    cvar->ConsoleDPrintf( "Active Loop Name: (%s) | Addon String: (%s)\n", engineServiceMgr->GetActiveLoopName(), engineServiceMgr->GetAddonsString() );
+    cvar->ConsoleDPrintf( "RichPresence @ %p\n", (void*)richPresence );
     //networkClientService->PrintSpawnGroupStatus();
     //networkClientService->PrintConnectionStatus();
 
     clientVMT = new VMT(client);
     clientVMT->HookVM(Hooks::FrameStageNotify, 29);
     clientVMT->ApplyVMT();
+
+    gameEventManagerVMT = new VMT(gameEventManager);
+    gameEventManagerVMT->HookVM(Hooks::FireEventClientSide, 9);
+    gameEventManagerVMT->ApplyVMT();
 
     soundOpSystemVMT = new VMT(soundOpSystem);
     soundOpSystemVMT->HookVM(Hooks::StartSoundEvent, 11);

@@ -18,23 +18,17 @@ public:
     /* Use CBaseEntity->WorldAlignMins/Maxs Instead of this crap I reversed for no reason */
     inline const Vector * const GetMins()
     {
-        static bool bFirst = true;
-        static int offset = 0;
-        if( bFirst ){
-            offset = Util::FindDataMapElementOffset( this->GetPredDescMap(), "m_vecMins" );
-            bFirst = false;
-        }
+        static int offset = Util::FindDataMapElementOffset( this->GetPredDescMap(), "m_vecMins" );
+        if( !offset )
+            return nullptr;
         return (const Vector * const)((uintptr_t)this + offset);
     }
 
     inline const Vector * const GetMaxs()
     {
-        static bool bFirst = true;
-        static int offset = 0;
-        if( bFirst ){
-            offset = Util::FindDataMapElementOffset( this->GetPredDescMap(), "m_vecMaxs" );
-            bFirst = false;
-        }
+        static int offset = Util::FindDataMapElementOffset( this->GetPredDescMap(), "m_vecMaxs" );
+        if( !offset )
+            return nullptr;
         return (const Vector * const)((uintptr_t)this + offset);
     }
 

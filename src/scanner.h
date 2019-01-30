@@ -15,4 +15,5 @@ namespace Scanner
 	bool FindSoundOpSystem();
 	bool FindAcceptMatch();
 	bool FindWorldToScreen();
+	bool FindRichPresence();
 }

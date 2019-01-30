@@ -73,7 +73,6 @@ void Hooks::FrameStageNotify( CSource2Client *thisptr, ClientFrameStage_t stage 
                 localPlayerVMT->HookVM( Hooks::PrepareUnitOrders, 435 );
                 localPlayerVMT->ApplyVMT();
                 cvar->ConsoleDPrintf("LocalPlayer @ %p\n", (void*)localPlayer);
-                cvar->ConsoleDPrintf("Original LocalPlayer VMT: (%p), Custom(%p)\n", (void*)localPlayerVMT->original_vmt, (void*)localPlayerVMT->vmt);
             }
 
             break;

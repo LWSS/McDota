@@ -383,7 +383,50 @@ bool Scanner::FindWorldToScreen()
 }
 
 
+bool Scanner::FindRichPresence()
+{
+	// CSource2Client::NotifyClientSignon()
+	// 55                      push    rbp
+	// 48 89 E5                mov     rbp, rsp
+	// 41 54                   push    r12
+	// 44 0F B7 E6             movzx   r12d, si
+	// 53                      push    rbx
+	// 89 F3                   mov     ebx, esi
+	// 48 83 EC 10             sub     rsp, 10h
+	// E8 8A 85 73 00          call    GDOTAGCClientSystem
+	// 44 89 E6                mov     esi, r12d
+	// 48 89 C7                mov     rdi, rax
+	// E8 0F 20 74 00          call    GDOTAGCClientSystem__NotifyClientSignon(int)
+	// E8 7A 85 73 00          call    GDOTAGCClientSystem
+	// 89 DA                   mov     edx, ebx
+	// C1 EA 10                shr     edx, 10h
+	// 83 E2 01                and     edx, 1
+	// 88 90 FC 05 00 00       mov     [rax+5FCh], dl
+	// E8 17 56 46 00          call    RichPresence   <----------------
 
+	void ( CSource2Client::*notifyClientSignonPtr )( int ) = &CSource2Client::NotifyClientSignon;
+	uintptr_t NotifyClientSignon = reinterpret_cast<uintptr_t>( (void*)(client->*notifyClientSignonPtr) );
+
+	typedef CDOTARichPresence* ( *GetRichPresenceFn )();
+	GetRichPresenceFn GetRichPresence = reinterpret_cast<GetRichPresenceFn>( GetAbsoluteAddress(NotifyClientSignon + 52, 1, 5) );
+
+	richPresence = GetRichPresence();
+
+
+	// xref "active RP" to SetRPStatus()
+	// 55 48 89 E5 41 57 41 56 41 89 D6 41 55 41 54 49 89 FC 53 48 81
+	uintptr_t funcAddr = PatternFinder::FindPatternInModule( "libclient.so",
+															 ( unsigned char* )"\x55\x48\x89\xE5\x41\x57\x41\x56\x41\x89\xD6\x41\x55\x41\x54\x49\x89\xFC\x53\x48\x81",
+															 "xxxxxxxxxxxxxxxxxxxxx", "SetRPStatus" );
+
+	if( !funcAddr ){
+		cvar->ConsoleDPrintf("[%s]ERROR SetRPStatus sig is broke!\n", __func__ );
+		return false;
+	}
+
+	SetRPStatus = reinterpret_cast<SetRPStatusFn>( funcAddr );
+	return true;
+}
 
 
 

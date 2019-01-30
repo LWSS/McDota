@@ -38,7 +38,8 @@ long Util::GetEpochMs()
 	return std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
 }
 
-/* Sets prev/curr/next addresses so you can restore */
+/* Removes McDota from Library-Level dynamic library linked list
+ * You need to save the prev/curr/next void ptrs for unloading. */
 void Util::RemoveLinkMapEntry(const char *partialName, void **prev, void **curr, void **next)
 {
     struct link_map *map = reinterpret_cast<struct link_map*>(dlopen(NULL, RTLD_NOW));
@@ -59,7 +60,7 @@ void Util::RemoveLinkMapEntry(const char *partialName, void **prev, void **curr,
         map = map->l_next;
     }
 }
-
+/* Undoes the above Function */
 void Util::RestoreLinkMapEntry(void *prev, void *curr, void *next)
 {
 	if( prev )

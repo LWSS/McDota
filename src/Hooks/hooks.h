@@ -10,6 +10,8 @@ namespace Hooks
     void FrameStageNotify( CSource2Client* thisptr, ClientFrameStage_t stage );
     // clientMode
     bool CreateMove(IClientMode* thisptr, CUserCmd *cmd, QAngle &angle, Vector &pos);
+    // gameEventManager
+    bool FireEventClientSide( CGameEventManager *thisptr, CGameEvent *event );
     // inputInternal
     void SetKeyCodeState( IInputInternal* thisptr, ButtonCode_t code, bool bPressed );
     // INetChannel

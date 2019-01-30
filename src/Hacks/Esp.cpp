@@ -28,15 +28,16 @@ static bool GetBox( CBaseEntity* entity, int* x, int* y, int* w, int* h )
                         Vector(max.x, max.y, max.z),
                         Vector(max.x, min.y, max.z) };
 
-    int leftMost = 9999, rightMost = -1, topMost = 9999, bottomMost = -1;
     int maxX, maxY;
     engine->GetScreenSize( maxX, maxY );
+    int leftMost = maxX, rightMost = 0, topMost = maxX, bottomMost = 0;
+
     for( const auto &vec : points ){
         int tempX = 0, tempY = 0;
 
         GetVectorInScreenSpace(vec, tempX, tempY, NULL);
+        /* Is Off-Screen */
         if( tempX < 0 || tempY < 0 || tempX > maxX || tempY > maxY ){
-            //cvar->ConsoleDPrintf("WARNING: GetBox returned false. tempX is %d, tempY is %d!\n", tempX, tempY );
             return false;
         }
 
@@ -123,7 +124,22 @@ void ESP::PaintTraverse( IVPanel *thisptr, IVGuiPaintSurface *surface, VPANEL pa
                 strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" - %s", player->C_DOTAPlayer__GetPlayerName() );
             }
 
+            if( strstr( entity->Schema_DynamicBinding()->bindingName, "DOTA_Unit_Hero" ) ){
+                CDotaBaseNPC *npc = (CDotaBaseNPC*)entity;
+                strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" -Mana: (%g/%g)", npc->C_DOTA_BaseNPC__GetMana(), npc->C_DOTA_BaseNPC__GetMaxMana() );
+                strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" -Dmg Min(%d)/Max(%d)", npc->C_DOTA_BaseNPC__GetDamageMin(), npc->C_DOTA_BaseNPC__GetDamageMax() );
+                strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" -MagicImm?(%s)", npc->C_DOTA_BaseNPC__IsMagicImmune() ? "yes" : "no" );
+                strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" -Illu?(%s)", npc->C_DOTA_BaseNPC__IsIllusion() ? "yes" : "no" );
+                CDotaBaseNPC *target = npc->C_DOTA_BaseNPC__GetChosenTarget();
+                if( target ){
+                    strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" -Target(%p)", (void*)target );
+                } else {
+                    strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" -Target(null)" );
+                }
+            }
+
             surface->DrawSetTextFont(ESP::paintFont);
+            surface->DrawSetTextColor(255, 255, 255, 255);
             surface->GetTextSize(ESP::paintFont, buffer, sizeX, sizeY);
 
             int objectsInArea = 1;
@@ -135,7 +151,6 @@ void ESP::PaintTraverse( IVPanel *thisptr, IVGuiPaintSurface *surface, VPANEL pa
             }
 
             surface->DrawSetTextPos(x + (w / 2) - (sizeX / 2), y + ( sizeY * objectsInArea ) + h);
-            surface->DrawSetTextColor(ColorRGBA(255, 255, 255));
             surface->DrawPrintText(buffer, strLen);
 
             if( entity->C_BaseEntity__WorldSpaceCenter() ){

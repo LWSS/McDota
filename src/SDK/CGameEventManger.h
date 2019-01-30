@@ -3,6 +3,7 @@
 // xref "splitscreenplayer" to some function, double click `off_xxxxxxxx` to get to vtable
 class CGameEvent
 {
+public:
     virtual void DESTROY() = 0;
     virtual void DESTROY2() = 0;
 

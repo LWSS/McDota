@@ -15,7 +15,7 @@ R"zz(
 			$( '#McTabGeneral' ).visible = false;
 			$( '#McTabAbout' ).visible = false;
 			$( '#McTabVisuals' ).visible = false;
-			$( '#McTabLogging' ).visible = false;
+			$( '#McTabMisc' ).visible = false;
 
 			switch( nTab ){
 				case 0:
@@ -25,7 +25,7 @@ R"zz(
 					$( '#McTabVisuals' ).visible = true ;
 					break;
 				case 2:
-					$( '#McTabLogging' ).visible = true ;
+					$( '#McTabMisc' ).visible = true ;
 					break;
 				case 10:
 					$( '#McTabAbout' ).visible = true;
@@ -75,7 +75,7 @@ R"zz(
 			</RadioButton>
 			<Label class='SettingsTabSeparator'	text='/' />
 			<RadioButton class='SettingsNavBarButton' group='SettingsTopMenu' onactivate='changeTab( 2 )' >
-				<Label text='Logging' />
+				<Label text='Misc' />
 			</RadioButton>
 
 			<Panel class='SettingsTabFiller' />
@@ -125,6 +125,7 @@ R"zz(
 						<DOTASettingsCheckbox convar='mc_esp_type_enthitboxes' text='Entity Hitboxes' onactivate='clickSound()'/>
 						<DOTASettingsCheckbox convar='mc_esp_type_entviewoffset' text='Entity ViewOffset' onactivate='clickSound()'/>
 						<DOTASettingsCheckbox convar='mc_esp_type_infotext' text='Info Text' onactivate='clickSound()'/>
+						<DOTASettingsCheckbox convar='mc_esp_type_manabars' text='Mana Bars' onactivate='clickSound()'/>
 					</Panel>
 				</Panel>
 				<Panel id='RightColumn' class='SettingsColumn' style='width: 50%;'>
@@ -142,15 +143,17 @@ R"zz(
 				</Panel>
 			</Panel>
 		</Panel>
-		<!-- Logging -->
-		<Panel id='McTabLogging' style='width: 640px; height: 430px; horizontal-align: center; vertical-align: bottom;'>
+		<!-- Misc -->
+		<Panel id='McTabMisc' style='width: 640px; height: 430px; horizontal-align: center; vertical-align: bottom;'>
 			<Panel id='BasicOptions' class='SettingsColumnContainer FullHeight'>
 				<Panel class='SettingsSection'>
-					<DOTASettingsCheckbox convar='mc_log_createmove' text='CreateMove' onactivate='clickSound()' />
-					<DOTASettingsCheckbox convar='mc_log_sendnetmsg' text='SendNetMsg' onactivate='clickSound()' />
+					<DOTASettingsCheckbox convar='mc_log_createmove' text='Log CreateMove' onactivate='clickSound()' />
+					<DOTASettingsCheckbox convar='mc_log_sendnetmsg' text='Log SendNetMsg' onactivate='clickSound()' />
 					<DOTASettingsCheckbox convar='mc_log_sendnetmsg_filter_commons' text='^ Filter Commons' onactivate='clickSound()' />
-					<DOTASettingsCheckbox convar='mc_log_prepareunitorders' text='PrepUnitOrders' onactivate='clickSound()' />
-					<DOTASettingsCheckbox convar='mc_log_runscript' text='RunScript' onactivate='clickSound()' />
+					<DOTASettingsCheckbox convar='mc_log_prepareunitorders' text='Log PrepUnitOrders' onactivate='clickSound()' />
+					<DOTASettingsCheckbox convar='mc_log_runscript' text='Log RunScript' onactivate='clickSound()' />
+					<DOTASettingsCheckbox convar='mc_retarget_orders' text='Retarget Orders' onactivate='clickSound()' />
+					<DOTASettingsCheckbox convar='mc_allow_customnames' text='Allow Custom Names' onactivate='clickSound()' />
 					<DOTASettingsCheckbox convar='mc_send_voice' text='Kisak voice' onactivate='clickSound()' />
 					<DOTASettingsCheckbox convar='mc_send_status' text='Send Status' onactivate='clickSound()' />
 					<DOTASettingsSlider convar='mc_send_freq' min='5.0' max='2000.0' text='Send Freq' />
