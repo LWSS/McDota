@@ -31,7 +31,7 @@ There are 3 different load scripts.
  **#2 is the Recommended way to load for online play**
 
 
- 1. `loaddev` will load "libMcDota.so" normally into the game. I normally use this just for development and don't recommend that you use it online because it is easy to detect.
+ 1. `load` will load "libMcDota.so" normally into the game. I normally use this just for development and don't recommend that you use it online because it is easy to detect.
  2. `load_carto` has Cartographer Integration(R) and will first check for [Cartographer](https://github.com/LWSS/Cartographer) to be loaded, then it will set the Cartographer settings for you, and finally inject McDota into the game. 
  3. `load-stealth` Will rename and move"libMcdota.so" into a file that looks legit and then load it into the Game. ( Originally made by [Marc](https://github.com/Marc3842h) for Spookware ). This is a good compromise if you don't want to install or use Cartographer.
 

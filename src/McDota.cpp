@@ -148,11 +148,11 @@ void Main()
     inputInternalVMT->HookVM(Hooks::SetKeyCodeState, 96);
     inputInternalVMT->ApplyVMT();
 
-/*  // CAN BE UNSTABLE! RELATED TO THREADS
     uiEngineVMT = new VMT(panoramaEngine->AccessUIEngine());
+    uiEngineVMT->HookVM(Hooks::DispatchEvent, 49);
     uiEngineVMT->HookVM(Hooks::RunScript, 110);
     uiEngineVMT->ApplyVMT();
-*/
+
     cvar->ConsoleDPrintf("UI Engine @(%p) | Running? (%s)\n", (void*)panoramaEngine->AccessUIEngine(), panoramaEngine->AccessUIEngine()->IsRunning() ? "yes" : "no");
 
     srand(time(NULL)); // Seed random # Generator so we can call rand() later

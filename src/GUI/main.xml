@@ -148,6 +148,7 @@ R"zz(
 			<Panel id='BasicOptions' class='SettingsColumnContainer FullHeight'>
 				<Panel class='SettingsSection'>
 					<DOTASettingsCheckbox convar='mc_log_createmove' text='Log CreateMove' onactivate='clickSound()' />
+					<DOTASettingsCheckbox convar='mc_log_clientevents' text='Log ClientEvents' onactivate='clickSound()' />
 					<DOTASettingsCheckbox convar='mc_log_sendnetmsg' text='Log SendNetMsg' onactivate='clickSound()' />
 					<DOTASettingsCheckbox convar='mc_log_sendnetmsg_filter_commons' text='^ Filter Commons' onactivate='clickSound()' />
 					<DOTASettingsCheckbox convar='mc_log_prepareunitorders' text='Log PrepUnitOrders' onactivate='clickSound()' />

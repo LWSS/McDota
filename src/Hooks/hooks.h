@@ -19,6 +19,7 @@ namespace Hooks
     // panel
     void PaintTraverse( IVPanel* thisptr, IVGuiPaintSurface* surface, VPANEL panel, bool force_repaint, bool allow_force );
     // panorama
+    void DispatchEvent( panorama::UIEngine* thisptr, panorama::IUIEvent *event );
     int RunScript( panorama::UIEngine* thisptr, panorama::IUIPanel *panel, const char* str1, const char* str2, int int1, int int2, bool bool1 );
     // CDotaPlayer
     void PrepareUnitOrders( CDotaPlayer *thisptr, DotaUnitOrder_t order, int targetIndex, Vector movePosition, int abilityIndex,PlayerOrderIssuer_t orderIssuer,

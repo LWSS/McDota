@@ -153,7 +153,7 @@ namespace panorama
         virtual bool IsValidEventName(panorama::CPanoramaSymbol) = 0;
         virtual bool IsValidPanelEvent(panorama::CPanoramaSymbol,int *) = 0;
         virtual void CreateInputEventFromSymbol(panorama::CPanoramaSymbol,panorama::IUIPanel *,panorama::EPanelEventSource_t,int) = 0;
-        virtual void CreateEventFromString(panorama::IUIPanel *,char const*,char const**) = 0;
+        virtual int CreateEventFromString(panorama::IUIPanel *,char const*,char const**) = 0;
         virtual void unk11();
         virtual void RegisterPanelFactoryWithEngine(panorama::CPanoramaSymbol,panorama::CPanel2DFactory *) = 0;
         virtual bool RegisteredPanelType(panorama::CPanoramaSymbol) = 0;
@@ -166,7 +166,7 @@ namespace panorama
         virtual CPanoramaSymbol MakeSymbol(char const*) = 0; // if the symbol already exists, you'll get that one.
         virtual const char *ResolveSymbol(unsigned short) = 0; // if you pass an invalid number into here, it can crash the program.
         virtual void QueueDecrementRefNextFrame();//CRefCounted<CRefCountServiceBase<true,CRefMT>> *) = 0;
-        virtual void RegisterJSGenericCallback();//panorama::IUIPanel *,v8::Handle<v8::Function>) = 0;
+        virtual int RegisterJSGenericCallback();//panorama::IUIPanel *,v8::Handle<v8::Function>) = 0;
         virtual void InvokeJSGenericCallback();//int,int,v8::Handle<v8::Value> *,v8::Handle<v8::Value> *) = 0;
         virtual void UnregisterJSGenericCallback(int) = 0;
         virtual int GetNumRegisterJSScopes(void) = 0;

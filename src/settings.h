@@ -33,6 +33,7 @@ inline ConVar *mc_command_repeater;
 inline ConVar *mc_ent_select;
 
 inline ConVar *mc_log_createmove;
+inline ConVar *mc_log_clientevents;
 inline ConVar *mc_log_sendnetmsg;
 inline ConVar *mc_log_sendnetmsg_filter_commons;
 inline ConVar *mc_log_prepareunitorders;

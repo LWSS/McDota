@@ -39,6 +39,7 @@ bool Settings::RegisterCustomConvars( ) {
 	mc_ent_select = Util::RegisterConVar( "mc_ent_select", "1" );
 
 	mc_log_createmove = Util::RegisterConVar( "mc_log_createmove", "false" );
+	mc_log_clientevents = Util::RegisterConVar( "mc_log_clientevents", "false" );
 	mc_log_sendnetmsg = Util::RegisterConVar( "mc_log_sendnetmsg", "false" );
 	mc_log_sendnetmsg_filter_commons = Util::RegisterConVar( "mc_log_sendnetmsg_filter_commons", "true" );
 	mc_log_prepareunitorders = Util::RegisterConVar( "mc_log_prepareunitorders", "false" );

@@ -10,10 +10,15 @@ namespace panorama
         virtual void DESTROY2() = 0;
         virtual CPanoramaSymbol GetTargetPanel(void);
         virtual void SetTargetPanel(IUIPanel const *);
-        virtual CPanoramaSymbol GetEventType(void);
+        virtual CPanoramaSymbol BROKEN_GetEventType(void);
         virtual bool CanBubble(void);
         virtual void Dispatch(CUtlAbstractDelegate);
         virtual void Copy(void);
         virtual void GetJavaScriptArgs(int *);//,v8::Handle<v8::Value> value);
+
+        CPanoramaSymbol GetEventType(void)
+        {
+            return *( CPanoramaSymbol* )( ((uintptr_t)this) + 0xA );
+        }
     };
 }
