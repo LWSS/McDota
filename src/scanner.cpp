@@ -44,7 +44,7 @@ bool Scanner::FindGameEntitySystem()
     uintptr_t reinitPredictables = PatternFinder::FindPatternInModule("libclient.so", (unsigned char*) "\x55\x48\x89\xE5\x41\x56\x49\x89\xFE\x41\x55\x4C\x8B", "xxxxxxxxxxxxx", "reinitPredictables");
 
 	if( !reinitPredictables ){
-        cvar->ConsoleDPrintf("[%s]ERROR reinitPredictables sig failed\n", __func__);
+        MC_PRINTF_ERROR("reinitPredictables sig failed\n");
         return false;
     }
 
@@ -80,7 +80,7 @@ bool Scanner::FindVScript()
 			                                                                                    "\x0F\xB6\xD3", "xxx????xxx", "FindVScript");
 
 	if( !initialLine ){
-        cvar->ConsoleDPrintf("[%s]ERROR VScript sig failed\n", __func__);
+        MC_PRINTF_ERROR("ERROR VScript sig failed\n");
         return false;
     }
 
@@ -109,7 +109,7 @@ bool Scanner::FindCNetworkMessages()
                                                                                                 "\x41\x56"
                                                                                                 "\x48\x8D\x0D", "xxx????xxxxxxxxxx" "FindCNetworkMessages");
 	if( !func ){
-        cvar->ConsoleDPrintf("[%s]ERROR FindCNetworkMessages sig failed\n", __func__);
+        MC_PRINTF_ERROR("FindCNetworkMessages sig failed\n");
         return false;
     }
 
@@ -133,10 +133,10 @@ bool Scanner::FindPanelArrayOffset()
 	panorama::panelArrayOffset = *(unsigned int*)(IsValidPanelPointer + 19);
 
 	if( panorama::panelArrayOffset != knownGoodOffset ) {
-		cvar->ConsoleDPrintf( "[Scanner::FindPanelArrayOffset] Warning! Array Offset Changed. Is (%x), supposed to be (%x)\n", panorama::panelArrayOffset, knownGoodOffset );
+		MC_PRINTF_WARN( "Array Offset Changed. Is (%x), supposed to be (%x)\n", panorama::panelArrayOffset, knownGoodOffset );
 	}
 	if( panorama::panelArrayOffset > 0x300 || panorama::panelArrayOffset < 0x100 ){
-		cvar->ConsoleDPrintf("[%s] ERROR! Array Offset Drastic Change. Is (%x)!\n", __func__, panorama::panelArrayOffset );
+		MC_PRINTF_ERROR("Array Offset Drastic Change. Is (%x)!\n", panorama::panelArrayOffset );
 		return false;
 	}
 	return true;
@@ -157,7 +157,7 @@ bool Scanner::FindViewRender()
 			                                                            "\x00\x00\x00\x00" // ??
 			                                                            "\x48\x8B\x15", "xxxxxxxxxx?x????xxx", "GetViewRender Function");
     if( !initGameSystemsFunc ){
-        cvar->ConsoleDPrintf("[%s]ERROR initGameSystemsFunc sig failed\n", __func__);
+        MC_PRINTF_ERROR("initGameSystemsFunc sig failed\n");
         return false;
     }
 	typedef CViewRender* (* GetViewRenderFn)();
@@ -186,20 +186,20 @@ bool Scanner::FindClientMode()
 	uintptr_t hudUpdateFn = reinterpret_cast<uintptr_t>( (void*)(client->*hudUpdatePtr) );
 
 	if( !hudUpdateFn ){
-		cvar->ConsoleDPrintf("[%s]ERROR hudUpdateFn is NULL\n", __func__);
+		MC_PRINTF_ERROR("hudUpdateFn is NULL\n");
 		return false;
 	}
 	typedef IClientMode* (*GetClientModeFn) ( int splitScreenslot );
 	GetClientModeFn GetClientMode = reinterpret_cast<GetClientModeFn>( GetAbsoluteAddress( hudUpdateFn + 27, 1, 5 ) );
 
 	if( !GetClientMode ){
-		cvar->ConsoleDPrintf("[%s]ERROR GetClientMode function is NULL\n", __func__);
+		MC_PRINTF_ERROR("GetClientMode function is NULL\n");
 		return false;
 	}
 
 	clientMode = GetClientMode( 0 );
 	if( !clientMode ){
-		cvar->ConsoleDPrintf("[%s]ERROR GetClientMode function failed to return ClientMode\n", __func__);
+		MC_PRINTF_ERROR("GetClientMode function failed to return ClientMode\n");
 		return false;
 	}
 
@@ -222,7 +222,7 @@ bool Scanner::FindCamera()
 			                                                                                          "\x31\xD2", "x????xxx??xxxx", "Get DOTADefaultCamera");
 
 	if( !getCameraFuncAddr ){
-		cvar->ConsoleDPrintf("[%s]ERROR Get Camera sig failed\n", __func__ );
+		MC_PRINTF_ERROR("Get Camera sig failed\n");
 		return false;
 	}
 
@@ -242,14 +242,14 @@ bool Scanner::FindGameEventManager()
 
     uintptr_t gameEventManagerAddr = reinterpret_cast<uintptr_t>( GetAbsoluteAddress(playerInfoChangedFn + 52, 3, 7) );
     if( !gameEventManagerAddr ){
-        cvar->ConsoleDPrintf("[%s]ERROR Game Event Manager Addr sig broke!\n", __func__ );
+        MC_PRINTF_ERROR("Game Event Manager Addr sig broke!\n");
         return false;
     }
 
     gameEventManager = **reinterpret_cast<CGameEventManager ***>( gameEventManagerAddr );
 
     if( !gameEventManager ){
-        cvar->ConsoleDPrintf("[%s]ERROR Game Event Manager is NULL\n", __func__ );
+        MC_PRINTF_ERROR("Game Event Manager is NULL\n");
         return false;
     }
     return true;
@@ -266,14 +266,14 @@ bool Scanner::FindDBPlayPanel()
 			                                                                                      "\xBE\x07\x00\x00\x00", "xxx????xxxxx", "DBPlay Panel");
 
 	if( !playPanelLine ){
-		cvar->ConsoleDPrintf("[%s]ERROR DBPlayPanel Sig is broke!\n", __func__ );
+		MC_PRINTF_ERROR("DBPlayPanel Sig is broke!\n");
 		return false;
 	}
 
 	uintptr_t playPanelAddr = reinterpret_cast<uintptr_t>( GetAbsoluteAddress( playPanelLine, 3, 7 ) );
 
 	if( !playPanelAddr ){
-		cvar->ConsoleDPrintf("[%s]ERROR DBPlayPanelAddr is NULL\n", __func__ );
+		MC_PRINTF_ERROR("DBPlayPanelAddr is NULL\n");
 		return false;
 	}
 
@@ -301,14 +301,14 @@ bool Scanner::FindSoundOpSystem()
 			                                                                                          "\xC7", "xxx????xx?????xxxxx????xx??xxx" "SoundOpSystem");
 
     if( !soundOpSystemLine ){
-        cvar->ConsoleDPrintf("[%s]ERROR SoundOpSystem Sig is broke!\n", __func__ );
+        MC_PRINTF_ERROR("SoundOpSystem Sig is broke!\n");
         return false;
     }
 
     uintptr_t soundOpSystemAddr = reinterpret_cast<uintptr_t>( GetAbsoluteAddress( soundOpSystemLine, 3, 7 ) );
 
     if( !soundOpSystemAddr ){
-        cvar->ConsoleDPrintf("[%s]ERROR SoundOpSystemAddr is NULL!\n", __func__ );
+        MC_PRINTF_ERROR("SoundOpSystemAddr is NULL!\n");
         return false;
     }
 
@@ -341,7 +341,7 @@ bool Scanner::FindAcceptMatch()
 			                                                                                "\x0F\xB6\xF3"
 			                                                                                "\x48\x89", "xxxxxxxxxx?x????xxxxx", "On Accept Match");
 	if( !funcAddr ){
-		cvar->ConsoleDPrintf("[%s]ERROR On Accept Match Sig is broke!\n", __func__ );
+		MC_PRINTF_ERROR("On Accept Match Sig is broke!\n");
 		return false;
 	}
 	OnAcceptMatch = reinterpret_cast<OnAcceptMatchFn>( funcAddr );
@@ -374,7 +374,7 @@ bool Scanner::FindWorldToScreen()
 			                                                                                "\x48\x83\xEC\x00"
 			                                                                                "\x48\x85\xD2", "xxxxxxxxxxxxxxxx?xxx", "WorldToScreen (GetVectorInScreenSpace)");
 	if( !funcAddr ){
-		cvar->ConsoleDPrintf("[%s]ERROR On WorldToScreen sig is broke!\n", __func__ );
+		MC_PRINTF_ERROR("On WorldToScreen sig is broke!\n");
 		return false;
 	}
 
@@ -420,7 +420,7 @@ bool Scanner::FindRichPresence()
 															 "xxxxxxxxxxxxxxxxxxxxx", "SetRPStatus" );
 
 	if( !funcAddr ){
-		cvar->ConsoleDPrintf("[%s]ERROR SetRPStatus sig is broke!\n", __func__ );
+		MC_PRINTF_ERROR("SetRPStatus sig is broke!\n");
 		return false;
 	}
 

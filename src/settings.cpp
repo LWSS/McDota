@@ -58,7 +58,7 @@ bool Settings::RegisterCustomConvars( ) {
 
 	for ( ConCommandBase *var : Util::createdConvars ) {
 		if( !cvar->FindVar(var->name) ){
-			cvar->ConsoleDPrintf("Error Finding created Var: %s\n", var->name);
+			MC_PRINTF_ERROR("Error Finding created Var: %s\n", var->name);
 			return false;
 		}
 	}

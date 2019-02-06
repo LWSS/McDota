@@ -21,7 +21,7 @@ static panorama::IUIPanel* GetHudRoot( ){
     panorama::IUIPanel *panel = panoramaEngine->AccessUIEngine()->GetLastDispatchedEventTargetPanel();
 
     if( !panoramaEngine->AccessUIEngine()->IsValidPanelPointer(panel) ){
-        cvar->ConsoleDPrintf("[GUI::GetHudRoot]Failed to grab Last Event Target Panel!\n");
+        MC_PRINTF_WARN("Failed to grab Last Event Target Panel!\n");
         return NULL;
     }
     panorama::IUIPanel *itr = panel;
@@ -41,14 +41,14 @@ static bool SetupAndCheckPanels()
     if( engine->IsInGame() ){
         panorama::IUIPanel* panel = GetHudRoot();
         if( !panoramaEngine->AccessUIEngine()->IsValidPanelPointer( panel ) ){
-            cvar->ConsoleDPrintf( "Could not Get HUD Root Panel! Invalid! (%p)\n", (void*)UI::hudRoot );
+            MC_PRINTF_WARN( "Could not Get HUD Root Panel! Invalid! (%p)\n", (void*)UI::hudRoot );
             return false;
         }
         UI::hudRoot = panel;
     } else if( !UI::dashRoot ){
         panorama::IUIPanel *panel = panoramaEngine->AccessUIEngine()->GetPanelArray()->slots[0].panel; // 0 = DotaDashboard
         if( !panoramaEngine->AccessUIEngine()->IsValidPanelPointer( panel ) ){
-            cvar->ConsoleDPrintf( "Could not Get Dashboard Root Panel! Invalid! (%p)\n", (void*)UI::dashRoot );
+            MC_PRINTF_WARN( "Could not Get Dashboard Root Panel! Invalid! (%p)\n", (void*)UI::dashRoot );
             return false;
         }
         UI::dashRoot = panel;
@@ -57,11 +57,11 @@ static bool SetupAndCheckPanels()
     panorama::IUIPanel *root = ( engine->IsInGame() ? UI::hudRoot : UI::dashRoot );
 
     if( !panoramaEngine->AccessUIEngine()->IsValidPanelPointer(root) ){
-        cvar->ConsoleDPrintf("[UI::SetupAndCheckPanels] - Root panel pointer Invalid(%p)\n", (void*)root);
+        MC_PRINTF_WARN("Root panel pointer Invalid(%p)\n", (void*)root);
         return false;
     }
     if( !root->HasBeenLayedOut() ){
-        cvar->ConsoleDPrintf("[UI::SetupAndCheckPanels] - Root panel has not been layed out yet!\n");
+        MC_PRINTF_WARN("Root panel has not been layed out yet!\n");
         return false;
     }
     /* Going from menu->In-game OR Vice versa, set the pointer to NULL so we re-grab it below */
@@ -75,20 +75,20 @@ static bool SetupAndCheckPanels()
     if( !panoramaEngine->AccessUIEngine()->IsValidPanelPointer( UI::mcDota ) && !engine->IsInGame() ){
         panorama::IUIPanel* child = UI::dashRoot->GetLastChild();
         if( panoramaEngine->AccessUIEngine()->IsValidPanelPointer( child ) && strcmp(child->GetID(), "McDotaMain") == 0 ){
-            cvar->ConsoleDPrintf("Grabbing existing child McDotaMain\n");
+            MC_PRINTF("Grabbing existing child McDotaMain\n");
             UI::mcDota = child;
         }
     }
     /* Create our custom panel */
     if( !panoramaEngine->AccessUIEngine()->IsValidPanelPointer( UI::mcDota ) ){
-        cvar->ConsoleDPrintf("Creating McDota Panel...\n");
+        MC_PRINTF("Creating McDota Panel...\n");
         // Get rid of newlines, they mess up the javascript syntax
         std::replace(mainXML.begin(), mainXML.end(), '\n', ' ');
         snprintf(jsCode, JS_MAX, cuckProtocol, mainXML.c_str());
 
         panorama::CPanoramaSymbol type = panoramaEngine->AccessUIEngine()->MakeSymbol("Panel");
         UI::mcDota = panoramaEngine->AccessUIEngine()->CreatePanel(&type, "McDotaMain", root)->panel;
-        cvar->ConsoleDPrintf("Root ID: %s\n", root->GetID());
+        MC_PRINTF("Root ID: %s\n", root->GetID());
         UI::mcDota->SetParent( root );
     }
     if( !UI::mcDota->HasBeenLayedOut() )
@@ -102,11 +102,11 @@ void UI::ToggleUI()
     SetupAndCheckPanels();
 
     if( !panoramaEngine->AccessUIEngine()->IsValidPanelPointer(UI::mcDota) ){
-        cvar->ConsoleDPrintf("[UI::ToggleUI] - Something is wrong with our mcDota Panel Pointer(%p)\n", (void*)UI::mcDota);
+        MC_PRINTF_WARN("Something is wrong with our mcDota Panel Pointer(%p)\n", (void*)UI::mcDota);
         return;
     }
     if( !UI::mcDota->HasBeenLayedOut() ){
-        cvar->ConsoleDPrintf("[UI::ToggleUI] - mcDota Panel not layed out yet. Try again.\n");
+        MC_PRINTF_WARN("mcDota Panel not layed out yet. Try again.\n");
         return;
     }
 

@@ -12,10 +12,6 @@ typedef void (* SetKeyCodeStateFn)( IInputInternal*, ButtonCode_t, bool );
 
 void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pressed)
 {
-    //if( bPressed )
-    //    cvar->ConsoleColorPrintf( ColorRGBA(150, 150, 255, 255), "Key Pressed: %s\n", inputSystem->ButtonCodeToString( code ) );
-
-
 	/*
 	if (SetKeyCodeState::shouldListen && bPressed)
 	{

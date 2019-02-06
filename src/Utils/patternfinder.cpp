@@ -64,13 +64,13 @@ uintptr_t PatternFinder::FindPatternInModule(const char* moduleName, unsigned ch
 	size_t memSize;
 
 	if (!GetLibraryInformation(moduleName, &baseAddress, &memSize)){
-		cvar->ConsoleColorPrintf(ColorRGBA(225, 5, 5), "(FindPatternInModule): ERROR: Could Not Get info for Module %s\n", moduleName);
+		MC_PRINTF_ERROR("Could Not Get info for Module %s\n", moduleName);
 		return 0;
 	}
 
 	uintptr_t ret = FindPattern(baseAddress, memSize, bMask, szMask);
 	if( !ret ){
-		cvar->ConsoleColorPrintf(ColorRGBA(225, 5, 5), "(FindPatternInModule): ERROR: Could not find pattern for %s\n", why );
+		MC_PRINTF_ERROR("Could not find pattern for %s\n", why );
 	}
 	return ret;
 }

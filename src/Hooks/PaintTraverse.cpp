@@ -9,7 +9,7 @@ typedef void (* PaintTraverseFn)( IVPanel*, IVGuiPaintSurface*, VPANEL, bool, bo
 
 bool PaintTraverse::InitFonts( ){
     //ESP::paintFont = fontManager->FindOrLoadFont("Courier New", "MaterialSystem2DefaultDebugFontOutline", 20, 20, true, 20, 20, 20, 20, 0x200, NULL);
-    //cvar->ConsoleDPrintf("ESP paintFont is now: %llu\n", ESP::paintFont);
+    //MC_PRINTF("ESP paintFont is now: %llu\n", ESP::paintFont);
     //fontManager->SpewFonts(NULL, 1.0f);
 
     /* Handle 2 is always this */

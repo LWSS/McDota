@@ -58,11 +58,11 @@ void Main()
     Interfaces::DumpInterfaces( "/tmp/dotainterfaces.txt" );
 
     if( !Interfaces::FindInterfaces() ){
-        ConMsg( "FindInterfaces() Failed. Stopping...\n" );
+        ConMsg( "[McDota] FindInterfaces() Failed. Stopping...\n" );
         return;
     }
     if( !Interfaces::CheckInterfaceVMs() ){
-        ConMsg( "CheckInterfaceVMs() Failed. Stopping...\n");
+        MC_PRINTF_ERROR( "CheckInterfaceVMs() Failed. Stopping...\n");
         return;
     }
 
@@ -82,44 +82,44 @@ void Main()
     sigsOK &= Scanner::FindWorldToScreen();
     sigsOK &= Scanner::FindRichPresence();
     if( !sigsOK ){
-        cvar->ConsoleColorPrintf(ColorRGBA(225, 5, 5),"Failed to find one of the Signatures. Stopping...\n");
+        MC_PRINTF_ERROR("Failed to find one of the Signatures. Stopping...\n");
         return;
     }
     if( Integrity::VMTsHaveMisMatch() ){
-        cvar->ConsoleColorPrintf(ColorRGBA(225, 5, 5),"One of the VMs has had a Mismatch. Stopping...\n");
+        MC_PRINTF_ERROR("One of the VMs has had a Mismatch. Stopping...\n");
         return;
     }
     if( !Settings::RegisterCustomConvars() ){
-        cvar->ConsoleColorPrintf(ColorRGBA(225, 5, 5),"Error Registering ConVars, Stopping...\n");
+        MC_PRINTF_ERROR("Error Registering ConVars, Stopping...\n");
         return;
     }
     if( !PaintTraverse::InitFonts() ){
-        cvar->ConsoleColorPrintf(ColorRGBA(225, 5, 5),"Paint Fonts Failed to Initialize, Stopping...\n");
+        MC_PRINTF_ERROR("Paint Fonts Failed to Initialize, Stopping...\n");
     }
 
     cvar->ConsoleColorPrintf( ColorRGBA(10, 210, 10), "[McDota]I'm in like Flynn.\n" );
 
     int width, height;
     engine->GetScreenSize( width, height );
-    cvar->ConsoleDPrintf( "Your Dota 2 was Built on - %s - %s\n", engine->GetBuildDateString(), engine->GetBuildTimeString() );
-    cvar->ConsoleDPrintf( "ScreenSize: %dx%d\n", width, height );
-    cvar->ConsoleDPrintf( "Max Clients: %d\n", engine->GetMaxClients() );
-    //cvar->ConsoleDPrintf( "Group Count is: %d\n", networkMessages->GetNetworkGroupCount() );
-    cvar->ConsoleDPrintf( "FOV is: %f | viewModel FOV is: %f\n", camera->GetFOV(), clientMode->GetViewModelFOV() );
-    cvar->ConsoleDPrintf( "client @ %p\n", (void*)client );
-    cvar->ConsoleDPrintf( "viewRender @ %p\n", (void*)viewRender );
-    cvar->ConsoleDPrintf( "clientMode @ %p\n", (void*)clientMode );
-    cvar->ConsoleDPrintf( "Camera @ %p\n", (void*)camera );
-    cvar->ConsoleDPrintf( "Min Pitch: %f - Max Pitch: %f\n", camera->GetMinPitch(), camera->GetMaxPitch() );
-    cvar->ConsoleDPrintf( "Viewmodel FOV: %f - Blurfade: %f\n", clientMode->GetViewModelFOV(), clientMode->GetBlurFade() );
-    cvar->ConsoleDPrintf( "GameEventManger @ %p\n", (void*)gameEventManager );
-    cvar->ConsoleDPrintf( "NetworkGameClient @ %p\n",(void*)networkClientService->GetIGameClient() );
-    cvar->ConsoleDPrintf( "SoundOpSystem @ %p\n", (void*)soundOpSystem );
-    cvar->ConsoleDPrintf( "VScriptSystem @ %p\n", (void*)vscriptSystem );
-    cvar->ConsoleDPrintf( "CFontManager @ %p\n", (void*)fontManager );
-    cvar->ConsoleDPrintf( "CEngineServiceMgr @ %p\n", (void*)engineServiceMgr );
-    cvar->ConsoleDPrintf( "Active Loop Name: (%s) | Addon String: (%s)\n", engineServiceMgr->GetActiveLoopName(), engineServiceMgr->GetAddonsString() );
-    cvar->ConsoleDPrintf( "RichPresence @ %p\n", (void*)richPresence );
+    MC_PRINTF( "Your Dota 2 was Built on - %s - %s\n", engine->GetBuildDateString(), engine->GetBuildTimeString() );
+    MC_PRINTF( "ScreenSize: %dx%d\n", width, height );
+    MC_PRINTF( "Max Clients: %d\n", engine->GetMaxClients() );
+    //MC_PRINTF( "Group Count is: %d\n", networkMessages->GetNetworkGroupCount() );
+    MC_PRINTF( "FOV is: %f | viewModel FOV is: %f\n", camera->GetFOV(), clientMode->GetViewModelFOV() );
+    MC_PRINTF( "client @ %p\n", (void*)client );
+    MC_PRINTF( "viewRender @ %p\n", (void*)viewRender );
+    MC_PRINTF( "clientMode @ %p\n", (void*)clientMode );
+    MC_PRINTF( "Camera @ %p\n", (void*)camera );
+    MC_PRINTF( "Min Pitch: %f - Max Pitch: %f\n", camera->GetMinPitch(), camera->GetMaxPitch() );
+    MC_PRINTF( "Viewmodel FOV: %f - Blurfade: %f\n", clientMode->GetViewModelFOV(), clientMode->GetBlurFade() );
+    MC_PRINTF( "GameEventManger @ %p\n", (void*)gameEventManager );
+    MC_PRINTF( "NetworkGameClient @ %p\n",(void*)networkClientService->GetIGameClient() );
+    MC_PRINTF( "SoundOpSystem @ %p\n", (void*)soundOpSystem );
+    MC_PRINTF( "VScriptSystem @ %p\n", (void*)vscriptSystem );
+    MC_PRINTF( "CFontManager @ %p\n", (void*)fontManager );
+    MC_PRINTF( "CEngineServiceMgr @ %p\n", (void*)engineServiceMgr );
+    MC_PRINTF( "Active Loop Name: (%s) | Addon String: (%s)\n", engineServiceMgr->GetActiveLoopName(), engineServiceMgr->GetAddonsString() );
+    MC_PRINTF( "RichPresence @ %p\n", (void*)richPresence );
     //networkClientService->PrintSpawnGroupStatus();
     //networkClientService->PrintConnectionStatus();
 
@@ -148,12 +148,12 @@ void Main()
     inputInternalVMT->HookVM(Hooks::SetKeyCodeState, 96);
     inputInternalVMT->ApplyVMT();
 
-    uiEngineVMT = new VMT(panoramaEngine->AccessUIEngine());
-    uiEngineVMT->HookVM(Hooks::DispatchEvent, 49);
-    uiEngineVMT->HookVM(Hooks::RunScript, 110);
-    uiEngineVMT->ApplyVMT();
+    //uiEngineVMT = new VMT(panoramaEngine->AccessUIEngine());
+    //uiEngineVMT->HookVM(Hooks::DispatchEvent, 49);
+    //uiEngineVMT->HookVM(Hooks::RunScript, 110);
+    //uiEngineVMT->ApplyVMT();
 
-    cvar->ConsoleDPrintf("UI Engine @(%p) | Running? (%s)\n", (void*)panoramaEngine->AccessUIEngine(), panoramaEngine->AccessUIEngine()->IsRunning() ? "yes" : "no");
+    MC_PRINTF("UI Engine @(%p) | Running? (%s)\n", (void*)panoramaEngine->AccessUIEngine(), panoramaEngine->AccessUIEngine()->IsRunning() ? "yes" : "no");
 
     srand(time(NULL)); // Seed random # Generator so we can call rand() later
 
@@ -167,12 +167,12 @@ void Main()
         return;
 
     /* In Game */
-    cvar->ConsoleDPrintf("Engine timescale: %f\n", engine->GetTimeScale() );
-    cvar->ConsoleDPrintf( "localPlayer: %p, Schema-Name :%s, PlayerName: %s, ID: %d\n", (void*)localPlayer, localPlayer->Schema_DynamicBinding()->bindingName, localPlayer->C_DOTAPlayer__GetPlayerName(), localID );
+    MC_PRINTF("Engine timescale: %f\n", engine->GetTimeScale() );
+    MC_PRINTF( "localPlayer: %p, Schema-Name :%s, PlayerName: %s, ID: %d\n", (void*)localPlayer, localPlayer->Schema_DynamicBinding()->bindingName, localPlayer->C_DOTAPlayer__GetPlayerName(), localID );
 
-	//cvar->ConsoleDPrintf( "health: %d, actualHealth: %d\n", localPlayer->C_BaseEntity__GetHealth(), localPlayer->C_BaseEntity__GetActualHealth());
+	//MC_PRINTF( "health: %d, actualHealth: %d\n", localPlayer->C_BaseEntity__GetHealth(), localPlayer->C_BaseEntity__GetActualHealth());
 
-    cvar->ConsoleDPrintf( "MaxClients: %d, Current map: %s (%s)\n", globalVars->maxClients, globalVars->currentMap, globalVars->currentMapName);
+    MC_PRINTF( "MaxClients: %d, Current map: %s (%s)\n", globalVars->maxClients, globalVars->currentMap, globalVars->currentMapName);
 
 }
 /* Entrypoint to the Library. Called when loading */
@@ -214,7 +214,7 @@ void __attribute__((destructor)) Shutdown()
             if( panoramaEngine->AccessUIEngine()->IsValidPanelPointer( root ) ){
                 root->RemoveChild( UI::mcDota );
             } else {
-                cvar->ConsoleDPrintf("ERROR unloading, root panel is invalid! (%p)\n", root );
+                MC_PRINTF("ERROR unloading, root panel is invalid! (%p)\n", root );
             }
         }
     }

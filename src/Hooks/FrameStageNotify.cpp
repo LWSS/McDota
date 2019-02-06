@@ -30,7 +30,7 @@ static const char* Stage2String( ClientFrameStage_t stage ){
     }
 }
 void Hooks::FrameStageNotify( CSource2Client *thisptr, ClientFrameStage_t stage ) {
-    //cvar->ConsoleDPrintf("FSN: %s\n", Stage2String(stage));
+    //MC_PRINTF("FSN: %s\n", Stage2String(stage));
     CDotaPlayer *localPlayer;
 
     NoFog::FrameStageNotify( thisptr, stage );
@@ -50,12 +50,12 @@ void Hooks::FrameStageNotify( CSource2Client *thisptr, ClientFrameStage_t stage 
                     delete netChannelVMT;
                 }
                 if( engine->GetNetChannelInfo() ) {
-                    cvar->ConsoleDPrintf( "Grabbing new NetChannel VMT\n" );
+                    MC_PRINTF( "Grabbing new NetChannel VMT\n" );
                     netChannelVMT = new VMT( engine->GetNetChannelInfo( ) );
                     netChannelVMT->HookVM( Hooks::SendNetMessage, 62 );
                     netChannelVMT->ApplyVMT( );
                 } else {
-                    cvar->ConsoleDPrintf("GetNetChannelInfo returned null! Aborting NetChannel Hook!\n");
+                    MC_PRINTF_WARN("GetNetChannelInfo returned null! Aborting NetChannel Hook!\n");
                 }
             }
 
@@ -70,12 +70,12 @@ void Hooks::FrameStageNotify( CSource2Client *thisptr, ClientFrameStage_t stage 
                 if( localPlayerVMT )
                     delete localPlayerVMT;
 
-                cvar->ConsoleDPrintf("Making new localPlayer VMT\n");
+                MC_PRINTF("Making new localPlayer VMT\n");
                 localPlayerVMT = new VMT( localPlayer, true );
                 localPlayerVMT->HookVM( Hooks::SendMove, 332 );
                 localPlayerVMT->HookVM( Hooks::PrepareUnitOrders, 435 );
                 localPlayerVMT->ApplyVMT();
-                cvar->ConsoleDPrintf("LocalPlayer @ %p\n", (void*)localPlayer);
+                MC_PRINTF("LocalPlayer @ %p\n", (void*)localPlayer);
             }
 
             break;

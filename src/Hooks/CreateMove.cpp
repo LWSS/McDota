@@ -80,7 +80,7 @@ bool Hooks::CreateMove( IClientMode *thisptr, CUserCmd* cmd, QAngle &angle, Vect
             if( cameraVMT ){
                 delete cameraVMT;
             }
-            cvar->ConsoleDPrintf("Grabbing new CameraVMT\n");
+            MC_PRINTF("Grabbing new CameraVMT\n");
             cameraVMT = new VMT( camera, true );
             cameraVMT->HookVM( Hooks::GetZFar, 19 );
             cameraVMT->ApplyVMT();
@@ -91,7 +91,7 @@ bool Hooks::CreateMove( IClientMode *thisptr, CUserCmd* cmd, QAngle &angle, Vect
         return true;
 
     if( mc_airstuck_on->GetBool() ){
-        cvar->ConsoleDPrintf("Airstucking...\n");
+        MC_PRINTF("Airstucking...\n");
         //cmd->command_number = 16777216;
         cmd->tick_count = 16777216;
     }

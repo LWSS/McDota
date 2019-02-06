@@ -46,7 +46,6 @@ Press `Insert` to Open/Close the in-game Menu ( works in-game and in-menu )
 ## Known Issues
 * There is a very rare tcmalloc bug I have encountered that will just crash your game. I can't seem to reproduce it when it happens.
 * Sometimes the UI will not open on the first time, I think I have fixed this, but if this happens to you, check the console and just try again.
-* Autoaccept is currently commented out due to hooking Runscript being unstable.
 
 ## Credits
 LWSS(me) - Founder

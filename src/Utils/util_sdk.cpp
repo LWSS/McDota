@@ -179,7 +179,7 @@ ConVar *Util::RegisterConVar( const char *name, const char *defaultValue, uint32
 	if( command->name && name ){
 		strncpy( command->name, name, nameLen);
 	} else {
-		cvar->ConsoleDPrintf("[%s]Error allocating space for ConVar name (%s)!\n", __func__, name);
+        MC_PRINTF_ERROR("Error allocating space for ConVar name (%s)!\n", name);
 		return NULL;
 	}
 
@@ -192,7 +192,7 @@ ConVar *Util::RegisterConVar( const char *name, const char *defaultValue, uint32
 		strncpy( command->strValue, defaultValue, valueLen );
         strncpy( command->strDefault, defaultValue, valueLen );
 	} else {
-		cvar->ConsoleDPrintf("[%s]Error allocating space for ConVar values (%s)!\n", __func__, name);
+        MC_PRINTF_ERROR("[%s]Error allocating space for ConVar values (%s)!\n", name);
 		return NULL;
 	}
 
@@ -202,7 +202,7 @@ ConVar *Util::RegisterConVar( const char *name, const char *defaultValue, uint32
 		if( command->description ){
 			strncpy( command->description, helpString, descLen );
 		} else{
-			cvar->ConsoleDPrintf("[%s]Error allocating space for ConVar description (%s)!\n", __func__, name);
+			MC_PRINTF_ERROR("[%s]Error allocating space for ConVar description (%s)!\n", name);
 			return NULL;
 		}
 	} else {

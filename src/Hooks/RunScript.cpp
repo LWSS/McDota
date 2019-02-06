@@ -12,10 +12,10 @@ int Hooks::RunScript( panorama::UIEngine *thisptr, panorama::IUIPanel *panel, co
 
         if( strstr( pathToXMLContext, "popup_accept_match.xml" ) ){
             if( OnAcceptMatch ){
-                cvar->ConsoleColorPrintf(ColorRGBA(5, 5, 225), "Match Found! Attempting to AutoAccept...\n");
+                MC_PRINTF("Match Found! Attempting to AutoAccept...\n");
                 OnAcceptMatch( gDBPlayPanel );
             } else {
-                cvar->ConsoleColorPrintf(ColorRGBA( 225, 5, 5 ), "[%s]ERROR: Tried to Accept Match but OnMatchAccept() is NULL!\n", __func__);
+                MC_PRINTF_ERROR("Tried to Accept Match but OnMatchAccept() is NULL!\n");
             }
         }
     }
