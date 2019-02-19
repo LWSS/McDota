@@ -3,8 +3,8 @@
 #include <csignal>
 #include <sstream>
 
-#include "../Utils/util.h"
-#include "../settings.h"
+#include "../Utils/Util.h"
+#include "../Settings.h"
 
 typedef bool (* CreateMoveFn)( IClientMode*, CUserCmd*, QAngle&, Vector& );
 

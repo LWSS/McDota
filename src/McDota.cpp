@@ -7,16 +7,17 @@
 #include <zconf.h> //readlink
 #include <thread>
 
-#include "GUI/gui.h"
+#include "GUI/Gui.h"
 #include "Hacks/NoFog.h"
 #include "Hooks/hooks.h"
-#include "scanner.h"
-#include "interfaces.h"
-#include "Utils/util.h"
-#include "Utils/util_sdk.h"
-#include "Utils/integritycheck.h"
+#include "Scanner.h"
+#include "Interfaces.h"
+#include "Netvars.h"
+#include "Utils/Util.h"
+#include "Utils/Util_sdk.h"
+#include "Utils/Integritycheck.h"
 #include "SDK/ConMsg.h"
-#include "settings.h"
+#include "Settings.h"
 
 const char *Util::logFileName = "/tmp/dota.log";
 void *mcPrev, *mcCurr, *mcNext;
@@ -120,6 +121,8 @@ void Main()
     MC_PRINTF( "CEngineServiceMgr @ %p\n", (void*)engineServiceMgr );
     MC_PRINTF( "Active Loop Name: (%s) | Addon String: (%s)\n", engineServiceMgr->GetActiveLoopName(), engineServiceMgr->GetAddonsString() );
     MC_PRINTF( "RichPresence @ %p\n", (void*)richPresence );
+    MC_PRINTF("UI Engine @(%p) | Running? (%s)\n", (void*)panoramaEngine->AccessUIEngine(), panoramaEngine->AccessUIEngine()->IsRunning() ? "yes" : "no");
+    MC_PRINTF( "GetAllClasses @ %p\n", (void*)client->GetAllClasses() );
     //networkClientService->PrintSpawnGroupStatus();
     //networkClientService->PrintConnectionStatus();
 
@@ -148,17 +151,15 @@ void Main()
     inputInternalVMT->HookVM(Hooks::SetKeyCodeState, 96);
     inputInternalVMT->ApplyVMT();
 
-    //uiEngineVMT = new VMT(panoramaEngine->AccessUIEngine());
-    //uiEngineVMT->HookVM(Hooks::DispatchEvent, 49);
-    //uiEngineVMT->HookVM(Hooks::RunScript, 110);
-    //uiEngineVMT->ApplyVMT();
-
-    MC_PRINTF("UI Engine @(%p) | Running? (%s)\n", (void*)panoramaEngine->AccessUIEngine(), panoramaEngine->AccessUIEngine()->IsRunning() ? "yes" : "no");
+    uiEngineVMT = new VMT(panoramaEngine->AccessUIEngine());
+    uiEngineVMT->HookVM(Hooks::DispatchEvent, 49);
+    uiEngineVMT->HookVM(Hooks::RunScript, 110);
+    uiEngineVMT->ApplyVMT();
 
     srand(time(NULL)); // Seed random # Generator so we can call rand() later
 
     Util::RemoveLinkMapEntry("libMcDota.so", &mcPrev, &mcCurr, &mcNext);
-
+    Netvars::DumpNetvars( "/tmp/dotanetvars.txt" );
 
 
     int localID = engine->GetLocalPlayer();

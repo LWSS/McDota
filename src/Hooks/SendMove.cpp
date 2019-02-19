@@ -1,5 +1,5 @@
 #include "hooks.h"
-#include "../settings.h"
+#include "../Settings.h"
 
 typedef void (* SendMoveFn)( CDotaPlayer*, int );
 

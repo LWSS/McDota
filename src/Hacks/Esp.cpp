@@ -1,7 +1,7 @@
 #include "Esp.h"
 
-#include "../interfaces.h"
-#include "../settings.h"
+#include "../Interfaces.h"
+#include "../Settings.h"
 
 static bool GetBox( CBaseEntity* entity, int* x, int* y, int* w, int* h )
 {

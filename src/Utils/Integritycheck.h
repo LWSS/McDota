@@ -1,5 +1,5 @@
 #pragma once
-#include "../interfaces.h"
+#include "../Interfaces.h"
 
 
 namespace Integrity

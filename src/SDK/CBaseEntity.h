@@ -5,7 +5,7 @@
 #include "ICvar.h"
 #include "CCollisionProperty.h"
 #include "Datamap.h"
-#include "../Utils/util.h"
+#include "../Utils/Util.h"
 
 
 enum OverlayFlags_t : unsigned long long

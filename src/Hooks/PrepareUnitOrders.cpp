@@ -1,8 +1,8 @@
 #include "hooks.h"
 #include <csignal>
 
-#include "../Utils/util.h"
-#include "../settings.h"
+#include "../Utils/Util.h"
+#include "../Settings.h"
 
 typedef void (* PrepareUnitOrdersFn)( CDotaPlayer*, DotaUnitOrder_t, int, Vector, int, PlayerOrderIssuer_t, CDotaBaseNPC*, bool, OrderQueueBehavior_t, bool );
 

@@ -2,7 +2,7 @@
 
 #include "../Hacks/NoFog.h"
 #include "../Hacks/Zoom.h"
-#include "../settings.h"
+#include "../Settings.h"
 
 typedef void (* FrameStageNotifyFn)( CSource2Client*, ClientFrameStage_t );
 

@@ -1,9 +1,9 @@
-#include "scanner.h"
+#include "Scanner.h"
 
 #include <cstdint>
 
-#include "interfaces.h"
-#include "Utils/patternfinder.h"
+#include "Interfaces.h"
+#include "Utils/Patternfinder.h"
 
 bool Scanner::FindGlobalVars() {
 

@@ -1,6 +1,6 @@
 #pragma once
 #include "../SDK/SDK.h"
-#include "../interfaces.h" // all hooks can use interfaces
+#include "../Interfaces.h" // all hooks can use interfaces
 
 namespace Hooks
 {
@@ -9,7 +9,7 @@ namespace Hooks
     // client
     void FrameStageNotify( CSource2Client* thisptr, ClientFrameStage_t stage );
     // clientMode
-    bool CreateMove(IClientMode* thisptr, CUserCmd *cmd, QAngle &angle, Vector &pos);
+    bool CreateMove( IClientMode* thisptr, CUserCmd *cmd, QAngle &angle, Vector &pos );
     // gameEventManager
     bool FireEventClientSide( CGameEventManager *thisptr, CGameEvent *event );
     // inputInternal

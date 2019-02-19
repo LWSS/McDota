@@ -1,8 +1,8 @@
-#include "gui.h"
+#include "Gui.h"
 
 #include <algorithm>
 
-#include "../interfaces.h"
+#include "../Interfaces.h"
 
 // Javascript to force root panel to have our child and raise it.
 const char *cuckProtocol =
@@ -14,7 +14,7 @@ const char *cuckProtocol =
 static constexpr unsigned int JS_MAX = 65535;
 char jsCode[JS_MAX];
 std::string mainXML =
-#include "main.xml"
+#include "Main.xml"
 ;
 
 static panorama::IUIPanel* GetHudRoot( ){

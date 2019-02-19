@@ -1,4 +1,4 @@
-#include "integritycheck.h"
+#include "Integritycheck.h"
 
 bool Integrity::VMTsHaveMisMatch( ) {
 

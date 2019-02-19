@@ -1,7 +1,7 @@
-#include "settings.h"
+#include "Settings.h"
 
-#include "Utils/util_sdk.h"
-#include "interfaces.h"
+#include "Utils/Util_sdk.h"
+#include "Interfaces.h"
 
 /* ConVars are guaranteed to exist after this function */
 bool Settings::RegisterCustomConvars( ) {

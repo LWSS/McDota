@@ -1,10 +1,10 @@
 #include "hooks.h"
 
-#include "../Utils/util.h"
-#include "../Utils/util_sdk.h"
-#include "../settings.h"
+#include "../Utils/Util.h"
+#include "../Utils/Util_sdk.h"
+#include "../Settings.h"
 
-#include "../GUI/gui.h"
+#include "../GUI/Gui.h"
 
 #include <csignal>
 
@@ -33,6 +33,7 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
     CBaseEntity* entity;
     CDotaPlayer* localPlayer;
     panorama::IUIPanel* panel;
+    ClientClass *classes;
     char bytes[256];
     switch( code ){
         case ButtonCode_t::INSERT:

@@ -1,7 +1,7 @@
 #include "NoFog.h"
 
-#include "../interfaces.h"
-#include "../settings.h"
+#include "../Interfaces.h"
+#include "../Settings.h"
 
 void NoFog::ToggleFog(bool state) {
     CBaseEntity *entity;

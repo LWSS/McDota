@@ -84,7 +84,7 @@ public:
     virtual void RegisterNetMessageHandlerAbstract();//CUtlSlot *,CUtlAbstractDelegate const&,int,NetMessageHandle_t__ *,int) = 0;
     virtual void UnregisterNetMessageHandlerAbstract();//CUtlSlot *,CUtlAbstractDelegate const&,NetMessageHandle_t__ *) = 0;
     virtual void SetChallengeNr(unsigned int) = 0;
-    virtual void _unk7() = 0;
+    virtual void GetNumBitsWritten(NetChannelBufType_t type) = 0;
     virtual void SetCompressionMode(bool) = 0;
     virtual void SetMaxRoutablePayloadSize(int) = 0;
     virtual int GetMaxRoutablePayloadSize(void) = 0;

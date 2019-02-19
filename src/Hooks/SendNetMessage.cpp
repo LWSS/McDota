@@ -1,8 +1,8 @@
 #include "hooks.h"
 #include <csignal>
 
-#include "../Utils/util.h"
-#include "../settings.h"
+#include "../Utils/Util.h"
+#include "../Settings.h"
 
 typedef bool (* SendNetMessageFn)( INetChannel *thisptr, NetMessageHandle_t *, void const*, NetChannelBufType_t );
 

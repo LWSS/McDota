@@ -3,65 +3,7 @@
 #include "IInputSystem.h"
 #include "vector.h"
 #include "definitions.h"
-struct RecvProp;
-
-struct DVariant
-{
-	union
-	{
-		float m_Float;
-		long m_Int;
-		char *m_pString;
-		void *m_pData;
-		float m_Vector[3];
-		int64_t m_Int64;
-	};
-
-	int m_Type;
-};
-
-struct CRecvProxyData
-{
-	const RecvProp* m_pRecvProp;
-	DVariant m_Value;
-	int m_iElement;
-	int m_ObjectID;
-};
-
-struct RecvTable
-{
-	RecvProp *m_pProps;
-	int m_nProps;
-	void *m_pDecoder;
-	char *m_pNetTableName;
-	bool m_bInitialized;
-	bool m_bInMainList;
-};
-
-typedef void (*RecvVarProxyFn) (const CRecvProxyData *pData, void *pStruct, void *pOut);
-
-struct RecvProp
-{
-	char *m_pVarName;
-	int m_RecvType;
-	int m_Flags;
-	int m_StringBufferSize;
-	bool m_bInsideArray;
-	const void *m_pExtraData;
-	RecvProp *m_pArrayProp;
-	void *m_ArrayLengthProxy;
-	RecvVarProxyFn m_ProxyFn;
-	void *m_DataTableProxyFn;
-	RecvTable *m_pDataTable;
-	int m_Offset;
-	int m_ElementStride;
-	int m_nElements;
-	const char *m_pParentArrayPropName;
-};
-
-class IClientNetworkable;
-typedef IClientNetworkable* (*CreateClientClassFn)(int entnum, int serialNum);
-typedef IClientNetworkable* (*CreateEventFn)();
+#include "Schema.h"
 
 class ClientClass
 {
@@ -74,7 +16,7 @@ public:
 	void* m_pDestroyFn; //0x0028
 	char pad_0030[8]; //0x0030
 	char* m_pLibNameAndClassName; //0x0038 //EX: libclient.so!C_DOTAPlayer
-	void* Schema; //0x0040
+	SchemaRecvTable* recvTable; //0x0040
 	char pad_0048[20]; //0x0048
 	EClassIds m_ClassID; //0x005C
 	void* N00000046; //0x0060

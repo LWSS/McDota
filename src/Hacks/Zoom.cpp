@@ -1,7 +1,7 @@
 #include "Zoom.h"
 
-#include "../interfaces.h"
-#include "../settings.h"
+#include "../Interfaces.h"
+#include "../Settings.h"
 
 void Zoom::FrameStageNotify(CSource2Client *thisptr, ClientFrameStage_t stage) {
     if( stage != ClientFrameStage_t::FRAME_START || !engine->IsInGame() )

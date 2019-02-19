@@ -1,7 +1,7 @@
 #pragma once
 
 #include "SDK/SDK.h"
-#include "Utils/vmt.h"
+#include "Utils/Vmt.h"
 
 // Interfaces
 inline CGlobalVars* globalVars;

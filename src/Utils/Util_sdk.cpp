@@ -1,9 +1,9 @@
-#include "util_sdk.h"
-#include "util.h"
+#include "Util_sdk.h"
+#include "Util.h"
 
 #include <string>
 
-#include "../interfaces.h"
+#include "../Interfaces.h"
 ButtonCode_t Util::GetButtonCode(const char* buttonName)
 {
 	for (int i = 0; i < ButtonCode_t::LAST_KEY_VALUE; i++)

@@ -1,9 +1,9 @@
-#include "patternfinder.h"
+#include "Patternfinder.h"
 
 #include <link.h> // dl_iterate_phdr
 #include <vector>
 #include <string.h> //strcasestr
-#include "../interfaces.h"
+#include "../Interfaces.h"
 
 // taken from aixxe's cstrike-basehook-linux
 static bool GetLibraryInformation(const char* library, uintptr_t* address, size_t* size) {

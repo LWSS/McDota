@@ -1,9 +1,9 @@
-#include "interfaces.h"
+#include "Interfaces.h"
 
 #include <link.h> // dl_iterate_phdr
 
-#include "Utils/patternfinder.h" //dlinfo_t
-#include "Utils/util.h"
+#include "Utils/Patternfinder.h" //dlinfo_t
+#include "Utils/Util.h"
 
 bool Interfaces::FindInterfaces()
 {
