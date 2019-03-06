@@ -29,27 +29,21 @@ void Netvars::DumpNetvars( const char *fileName ) {
     fclose(logFile);
 }
 
+void Netvars::CacheNetvars( ) {
 
-unsigned int Netvars::GetNetvar( const char *className, const char *netvarName ) {
-    ClientClass *targetClass = nullptr;
     for( ClientClass *classes = client->GetAllClasses(); classes; classes = classes->m_pNext ){
-        if( !strcmp(classes->m_pClassName, className) ){
-            targetClass = classes;
-            for( int i = 0; i < classes->recvTable->numOfVars; i++ ){
-                Netvar *var = classes->recvTable->netVarsArray[i].netVar;
-                if( !var )
-                    continue;
-                if( !strcmp( var->netvarName, netvarName ) ){
-                    return var->offset;
-                }
-            }
+        if( !classes->recvTable || !classes->recvTable->netVarsArray || !classes->m_pClassName )
+            continue;
+
+        for( int i = 0; i < classes->recvTable->numOfVars; i++ ){
+            Netvar *var = classes->recvTable->netVarsArray[i].netVar;
+            if( !var
+                || !var->netvarName
+                || !var->typeName )
+                break;
+
+            netvars[classes->m_pClassName][var->netvarName] = var->offset;
         }
     }
-    if( !targetClass ){
-        MC_PRINTF_ERROR( "Couldn't Find Netvar Class (%s)\n", className );
-        return 0;
-    }
 
-    MC_PRINTF_ERROR( "Couldn't Find Netvar(%s) for Class(%s)\n", netvarName, className );
-    return 0;
 }

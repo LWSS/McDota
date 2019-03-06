@@ -23,6 +23,7 @@ bool Settings::RegisterCustomConvars( ) {
 	mc_esp_filter_heroes_enemy = Util::RegisterConVar( "mc_esp_filter_heroes_enemy", "false" );
 	mc_esp_filter_creeps_friend = Util::RegisterConVar( "mc_esp_filter_creeps_friend", "false" );
 	mc_esp_filter_creeps_enemy = Util::RegisterConVar( "mc_esp_filter_creeps_enemy", "false" );
+	mc_esp_filter_illusions_enemy = Util::RegisterConVar( "mc_esp_filter_illusions_enemy", "false" );
 
 	mc_camera_pitch_add = Util::RegisterConVar( "mc_camera_pitch_add", "0.0", 136, NULL, true, -1.0f, true, 360.0f );
 	mc_camera_yaw_add = Util::RegisterConVar( "mc_camera_yaw_add", "0.0", 136, NULL, true, 0.0f );

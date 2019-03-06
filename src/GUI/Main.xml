@@ -138,6 +138,7 @@ R"zz(
 
 						<Label text='Enemy'/>
 						<DOTASettingsCheckbox convar='mc_esp_filter_heroes_enemy' text='Heroes' onactivate='clickSound()'/>
+						<DOTASettingsCheckbox convar='mc_esp_filter_illusions_enemy' text='Illusions' onactivate='clickSound()'/>
 						<DOTASettingsCheckbox convar='mc_esp_filter_creeps_enemy' text='Creeps' onactivate='clickSound()'/>
 					</Panel>
 				</Panel>

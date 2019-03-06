@@ -93,8 +93,17 @@ void ESP::PaintTraverse( IVPanel *thisptr, IVGuiPaintSurface *surface, VPANEL pa
                     goodToGo = true;
             }
         } else {
-            if( mc_esp_filter_heroes_enemy->GetBool() && strstr(entity->Schema_DynamicBinding()->bindingName, "DOTA_Unit_Hero") != NULL )
-                goodToGo = true;
+            if( strstr(entity->Schema_DynamicBinding()->bindingName, "DOTA_Unit_Hero") != NULL ){
+                if( mc_esp_filter_heroes_enemy->GetBool() ){
+                    goodToGo = true;
+                }
+                if( mc_esp_filter_illusions_enemy->GetBool() ){
+                    CDotaBaseNPC *npc = (CDotaBaseNPC*)entity;
+                    if( npc->IsIllusion() ){
+                        goodToGo = true;
+                    }
+                }
+            }
             if( mc_esp_filter_creeps_enemy->GetBool() && strstr(entity->Schema_DynamicBinding()->bindingName, "C_DOTA_BaseNPC_Creep") != NULL )
                 goodToGo = true;
         }
@@ -129,7 +138,7 @@ void ESP::PaintTraverse( IVPanel *thisptr, IVGuiPaintSurface *surface, VPANEL pa
                 strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" -Mana: (%g/%g)", npc->C_DOTA_BaseNPC__GetMana(), npc->C_DOTA_BaseNPC__GetMaxMana() );
                 strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" -Dmg Min(%d)/Max(%d)", npc->C_DOTA_BaseNPC__GetDamageMin(), npc->C_DOTA_BaseNPC__GetDamageMax() );
                 strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" -MagicImm?(%s)", npc->C_DOTA_BaseNPC__IsMagicImmune() ? "yes" : "no" );
-                strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" -Illu?(%s)", npc->C_DOTA_BaseNPC__IsIllusion() ? "yes" : "no" );
+                strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" -Illu?(%s)", npc->IsIllusion() ? "yes" : "no" );
                 CDotaBaseNPC *target = npc->C_DOTA_BaseNPC__GetChosenTarget();
                 if( target ){
                     strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" -Target(%p)", (void*)target );

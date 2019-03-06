@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CBaseEntity.h"
-
+#include "../Netvars.h"
 /*
 ..........................,,,,______...........................
 .....................*&(***************\(%&(...................
@@ -42,6 +42,13 @@ class C_DOTABaseAbility;
 class CDotaBaseNPC : public CBaseEntity
 {
 public:
+    inline bool IsIllusion() {
+        static uint32_t offset = Netvars::netvars["C_DOTA_BaseNPC_Hero"]["m_hReplicatingOtherHeroModel"]; //credits to hollow @UC
+        if( !offset )
+            return false;
+        uintptr_t handle = *(uintptr_t*)((uintptr_t)this + offset);
+        return (handle != 0xffffffff);
+    }
     virtual void sub_2B07D70() = 0;
     virtual void sub_2B08240() = 0;
     virtual void sub_2B08940() = 0;

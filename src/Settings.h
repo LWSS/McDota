@@ -20,6 +20,7 @@ inline ConVar *mc_esp_filter_heroes_friend_seenby_enemy;
 inline ConVar *mc_esp_filter_heroes_enemy;
 inline ConVar *mc_esp_filter_creeps_friend;
 inline ConVar *mc_esp_filter_creeps_enemy;
+inline ConVar *mc_esp_filter_illusions_enemy;
 
 inline ConVar *mc_camera_pitch_add;
 inline ConVar *mc_camera_yaw_add;

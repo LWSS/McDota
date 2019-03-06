@@ -160,7 +160,7 @@ void Main()
 
     Util::RemoveLinkMapEntry("libMcDota.so", &mcPrev, &mcCurr, &mcNext);
     Netvars::DumpNetvars( "/tmp/dotanetvars.txt" );
-
+    Netvars::CacheNetvars();
 
     int localID = engine->GetLocalPlayer();
     CDotaPlayer *localPlayer = (CDotaPlayer*)entitySystem->GetBaseEntity(localID);
