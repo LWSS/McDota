@@ -72,8 +72,8 @@ void Hooks::FrameStageNotify( CSource2Client *thisptr, ClientFrameStage_t stage 
 
                 MC_PRINTF("Making new localPlayer VMT\n");
                 localPlayerVMT = new VMT( localPlayer, true );
-                localPlayerVMT->HookVM( Hooks::SendMove, 332 );
-                localPlayerVMT->HookVM( Hooks::PrepareUnitOrders, 435 );
+                localPlayerVMT->HookVM( Hooks::SendMove, 331 );
+                localPlayerVMT->HookVM( Hooks::PrepareUnitOrders, 434 );
                 localPlayerVMT->ApplyVMT();
                 MC_PRINTF("LocalPlayer @ %p\n", (void*)localPlayer);
             }

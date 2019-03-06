@@ -220,7 +220,6 @@ public:
     virtual void C_BaseEntity__EstimateAbsVelocity(Vector &out);
     virtual bool C_BaseEntity__CanBePoweredUp(void);
     virtual void C_BaseEntity__AttemptToPowerup(int unk, float unk2, float unk3, void* C_BaseEntity, void* CDamageModifier);
-    virtual bool C_BaseEntity__IsCurrentlyTouching(void);
     virtual void C_BaseEntity__StartTouch(void* C_BaseEntity);
     virtual void C_BaseEntity__Touch(void* C_BaseEntity);
     virtual void C_BaseEntity__EndTouch(void* C_BaseEntity);

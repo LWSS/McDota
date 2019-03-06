@@ -4,7 +4,7 @@ bool Integrity::VMTsHaveMisMatch( ) {
 
     uint32_t cameraNum = 41;
     uint32_t clientModeNum = 69;
-    uint32_t dotaPlayerNum = 459;
+    uint32_t dotaPlayerNum = 458;
     uint32_t gameEventManagerNum = 17;
     uint32_t networkMessagesNum = 34;
     uint32_t panoramaCPanel2DNum = 91;
