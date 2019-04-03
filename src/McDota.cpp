@@ -66,23 +66,7 @@ void Main()
         MC_PRINTF_ERROR( "CheckInterfaceVMs() Failed. Stopping...\n");
         return;
     }
-
-    bool sigsOK = true;
-    sigsOK &= Scanner::FindGlobalVars();
-    sigsOK &= Scanner::FindGameEntitySystem();
-    sigsOK &= Scanner::FindVScript();
-    sigsOK &= Scanner::FindCNetworkMessages();
-    sigsOK &= Scanner::FindPanelArrayOffset();
-    sigsOK &= Scanner::FindViewRender();
-    sigsOK &= Scanner::FindClientMode();
-    sigsOK &= Scanner::FindCamera();
-    sigsOK &= Scanner::FindGameEventManager();
-    sigsOK &= Scanner::FindDBPlayPanel();
-    sigsOK &= Scanner::FindSoundOpSystem();
-    sigsOK &= Scanner::FindAcceptMatch();
-    sigsOK &= Scanner::FindWorldToScreen();
-    sigsOK &= Scanner::FindRichPresence();
-    if( !sigsOK ){
+    if( !Scanner::FindAllSigs() ){
         MC_PRINTF_ERROR("Failed to find one of the Signatures. Stopping...\n");
         return;
     }
@@ -139,7 +123,7 @@ void Main()
     soundOpSystemVMT->HookVM(Hooks::StartSoundEvent2, 12);
     soundOpSystemVMT->ApplyVMT();
 
-    clientModeVMT = new VMT(clientMode, true);
+    clientModeVMT = new VMT(clientMode);
     clientModeVMT->HookVM(Hooks::CreateMove, 28);
     clientModeVMT->ApplyVMT();
 

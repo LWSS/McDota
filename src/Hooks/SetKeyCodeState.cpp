@@ -29,8 +29,9 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
         return inputInternalVMT->GetOriginalMethod<SetKeyCodeStateFn>(96)(thisptr, code, pressed);
 
 
-    int max;
+    Vector attachment;
     CBaseEntity* entity;
+    CDOTAWearableItem* cosmetic;
     CDotaPlayer* localPlayer;
     panorama::IUIPanel* panel;
     ClientClass *classes;
@@ -91,6 +92,19 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             break;
         case ButtonCode_t::PRINTSCREEN:
             cvar->ConsoleDPrintf("PrintScreen...\n");
+            for( int i = 0; i <= entitySystem->GetHighestEntityIndex(); i++ ){
+                entity = entitySystem->GetBaseEntity(i);
+                if( entity ){
+                    if( entity->GetOwnerID() != mc_custom_int->GetInt() ){
+                        continue;
+                    }
+                    if( !strcmp(entity->Schema_DynamicBinding()->bindingName, "C_DOTAWearableItem") ){
+                        cosmetic = (CDOTAWearableItem*)entity;
+                        cosmetic->C_EconEntity__GetAttachment("attach_hitloc", attachment);
+                        MC_PRINTF("(%d) - Vec(%f,%f,%f) - Ret: %p\n", i, attachment.x, attachment.y, attachment.z);
+                    }
+                }
+            }
             break;
         default:
             break;

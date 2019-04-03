@@ -9,7 +9,7 @@
 typedef bool (* CreateMoveFn)( IClientMode*, CUserCmd*, QAngle&, Vector& );
 
 std::stringstream ss;
-static const char* Buttons2ButtonStr( int32_t buttons ) {
+static std::string Buttons2ButtonStr( int32_t buttons ) {
 
     ss.str("");
     ss.clear();
@@ -66,7 +66,7 @@ static const char* Buttons2ButtonStr( int32_t buttons ) {
     if( buttons & IN_ATTACK3 )
         ss << "| IN_ATTACK3 ";
 
-    return ss.str().c_str();
+    return ss.str();
 }
 
 //angle changed with +left/right stays the same.
@@ -81,7 +81,7 @@ bool Hooks::CreateMove( IClientMode *thisptr, CUserCmd* cmd, QAngle &angle, Vect
                 delete cameraVMT;
             }
             MC_PRINTF("Grabbing new CameraVMT\n");
-            cameraVMT = new VMT( camera, true );
+            cameraVMT = new VMT( camera );
             cameraVMT->HookVM( Hooks::GetZFar, 19 );
             cameraVMT->ApplyVMT();
         }
@@ -109,7 +109,7 @@ bool Hooks::CreateMove( IClientMode *thisptr, CUserCmd* cmd, QAngle &angle, Vect
                   cmd->command_number,
                   cmd->tick_count,
                   cmd->aimdirection.x, cmd->aimdirection.y, cmd->aimdirection.z,
-                  cmd->buttons, Buttons2ButtonStr(cmd->buttons),
+                  cmd->buttons, Buttons2ButtonStr(cmd->buttons).c_str(),
                   cmd->impulse,
                   angle.x, angle.y, angle.z, pos.x, pos.y, pos.z);
 

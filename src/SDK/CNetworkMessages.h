@@ -96,7 +96,7 @@ class CProtobuffBinding
 public:
     virtual const char* GetName(void);
     virtual int GetSize(void);
-    virtual void ToString(CUtlString *strOut);
+    virtual void ToString(void const*, CUtlString &strOut);
     //virtual void ToString(std::string const &);
     virtual const char *GetGroup(void);
     virtual ColorRGBA GetGroupColor(void);
@@ -123,9 +123,9 @@ public:
     virtual void RegisterNetworkCategory( unsigned int, const char* ) = 0;
     virtual void AssociateNetMessageWithChannelCategoryAbstract( NetMessageHandle_t *, unsigned int, bool) = 0;
     virtual void FindOrCreateNetMessage(int, void const* IProtobufBinding, unsigned int, void* INetworkSerializerBindingBuildFilter, bool, bool) = 0;
-    virtual void Serialize(void *bfWriteRef, NetMessageHandle_t *, void const*) = 0;
-    virtual void Unserialize(void *bfReadRef, NetMessageHandle_t *, void *) = 0;
-    virtual void Unserialize(void *bfReadRef, NetMessageHandle_t **, void **) = 0;
+    virtual void Serialize(bf_read &buffer, NetMessageHandle_t *, void const*) = 0;
+    virtual void Unserialize(bf_read &buffer, NetMessageHandle_t *, void*) = 0;
+    virtual void Unserialize(bf_read &buffer, NetMessageHandle_t **, void **) = 0;
     virtual void AllocateUnserializedMessage(NetMessageHandle_t *) = 0;
     virtual void AllocateAndCopyConstructNetMessageAbstract(NetMessageHandle_t *, void const*) = 0;
     virtual void DeallocateUnserializedMessage(NetMessageHandle_t *, void*) = 0;

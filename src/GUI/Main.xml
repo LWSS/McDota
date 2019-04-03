@@ -125,7 +125,6 @@ R"zz(
 						<DOTASettingsCheckbox convar='mc_esp_type_enthitboxes' text='Entity Hitboxes' onactivate='clickSound()'/>
 						<DOTASettingsCheckbox convar='mc_esp_type_entviewoffset' text='Entity ViewOffset' onactivate='clickSound()'/>
 						<DOTASettingsCheckbox convar='mc_esp_type_infotext' text='Info Text' onactivate='clickSound()'/>
-						<DOTASettingsCheckbox convar='mc_esp_type_manabars' text='Mana Bars' onactivate='clickSound()'/>
 					</Panel>
 				</Panel>
 				<Panel id='RightColumn' class='SettingsColumn' style='width: 50%;'>

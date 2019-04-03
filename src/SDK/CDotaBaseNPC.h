@@ -1,6 +1,6 @@
 #pragma once
 
-#include "CBaseEntity.h"
+#include "CBaseCombatCharacter.h"
 #include "../Netvars.h"
 /*
 ..........................,,,,______...........................
@@ -39,7 +39,7 @@
 
 class C_DOTABaseAbility;
 // xref "%s_Abilities" to CreateDictionaries() OR "-herorecorder" to ParsePortraitInfo
-class CDotaBaseNPC : public CBaseEntity
+class CDotaBaseNPC : public CBaseCombatCharacter
 {
 public:
     inline bool IsIllusion() {

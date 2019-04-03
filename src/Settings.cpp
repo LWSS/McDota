@@ -56,6 +56,7 @@ bool Settings::RegisterCustomConvars( ) {
 	mc_retarget_orders = Util::RegisterConVar( "mc_retarget_orders", "false" );
     mc_allow_customnames = Util::RegisterConVar( "mc_allow_customnames", "false" );
     mc_custom_str = Util::RegisterConVar( "mc_custom_str", "#as Mars (Lvl 25)" );
+	mc_custom_int = Util::RegisterConVar( "mc_custom_int", "1" );
 
 	for ( ConCommandBase *var : Util::createdConvars ) {
 		if( !cvar->FindVar(var->name) ){

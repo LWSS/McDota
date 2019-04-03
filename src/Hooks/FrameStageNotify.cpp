@@ -71,7 +71,7 @@ void Hooks::FrameStageNotify( CSource2Client *thisptr, ClientFrameStage_t stage 
                     delete localPlayerVMT;
 
                 MC_PRINTF("Making new localPlayer VMT\n");
-                localPlayerVMT = new VMT( localPlayer, true );
+                localPlayerVMT = new VMT( localPlayer );
                 localPlayerVMT->HookVM( Hooks::SendMove, 331 );
                 localPlayerVMT->HookVM( Hooks::PrepareUnitOrders, 434 );
                 localPlayerVMT->ApplyVMT();

@@ -36,3 +36,4 @@
 #include "CEngineServiceMgr.h"
 #include "CDOTARichPresence.h"
 #include "CNetworkSystem.h"
+#include "CDOTAWearableItem.h"

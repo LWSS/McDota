@@ -1479,3 +1479,7 @@ inline void QAngleAdd(const QAngle& a, const QAngle& b, QAngle& c)
 	c.y = a.y + b.y;
 	c.z = a.z + b.z;
 }
+
+
+
+class Quaternion; // placeholder

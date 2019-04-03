@@ -51,7 +51,7 @@ inline ConVar *mc_send_status;
 inline ConVar *mc_retarget_orders;
 inline ConVar *mc_allow_customnames;
 inline ConVar *mc_custom_str;
-
+inline ConVar *mc_custom_int;
 
 
 namespace Settings

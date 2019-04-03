@@ -32,7 +32,7 @@ public:
         ReleaseVMT();
         delete[] vmt;
     }
-	VMT(void* interface, bool copyRTTI = false, int32_t rttiPrefixAmount = 2)
+	VMT(void* interface, bool copyRTTI = true, int32_t rttiPrefixAmount = 2)
 	{
 		this->interface = reinterpret_cast<uintptr_t**>(interface);
 

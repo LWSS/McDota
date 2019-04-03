@@ -54,7 +54,7 @@ enum OrderQueueBehavior_t : int {
 };
 
 // find PrepareUnitOrders with "particles/ui_mouseactions/waypoint_flag.vpcf"
-class CDotaPlayer : public CBaseEntity
+class CDotaPlayer : public CBaseCombatCharacter
 {
 public:
     virtual void sub_2A5EB10(); // 313

@@ -1,11 +1,9 @@
 #include "Scanner.h"
 
-#include <cstdint>
-
 #include "Interfaces.h"
 #include "Utils/Patternfinder.h"
 
-bool Scanner::FindGlobalVars() {
+static bool FindGlobalVars() {
 
 	// CSource2Client::SetGlobals()
 	// 55                         push    rbp
@@ -23,7 +21,7 @@ bool Scanner::FindGlobalVars() {
 	return true;
 }
 
-bool Scanner::FindGameEntitySystem()
+static bool FindGameEntitySystem()
 {
     // CPrediction::ReinitPredictables()
     // 55 48 89 E5 41 56 49 89 FE 41 55 4C 8B
@@ -67,7 +65,7 @@ bool Scanner::FindGameEntitySystem()
 }
 
 
-bool Scanner::FindVScript()
+static bool FindVScript()
 {
 	// Shortly after "__ReplaceClosures"
 	// 48 8B 3D ?? ?? ?? ?? 0F B6 D3
@@ -93,7 +91,7 @@ bool Scanner::FindVScript()
 	return true;
 }
 
-bool Scanner::FindCNetworkMessages()
+static bool FindCNetworkMessages()
 {
 	// Start of function containing "net_validatemessages"
 	// 48 8D 05 ?? ?? ?? ?? 48 89 E5 41 57 41 56 48 8D 0D
@@ -119,7 +117,7 @@ bool Scanner::FindCNetworkMessages()
 }
 
 
-bool Scanner::FindPanelArrayOffset()
+static bool FindPanelArrayOffset()
 {
 	unsigned int knownGoodOffset = 0x1C0;
 	//  CUIEngine::IsValidPanelPointer()
@@ -142,7 +140,7 @@ bool Scanner::FindPanelArrayOffset()
 	return true;
 }
 
-bool Scanner::FindViewRender()
+static bool FindViewRender()
 {
     //  InitGameSystems()
     // 55                      push    rbp
@@ -166,7 +164,7 @@ bool Scanner::FindViewRender()
     return true;
 }
 
-bool Scanner::FindClientMode()
+static bool FindClientMode()
 {
 	// CSource2Client::HudUpdate()
 	// 55                      push    rbp
@@ -206,7 +204,7 @@ bool Scanner::FindClientMode()
 	return true;
 }
 
-bool Scanner::FindCamera()
+static bool FindCamera()
 {
 	// CenterOnLocalPlayersHero(), xref "CMD_SelectHeroStart" and look around there
 	// E8 ?? ?? ?? ?? F3 0F 10 ?? ?? 31 C9 31 D2
@@ -233,7 +231,7 @@ bool Scanner::FindCamera()
 }
 
 
-bool Scanner::FindGameEventManager()
+static bool FindGameEventManager()
 {
     void ( CSource2Client::*playerInfoChangedPtr )( int ) = &CSource2Client::PlayerInfoChanged;
 
@@ -255,7 +253,7 @@ bool Scanner::FindGameEventManager()
     return true;
 }
 
-bool Scanner::FindDBPlayPanel()
+static bool FindDBPlayPanel()
 {
 	// 48 8B 05 ?? ?? ?? ?? BE 07 00 00 00
 	// Right below "disconnect clicked disconnect button"
@@ -282,7 +280,7 @@ bool Scanner::FindDBPlayPanel()
 	return true;
 }
 
-bool Scanner::FindSoundOpSystem()
+static bool FindSoundOpSystem()
 {
     // 48 8B 1D ?? ?? ?? ?? C6 85 ?? ?? ?? ?? ?? 64 48 8B 04 25 ?? ?? ?? ?? 48 89 ?? ?? 31 C0 C7
     // xref "DOTAMusic.MainLoop" to first function ( it should also have "opvars" and "dota_music_opvars", but NOT "current_music") go to start of function; it is the first cs:xxxxxxxx address
@@ -318,7 +316,7 @@ bool Scanner::FindSoundOpSystem()
 }
 
 
-bool Scanner::FindAcceptMatch()
+static bool FindAcceptMatch()
 {
 	// xref "ui.click_back"
 	// 55 48 89 E5 53 89 F3 48 83 EC ?? E8 ?? ?? ?? ?? 0F B6 F3 48 89
@@ -351,7 +349,7 @@ bool Scanner::FindAcceptMatch()
 
 // I could probably calculate this myself but I'm missing the world matrix, engine->WorldToScreenMatrix seems to be gone in Source 2
 // Using this function is ez
-bool Scanner::FindWorldToScreen()
+static bool FindWorldToScreen()
 {
 	// Xref "WorldToScreenX" to the rdi one. go to the function above it. this is the only function called in That function.
 	// 55 48 89 E5 41 54 49 89 FC 53 48 89 F3 48 83 EC ?? 48 85 D2
@@ -383,7 +381,7 @@ bool Scanner::FindWorldToScreen()
 }
 
 
-bool Scanner::FindRichPresence()
+static bool FindRichPresence()
 {
 	// CSource2Client::NotifyClientSignon()
 	// 55                      push    rbp
@@ -430,12 +428,26 @@ bool Scanner::FindRichPresence()
 
 
 
+bool Scanner::FindAllSigs( )
+{
+	bool sigsOK = true;
+	sigsOK &= FindGlobalVars();
+	sigsOK &= FindGameEntitySystem();
+	sigsOK &= FindVScript();
+	sigsOK &= FindCNetworkMessages();
+	sigsOK &= FindPanelArrayOffset();
+	sigsOK &= FindViewRender();
+	sigsOK &= FindClientMode();
+	sigsOK &= FindCamera();
+	sigsOK &= FindGameEventManager();
+	sigsOK &= FindDBPlayPanel();
+	sigsOK &= FindSoundOpSystem();
+	sigsOK &= FindAcceptMatch();
+	sigsOK &= FindWorldToScreen();
+	sigsOK &= FindRichPresence();
 
-
-
-
-
-
+	return sigsOK;
+}
 
 
 
