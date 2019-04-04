@@ -58,19 +58,55 @@ uintptr_t PatternFinder::FindPattern(uintptr_t dwAddress, uintptr_t dwLen, unsig
 	return 0;
 }
 
-uintptr_t PatternFinder::FindPatternInModule(const char* moduleName, unsigned char* bMask, const char* szMask, const char* why)
+uintptr_t PatternFinder::FindPatternInModule(const char* moduleName, const char* signature, const char* why)
 {
 	uintptr_t baseAddress;
 	size_t memSize;
+    size_t sigLen = strlen(signature);
+
+    unsigned int bMaskIndex = 0;
+    unsigned int szMaskIndex = 0;
+
+    unsigned char *bMask;
+    char *szMask;
+    char byteBuffer[3] = { 0 };
 
 	if (!GetLibraryInformation(moduleName, &baseAddress, &memSize)){
 		MC_PRINTF_ERROR("Could Not Get info for Module %s\n", moduleName);
 		return 0;
 	}
 
+    bMask = new unsigned char[sigLen]();
+    szMask = new char[sigLen]();
+
+    /* Generate a byte mask and a x/? mask at the same time */
+    for( size_t i = 0; i < sigLen; i++ ){
+        if( signature[i] == ' ' ){
+            szMaskIndex++;
+            continue;
+        }
+
+        if( signature[i] == '?' ){
+            szMask[szMaskIndex] = '?';
+        } else {
+            szMask[szMaskIndex] = 'x';
+        }
+
+        // End of word
+        if( signature[i+1] == ' ' || signature[i+1] == '\0' ){
+            byteBuffer[0] = signature[i - 1];
+            byteBuffer[1] = signature[i];
+            bMask[bMaskIndex] = (unsigned char)strtoul( byteBuffer, nullptr, 16 );
+            bMaskIndex++;
+        }
+    }
+
 	uintptr_t ret = FindPattern(baseAddress, memSize, bMask, szMask);
-	if( !ret ){
+
+	if( !ret )
 		MC_PRINTF_ERROR("Could not find pattern for %s\n", why );
-	}
+
+    delete[] bMask;
+    delete[] szMask;
 	return ret;
 }

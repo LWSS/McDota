@@ -24,7 +24,6 @@ static bool FindGlobalVars() {
 static bool FindGameEntitySystem()
 {
     // CPrediction::ReinitPredictables()
-    // 55 48 89 E5 41 56 49 89 FE 41 55 4C 8B
     // Look for string "ReinitPredictables".
     // This function contains both a pointer to CGameEntitySystem and a call to CGameEntitySystem::GetHighestEntityIndex();
     // 55                      push    rbp
@@ -39,7 +38,7 @@ static bool FindGameEntitySystem()
     // 49 8B 7D 00             mov     rdi, [r13+0]
     // E8 60 DF DD FF          call    CGameEntitySystem__GetHighestEntityIndex
 
-    uintptr_t reinitPredictables = PatternFinder::FindPatternInModule("libclient.so", (unsigned char*) "\x55\x48\x89\xE5\x41\x56\x49\x89\xFE\x41\x55\x4C\x8B", "xxxxxxxxxxxxx", "reinitPredictables");
+    uintptr_t reinitPredictables = PatternFinder::FindPatternInModule("libclient.so", "55 48 89 E5 41 56 49 89 FE 41 55 4C 8B", "reinitPredictables");
 
 	if( !reinitPredictables ){
         MC_PRINTF_ERROR("reinitPredictables sig failed\n");
@@ -68,14 +67,12 @@ static bool FindGameEntitySystem()
 static bool FindVScript()
 {
 	// Shortly after "__ReplaceClosures"
-	// 48 8B 3D ?? ?? ?? ?? 0F B6 D3
 	// 0F 84 F5 00 00 00                       jz      loc_2A31390
 	// 48 8B 3D 16 38 A3 03                    mov     rdi, cs:qword_6464AB8
 	// 0F B6 D3                                movzx   edx, bl
 	// 4C 89 E6                                mov     rsi, r12
 
-	uintptr_t initialLine = PatternFinder::FindPatternInModule("libclient.so", (unsigned char*)"\x48\x8B\x3D\x00\x00\x00\x00"
-			                                                                                    "\x0F\xB6\xD3", "xxx????xxx", "FindVScript");
+	uintptr_t initialLine = PatternFinder::FindPatternInModule("libclient.so", "48 8B 3D ?? ?? ?? ?? 0F B6 D3", "FindVScript");
 
 	if( !initialLine ){
         MC_PRINTF_ERROR("ERROR VScript sig failed\n");
@@ -94,18 +91,13 @@ static bool FindVScript()
 static bool FindCNetworkMessages()
 {
 	// Start of function containing "net_validatemessages"
-	// 48 8D 05 ?? ?? ?? ?? 48 89 E5 41 57 41 56 48 8D 0D
 	// 48 8D 05 43 13 4C 00    lea     rax, CNetworkMessages <------------
     // 48 89 E5                mov     rbp, rsp
     // 41 57                   push    r15
     // 41 56                   push    r14
     // 48 8D 0D C5 D4 1D 00    lea     rcx, aActivatesDeact
  
-	uintptr_t func = PatternFinder::FindPatternInModule("libnetworksystem.so", (unsigned char*)"\x48\x8D\x05\x00\x00\x00\x00"
-                                                                                                "\x48\x89\xE5"
-                                                                                                "\x41\x57"
-                                                                                                "\x41\x56"
-                                                                                                "\x48\x8D\x0D", "xxx????xxxxxxxxxx" "FindCNetworkMessages");
+	uintptr_t func = PatternFinder::FindPatternInModule("libnetworksystem.so", "48 8D 05 ?? ?? ?? ?? 48 89 E5 41 57 41 56 48 8D 0D", "FindCNetworkMessages");
 	if( !func ){
         MC_PRINTF_ERROR("FindCNetworkMessages sig failed\n");
         return false;
@@ -149,11 +141,8 @@ static bool FindViewRender()
     // 53                      push    rbx
     // 48 83 EC 20             sub     rsp, 20h
     // E8 30 2C 71 00          call    GetViewRenderInstance <-------------
-	uintptr_t initGameSystemsFunc = PatternFinder::FindPatternInModule("libclient.so", (unsigned char*)"\x55\x48\x89\xE5\x41\x54\x53\x48\x83\xEC"
-			                                                            "\x00" // ??
-			                                                            "\xE8"
-			                                                            "\x00\x00\x00\x00" // ??
-			                                                            "\x48\x8B\x15", "xxxxxxxxxx?x????xxx", "GetViewRender Function");
+	uintptr_t initGameSystemsFunc = PatternFinder::FindPatternInModule("libclient.so", "55 48 89 E5 41 54 53 48 83 EC ?? E8 ?? ?? ?? ?? 48 8B 15", "GetViewRender Function");
+
     if( !initGameSystemsFunc ){
         MC_PRINTF_ERROR("initGameSystemsFunc sig failed\n");
         return false;
@@ -207,17 +196,13 @@ static bool FindClientMode()
 static bool FindCamera()
 {
 	// CenterOnLocalPlayersHero(), xref "CMD_SelectHeroStart" and look around there
-	// E8 ?? ?? ?? ?? F3 0F 10 ?? ?? 31 C9 31 D2
 	// E8 E5 84 09 00          call    GDOTADefaultCamera
 	// F3 0F 10 4D EC          movss   xmm1, [rbp+var_14]
 	// 31 C9                   xor     ecx, ecx
 	// 31 D2                   xor     edx, edx
 	
 
-	uintptr_t getCameraFuncAddr = PatternFinder::FindPatternInModule("libclient.so", (unsigned char*)"\xE8\x00\x00\x00\x00"
-			                                                                                          "\xF3\x0F\x10\x00\x00"
-			                                                                                          "\x31\xC9"
-			                                                                                          "\x31\xD2", "x????xxx??xxxx", "Get DOTADefaultCamera");
+	uintptr_t getCameraFuncAddr = PatternFinder::FindPatternInModule("libclient.so", "E8 ?? ?? ?? ?? F3 0F 10 ?? ?? 31 C9 31 D2", "Get DOTADefaultCamera");
 
 	if( !getCameraFuncAddr ){
 		MC_PRINTF_ERROR("Get Camera sig failed\n");
@@ -260,8 +245,7 @@ static bool FindDBPlayPanel()
 	// 48 8B 05 E7 99 0A 03    mov     rax, cs:_g_pDBPlayPanel
 	// BE 07 00 00 00          mov     esi, 7
 	
-	uintptr_t playPanelLine = PatternFinder::FindPatternInModule("libclient.so", (unsigned char*)"\x48\x8B\x05\x00\x00\x00\x00"
-			                                                                                      "\xBE\x07\x00\x00\x00", "xxx????xxxxx", "DBPlay Panel");
+	uintptr_t playPanelLine = PatternFinder::FindPatternInModule("libclient.so", "48 8B 05 ?? ?? ?? ?? BE 07 00 00 00", "DBPlay Panel");
 
 	if( !playPanelLine ){
 		MC_PRINTF_ERROR("DBPlayPanel Sig is broke!\n");
@@ -282,7 +266,6 @@ static bool FindDBPlayPanel()
 
 static bool FindSoundOpSystem()
 {
-    // 48 8B 1D ?? ?? ?? ?? C6 85 ?? ?? ?? ?? ?? 64 48 8B 04 25 ?? ?? ?? ?? 48 89 ?? ?? 31 C0 C7
     // xref "DOTAMusic.MainLoop" to first function ( it should also have "opvars" and "dota_music_opvars", but NOT "current_music") go to start of function; it is the first cs:xxxxxxxx address
     // 48 8B 1D 53 97 20 03          mov     rbx, cs:off_61D92E0
 	// C6 85 90 FE FF FF FF          mov     [rbp+var_170], 0FFh
@@ -291,12 +274,7 @@ static bool FindSoundOpSystem()
 	// 31 C0                         xor     eax, eax
 	// C7 85 98 FE FF FF 00 00 00 00 mov     [rbp+var_168], 0
     
-    uintptr_t soundOpSystemLine = PatternFinder::FindPatternInModule("libclient.so", (unsigned char*)"\x48\x8B\x1D\x00\x00\x00\x00"
-			                                                                                          "\xC6\x85\x00\x00\x00\x00\x00"
-			                                                                                          "\x64\x48\x8B\x04\x25\x00\x00\x00\x00"
-			                                                                                          "\x48\x89\x00\x00"
-			                                                                                          "\x31\xC0"
-			                                                                                          "\xC7", "xxx????xx?????xxxxx????xx??xxx" "SoundOpSystem");
+    uintptr_t soundOpSystemLine = PatternFinder::FindPatternInModule("libclient.so", "48 8B 1D ?? ?? ?? ?? C6 85 ?? ?? ?? ?? ?? 64 48 8B 04 25 ?? ?? ?? ?? 48 89 ?? ?? 31 C0 C7", "SoundOpSystem");
 
     if( !soundOpSystemLine ){
         MC_PRINTF_ERROR("SoundOpSystem Sig is broke!\n");
@@ -319,7 +297,6 @@ static bool FindSoundOpSystem()
 static bool FindAcceptMatch()
 {
 	// xref "ui.click_back"
-	// 55 48 89 E5 53 89 F3 48 83 EC ?? E8 ?? ?? ?? ?? 0F B6 F3 48 89
 	// CDOTA_DB_Play__OnAcceptMatch proc near
 	// 55                      push    rbp
 	// 48 89 E5                mov     rbp, rsp
@@ -330,14 +307,7 @@ static bool FindAcceptMatch()
 	// 0F B6 F3                movzx   esi, bl
 	// 48 89 C7                mov     rdi, rax
 
-	uintptr_t funcAddr = PatternFinder::FindPatternInModule("libclient.so", (unsigned char*)"\x55"
-			                                                                                "\x48\x89\xE5"
-			                                                                                "\x53"
-			                                                                                "\x89\xF3"
-			                                                                                "\x48\x83\xEC\x00"
-			                                                                                "\xE8\x00\x00\x00\x00"
-			                                                                                "\x0F\xB6\xF3"
-			                                                                                "\x48\x89", "xxxxxxxxxx?x????xxxxx", "On Accept Match");
+	uintptr_t funcAddr = PatternFinder::FindPatternInModule("libclient.so", "55 48 89 E5 53 89 F3 48 83 EC ?? E8 ?? ?? ?? ?? 0F B6 F3 48 89", "On Accept Match");
 	if( !funcAddr ){
 		MC_PRINTF_ERROR("On Accept Match Sig is broke!\n");
 		return false;
@@ -352,7 +322,6 @@ static bool FindAcceptMatch()
 static bool FindWorldToScreen()
 {
 	// Xref "WorldToScreenX" to the rdi one. go to the function above it. this is the only function called in That function.
-	// 55 48 89 E5 41 54 49 89 FC 53 48 89 F3 48 83 EC ?? 48 85 D2
 	// GetVectorInScreenSpace()
 	// 55                      push    rbp
 	// 48 89 E5                mov     rbp, rsp
@@ -363,14 +332,7 @@ static bool FindWorldToScreen()
 	// 48 83 EC 50             sub     rsp, 50h
 	// 48 85 D2                test    rdx, rdx
 
-	uintptr_t funcAddr = PatternFinder::FindPatternInModule("libclient.so", (unsigned char*)"\x55"
-			                                                                                "\x48\x89\xE5"
-			                                                                                "\x41\x54"
-			                                                                                "\x49\x89\xFC"
-			                                                                                "\x53"
-			                                                                                "\x48\x89\xF3"
-			                                                                                "\x48\x83\xEC\x00"
-			                                                                                "\x48\x85\xD2", "xxxxxxxxxxxxxxxx?xxx", "WorldToScreen (GetVectorInScreenSpace)");
+	uintptr_t funcAddr = PatternFinder::FindPatternInModule("libclient.so", "55 48 89 E5 41 54 49 89 FC 53 48 89 F3 48 83 EC ?? 48 85 D2", "WorldToScreen (GetVectorInScreenSpace)");
 	if( !funcAddr ){
 		MC_PRINTF_ERROR("On WorldToScreen sig is broke!\n");
 		return false;
@@ -412,10 +374,7 @@ static bool FindRichPresence()
 
 
 	// xref "active RP" to SetRPStatus()
-	// 55 48 89 E5 41 57 41 56 41 89 D6 41 55 41 54 49 89 FC 53 48 81
-	uintptr_t funcAddr = PatternFinder::FindPatternInModule( "libclient.so",
-															 ( unsigned char* )"\x55\x48\x89\xE5\x41\x57\x41\x56\x41\x89\xD6\x41\x55\x41\x54\x49\x89\xFC\x53\x48\x81",
-															 "xxxxxxxxxxxxxxxxxxxxx", "SetRPStatus" );
+	uintptr_t funcAddr = PatternFinder::FindPatternInModule( "libclient.so", "55 48 89 E5 41 57 41 56 41 89 D6 41 55 41 54 49 89 FC 53 48 81", "SetRPStatus" );
 
 	if( !funcAddr ){
 		MC_PRINTF_ERROR("SetRPStatus sig is broke!\n");
