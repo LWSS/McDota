@@ -62,7 +62,7 @@ void Main()
         ConMsg( "[McDota] FindInterfaces() Failed. Stopping...\n" );
         return;
     }
-    if( !Interfaces::CheckInterfaceVMs() ){
+    if( !Integrity::CheckInterfaceVMs() ){
         MC_PRINTF_ERROR( "CheckInterfaceVMs() Failed. Stopping...\n");
         return;
     }
@@ -82,21 +82,16 @@ void Main()
         MC_PRINTF_ERROR("Paint Fonts Failed to Initialize, Stopping...\n");
     }
 
-    cvar->ConsoleColorPrintf( ColorRGBA(10, 210, 10), "[McDota]I'm in like Flynn.\n" );
+    cvar->ConsoleColorPrintf( ColorRGBA(10, 210, 10), " [McDota]I'm in like Flynn.\n" );
 
     int width, height;
     engine->GetScreenSize( width, height );
     MC_PRINTF( "Your Dota 2 was Built on - %s - %s\n", engine->GetBuildDateString(), engine->GetBuildTimeString() );
-    MC_PRINTF( "ScreenSize: %dx%d\n", width, height );
-    MC_PRINTF( "Max Clients: %d\n", engine->GetMaxClients() );
-    //MC_PRINTF( "Group Count is: %d\n", networkMessages->GetNetworkGroupCount() );
-    MC_PRINTF( "FOV is: %f | viewModel FOV is: %f\n", camera->GetFOV(), clientMode->GetViewModelFOV() );
+    MC_PRINTF( "ScreenSize: %dx%d - Max Clients: %d\n", width, height, engine->GetMaxClients() );
     MC_PRINTF( "client @ %p\n", (void*)client );
     MC_PRINTF( "viewRender @ %p\n", (void*)viewRender );
     MC_PRINTF( "clientMode @ %p\n", (void*)clientMode );
     MC_PRINTF( "Camera @ %p\n", (void*)camera );
-    MC_PRINTF( "Min Pitch: %f - Max Pitch: %f\n", camera->GetMinPitch(), camera->GetMaxPitch() );
-    MC_PRINTF( "Viewmodel FOV: %f - Blurfade: %f\n", clientMode->GetViewModelFOV(), clientMode->GetBlurFade() );
     MC_PRINTF( "GameEventManger @ %p\n", (void*)gameEventManager );
     MC_PRINTF( "NetworkGameClient @ %p\n",(void*)networkClientService->GetIGameClient() );
     MC_PRINTF( "SoundOpSystem @ %p\n", (void*)soundOpSystem );
@@ -105,8 +100,9 @@ void Main()
     MC_PRINTF( "CEngineServiceMgr @ %p\n", (void*)engineServiceMgr );
     MC_PRINTF( "Active Loop Name: (%s) | Addon String: (%s)\n", engineServiceMgr->GetActiveLoopName(), engineServiceMgr->GetAddonsString() );
     MC_PRINTF( "RichPresence @ %p\n", (void*)richPresence );
-    MC_PRINTF("UI Engine @(%p) | Running? (%s)\n", (void*)panoramaEngine->AccessUIEngine(), panoramaEngine->AccessUIEngine()->IsRunning() ? "yes" : "no");
+    MC_PRINTF( "UI Engine @(%p) | Running? (%s)\n", (void*)panoramaEngine->AccessUIEngine(), panoramaEngine->AccessUIEngine()->IsRunning() ? "yes" : "no" );
     MC_PRINTF( "GetAllClasses @ %p\n", (void*)client->GetAllClasses() );
+    MC_PRINTF( "ParticleSystemMGr @ %p\n", (void*)particleSystemMgr );
     //networkClientService->PrintSpawnGroupStatus();
     //networkClientService->PrintConnectionStatus();
 

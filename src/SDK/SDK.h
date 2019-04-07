@@ -37,3 +37,4 @@
 #include "CDOTARichPresence.h"
 #include "CNetworkSystem.h"
 #include "CDOTAWearableItem.h"
+#include "CParticleSystemMgr.h"

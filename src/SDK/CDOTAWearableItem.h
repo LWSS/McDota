@@ -37,6 +37,7 @@ public:
     virtual bool C_EconEntity__GetAttachment(int, matrix3x4_t &) = 0;
     virtual bool C_EconEntity__GetAttachment(int, Vector &) = 0;
     virtual bool C_EconEntity__GetAttachment(int, Vector &, QAngle &) = 0;
+
     virtual void C_EconEntity__GetAttachmentVelocity(int, Vector &, Quaternion &) = 0;
     virtual void C_EconEntity__ViewModelAttachmentBlending(const CModel *, Vector *, Quaternion *, float, int) = 0;
     virtual void C_EconEntity__SetMaterialOverride(const char *) = 0;

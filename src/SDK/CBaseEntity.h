@@ -215,7 +215,7 @@ public:
     virtual void C_BaseEntity__ImpactTrace(void* CGameTrace, int unk, const char* unk2);
     virtual bool C_DOTAPlayer__ShouldPredict(void);
     virtual void C_BasePlayer__PreRender(int splitScreenSlot);
-    virtual const char* C_BaseEntity__GetPlayerName(void);
+    virtual const char* C_BaseEntity__GetPlayerName(void); // This function doesn't really do jack
     virtual int C_BaseEntity__GetUsePriority(void* C_BaseEntity);
     virtual void C_BaseEntity__EstimateAbsVelocity(Vector &out);
     virtual bool C_BaseEntity__CanBePoweredUp(void);

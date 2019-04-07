@@ -25,6 +25,7 @@ inline CSoundOpSystem* soundOpSystem;
 inline CFontManager* fontManager;
 inline CEngineServiceMgr* engineServiceMgr;
 inline CDOTARichPresence* richPresence;
+inline CParticleSystemMgr* particleSystemMgr;
 
 // VMT's
 inline VMT* cameraVMT;
@@ -49,5 +50,4 @@ namespace Interfaces
 {
 	bool FindInterfaces();
 	void DumpInterfaces( const char *fileName );
-    bool CheckInterfaceVMs();
 }

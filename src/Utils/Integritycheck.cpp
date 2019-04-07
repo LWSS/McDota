@@ -3,18 +3,18 @@
 bool Integrity::VMTsHaveMisMatch( ) {
 
     uint32_t cameraNum = 41;
-    uint32_t clientModeNum = 69;
-    uint32_t dotaPlayerNum = 458;
+    uint32_t clientModeNum = 64;
+    uint32_t dotaPlayerNum = 437;
     uint32_t gameEventManagerNum = 17;
     uint32_t networkMessagesNum = 34;
-    uint32_t panoramaCPanel2DNum = 91;
+    uint32_t panoramaCPanel2DNum = 80;
     uint32_t panoramaUIPanelNum = 329;
     uint32_t viewRenderNum = 34;
-    uint32_t vScriptGameSystemNum = 75;
-    uint32_t panoramaEngineNum = 204;
-    uint32_t networkClientServiceNum = 77;
-    uint32_t networkGameClientNum = 172;
-    uint32_t engineServiceMgrNum = 53;
+    uint32_t vScriptGameSystemNum = 58;
+    uint32_t panoramaEngineNum = 182;
+    uint32_t networkClientServiceNum = 69;
+    uint32_t networkGameClientNum = 124;
+    uint32_t engineServiceMgrNum = 49;
 
     bool mismatchFound = false;
 
@@ -84,4 +84,26 @@ bool Integrity::VMTsHaveMisMatch( ) {
     }
 
     return mismatchFound;
+}
+
+/* GetInterface() Adds to interfacesMetaDataList */
+bool Integrity::CheckInterfaceVMs( )
+{
+    bool areVMsGood = true;
+    for( unsigned int i = 0; i < grabbedInterfaces.size(); i++ ){
+        if( grabbedInterfaces[i].numVMs == 0 )
+            continue;
+        uint32_t vmCount = CountVMs(grabbedInterfaces[i].interface);
+
+        if( grabbedInterfaces[i].numVMs != vmCount ){
+            ConMsg("Warning: Interface \"%s\"(%p) Has Changed. Expected it to have %d VMs; has %d VMs. Check for Broken offsets and Update interfaces.cpp \n",
+                   grabbedInterfaces[i].name,
+                   grabbedInterfaces[i].interface,
+                   grabbedInterfaces[i].numVMs,
+                   vmCount);
+
+            areVMsGood = false;
+        }
+    }
+    return areVMsGood;
 }
