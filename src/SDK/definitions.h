@@ -3,6 +3,9 @@
 /* generic constants */
 #define LIFE_ALIVE 0
 
+/* Inspired by: https://github.com/DustinHLand/vkDOOM3/blob/master/neo/renderer/Vulkan/RenderBackend_VK.cpp#L91 */
+#define CASE_STRING( x ) case static_cast< int >( x ) : return #x
+
 typedef unsigned long long VPANEL;
 typedef unsigned long long HFont;
 
@@ -12,7 +15,7 @@ class CBaseClientState;
 struct CGlowObjectManager;
 class CDotaPlayer;
 
-enum class ClientFrameStage_t : int
+enum ClientFrameStage_t : int
 {
 	// (haven't run any frames yet)
 	FRAME_UNDEFINED = -1,

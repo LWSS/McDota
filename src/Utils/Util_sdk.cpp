@@ -19,72 +19,40 @@ ButtonCode_t Util::GetButtonCode(const char* buttonName)
 
 static const char* DataFieldType2String( fieldtype_t type )
 {
-    std::string error("ERROR! UNKNOWN FIELD TYPE! - ");
     switch( type )
     {
-        case FIELD_VOID:
-            return "FIELD_VOID";
-        case FIELD_FLOAT:
-            return "FIELD_FLOAT";
-        case FIELD_STRING:
-            return "FIELD_STRING";
-        case FIELD_VECTOR:
-            return "FIELD_VECTOR";
-        case FIELD_QUATERNION:
-            return "FIELD_QUATERNION";
-        case FIELD_INTEGER:
-            return "FIELD_INTEGER";
-        case FIELD_BOOLEAN:
-            return "FIELD_BOOLEAN";
-        case FIELD_SHORT:
-            return "FIELD_SHORT";
-        case FIELD_CHARACTER:
-            return "FIELD_CHARACTER";
-        case FIELD_COLOR32:
-            return "FIELD_COLOR32";
-        case FIELD_EMBEDDED:
-            return "FIELD_EMBEDDED";
-        case FIELD_CUSTOM:
-            return "FIELD_CUSTOM";
-        case FIELD_CLASSPTR:
-            return "FIELD_CLASSPTR";
-        case FIELD_EHANDLE:
-            return "FIELD_EHANDLE";
-        case FIELD_EDICT:
-            return "FIELD_EDICT";
-        case FIELD_POSITION_VECTOR:
-            return "FIELD_POSITION_VECTOR";
-        case FIELD_TIME:
-            return "FIELD_TIME";
-        case FIELD_TICK:
-            return "FIELD_TICK";
-        case FIELD_MODELNAME:
-            return "FIELD_MODELNAME";
-        case FIELD_SOUNDNAME:
-            return "FIELD_SOUNDNAME";
-        case FIELD_INPUT:
-            return "FIELD_INPUT";
-        case FIELD_FUNCTION:
-            return "FIELD_FUNCTION";
-        case FIELD_VMATRIX:
-            return "FIELD_VMATRIX";
-        case FIELD_VMATRIX_WORLDSPACE:
-            return "FIELD_VMATRIX_WORLDSPACE";
-        case FIELD_MATRIX3X4_WORLDSPACE:
-            return "FIELD_MATRIX3X4_WORLDSPACE";
-        case FIELD_INTERVAL:
-            return "FIELD_INTERVAL";
-        case FIELD_MODELINDEX:
-            return "FIELD_MODELINDEX";
-        case FIELD_MATERIALINDEX:
-            return "FIELD_MATERIALINDEX";
-        case FIELD_VECTOR2D:
-            return "FIELD_VECTOR2D";
-        case FIELD_TYPECOUNT:
-            return "FIELD_TYPECOUNT";
+        CASE_STRING( FIELD_VOID );
+        CASE_STRING( FIELD_FLOAT );
+        CASE_STRING( FIELD_STRING );
+        CASE_STRING( FIELD_VECTOR );
+        CASE_STRING( FIELD_QUATERNION );
+        CASE_STRING( FIELD_INTEGER );
+        CASE_STRING( FIELD_BOOLEAN );
+        CASE_STRING( FIELD_SHORT );
+        CASE_STRING( FIELD_CHARACTER );
+        CASE_STRING( FIELD_COLOR32 );
+        CASE_STRING( FIELD_EMBEDDED );
+        CASE_STRING( FIELD_CUSTOM );
+        CASE_STRING( FIELD_CLASSPTR );
+        CASE_STRING( FIELD_EHANDLE );
+        CASE_STRING( FIELD_EDICT );
+        CASE_STRING( FIELD_POSITION_VECTOR );
+        CASE_STRING( FIELD_TIME );
+        CASE_STRING( FIELD_TICK );
+        CASE_STRING( FIELD_MODELNAME );
+        CASE_STRING( FIELD_SOUNDNAME );
+        CASE_STRING( FIELD_INPUT );
+        CASE_STRING( FIELD_FUNCTION );
+        CASE_STRING( FIELD_VMATRIX );
+        CASE_STRING( FIELD_VMATRIX_WORLDSPACE );
+        CASE_STRING( FIELD_MATRIX3X4_WORLDSPACE );
+        CASE_STRING( FIELD_INTERVAL );
+        CASE_STRING( FIELD_MODELINDEX );
+        CASE_STRING( FIELD_MATERIALINDEX );
+        CASE_STRING( FIELD_VECTOR2D );
+        CASE_STRING( FIELD_TYPECOUNT );
         default:
-            error.append( std::to_string((int)type) );
-            return error.c_str();
+            return "UNKNOWN DATAFIELD TYPE";
     }
 }
 void Util::SpewDataMap( Datamap *dMap, bool toLogFile ) {

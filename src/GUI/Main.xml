@@ -8,7 +8,6 @@ R"zz(
 	</styles>
 
 	<script>
-
 		function changeTab( nTab )
 		{
 			/* All tabs set invis first */

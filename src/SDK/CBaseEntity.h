@@ -81,10 +81,10 @@ public:
             return -1;
         }
         int *ptr = ( int* )( ((uintptr_t)this) + offset );
-        if( ptr[0] < 0 ){
+        if( *ptr < 0 ){
             return -1;
         }
-        return ptr[0] & 0xFFF;
+        return *ptr & 0xFFF;
     }
     virtual CSchemaClassBinding* Schema_DynamicBinding(void);
     virtual void DESTROY();
@@ -112,8 +112,6 @@ public:
     virtual void sub_273BE20();
     virtual void CEntityInstance__AddChangeAccessorPath(void* CFieldPath);
     virtual void CEntityInstance__ReloadPrivateScripts(void);
-    virtual void sub_26F4ED0();
-    virtual void sub_26F4EE0();
     virtual void* C_BaseAnimating__GetDataDescMap(void); // C_BaseAnimatingOverlay::m_DataMap
     virtual Datamap* C_DOTAPlayer__GetPredDescMap(void);
     virtual CCollisionProperty* C_BaseModelEntity__GetCollideable(void);
@@ -126,7 +124,7 @@ public:
     virtual void* C_BaseModelEntity__GetBaseModelEntity(void);
     virtual void* C_BaseModelEntity__GetBaseModelEntity2(void);
     virtual void* C_BaseAnimating__GetBaseAnimating(void);
-    virtual void* C_BaseAnimating__GetBaseAnimating2(void);
+    virtual void* C_BaseAnimating__GetBaseAnimating2(void); // +38
     virtual void sub_285FB30();
     virtual void sub_285FB40();
     virtual bool C_BasePlayer__Classify(void);
@@ -245,6 +243,7 @@ public:
     virtual bool C_BaseEntity__ShouldDrawUnderwaterBulletBubbles(void);
     virtual void sub_273F850();
     virtual ColorRGBA C_BaseCombatCharacter__BloodColor(void);
+    virtual bool unk_something_new(void); //added with TI2019 battlepass, returns al.
     virtual bool C_DOTAPlayer__IsPlayer(void);
     virtual bool C_BaseEntity__IsHMDAvatar(void);
     virtual void sub_26F5350();
@@ -296,7 +295,7 @@ public:
     virtual Vector C_BaseEntity__GetObserverCamOrigin(void);
     virtual void C_BaseEntity__RenderableToWorldTransform(void);
     virtual void C_BasePlayer__DrawModel(int unk, void* RenderableInstance_t);
-    virtual void sub_2919540();
+    virtual void C_BaseEntity__GetRenderBounds(Vector &out1, Vector &out2);
     virtual void C_BaseEntity__GetRenderBoundsWorldSpace(Vector &out1, Vector &out2);
     virtual void sub_2739E80();
     virtual void sub_2739E90();
@@ -369,5 +368,5 @@ public:
     virtual void C_BaseFlex__ProcessSequenceSceneEvent();
     virtual void C_BaseFlex__ClearSceneEvent();
     virtual void C_BaseFlex__CheckSceneEventCompletion();
-    virtual void C_BaseFlex__ShouldProcessSceneEvents();
+    virtual void C_BaseFlex__ShouldProcessSceneEvents(); // 282
 };

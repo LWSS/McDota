@@ -3,7 +3,7 @@
 typedef int NetMessageHandle_t;
 struct NetMessageInfo_t;
 
-enum class NetChannelBufType_t : uint32_t
+enum NetChannelBufType_t : uint32_t
 {
     BUF_DEFAULT = 4294967295,
     BUF_UNRELIABLE = 0,

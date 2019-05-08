@@ -56,6 +56,5 @@ inline ConVar *mc_custom_int;
 
 namespace Settings
 {
-
 	bool RegisterCustomConvars();
 }

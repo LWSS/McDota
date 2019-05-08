@@ -39,6 +39,7 @@ enum class FontDrawType_t : int
     FONT_DRAW_TYPE_COUNT = 2,
 };
 
+// "DefaultFontAliasGroup" xref to the one that's by a bunch of `mov dword ptr [rax+xx], 0` - this is Init()
 class CFontManager : IAppSystem
 {
 public:
@@ -51,17 +52,14 @@ public:
     virtual void RemoveFontAliasList(const char*) = 0;
     virtual void GetFontAliases(const char*) = 0;
     virtual void CreateFontAlias(const char*, const char*, bool) = 0;
-    virtual HFont GetFont(const char* name, const char* unk, bool unk2) = 0;
+    virtual HFont GetFont(const char* name, const char* unk, bool unk2) = 0;  // 20
     virtual void LoadFont(const char*, const char*, int, int, bool, int, int, int, int, int, const char*) = 0;
-    virtual void LoadBitmapFont(const char*, const char*, float, float, int, bool, const char*) = 0;
     virtual HFont FindFont(const char*, bool, const char*) = 0;
     virtual HFont FindOrLoadFont(const char*, const char*, int, int, bool, int, int, int, int, int, const char*) = 0;
-    virtual void FindOrLoadBitmapFont(const char*, const char*, float, float, int, bool, const char*) = 0;
     virtual void GetTrueFontName(void const * FontAlias_t) = 0;
     virtual void GetFontRange(const char*, int &, int &, const char*) = 0;
     virtual void SetFontRange(const char*, int, int, const char*) = 0;
     virtual bool SetFontGlyphSet(HFont, const char* windowsFontName, int size, int, int, int, int, int, int flags) = 0;
-    virtual void SetBitmapFontGlyphSet(HFont, const char*, float, float, int) = 0;
     virtual void GetFontName(HFont) = 0;
     virtual void GetFontTall(HFont) = 0;
     virtual void GetCharacterWidth(HFont, int) = 0;
@@ -80,3 +78,5 @@ public:
     virtual void DESTROY1() = 0;
     virtual void DESTROY2() = 0;
 };
+
+// disabled bitmap fonts with the Ti2019 battlepass

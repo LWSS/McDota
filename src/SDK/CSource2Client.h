@@ -36,7 +36,7 @@ public:
 	virtual void sub_2B5FF30();
 	virtual void SendMove(int splitScreenSlot, int unk);
 	virtual void ProcessInput(int splitScreenSlot, float unk, bool unk2);
-	virtual void WriteUsercmdDeltaToBuffer(int splitScreenSlot, void* bf_write, int from, int to, bool isnewcommand);
+	virtual void WriteUsercmdDeltaToBuffer(int splitScreenSlot, void* bf_write, int from, int to, bool isnewcommand); // 21
 	virtual void EncodeUserCmdToBuffer(int splitScreenSlot, void* bf_write, int slot);
 	virtual void DecodeIUserCmdFromBuffer(int splitScreenSlot, void* bf_read, int slot);
 	virtual void GetEntity2Networkable(int entIndex, void* Entity2Networkable_t);
@@ -141,4 +141,5 @@ public:
 	virtual void sub_2B5FFA0();
 	virtual void sub_2B61940();
 	virtual void sub_2B65BD0();
+	virtual void sub_someDebugShit(); //%5d: %8.6f msec change ',27h,'%s()',27h,' on field %s(path=%s) fo' db 'r ent %s(%s) name=',27h,'%s',27h,0Ah
 };

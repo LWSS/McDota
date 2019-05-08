@@ -4,17 +4,16 @@ bool Integrity::VMTsHaveMisMatch( ) {
 
     uint32_t cameraNum = 41;
     uint32_t clientModeNum = 64;
-    uint32_t dotaPlayerNum = 437;
+    uint32_t dotaPlayerNum = 435;
     uint32_t gameEventManagerNum = 17;
     uint32_t networkMessagesNum = 34;
     uint32_t panoramaCPanel2DNum = 80;
     uint32_t panoramaUIPanelNum = 329;
-    uint32_t viewRenderNum = 34;
+    uint32_t viewRenderNum = 35;
     uint32_t vScriptGameSystemNum = 58;
     uint32_t panoramaEngineNum = 182;
     uint32_t networkClientServiceNum = 69;
     uint32_t networkGameClientNum = 124;
-    uint32_t engineServiceMgrNum = 49;
 
     bool mismatchFound = false;
 
@@ -76,10 +75,6 @@ bool Integrity::VMTsHaveMisMatch( ) {
         mismatchFound = true;
     } else if( CountVMs(networkClientService->GetIGameClient()) != networkGameClientNum ){
         MC_PRINTF_ERROR("networkClientService->IGameClient() VM count does not match; Is: (%d), should be: (%d)\n", CountVMs(networkClientService->GetIGameClient()), networkGameClientNum);
-        mismatchFound = true;
-    }
-    if( CountVMs(engineServiceMgr) != engineServiceMgrNum ){
-        MC_PRINTF_ERROR("EngineServiceMgr VM count does not match; Is: (%d), should be: (%d)\n", CountVMs(engineServiceMgr), engineServiceMgrNum);
         mismatchFound = true;
     }
 

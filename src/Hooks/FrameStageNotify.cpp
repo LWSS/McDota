@@ -9,22 +9,14 @@ typedef void (* FrameStageNotifyFn)( CSource2Client*, ClientFrameStage_t );
 //looks like they added stages 7 and 9
 static const char* Stage2String( ClientFrameStage_t stage ){
     switch( stage ){
-        case ClientFrameStage_t::FRAME_UNDEFINED:
-            return "FRAME_UNDEFINED";
-        case ClientFrameStage_t::FRAME_START:
-            return "FRAME_START";
-        case ClientFrameStage_t::FRAME_NET_UPDATE_START:
-            return "FRAME_NET_UPDATE_START";
-        case ClientFrameStage_t::FRAME_NET_UPDATE_POSTDATAUPDATE_START:
-            return "FRAME_NET_UPDATE_POSTDATAUPDATE_START";
-        case ClientFrameStage_t::FRAME_NET_UPDATE_POSTDATAUPDATE_END:
-            return "FRAME_NET_UPDATE_POSTDATAUPDATE_END";
-        case ClientFrameStage_t::FRAME_NET_UPDATE_END:
-            return "FRAME_NET_UPDATE_END";
-        case ClientFrameStage_t::FRAME_RENDER_START:
-            return "FRAME_RENDER_START";
-        case ClientFrameStage_t::FRAME_RENDER_END:
-            return "FRAME_RENDER_END";
+        CASE_STRING( FRAME_UNDEFINED );
+        CASE_STRING( FRAME_START );
+        CASE_STRING( FRAME_NET_UPDATE_START );
+        CASE_STRING( FRAME_NET_UPDATE_POSTDATAUPDATE_START );
+        CASE_STRING( FRAME_NET_UPDATE_POSTDATAUPDATE_END );
+        CASE_STRING( FRAME_NET_UPDATE_END );
+        CASE_STRING( FRAME_RENDER_START );
+        CASE_STRING( FRAME_RENDER_END );
         default:
             return std::to_string((int)stage).c_str();
     }
@@ -50,7 +42,7 @@ void Hooks::FrameStageNotify( CSource2Client *thisptr, ClientFrameStage_t stage 
                     delete netChannelVMT;
                 }
                 if( engine->GetNetChannelInfo() ) {
-                    MC_PRINTF( "Grabbing new NetChannel VMT\n" );
+                    MC_PRINTF( "Grabbing new NetChannel VMT - %p\n", (void*)engine->GetNetChannelInfo() );
                     netChannelVMT = new VMT( engine->GetNetChannelInfo( ) );
                     netChannelVMT->HookVM( Hooks::SendNetMessage, 62 );
                     netChannelVMT->ApplyVMT( );
@@ -72,8 +64,8 @@ void Hooks::FrameStageNotify( CSource2Client *thisptr, ClientFrameStage_t stage 
 
                 MC_PRINTF("Making new localPlayer VMT\n");
                 localPlayerVMT = new VMT( localPlayer );
-                localPlayerVMT->HookVM( Hooks::SendMove, 331 );
-                localPlayerVMT->HookVM( Hooks::PrepareUnitOrders, 434 );
+                localPlayerVMT->HookVM( Hooks::SendMove, 330 );
+                localPlayerVMT->HookVM( Hooks::PrepareUnitOrders, 432 );
                 localPlayerVMT->ApplyVMT();
                 MC_PRINTF("LocalPlayer @ %p\n", (void*)localPlayer);
             }

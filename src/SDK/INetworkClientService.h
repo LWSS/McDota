@@ -49,7 +49,7 @@ public:
     virtual bool IsEntityReportActive( void ) = 0; // 50
     virtual void* GetEntityReport( void ) = 0;
     virtual void EntityReportTrack() = 0; // lots of classes as params
-    virtual bool SendNetMessage( int splitScreenSlot, void* NetMessageHandle_t, void const * something,  NetChannelBufType_t type ) = 0;
+    virtual bool SendNetMessage( int splitScreenSlot, NetMessageHandle_t handle, void const * something,  NetChannelBufType_t type ) = 0; // This function is trash and never gets called
     virtual void ReceivedServerInfo() = 0;
     virtual void GetGameSessionInitPrerequisites() = 0;
     virtual void StartChangelevel( void ) = 0;

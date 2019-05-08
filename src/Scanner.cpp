@@ -88,27 +88,6 @@ static bool FindVScript()
 	return true;
 }
 
-static bool FindCNetworkMessages()
-{
-	// Start of function containing "net_validatemessages"
-	// 48 8D 05 43 13 4C 00    lea     rax, CNetworkMessages <------------
-    // 48 89 E5                mov     rbp, rsp
-    // 41 57                   push    r15
-    // 41 56                   push    r14
-    // 48 8D 0D C5 D4 1D 00    lea     rcx, aActivatesDeact
- 
-	uintptr_t func = PatternFinder::FindPatternInModule("libnetworksystem.so", "48 8D 05 ?? ?? ?? ?? 48 89 E5 41 57 41 56 48 8D 0D", "FindCNetworkMessages");
-	if( !func ){
-        MC_PRINTF_ERROR("FindCNetworkMessages sig failed\n");
-        return false;
-    }
-
-    static void* refHack = reinterpret_cast<CNetworkMessages*>( GetAbsoluteAddress( func, 3, 7 ) );
-	networkMessages = (CNetworkMessages*)&refHack;
-	return true;
-}
-
-
 static bool FindPanelArrayOffset()
 {
 	unsigned int knownGoodOffset = 0x1C0;
@@ -218,6 +197,7 @@ static bool FindCamera()
 
 static bool FindGameEventManager()
 {
+	// 4C 8D 3D AC 86 3C 02    lea     r15, _gameeventmanager
     void ( CSource2Client::*playerInfoChangedPtr )( int ) = &CSource2Client::PlayerInfoChanged;
 
     uintptr_t playerInfoChangedFn = reinterpret_cast<uintptr_t>( (void*)(client->*playerInfoChangedPtr) );
@@ -386,14 +366,12 @@ static bool FindRichPresence()
 }
 
 
-
 bool Scanner::FindAllSigs( )
 {
 	bool sigsOK = true;
 	sigsOK &= FindGlobalVars();
 	sigsOK &= FindGameEntitySystem();
 	sigsOK &= FindVScript();
-	sigsOK &= FindCNetworkMessages();
 	sigsOK &= FindPanelArrayOffset();
 	sigsOK &= FindViewRender();
 	sigsOK &= FindClientMode();

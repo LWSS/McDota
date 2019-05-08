@@ -82,7 +82,7 @@ void Main()
         MC_PRINTF_ERROR("Paint Fonts Failed to Initialize, Stopping...\n");
     }
 
-    cvar->ConsoleColorPrintf( ColorRGBA(10, 210, 10), " [McDota]I'm in like Flynn.\n" );
+    cvar->ConsoleColorPrintf( ColorRGBA(10, 210, 10), "[McDota] I'm in like Flynn.\n" );
 
     int width, height;
     engine->GetScreenSize( width, height );
@@ -102,7 +102,9 @@ void Main()
     MC_PRINTF( "RichPresence @ %p\n", (void*)richPresence );
     MC_PRINTF( "UI Engine @(%p) | Running? (%s)\n", (void*)panoramaEngine->AccessUIEngine(), panoramaEngine->AccessUIEngine()->IsRunning() ? "yes" : "no" );
     MC_PRINTF( "GetAllClasses @ %p\n", (void*)client->GetAllClasses() );
-    MC_PRINTF( "ParticleSystemMGr @ %p\n", (void*)particleSystemMgr );
+    MC_PRINTF( "ParticleSystemMgr @ %p\n", (void*)particleSystemMgr );
+    MC_PRINTF( "CNetworkMessages @ %p\n", (void*)networkMessages );
+    MC_PRINTF( "CGameEventSystem @ %p\n", (void*)gameEventSystem );
     //networkClientService->PrintSpawnGroupStatus();
     //networkClientService->PrintConnectionStatus();
 
@@ -135,6 +137,10 @@ void Main()
     uiEngineVMT->HookVM(Hooks::DispatchEvent, 49);
     uiEngineVMT->HookVM(Hooks::RunScript, 110);
     uiEngineVMT->ApplyVMT();
+
+    //gameEventSystemVMT = new VMT( gameEventSystem );
+    //gameEventSystemVMT->HookVM(Hooks::PostEventAbstract, 15);
+    //gameEventSystemVMT->ApplyVMT();
 
     srand(time(NULL)); // Seed random # Generator so we can call rand() later
 

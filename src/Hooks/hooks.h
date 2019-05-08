@@ -12,6 +12,8 @@ namespace Hooks
     bool CreateMove( IClientMode* thisptr, CUserCmd *cmd, QAngle &angle, Vector &pos );
     // gameEventManager
     bool FireEventClientSide( CGameEventManager *thisptr, CGameEvent *event );
+    // gameEventSystem
+    void PostEventAbstract( CGameEventSystem *thisptr, int splitScreenSlot, bool, int, unsigned char const*, GameEventHandle_t *, void const*, unsigned long, NetChannelBufType_t );
     // inputInternal
     void SetKeyCodeState( IInputInternal* thisptr, ButtonCode_t code, bool bPressed );
     // INetChannel

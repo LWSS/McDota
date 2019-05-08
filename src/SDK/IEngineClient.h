@@ -102,12 +102,10 @@ public:
 	virtual const char* GetBuildTimeString() = 0; // ex: "14:00:13"
     virtual int GetConnectedServerNetworkVersion(void) = 0;
 	virtual int GetAppID(void) = 0; // steam App ID (570)
-	virtual void* CopyFrameBufferToMaterial( const char* );
 	virtual void ReadConfiguration( int splitScreenSlot );
-	virtual void SetAchievementMgr( void* achievementMgr );
+	virtual void SetAchievementMgr( void* achievementMgr ); // 80
 	virtual void* GetAchivementMgr( void );
 	/* Xbox-Related */
-	virtual void StartXboxExitProcess( void );
 	virtual void OnStorageDeviceAttached( int );
 	virtual void OnStorageDeviceDetached( int );
 
@@ -116,17 +114,13 @@ public:
 	virtual void SetLocalPlayerIsResolvable( const char*, int slot, bool state );
 	virtual bool IsLocalPlayerResolvable( void );
 	virtual void* GetSinglePlayerSharedMemorySpace( const char*, int );
-	virtual void RegisterDemoCustomDataCallback(); //(CUtlSymbolLarge,void (*)(uchar *,ulong))
+	virtual void RegisterDemoCustomDataCallback(); //(CUtlSymbolLarge,void (*)(uchar *,ulong)) // 90
 	virtual void RecordDemoCustomData(void (*)(unsigned char *,unsigned long),void const*,unsigned long);
 	virtual void SetPitchScale( float pitch );
 	virtual float GetPitchScale( void );
 	virtual void* DSPGetCurrentDASRoomNew(void);
 	virtual void* DSPGetCurrentDASRoomChanged(void);
 	virtual void* DSPGetCurrentDASRoomSkyAbove(void);
-	virtual void* DSPGetCurrentDASRoomSkyPercent(void);
-	virtual void SetMixGroupOfCurrentMixer(char const*,char const*,float,int);
-	virtual int GetMixLayerIndex(char const*);
-	virtual void SetMixLayerLevel(int,float);
 	virtual bool IsRecordingVoice( void );
 	virtual void SetTimeScale( float timescale );
 	virtual void SetGameStatsData( void* CGameStatsData );

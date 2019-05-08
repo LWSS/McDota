@@ -15,7 +15,7 @@ struct RenderDeviceInfo_t;
 class CEngineServiceMgr : IAppSystem
 {
 public:
-    virtual void RegisterEngineService( const char *, IEngineService * ) = 0;
+    virtual void RegisterEngineService( const char *, IEngineService * ) = 0; // 11
     virtual void UnregisterEngineService( const char *, IEngineService * ) = 0;
     virtual void RegisterLoopMode( const char *, ILoopModeFactory *, void ** ) = 0;
     virtual void UnregisterLoopMode( const char *, ILoopModeFactory *, void ** ) = 0;
@@ -29,6 +29,7 @@ public:
     virtual void *GetEngineDeviceWidth( void ) = 0;
     virtual void *GetEngineDeviceHeight( void ) = 0;
     virtual void GetEngineSwapChainSize( int *width, int *height ) = 0;
+    virtual void *Plat_GetWindowSafeAreaInsets( void ); // (NEW) added with 2019 TI battlepass
     virtual bool IsLoopSwitchQueued( void ) = 0;
     virtual bool IsLoopSwitchRequested( void ) = 0;
     virtual void *GetEventDispatcher( void ) = 0;

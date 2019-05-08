@@ -5,7 +5,7 @@
 
 class CBaseCombatCharacter : public CBaseEntity
 {
-    virtual bool C_BaseCombatCharacter__IsLookingTowardsEntity(const void* C_BaseEntity, float fovMaybe);
+    virtual bool C_BaseCombatCharacter__IsLookingTowardsEntity(const void* C_BaseEntity, float fovMaybe); // 283
     virtual bool C_BaseCombatCharacter__IsLookingTowardsVector(const Vector &point, float fovMaybe);
     virtual bool C_BaseCombatCharacter__IsEntityInFOV(const void* C_BaseEntity);
     virtual bool C_BaseCombatCharacter__IsVectorInFOV(const Vector &point);
@@ -25,5 +25,5 @@ class CBaseCombatCharacter : public CBaseEntity
     virtual void C_BaseCombatCharacter__GetActiveWeapon() = 0;
     virtual void sub_2863F20();
     virtual void sub_2A5D600();
-    virtual void sub_2A5D650();
+    virtual void sub_2A5D650(); // 303
 };

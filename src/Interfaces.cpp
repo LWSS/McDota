@@ -1,24 +1,27 @@
 #include "Interfaces.h"
 
-#include <link.h> // dl_iterate_phdr
-
 #include "Utils/Patternfinder.h" //dlinfo_t
 #include "Utils/Util.h"
 
+#include <link.h> // dl_iterate_phdr
+
+
 bool Interfaces::FindInterfaces()
 {
-    client = GetInterface<CSource2Client>("../../dota/bin/linuxsteamrt64/libclient.so", "Source2Client002", 128 );
+    client = GetInterface<CSource2Client>("../../dota/bin/linuxsteamrt64/libclient.so", "Source2Client002", 129 );
     cvar = GetInterface<ICvar>( "./libvstdlib.so", "VEngineCvar007", 52 );
-    engine = GetInterface<IEngineClient>( "./libengine2.so", "Source2EngineToClient001", 167 );
+    engine = GetInterface<IEngineClient>( "./libengine2.so", "Source2EngineToClient001", 161 );
     inputSystem = GetInterface<IInputSystem>( "./libinputsystem.so", "InputSystemVersion001", 88 );
     inputInternal = GetInterface<IInputInternal>("./libvgui2.so", "VGUI_InputInternal001", 101 );
     networkClientService = GetInterface<INetworkClientService>("./libengine2.so", "NetworkClientService_001", 69 );
     panel = GetInterface<IVPanel>("./libvgui2.so", "VGUI_Panel010", 82 );
     splitScreenService = GetInterface<CSplitScreenService>("./libengine2.so", "SplitScreenService_001", 44 );
     panoramaEngine = GetInterface<IPanoramaUIEngine>("./libpanorama.so", "PanoramaUIEngine001", 17 );
-    fontManager = GetInterface<CFontManager>("./libmaterialsystem2.so", "FontManager_001", 48 );
-    engineServiceMgr = GetInterface<CEngineServiceMgr>("./libengine2.so", "EngineServiceMgr001", 49 );
+    fontManager = GetInterface<CFontManager>("./libmaterialsystem2.so", "FontManager_001", 45 );
+    engineServiceMgr = GetInterface<CEngineServiceMgr>("./libengine2.so", "EngineServiceMgr001", 50 );
     particleSystemMgr = GetInterface<CParticleSystemMgr>("./libparticles.so", "ParticleSystemMgr003", 57 );
+    networkMessages = GetInterface<CNetworkMessages>("./libnetworksystem.so", "NetworkMessagesVersion001", 34 );
+    gameEventSystem = GetInterface<CGameEventSystem>("./libengine2.so", "GameEventSystemClientV001", 21 );
 
     if( !requestedInterfaces.empty() ){
         for( long unsigned int i = 0; i < requestedInterfaces.size(); i ++ ){

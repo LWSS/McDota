@@ -11,16 +11,12 @@ static const char* Type2String( NetChannelBufType_t type )
 {
     switch( type )
     {
-        case NetChannelBufType_t::BUF_DEFAULT:
-            return "Default";
-        case NetChannelBufType_t::BUF_RELIABLE:
-            return "Reliable";
-        case NetChannelBufType_t::BUF_UNRELIABLE:
-            return "UnReliable";
-        case NetChannelBufType_t::BUF_VOICE:
-            return "Voice";
+        CASE_STRING( BUF_DEFAULT );
+        CASE_STRING( BUF_RELIABLE );
+        CASE_STRING( BUF_UNRELIABLE );
+        CASE_STRING( BUF_VOICE );
         default:
-            return "UNKNOWN!";
+            return "UNKNOWN Type!";
     }
 }
 

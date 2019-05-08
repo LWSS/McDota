@@ -57,7 +57,7 @@ enum OrderQueueBehavior_t : int {
 class CDotaPlayer : public CBaseCombatCharacter
 {
 public:
-    virtual void sub_2A5EB10(); // 313
+    virtual void sub_2A5EB10(); // 304
     virtual void sub_2A5EB11();
     virtual void sub_2A5EB12();
     virtual void sub_2A5EB13();
@@ -83,7 +83,7 @@ public:
     virtual void C_BasePlayer__Weapon_DropPrimary(void);
     virtual Vector* C_BasePlayer__GetAutoaimVector(float fovMaybe);
     virtual void C_DOTAPlayer__CreateMove(void* CUserCmd, QAngle &unk, Vector &unk2);
-    virtual void C_DOTAPlayer__SendMove(int unk); // 332
+    virtual void C_DOTAPlayer__SendMove(int unk);
     virtual void C_BasePlayer__AvoidPhysicsProps(void* CUserCmd);
     virtual void C_BasePlayer__PlayerUse(void* C_BaseEntity);
     virtual void* C_BasePlayer__GetUseTarget(void);
@@ -152,7 +152,6 @@ public:
     virtual QAngle* C_BasePlayer__GetPunchAngle(void);
     virtual bool sub_2AF93E0(); // added after ti8 - returns 1 by default.
     virtual float C_BasePlayer__GetMinFOV(void);
-    virtual void C_BasePlayer__PlayPlayerJingle(void);
     virtual void C_BasePlayer__UpdateStepSound(void* CPhysSurfaceProperties, const Vector &pos, const Vector &unk);
     virtual void C_BasePlayer__PlayStepSound(Vector &pos, void* CPhysSurfaceProperties, float unk, bool unk2);
     virtual void C_BasePlayer__GetFootstepSurface(const Vector &pos, const char* unk);

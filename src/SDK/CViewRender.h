@@ -10,6 +10,8 @@ struct vrect_t
     vrect_t			*pnext;
 };
 
+//xref "screenfademinsize" to the constructor of this class. The Vtable should be the first off_xxxxx pointer in the section.
+// Warning: not at the top, the caller is inlined.
 class CViewRender
 {
 public:
@@ -56,4 +58,5 @@ public:
 	virtual void ShouldForceNoVis(void);
 	virtual void PreViewDrawScene(CViewSetup const&);
 	virtual void PostViewDrawScene(CViewSetup const&);
+	// couple more empty funcs..
 };

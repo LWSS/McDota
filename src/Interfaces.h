@@ -26,6 +26,7 @@ inline CFontManager* fontManager;
 inline CEngineServiceMgr* engineServiceMgr;
 inline CDOTARichPresence* richPresence;
 inline CParticleSystemMgr* particleSystemMgr;
+inline CGameEventSystem* gameEventSystem;
 
 // VMT's
 inline VMT* cameraVMT;
@@ -38,6 +39,7 @@ inline VMT* netChannelVMT;
 inline VMT* clientModeVMT;
 inline VMT* soundOpSystemVMT;
 inline VMT* gameEventManagerVMT;
+inline VMT* gameEventSystemVMT;
 
 // Special Panels
 inline panorama::CPanel2D* gDBPlayPanel;

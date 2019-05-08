@@ -38,3 +38,4 @@
 #include "CNetworkSystem.h"
 #include "CDOTAWearableItem.h"
 #include "CParticleSystemMgr.h"
+#include "CGameEventSystem.h"
