@@ -12,7 +12,6 @@ static bool GetLibraryInformation(const char* library, uintptr_t* address, size_
     if (libraries.size() == 0) {
         dl_iterate_phdr([] (struct dl_phdr_info* info, size_t, void*) {
             dlinfo_t library_info = {};
-            ConMsg("Lib name: %s\n", info->dlpi_name);
             library_info.library = info->dlpi_name;
             library_info.address = info->dlpi_addr + info->dlpi_phdr[0].p_vaddr;
             library_info.size = info->dlpi_phdr[0].p_memsz;

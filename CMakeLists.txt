@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 project(McDota)
+include(FindProtobuf)
 
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
     if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 7.1)
@@ -24,13 +25,15 @@ FUNCTION (EXCLUDE_FILES_FROM_DIR_IN_LIST _InFileList _excludeDirName _verbose)
     set(SOURCE_FILES ${_InFileList} PARENT_SCOPE) # Return the SOURCE_FILES variable to the calling parent
 ENDFUNCTION (EXCLUDE_FILES_FROM_DIR_IN_LIST)
 
+find_package(Protobuf REQUIRED)
+
 #no-pmf-conversions warning for deducing vtable offsets from our class prototypes sdk
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -O3 -ggdb -std=c++17 -Wall --no-gnu-unique -Wno-pmf-conversions")
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3 -std=c++17 -Wall --no-gnu-unique -Wno-pmf-conversions -s -fvisibility=hidden -fvisibility-inlines-hidden")
 #set(CMAKE_CXX_FLAGS_MINSIZEREL "${CMAKE_CXX_FLAGS_MINSIZEREL} -std=c++17 -Wall -Wno-maybe-uninitialized -Wno-unused-result -ldl -fpic -shared")
 
 # Depending on system/updates, you may need to statically link libstdc++
-set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} ")# -static-libstdc++")
+set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS}")# -static-libstdc++")
 
 if(NOT CMAKE_BUILD_TYPE)
     message(STATUS "No build type selected, default to Release")
@@ -39,7 +42,7 @@ endif(NOT CMAKE_BUILD_TYPE)
 
 file(GLOB_RECURSE SOURCE_FILES "${CMAKE_SOURCE_DIR}/src/*.cpp")
 
-include_directories(${INCLUDE_DIRS})
+include_directories(${INCLUDE_DIRS} ${PROTOBUF_INCLUDE_DIR})
 
 add_library(McDota SHARED ${SOURCE_FILES})
-target_link_libraries(McDota dl)
+target_link_libraries(McDota dl ${PROTOBUF_LIBRARY})

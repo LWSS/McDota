@@ -41,6 +41,7 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             UI::ToggleUI();
             break;
         case ButtonCode_t::HOME:
+            cvar->ConsoleDPrintf("TickCount: %d\n", globalVars->tickcount);
             for( int i = 0; i <= entitySystem->GetHighestEntityIndex(); i++ ){
                 entity = entitySystem->GetBaseEntity(i);
                 if( entity ){

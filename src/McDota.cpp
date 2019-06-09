@@ -138,9 +138,9 @@ void Main()
     uiEngineVMT->HookVM(Hooks::RunScript, 110);
     uiEngineVMT->ApplyVMT();
 
-    //gameEventSystemVMT = new VMT( gameEventSystem );
-    //gameEventSystemVMT->HookVM(Hooks::PostEventAbstract, 15);
-    //gameEventSystemVMT->ApplyVMT();
+    gameEventSystemVMT = new VMT( gameEventSystem );
+    gameEventSystemVMT->HookVM(Hooks::PostEventAbstract, 15);
+    gameEventSystemVMT->ApplyVMT();
 
     srand(time(NULL)); // Seed random # Generator so we can call rand() later
 

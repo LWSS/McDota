@@ -27,8 +27,7 @@ sleep 3 && kill -2 "$dota_pid" && sleep 1 && kill -2 "$dota_pid" &
 if grep -q "$filename" /proc/"$dota_pid"/maps; then
     (sudo echo -e "continue\\n"; cat) | sudo gdb -p "$dota_pid"
 else
-    echo "Injecting build $filename"
-    sudo cp "$filename" /"$filename"
-    (sudo echo -e "set confirm off\\nset \$dlopen = (void*(*)(char*, int)) dlopen\\ncall \$dlopen(\"/$filename\", 1)\\n"; cat) | sudo gdb -p "$dota_pid"
-    sudo rm /"$filename"
+	path="$(pwd)/$filename"
+    echo "Injecting build $path"
+    (sudo echo -e "set confirm off\\nset \$dlopen = (void*(*)(char*, int)) dlopen\\ncall \$dlopen(\"$path\", 1)\\n"; cat) | sudo gdb -p "$dota_pid"
 fi

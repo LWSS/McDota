@@ -20,6 +20,7 @@ It has been built from the ground-up to be faster and better than previous cheat
 * CMake
 * a C++17 compiler ( like clang or gcc )
 * Build essentials( Make, gdb, etc.. )
+* google protobufs development library
 ## Build Instructions
 `cmake . && make -j`
 
@@ -46,7 +47,7 @@ Press `Insert` to Open/Close the in-game Menu ( works in-game and in-menu )
 ## Known Issues
 * There is a very rare tcmalloc bug I have encountered that will just crash your game. I can't seem to reproduce it when it happens.
 * Sometimes the UI will not open on the first time, I think I have fixed this, but if this happens to you, check the console and just try again.
-
+* Debug builds do not unload
 ## Credits
 LWSS(me) - Founder
 

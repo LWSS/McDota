@@ -1,10 +1,24 @@
 #pragma once
 
-#include "INetChannel.h"
-#include "INetworkClientService.h"
 #include "bf_read.h"
+#include "bf_write.h"
 #include "CUtlString.h"
 
+#include <google/protobuf/message.h>
+#include <google/protobuf/io/coded_stream.h>
+
+
+
+typedef int NetMessageHandle_t;
+struct NetMessageInfo_t;
+
+enum NetChannelBufType_t : int
+{
+    BUF_DEFAULT = -1,
+    BUF_UNRELIABLE = 0,
+    BUF_RELIABLE = 1,
+    BUF_VOICE = 2,
+};
 
 enum NetMessageTypes : short
 {
@@ -134,17 +148,20 @@ enum NetMessageTypes : short
     CDOTAClientMsg_SearchString = 307,
     CDOTAClientMsg_Pause = 308,
     CDOTAClientMsg_ShopViewMode = 309,
-    CDOTAClientMsg_SetUnitShareFlag = 310,
+    CDOTAClientMsg_SetUnitShareFlag = 310,  // needs more testing
     CDOTAClientMsg_SwapRequest = 311,
     CDOTAClientMsg_SwapAccept = 312,
     CDOTAClientMsg_WorldLine = 313,
     CDOTAClientMsg_RequestGraphUpdate = 314,
     CDOTAClientMsg_ItemAlert = 315,
     CDOTAClientMsg_ChatWheel = 316,
-    CDOTAClientMsg_SendStatPopup = 317,
+    CDOTAClientMsg_SendStatPopup = 317, // the messages sent by those in the casting slot
     CDOTAClientMsg_BeginLastHitChallenge = 318,
     CDOTAClientMsg_UpdateQuickBuy = 319,
+    CDOTAClientMsg_UpdateCoachListen = 320,
+    CDOTAClientMsg_CoachHUDPing = 321,
     CDOTAClientMsg_RecordVote = 322,
+    CDOTAClientMSg_UnitsAutoAttackAfterSpell = 323,
     CDOTAClientMsg_WillPurchaseAlert = 324,
     CDOTAClientMsg_PlayerShowCase = 325,
     CDOTAClientMsg_TeleportRequiresHalt = 326,
@@ -157,11 +174,16 @@ enum NetMessageTypes : short
     CDOTAClientMsg_QuickBuyAlert = 333,
     CDOTAClientMsg_HeroStatueLike = 334,
     CDOTAClientMsg_ModifierAlert = 335,
+    CDOTAClientMsg_TeamShowcaseEditor = 336,
     CDOTAClientMsg_HPManaAlert = 337,
     CDOTAClientMsg_GlyphAlert = 338,
+    CDOTAClientMsg_TeamShowcaseClientData = 339,
+    CDOTAClientMsg_PlayTeamShowcase = 340,
     CDOTAClientMsg_EventCNY2015Cmd = 341,
     CDOTAClientMsg_FillEmptySlotsWithBots = 342,
     CDOTAClientMsg_DemoHero = 343,
+    CDOTAClientMsg_AbilityLearnModeToggled = 344,
+    CDOTAClientMsg_AbilityStartUse = 345,
     CDOTAClientMsg_ChallengeSelect = 346,
     CDOTAClientMsg_ChallengeReroll = 347,
     CDOTAClientMsg_ClickedBuff = 348,
@@ -170,6 +192,7 @@ enum NetMessageTypes : short
     CDOTAClientMsg_XPAlert = 351,
     CDOTAClientMsg_EventPointsTip = 353,
     CDOTAClientMsg_MatchMetadata = 354,
+    CDOTAClientMsg_KillMyHero = 355,
     CDOTAClientMsg_QuestStatus = 356,
     CDOTAClientMsg_ToggleAutoattack = 357,
     CDOTAClientMsg_SpecialAbility = 358,
@@ -191,7 +214,8 @@ enum NetMessageTypes : short
     CDOTAClientMsg_GuideSelected = 374,
     CDOTAClientMsg_DamageReport = 375,
     CDOTAClientMsg_SalutePlayer = 376,
-    CDOTAClientMsg_TipAlert = 378,
+    CDOTAClientMsg_SprayWheel = 377,
+    CDOTAClientMsg_TipAlert = 378, // https://github.com/SteamDatabase/GameTracking-Dota2/blob/3e4fc846f4a99669a9bdd045f23698991b5ab529/game/dota/pak01_dir/scripts/tips.txt
     CDOTAClientMsg_EmptyTeleportAlert = 379,
     CMsgTEEffectDispatch = 400,
     CMsgTEArmorRicochet = 401,
@@ -336,35 +360,66 @@ enum NetMessageTypes : short
 
 enum NetMessageGroups : int
 {
-    System = 0,
-    Entities = 1,
-    StringCommand = 2,
-    Signon = 3,
-    Spawn_Groups = 4,
-    Move = 5,
-    Voice = 6,
-    Generic = 7,
-    String_Table = 8,
-    Sounds = 9,
+    SYSTEM = 0,
+    ENTITIES = 1,
+    STRING_COMMAND = 2,
+    SIGNON = 3,
+    SPAWNGROUPS = 4,
+    MOVE = 5,
+    VOICE = 6,
+    GENERIC = 7,
+    STRING_TABLE = 8,
+    SOUNDS = 9,
 
-    Events = 12,
-    Client_Messages = 13,
-    User_Messages = 14,
-    Decals = 15,
+    EVENTS = 12,
+    CLIENT_MESSAGES = 13,
+    USER_MESSAGES = 14,
+    DECALS = 15,
 };
 
+/*
+class CMsg_Base
+{
+public:
+    virtual void DESTROY1() = 0;
+    virtual void DESTROY2() = 0;
+    virtual std::string GetTypeName(void) = 0; // google::protobuf::Message::GetTypeName
+    virtual void New(void) = 0;
+    virtual void New2() = 0;
+    virtual void sub_1FE1A60() = 0;
+    virtual void sub_1FE1A70() = 0;
+    virtual void sub_23E6980() = 0;
+    virtual bool IsInitialized(void) = 0;
+    virtual std::string InitializationErrorString(void) = 0;
+    virtual void CheckTypeAndMergeFrom(const google::protobuf::MessageLite &other) = 0;
+    virtual bool MergePartialFromCodedStream(google::protobuf::io::CodedInputStream *input) = 0;
+    virtual size_t ByteSize(void) = 0; // calls google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize
+    virtual void SerializeWithCachedSizes(google::protobuf::io::CodedOutputStream *output) = 0;
+    virtual void SerializeWithCachedSizesToArray(unsigned char *) = 0; // calls  google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray
+    virtual int GetCachedSize(void) = 0;
+    virtual void sub_23CBBB0() = 0;
+    virtual void sub_1FE1A80() = 0;
+    virtual void CopyFrom(const google::protobuf::Message &other) = 0;
+    virtual void MergeFrom(const google::protobuf::Message &other) = 0;
+    virtual void DiscardUnknownFields(void) = 0;
+    virtual int SpaceUsed(void) = 0;
+    virtual void SetCachedSize(int) = 0;
+    virtual google::protobuf::Reflection* GetReflection(void) = 0;
+    virtual google::protobuf::Metadata* GetMetaData(void) = 0;
+};
+*/
+typedef google::protobuf::Message CMsg_Base;
 class CProtobuffBinding
 {
 public:
     virtual const char* GetName(void);
     virtual int GetSize(void);
-    virtual void ToString(void const*, CUtlString &strOut);
-    //virtual void ToString(std::string const &);
+    virtual const char* ToString(CMsg_Base *msg, CUtlString *storage);
     virtual const char *GetGroup(void);
     virtual ColorRGBA GetGroupColor(void);
     virtual NetChannelBufType_t GetBufType(void);
-    virtual bool ReadFromBuffer(void *,bf_read &);
-    virtual bool WriteToBuffer(void const*, void *bf_writeRef );
+    virtual bool ReadFromBuffer(CMsg_Base *msg, bf_read &); // true if parsing OK
+    virtual bool WriteToBuffer(CMsg_Base *msg, bf_write &); // true if parsing OK
     virtual void AllocateMessage(void);
     virtual void DeallocateMessage(void *);
     virtual void AllocateAndCopyConstructNetMessage(void const*);
@@ -418,9 +473,9 @@ public:
     virtual void RegisterNetworkCategory( unsigned int, const char* ) = 0;
     virtual void AssociateNetMessageWithChannelCategoryAbstract( NetMessageHandle_t *, unsigned int, bool) = 0;
     virtual NetMessageHandle_t FindOrCreateNetMessage(int, void const* IProtobufBinding, unsigned int, void* INetworkSerializerBindingBuildFilter, bool, bool) = 0;
-    virtual void Serialize(bf_read &buffer, NetMessageHandle_t *, void const*) = 0;
-    virtual void Unserialize(bf_read &buffer, NetMessageHandle_t *, void*) = 0;
-    virtual void Unserialize(bf_read &buffer, NetMessageHandle_t **, void **) = 0;
+    virtual void SerializeAbstract(bf_read &buffer, NetMessageHandle_t *, void const*) = 0;
+    virtual void UnserializeAbstract(bf_read &buffer, NetMessageHandle_t *, void*) = 0;
+    virtual void UnserializeAbstract(bf_read &buffer, NetMessageHandle_t **, void **) = 0;
     virtual void AllocateUnserializedMessage(NetMessageHandle_t *) = 0;
     virtual void AllocateAndCopyConstructNetMessageAbstract(NetMessageHandle_t *, void const*) = 0;
     virtual void DeallocateUnserializedMessage(NetMessageHandle_t *, void*) = 0;

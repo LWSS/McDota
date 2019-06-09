@@ -73,8 +73,8 @@ static std::string Buttons2ButtonStr( int32_t buttons ) {
 //position is a delta, changes with arrow keys
 bool Hooks::CreateMove( IClientMode *thisptr, CUserCmd* cmd, QAngle &angle, Vector &pos ) {
 
-    /* I'm gonna grab Camera here since this gets called in-game */
 
+    /* I'm gonna grab Camera here since this gets called in-game */
     camera = GetCurrentCamera();
     if( camera ){
         if( !cameraVMT || ( cameraVMT && cameraVMT->interface != (void*)camera ) ){

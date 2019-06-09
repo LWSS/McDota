@@ -1,7 +1,7 @@
 #pragma once
 #include "IAppSystem.h"
 #include "CNetworkGameClient.h"
-#include "INetChannel.h"
+#include "CNetworkMessages.h"
 
 // XREF "loopback" back to the first function. It should be right next to another string "address" in the function "AllocateRemoteConnectionClient"
 class INetworkClientService : IAppSystem

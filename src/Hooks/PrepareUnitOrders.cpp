@@ -82,12 +82,17 @@ void Hooks::PrepareUnitOrders( CDotaPlayer *thisptr, DotaUnitOrder_t order, int 
                                CDotaBaseNPC *entity, bool queue, OrderQueueBehavior_t queueBehavior, bool showEffects ) {
     //std::raise(SIGINT);
 
-    if( mc_retarget_orders->GetBool() ){
+    if( mc_retarget_orders->GetBool() && order == DotaUnitOrder_t::DOTA_UNIT_ORDER_CAST_POSITION ){
+        /*
         if( targetIndex ){
             targetIndex = mc_ent_select->GetInt();
-        }
+        }*/
+        movePosition.x = mc_custom_x->GetFloat();
+        movePosition.y = mc_custom_y->GetFloat();
+        movePosition.z = 1000.0f;
     }
 
+    /*
     if( mc_command_repeater->GetBool() ){
         MC_PRINTF("Repeating 30x\n");
         engine->GetNetChannelInfo()->SetMaxRoutablePayloadSize(99999999);
@@ -96,7 +101,7 @@ void Hooks::PrepareUnitOrders( CDotaPlayer *thisptr, DotaUnitOrder_t order, int 
             localPlayerVMT->GetOriginalMethod<PrepareUnitOrdersFn>(432)( thisptr, order, targetIndex, movePosition, abilityIndex, orderIssuer, entity, queue, queueBehavior, showEffects );
         }
         MC_PRINTF("done.\n");
-    }
+    }*/
 
     if( mc_log_prepareunitorders->GetBool() ){
         Util::Log( "Order: %s\nEntity: (%p)[%s]\nTargetIndex: %d\nPosition: (%f,%f,%f)\nAbility Index: %d\nIssuer: %s\nQueue? %s\nQueueBehavior: %s\nShowEffects? %s\n\n",

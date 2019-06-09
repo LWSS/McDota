@@ -36,6 +36,7 @@ inline ConVar *mc_ent_select;
 inline ConVar *mc_log_createmove;
 inline ConVar *mc_log_clientevents;
 inline ConVar *mc_log_sendnetmsg;
+inline ConVar *mc_log_sendnetmsg_to_string;
 inline ConVar *mc_log_sendnetmsg_filter_commons;
 inline ConVar *mc_log_prepareunitorders;
 inline ConVar *mc_log_runscript;
@@ -47,11 +48,14 @@ inline ConVar *mc_end_createmove;
 inline ConVar *mc_send_voice;
 inline ConVar *mc_send_freq;
 inline ConVar *mc_send_status;
+inline ConVar *mc_resend_popup;
 
 inline ConVar *mc_retarget_orders;
 inline ConVar *mc_allow_customnames;
 inline ConVar *mc_custom_str;
 inline ConVar *mc_custom_int;
+inline ConVar *mc_custom_x;
+inline ConVar *mc_custom_y;
 
 
 namespace Settings

@@ -1,15 +1,6 @@
 #pragma once
 
-typedef int NetMessageHandle_t;
-struct NetMessageInfo_t;
-
-enum NetChannelBufType_t : uint32_t
-{
-    BUF_DEFAULT = 4294967295,
-    BUF_UNRELIABLE = 0,
-    BUF_RELIABLE = 1,
-    BUF_VOICE = 2,
-};
+#include "CNetworkMessages.h"
 
 // Find SetMaxRoutablePayloadSize with "Setting max routable payload" (libnetworksystem)
 // Or "CNetChan::SendNetMessage" to SendNetMessage()
@@ -78,7 +69,7 @@ public:
     virtual bool IsRemoteDisconnected(void) = 0;
     virtual void SetNetMessageDispatcher(void *INetMessageDispatcher) = 0;
     virtual void GetNetMessageDispatcher(void) = 0;
-    virtual void SendNetMessage(int * netMessageHandle_t, void const* something, NetChannelBufType_t type) = 0;
+    virtual void SendNetMessage(NetMessageHandle_t *messageHandle, CMsg_Base *something, NetChannelBufType_t type) = 0;
     virtual void StartRegisteringMessageHandlers(void) = 0;
     virtual void FinishRegisteringMessageHandlers(void) = 0;
     virtual void RegisterNetMessageHandlerAbstract();//CUtlSlot *,CUtlAbstractDelegate const&,int,NetMessageHandle_t__ *,int) = 0;

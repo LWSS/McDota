@@ -96,6 +96,7 @@ R"zz(
 						<DOTASettingsCheckbox convar='mc_autoaccept_on' text='AutoAccept' onactivate='clickSound()'/>
 						<DOTASettingsCheckbox convar='mc_fog_disable' text='No Fog' onactivate='clickSound()'/>
 						<DOTASettingsCheckbox convar='mc_fow_disable' text='No FoW' onactivate='clickSound()'/>
+						<DOTASettingsCheckbox convar='mc_resend_popup' text='Resend Popup' onactivate='clickSound()'/>
 						<DOTASettingsSlider convar='mc_camera_pitch_add' min='-1.0' max='360.0' text='Pitch Add' />
 						<DOTASettingsSlider convar='mc_camera_yaw_add' min='0.0' max='360.0' text='Yaw Add' />
 						<DOTASettingsSlider convar='mc_camera_distance' min='1134.0' max='4000.0' text='Camera Distance' />
@@ -150,6 +151,7 @@ R"zz(
 					<DOTASettingsCheckbox convar='mc_log_clientevents' text='Log ClientEvents' onactivate='clickSound()' />
 					<DOTASettingsCheckbox convar='mc_log_sendnetmsg' text='Log SendNetMsg' onactivate='clickSound()' />
 					<DOTASettingsCheckbox convar='mc_log_sendnetmsg_filter_commons' text='^ Filter Commons' onactivate='clickSound()' />
+					<DOTASettingsCheckbox convar='mc_log_sendnetmsg_to_string' text='^^ To String' onactivate='clickSound()' />
 					<DOTASettingsCheckbox convar='mc_log_prepareunitorders' text='Log PrepUnitOrders' onactivate='clickSound()' />
 					<DOTASettingsCheckbox convar='mc_log_runscript' text='Log RunScript' onactivate='clickSound()' />
 					<DOTASettingsCheckbox convar='mc_retarget_orders' text='Retarget Orders' onactivate='clickSound()' />
