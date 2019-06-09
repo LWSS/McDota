@@ -10,12 +10,12 @@ bool Interfaces::FindInterfaces()
 {
     client = GetInterface<CSource2Client>("../../dota/bin/linuxsteamrt64/libclient.so", "Source2Client002", 129 );
     cvar = GetInterface<ICvar>( "./libvstdlib.so", "VEngineCvar007", 52 );
-    engine = GetInterface<IEngineClient>( "./libengine2.so", "Source2EngineToClient001", 161 );
-    inputSystem = GetInterface<IInputSystem>( "./libinputsystem.so", "InputSystemVersion001", 88 );
+    engine = GetInterface<IEngineClient>( "./libengine2.so", "Source2EngineToClient001", 167 );
+    inputSystem = GetInterface<IInputSystem>( "./libinputsystem.so", "InputSystemVersion001", 89 );
     inputInternal = GetInterface<IInputInternal>("./libvgui2.so", "VGUI_InputInternal001", 101 );
     networkClientService = GetInterface<INetworkClientService>("./libengine2.so", "NetworkClientService_001", 69 );
     panel = GetInterface<IVPanel>("./libvgui2.so", "VGUI_Panel010", 82 );
-    splitScreenService = GetInterface<CSplitScreenService>("./libengine2.so", "SplitScreenService_001", 44 );
+    splitScreenService = GetInterface<CSplitScreenService>("./libengine2.so", "SplitScreenService_001", 46 );
     panoramaEngine = GetInterface<IPanoramaUIEngine>("./libpanorama.so", "PanoramaUIEngine001", 17 );
     fontManager = GetInterface<CFontManager>("./libmaterialsystem2.so", "FontManager_001", 45 );
     engineServiceMgr = GetInterface<CEngineServiceMgr>("./libengine2.so", "EngineServiceMgr001", 50 );

@@ -13,7 +13,7 @@ bool Integrity::VMTsHaveMisMatch( ) {
     uint32_t vScriptGameSystemNum = 58;
     uint32_t panoramaEngineNum = 182;
     uint32_t networkClientServiceNum = 69;
-    uint32_t networkGameClientNum = 124;
+    uint32_t networkGameClientNum = 123;
 
     bool mismatchFound = false;
 

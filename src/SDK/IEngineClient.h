@@ -186,4 +186,5 @@ public:
 
 	virtual bool IsClientLocalToActiveServer( void );
 	virtual void PostReceivedNetMessage(); //(NetMessageHandle_t__ *,void const*,NetChannelBufType_t)
+	// some more ...
 };

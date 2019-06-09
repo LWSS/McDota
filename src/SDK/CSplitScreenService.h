@@ -44,4 +44,6 @@ public:
     virtual int FindSplitPlayerSlot(int entIndex);
     virtual void ReadSomethingFromSteamCloud();
     virtual void WriteSomethingFromSteamCloud();
+    virtual void GenerateSomeUserConfigurationFile();
+    virtual void EmptyFunc();
 };
