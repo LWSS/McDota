@@ -23,28 +23,10 @@ static const char* Type2String( NetChannelBufType_t type )
 }
 
 long lastSetConVarMsg = 0;
-google::protobuf::Message* savedPopup;
-NetMessageHandle_t *savedHandle;
-NetChannelBufType_t savedType;
 bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHandle, google::protobuf::Message* msg, NetChannelBufType_t type ) {
 
     NetMessageInfo_t *info;
     const char *name;
-
-    if( mc_resend_popup->GetBool() ){
-        Util::Log("RESENDING POPUP MESSAGE!\n");
-        /*
-        CUtlString string;
-        string.m_Memory.m_pMemory = new uint8_t[4096];
-        string.m_Memory.m_nAllocationCount = 4096;
-        string.m_Memory.m_nGrowSize = 4096;
-        info->pProtobufBinding->ToString( msg, &string );
-        Util::Log( "ToString: (%s)\n", info->pProtobufBinding->ToString( msg, &string ) );
-         */
-        netChannelVMT->GetOriginalMethod<SendNetMessageFn>(62)( thisptr, savedHandle, savedPopup, savedType );
-        Util::Log("RESENT POPUP MESSAGE!\n");
-        mc_resend_popup->SetValue(false);
-    }
 
     if( mc_allow_customnames->GetBool() ){
         info = networkMessages->GetNetMessageInfo(messageHandle);
@@ -136,14 +118,6 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
                     Util::Log( "ToString: (%s)\n", info->pProtobufBinding->ToString( msg, &string ) );
                     delete[] string.m_Memory.m_pMemory;
                     //Util::Protobuf::LogMessageContents(msg);
-
-                    if( strstr(name, "CDOTAClientMsg_SendStatPopup") ){
-                        savedPopup = msg->New();
-                        savedPopup->CopyFrom(*msg);
-                        savedHandle = messageHandle;
-                        savedType = type;
-                        Util::Log("Saved Stat Popup\n");
-                    }
 
                     std::raise(SIGINT);
                 }

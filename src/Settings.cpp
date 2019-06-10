@@ -53,7 +53,6 @@ bool Settings::RegisterCustomConvars( ) {
 	mc_send_voice = Util::RegisterConVar( "mc_send_voice", "false" );
 	mc_send_freq = Util::RegisterConVar( "mc_send_freq", "25" );
 	mc_send_status = Util::RegisterConVar( "mc_send_status", "false" );
-	mc_resend_popup = Util::RegisterConVar( "mc_resend_popup", "false" );
 
 	mc_retarget_orders = Util::RegisterConVar( "mc_retarget_orders", "false" );
     mc_allow_customnames = Util::RegisterConVar( "mc_allow_customnames", "false" );

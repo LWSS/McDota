@@ -48,7 +48,6 @@ inline ConVar *mc_end_createmove;
 inline ConVar *mc_send_voice;
 inline ConVar *mc_send_freq;
 inline ConVar *mc_send_status;
-inline ConVar *mc_resend_popup;
 
 inline ConVar *mc_retarget_orders;
 inline ConVar *mc_allow_customnames;
