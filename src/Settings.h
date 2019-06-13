@@ -38,6 +38,9 @@ inline ConVar *mc_log_clientevents;
 inline ConVar *mc_log_sendnetmsg;
 inline ConVar *mc_log_sendnetmsg_to_string;
 inline ConVar *mc_log_sendnetmsg_filter_commons;
+inline ConVar *mc_log_recvnetmsg;
+inline ConVar *mc_log_recvnetmsg_to_string;
+inline ConVar *mc_log_recvnetmsg_filter_commons;
 inline ConVar *mc_log_prepareunitorders;
 inline ConVar *mc_log_runscript;
 

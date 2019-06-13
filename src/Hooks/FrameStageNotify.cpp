@@ -45,6 +45,7 @@ void Hooks::FrameStageNotify( CSource2Client *thisptr, ClientFrameStage_t stage 
                     MC_PRINTF( "Grabbing new NetChannel VMT - %p\n", (void*)engine->GetNetChannelInfo() );
                     netChannelVMT = new VMT( engine->GetNetChannelInfo( ) );
                     netChannelVMT->HookVM( Hooks::SendNetMessage, 62 );
+                    netChannelVMT->HookVM( Hooks::PostReceivedNetMessage, 81 );
                     netChannelVMT->ApplyVMT( );
                 } else {
                     MC_PRINTF_WARN("GetNetChannelInfo returned null! Aborting NetChannel Hook!\n");

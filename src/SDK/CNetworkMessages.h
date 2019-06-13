@@ -408,18 +408,17 @@ public:
     virtual google::protobuf::Metadata* GetMetaData(void) = 0;
 };
 */
-typedef google::protobuf::Message CMsg_Base;
 class CProtobuffBinding
 {
 public:
     virtual const char* GetName(void);
     virtual int GetSize(void);
-    virtual const char* ToString(CMsg_Base *msg, CUtlString *storage);
+    virtual const char* ToString(google::protobuf::Message *msg, CUtlString *storage);
     virtual const char *GetGroup(void);
     virtual ColorRGBA GetGroupColor(void);
     virtual NetChannelBufType_t GetBufType(void);
-    virtual bool ReadFromBuffer(CMsg_Base *msg, bf_read &); // true if parsing OK
-    virtual bool WriteToBuffer(CMsg_Base *msg, bf_write &); // true if parsing OK
+    virtual bool ReadFromBuffer(google::protobuf::Message *msg, bf_read &); // true if parsing OK
+    virtual bool WriteToBuffer(google::protobuf::Message *msg, bf_write &); // true if parsing OK
     virtual void AllocateMessage(void);
     virtual void DeallocateMessage(void *);
     virtual void AllocateAndCopyConstructNetMessage(void const*);

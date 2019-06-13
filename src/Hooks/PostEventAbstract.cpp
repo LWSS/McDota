@@ -1,9 +1,9 @@
 #include "hooks.h"
 #include <csignal>
 
-typedef void ( *PostEventAbstractFn)( CGameEventSystem *, int, bool, int, const unsigned char *, CNetworkSerializerPB*, CMsg_Base*, unsigned long, NetChannelBufType_t );
+typedef void ( *PostEventAbstractFn)( CGameEventSystem *, int, bool, int, const unsigned char *, CNetworkSerializerPB*, google::protobuf::Message*, unsigned long, NetChannelBufType_t );
 
-void Hooks::PostEventAbstract( CGameEventSystem *thisptr, int splitScreenSlot, bool unk, int int2, unsigned char const *bytes, CNetworkSerializerPB* eventHandle,  CMsg_Base *msg,
+void Hooks::PostEventAbstract( CGameEventSystem *thisptr, int splitScreenSlot, bool unk, int int2, unsigned char const *bytes, CNetworkSerializerPB* eventHandle,  google::protobuf::Message *msg,
                                unsigned long dong, NetChannelBufType_t buftype ) {
 /*
     CUtlString string;

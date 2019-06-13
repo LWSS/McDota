@@ -69,7 +69,7 @@ public:
     virtual bool IsRemoteDisconnected(void) = 0;
     virtual void SetNetMessageDispatcher(void *INetMessageDispatcher) = 0;
     virtual void GetNetMessageDispatcher(void) = 0;
-    virtual void SendNetMessage(NetMessageHandle_t *messageHandle, CMsg_Base *something, NetChannelBufType_t type) = 0;
+    virtual void SendNetMessage(NetMessageHandle_t *messageHandle, google::protobuf::Message *something, NetChannelBufType_t type) = 0;
     virtual void StartRegisteringMessageHandlers(void) = 0;
     virtual void FinishRegisteringMessageHandlers(void) = 0;
     virtual void RegisterNetMessageHandlerAbstract();//CUtlSlot *,CUtlAbstractDelegate const&,int,NetMessageHandle_t__ *,int) = 0;
@@ -88,7 +88,7 @@ public:
     virtual bool WasLastMessageReliable(void) = 0;
     virtual void InstallMessageFilter(void *INetworkMessageProcessingPreFilter) = 0;
     virtual void UninstallMessageFilter(void *INetworkMessageProcessingPreFilter) = 0;
-    virtual void PostReceivedNetMessage();//NetMessageHandle_t__ *,void const*,NetChannelBufType_t const*) = 0;
+    virtual void PostReceivedNetMessage(NetMessageHandle_t *, google::protobuf::Message* ,NetChannelBufType_t const*) = 0;
     virtual void InsertReplayMessage(void *InstantReplayMessage_t) = 0;
     virtual bool HasQueuedPackets(void) = 0;
     virtual void _unk8() = 0;

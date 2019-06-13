@@ -13,10 +13,11 @@ namespace Hooks
     // gameEventManager
     bool FireEventClientSide( CGameEventManager *thisptr, CGameEvent *event );
     // gameEventSystem
-    void PostEventAbstract( CGameEventSystem *thisptr, int splitScreenSlot, bool unk, int int2, unsigned char const *bytes, CNetworkSerializerPB* eventHandle,  CMsg_Base *msg, unsigned long dong, NetChannelBufType_t buftype );
+    void PostEventAbstract( CGameEventSystem *thisptr, int splitScreenSlot, bool unk, int int2, unsigned char const *bytes, CNetworkSerializerPB* eventHandle,  google::protobuf::Message *msg, unsigned long dong, NetChannelBufType_t buftype );
     // inputInternal
     void SetKeyCodeState( IInputInternal* thisptr, ButtonCode_t code, bool bPressed );
     // INetChannel
+    void PostReceivedNetMessage( INetChannel *thisptr, NetMessageHandle_t * messageHandle, google::protobuf::Message* msg, NetChannelBufType_t const* type);
     bool SendNetMessage( INetChannel *thisptr, NetMessageHandle_t * messageHandle, google::protobuf::Message* msg, NetChannelBufType_t type );
     // panel
     void PaintTraverse( IVPanel* thisptr, IVGuiPaintSurface* surface, VPANEL panel, bool force_repaint, bool allow_force );
