@@ -8,7 +8,6 @@
 #include <thread>
 
 #include "GUI/Gui.h"
-#include "Hacks/NoFog.h"
 #include "Hooks/hooks.h"
 #include "Scanner.h"
 #include "Interfaces.h"
@@ -186,10 +185,6 @@ void __attribute__((destructor)) Shutdown()
         camera->SetMaxPitch( -1.0f );
         camera->SetExtraYaw( 0.0f );
         camera->SetDistanceToLookAtPos( 1134.0f );
-
-        /* Reset Fog */
-        NoFog::ToggleFoW( true );
-        NoFog::ToggleFog( true );
     }
 
 

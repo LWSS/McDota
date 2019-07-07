@@ -35,6 +35,7 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
     CDotaPlayer* localPlayer;
     panorama::IUIPanel* panel;
     ClientClass *classes;
+    INetworkStringTable *stringTable;
     char bytes[256];
     switch( code ){
         case ButtonCode_t::INSERT:
@@ -89,7 +90,14 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             break;
         case ButtonCode_t::SCROLLLOCK:
             cvar->ConsoleDPrintf("Scrolllock...\n");
-            richPresence->SetStatus(mc_custom_str->strValue);
+            //richPresence->SetStatus(mc_custom_str->strValue);
+            cvar->ConsoleDPrintf("Printing %d Network Tables ...\n", networkStrings->GetNumTables());
+            for( int i = 0; i < networkStrings->GetNumTables(); i++ ){
+                stringTable = networkStrings->GetTable(i);
+                if( !stringTable ) continue;
+
+                cvar->ConsoleDPrintf("[%d]- (%s)(%d)\n", i, stringTable->GetTableName(), stringTable->GetNumStrings());
+            }
             break;
         case ButtonCode_t::PRINTSCREEN:
             cvar->ConsoleDPrintf("PrintScreen...\n");

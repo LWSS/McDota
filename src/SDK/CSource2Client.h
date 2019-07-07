@@ -28,7 +28,7 @@ class CSource2Client : IAppSystem
 {
 public:
 	virtual void SetGlobals(void* CGlobalVarsBase); // 11
-	virtual void InstallStringTableCallback(const char *unk);
+	virtual void InstallStringTableCallback(const char *tableName);
 	virtual void PlayerInfoChanged(int entIndex);
 	virtual void ClearInstancedBaselineFromClientClasses(void);
 	virtual void CreateMove(int splitScreenSlot, int unk, bool unk2);

@@ -179,7 +179,7 @@ public:
     virtual void FullConnect(void const * ns_address) = 0;
     virtual void SetSignonState(SignonState_t, int, CNETMsg_SignonState_t const *) = 0;
     virtual void RunFrame(void) = 0;
-    virtual void InstallStringTableCallback(const char *) = 0;
+    virtual void InstallStringTableCallback(const char *tableName) = 0;
     virtual void HookClientStringTable(const char *) = 0;
     virtual void GetClientName(int splitScreenSlot) = 0;
     virtual void OnPreserveEntity(void * CEntityReadInfo) = 0;

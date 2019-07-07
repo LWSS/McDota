@@ -22,6 +22,7 @@ bool Interfaces::FindInterfaces()
     particleSystemMgr = GetInterface<CParticleSystemMgr>("./libparticles.so", "ParticleSystemMgr003", 57 );
     networkMessages = GetInterface<CNetworkMessages>("./libnetworksystem.so", "NetworkMessagesVersion001", 34 );
     gameEventSystem = GetInterface<CGameEventSystem>("./libengine2.so", "GameEventSystemClientV001", 21 );
+    networkStrings = GetInterface<CNetworkStringTableContainer>("./libengine2.so", "Source2EngineToClientStringTable001", 19);
 
     if( !requestedInterfaces.empty() ){
         for( long unsigned int i = 0; i < requestedInterfaces.size(); i ++ ){

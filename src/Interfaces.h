@@ -27,6 +27,7 @@ inline CEngineServiceMgr* engineServiceMgr;
 inline CDOTARichPresence* richPresence;
 inline CParticleSystemMgr* particleSystemMgr;
 inline CGameEventSystem* gameEventSystem;
+inline CNetworkStringTableContainer* networkStrings;
 
 // VMT's
 inline VMT* cameraVMT;

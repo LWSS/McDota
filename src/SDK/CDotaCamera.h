@@ -20,6 +20,7 @@ public:
     virtual void SetForwardMove(float value) = 0; // for moving camera
     virtual void SetSideMove(float value) = 0; // ^^
     virtual Vector* GetPosition(void) = 0;
+    virtual void* UnkPosition() = 0; // Calls GetPosition() - Added sometime in mid 2019
     virtual QAngle* GetAngles(void) = 0;
     virtual float GetFOV(void) = 0;
     virtual Vector& GetEyeVector(void) = 0;

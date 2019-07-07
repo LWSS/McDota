@@ -1,6 +1,5 @@
 #include "hooks.h"
 
-#include "../Hacks/NoFog.h"
 #include "../Hacks/Zoom.h"
 #include "../Settings.h"
 
@@ -25,7 +24,6 @@ void Hooks::FrameStageNotify( CSource2Client *thisptr, ClientFrameStage_t stage 
     //MC_PRINTF("FSN: %s\n", Stage2String(stage));
     CDotaPlayer *localPlayer;
 
-    NoFog::FrameStageNotify( thisptr, stage );
     Zoom::FrameStageNotify( thisptr, stage );
 
     if( mc_send_status->GetBool() ){

@@ -83,7 +83,9 @@ bool Hooks::CreateMove( IClientMode *thisptr, CUserCmd* cmd, QAngle &angle, Vect
             }
             MC_PRINTF("Grabbing new CameraVMT\n");
             cameraVMT = new VMT( camera );
-            cameraVMT->HookVM( Hooks::GetZFar, 19 );
+            cameraVMT->HookVM( Hooks::GetFogEnd, 19 );
+            cameraVMT->HookVM( Hooks::GetZFar, 20 );
+            cameraVMT->HookVM( Hooks::GetFoWAmount, 26 );
             cameraVMT->ApplyVMT();
         }
     }

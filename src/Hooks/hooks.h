@@ -5,6 +5,8 @@
 namespace Hooks
 {
     // CDotaCamera
+    float GetFogEnd( CDotaCamera *thisptr, float unk );
+    float GetFoWAmount( CDotaCamera *thisptr );
     float GetZFar( CDotaCamera *thisptr, float unk );
     // client
     void FrameStageNotify( CSource2Client* thisptr, ClientFrameStage_t stage );
@@ -43,3 +45,9 @@ namespace PaintTraverse
 {
     bool InitFonts();
 }
+
+
+// (libclient)
+//GCSDK::CGCClient::DispatchPacket(GCSDK::IMsgNetPacket *)
+//GCSDK::CGCClient::BSendMessage(GCSDK::CProtoBufMsgBase const&)
+
