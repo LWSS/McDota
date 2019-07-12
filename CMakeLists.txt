@@ -45,4 +45,4 @@ file(GLOB_RECURSE SOURCE_FILES "${CMAKE_SOURCE_DIR}/src/*.cpp")
 include_directories(${INCLUDE_DIRS} ${PROTOBUF_INCLUDE_DIR})
 
 add_library(McDota SHARED ${SOURCE_FILES})
-target_link_libraries(McDota dl ${PROTOBUF_LIBRARY})
+target_link_libraries(McDota dl pthread ${PROTOBUF_LIBRARY})
