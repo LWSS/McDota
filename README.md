@@ -1,5 +1,7 @@
 # McDota 
 
+[![Gitter](https://badges.gitter.im/McDota/community.svg)](https://gitter.im/McDota/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 ![Bugboy](https://i.imgur.com/qC9hz14.png)
 
 McDota is a Cheat and tinker tool for Dota 2 on Linux.
