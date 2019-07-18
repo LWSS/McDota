@@ -28,6 +28,7 @@ inline CDOTARichPresence* richPresence;
 inline CParticleSystemMgr* particleSystemMgr;
 inline CGameEventSystem* gameEventSystem;
 inline CNetworkStringTableContainer* networkStrings;
+inline IMaterialSystem* materialSystem;
 
 // VMT's
 inline VMT* cameraVMT;

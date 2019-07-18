@@ -115,6 +115,9 @@ namespace panorama
         virtual bool IsChildPositionTransitioning(void) = 0;
         virtual bool IsChildSizeTransitioning(void) = 0;
         virtual void TransitionPositionApplied(bool) = 0;
+        virtual void unk_func_layoutpass() = 0; // @panorama_enable_secondary_layout_pass -- Funcs added 7-17-19
+        virtual int unk_somefunc() = 0;  // ^^
+        virtual int unk_somefunc2() = 0; // ^^
         virtual float GetDesiredLayoutWidth(void) = 0; // these might be doubles, need to "double"-check
         virtual float GetDesiredLayoutHeight(void) = 0;
         virtual float GetContentWidth(void) = 0;
@@ -322,12 +325,14 @@ namespace panorama
         virtual void unk_13D870() = 0;
         virtual void SetAnimation(const char *, float, float, EAnimationTimingFunction, EAnimationDirection, float) = 0;
         virtual void UpdateVisibility(bool) = 0;
-        virtual void unk14() = 0;
+        virtual void unk14() = 0; // something to do with profiling
         virtual void SetProperty(CPanoramaSymbol, const char *) = 0;
         virtual void FindChildrenWithClass() = 0; // (char const*,CUtlVector<panorama::IUIPanel *,CUtlMemory<panorama::IUIPanel *,int>> &)
         virtual void FindChildrenWithClassTraverse() = 0; // (char const*,CUtlVector<panorama::IUIPanel *,CUtlMemory<panorama::IUIPanel *,int>> &)
+        virtual void FindChildrenWithClassSomething() = 0; // added 7-17-19
+        virtual void FindChildrenWithClassSomething2() = 0; // added 7-17-19
         virtual void PlayFocusChangeSound(int, float) = 0;
-        virtual void unk15() = 0;
+        virtual void ClearPanelEventsProfiler() = 0;
         virtual void ClearPanelEvents(CPanoramaSymbol) = 0;
         virtual void SetPanelEvent(CPanoramaSymbol, IUIEvent *) = 0;
         virtual void SetPanelEvent2() = 0; // (panorama::CPanoramaSymbol,CUtlVector<panorama::IUIEvent *,CUtlMemory<panorama::IUIEvent *,int>> *)

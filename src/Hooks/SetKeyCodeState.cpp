@@ -37,6 +37,7 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
     ClientClass *classes;
     INetworkStringTable *stringTable;
     char bytes[256];
+    int owner;
     switch( code ){
         case ButtonCode_t::INSERT:
             UI::ToggleUI();
@@ -86,7 +87,7 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             break;
         case ButtonCode_t::PAUSE:
             cvar->ConsoleDPrintf("pause key pressed.\n");
-            engine->ServerCmd(mc_cmd_src->GetInt(), mc_raw_command->strValue);
+            cvar->ConsoleDPrintf("Addr of bogus mat(%p)\n", (void*)materialSystem->FindOrCreateMaterialFromResource("sediments1"));
             break;
         case ButtonCode_t::SCROLLLOCK:
             cvar->ConsoleDPrintf("Scrolllock...\n");
@@ -97,6 +98,13 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
                 if( !stringTable ) continue;
 
                 cvar->ConsoleDPrintf("[%d]- (%s)(%d)\n", i, stringTable->GetTableName(), stringTable->GetNumStrings());
+                if( stringTable->GetNumStrings() > 100 ){
+                    cvar->ConsoleDPrintf("\tLOTS (> 100)\n");
+                } else {
+                    for( int j = 0; j < stringTable->GetNumStrings(); j++ ){
+                        cvar->ConsoleDPrintf("\t(%d)-(%s)\n", j, stringTable->GetString( j, true ) );
+                    }
+                }
             }
             break;
         case ButtonCode_t::PRINTSCREEN:

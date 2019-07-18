@@ -43,6 +43,11 @@ enum DOTATeam_t : int {
     DOTA_TEAM_COUNT = 14
 };
 
+struct RenderableInstance_t{
+    uint8_t m_nAlpha;
+};
+
+
 class CBaseEntity
 {
 public:
@@ -162,6 +167,8 @@ public:
     virtual void C_BaseEntity__PredCopy_Alloc(unsigned int unk, void* datamap_t, bool unk2);
     virtual void C_BaseEntity__PredCopy_Tell(void);
     virtual void C_BaseEntity__PredCopy_GetHeaderBlock(void* CFieldPath, unsigned int unk);
+    virtual void unk_stringshit(); // added 7-17-19
+    virtual void unk_haystack(); // yeehaw! ^^
     virtual void* C_BaseAnimating__GetMouth(void);
     virtual void C_BaseEntity__GetSoundSpatialization(void* SpatializationInfo_t);
     virtual int C_BaseAnimating__LookupAttachment(const char* name);
@@ -206,6 +213,7 @@ public:
     virtual void sub_2937C60();
     virtual int C_BaseEntity__ClothSettingsTypeID(); // a guess
     virtual void sub_2907330();
+    virtual void unk_elfshit(); //  rax, qword ptr ds:stru_D90.st_name - added 7-17-19
     virtual void* C_BasePlayer__GetPredictionOwner(void);
     virtual void C_BaseEntity__InitPredictable(void* C_BasePlayer);
     virtual void C_BaseAnimating__SetPredictable(bool predictable);
@@ -294,7 +302,7 @@ public:
     virtual const QAngle& C_BaseEntity__GetRenderAngles(void);
     virtual Vector C_BaseEntity__GetObserverCamOrigin(void);
     virtual void C_BaseEntity__RenderableToWorldTransform(void);
-    virtual void C_BasePlayer__DrawModel(int unk, void* RenderableInstance_t);
+    virtual void C_BasePlayer__DrawModel(int flags, RenderableInstance_t*);
     virtual void C_BaseEntity__GetRenderBounds(Vector &out1, Vector &out2);
     virtual void C_BaseEntity__GetRenderBoundsWorldSpace(Vector &out1, Vector &out2);
     virtual void sub_2739E80();
@@ -340,6 +348,7 @@ public:
     virtual void C_BaseAnimating__HandleScriptedAnimEvent(void* animevent_t);
     virtual void C_BaseAnimating__HandleBehaviorAnimEvent(void* animevent_t);
     virtual void C_BaseAnimating__SpeechAnimEvent(const char* unk);
+    virtual void unk_animEvent(); // added 7-17-19
     virtual void C_BaseAnimating__ControlMouth(const void* CModel);
     virtual bool C_BaseAnimating__IsViewModelOrAttachment(void);
     virtual void sub_2902780();
@@ -368,5 +377,5 @@ public:
     virtual void C_BaseFlex__ProcessSequenceSceneEvent();
     virtual void C_BaseFlex__ClearSceneEvent();
     virtual void C_BaseFlex__CheckSceneEventCompletion();
-    virtual void C_BaseFlex__ShouldProcessSceneEvents(); // 282
+    virtual void C_BaseFlex__ShouldProcessSceneEvents(); // 286
 };

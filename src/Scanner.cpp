@@ -25,27 +25,28 @@ static bool FindGameEntitySystem()
 {
     // CPrediction::ReinitPredictables()
     // Look for string "ReinitPredictables".
-    // This function contains both a pointer to CGameEntitySystem and a call to CGameEntitySystem::GetHighestEntityIndex();
-    // 55                      push    rbp
-    // 48 89 E5                mov     rbp, rsp
-    // 41 56                   push    r14
-    // 49 89 FE                mov     r14, rdi
-    // 41 55                   push    r13
-    // 4C 8B 2D 7E 95 31 03    mov     r13, cs:_g_pGameEntitySystem
-    // 41 54                   push    r12
-    // 53                      push    rbx
-    // 31 DB                   xor     ebx, ebx
-    // 49 8B 7D 00             mov     rdi, [r13+0]
-    // E8 60 DF DD FF          call    CGameEntitySystem__GetHighestEntityIndex
+    // The start of this function contains both a pointer to CGameEntitySystem and a call to CGameEntitySystem::GetHighestEntityIndex();
+	// 55                      push    rbp
+	// 48 89 E5                mov     rbp, rsp
+	// 41 56                   push    r14
+	// 4C 8B 35 F3 A8 2A 02    mov     r14, cs:_g_pGameEntitySystem
+	// 41 55                   push    r13
+	// 49 89 FD                mov     r13, rdi
+	// 41 54                   push    r12
+	// 53                      push    rbx
+	// 31 DB                   xor     ebx, ebx
+	// C6 87 D0 00 00 00 01    mov     byte ptr [rdi+0D0h], 1
+	// 49 8B 3E                mov     rdi, [r14]
+	// E8 EA 4B E2 FF          call    CGameEntitySystem__GetHighestEntityIndex
 
-    uintptr_t reinitPredictables = PatternFinder::FindPatternInModule("libclient.so", "55 48 89 E5 41 56 49 89 FE 41 55 4C 8B", "reinitPredictables");
+    uintptr_t reinitPredictables = PatternFinder::FindPatternInModule("libclient.so", "55 48 89 E5 41 56 4C 8B 35 ?? ?? ?? ?? 41 55 49 89 FD 41 54 53 31", "reinitPredictables");
 
 	if( !reinitPredictables ){
         MC_PRINTF_ERROR("reinitPredictables sig failed\n");
         return false;
     }
 
-    uintptr_t jumpInstructionAddr = reinitPredictables + 27;
+    uintptr_t jumpInstructionAddr = reinitPredictables + 33;
     int32_t jumpDisplacement = *reinterpret_cast<int32_t*>(jumpInstructionAddr + 1);
     uintptr_t getHighestEntIndexFnAddr = (jumpInstructionAddr + 5) + jumpDisplacement;
 
@@ -57,8 +58,7 @@ static bool FindGameEntitySystem()
     // 5D                      pop     rbp
 
     highestEntIndexOffset = *reinterpret_cast<uint32_t*>(getHighestEntIndexFnAddr + 3);
-
-    entitySystem = **reinterpret_cast<CGameEntitySystem***>( GetAbsoluteAddress(reinitPredictables + 11, 3, 7) );
+    entitySystem = **reinterpret_cast<CGameEntitySystem***>( GetAbsoluteAddress(reinitPredictables + 6, 3, 7) );
 
 	return true;
 }

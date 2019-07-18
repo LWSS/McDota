@@ -82,6 +82,7 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
                 Util::Protobuf::EditFieldTraverseInt32(msg, "sequence_number", seq++);
                 netChannelVMT->GetOriginalMethod<SendNetMessageFn>(62)( thisptr, messageHandle, msg, type );
             }
+            delete[] string.m_Memory.m_pMemory;
         }
     }
 
@@ -90,44 +91,45 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
         name = info->pProtobufBinding->GetName();
 
         if( mc_log_sendnetmsg_filter_commons->GetBool() ){
-            if( !strstr(name, "CNETMsg_Tick")
-                && !strstr(name, "CCLCMsg_Move")
-                && !strstr(name, "CCLCMsg_BaselineAck") ){
-                Util::Log( "NetMessage: Type(%d-%s) - Message@: (%p) - info@: (%p) - name(%s) -type(%d)\n", type, Type2String(type), msg, info, info->pProtobufBinding->GetName(), info->pProtobufBinding->GetBufType() );
-                if( mc_log_sendnetmsg_to_string->GetBool() ){
-
-                    CUtlString string;
-                    string.m_Memory.m_pMemory = new uint8_t[4096];
-                    string.m_Memory.m_nAllocationCount = 4096;
-                    string.m_Memory.m_nGrowSize = 4096;
-                    info->pProtobufBinding->ToString( msg, &string );
-                    //Util::Log( "ToString: (%s)\n", info->pProtobufBinding->ToString( msg, &string ) );
-                    delete[] string.m_Memory.m_pMemory;
-                    /*
-                    if( strstr(name, "CDOTAClientMsg_SetUnitShareFlag") != NULL ){
-                        Util::Protobuf::EditFieldTraverseUInt32( msg, "playerID", (unsigned int)mc_custom_int->GetInt() );
-                        Util::Protobuf::EditFieldTraverseBool( msg, "state", true );
-                    }*/
-                    //std::string out;
-                    //msg->SerializeToString( &out );
-
-
-                    string.m_Memory.m_pMemory = new uint8_t[4096];
-                    string.m_Memory.m_nAllocationCount = 4096;
-                    string.m_Memory.m_nGrowSize = 4096;
-                    Util::Log( "ToString: (%s)\n", info->pProtobufBinding->ToString( msg, &string ) );
-                    delete[] string.m_Memory.m_pMemory;
-                    //Util::Protobuf::LogMessageContents(msg);
-
-                    std::raise(SIGINT);
-                }
+            if( strstr(name, "CNETMsg_Tick")
+                || strstr(name, "CCLCMsg_Move")
+                || strstr(name, "CCLCMsg_BaselineAck") ){
+                goto end;
             }
-        } else {
-            Util::Log( "NetMessage: Type(%d-%s) - Message@: (%p) - info@: (%p) - name(%s) -type(%d)\n", type, Type2String(type), msg, info, info->pProtobufBinding->GetName(), info->pProtobufBinding->GetBufType() );
+        }
+
+        Util::Log( "NetMessage: Type(%d-%s) - Message@: (%p) - info@: (%p) - name(%s) -type(%d)\n", type, Type2String(type), msg, info, info->pProtobufBinding->GetName(), info->pProtobufBinding->GetBufType() );
+
+        if( mc_log_sendnetmsg_to_string->GetBool() ){
+
+            CUtlString string;
+            string.m_Memory.m_pMemory = new uint8_t[4096];
+            string.m_Memory.m_nAllocationCount = 4096;
+            string.m_Memory.m_nGrowSize = 4096;
+            info->pProtobufBinding->ToString( msg, &string );
+            //Util::Log( "ToString: (%s)\n", info->pProtobufBinding->ToString( msg, &string ) );
+            delete[] string.m_Memory.m_pMemory;
+            /*
+            if( strstr(name, "CDOTAClientMsg_SetUnitShareFlag") != NULL ){
+                Util::Protobuf::EditFieldTraverseUInt32( msg, "playerID", (unsigned int)mc_custom_int->GetInt() );
+                Util::Protobuf::EditFieldTraverseBool( msg, "state", true );
+            }*/
+            //std::string out;
+            //msg->SerializeToString( &out );
+
+
+            string.m_Memory.m_pMemory = new uint8_t[4096];
+            string.m_Memory.m_nAllocationCount = 4096;
+            string.m_Memory.m_nGrowSize = 4096;
+            Util::Log( "ToString: (%s)\n", info->pProtobufBinding->ToString( msg, &string ) );
+            delete[] string.m_Memory.m_pMemory;
+            //Util::Protobuf::LogMessageContents(msg);
+
+            std::raise(SIGINT);
         }
     }
 
-
+end:
     return netChannelVMT->GetOriginalMethod<SendNetMessageFn>(62)( thisptr, messageHandle, msg, type );
 
 }

@@ -49,19 +49,19 @@ public:
         uintptr_t handle = *(uintptr_t*)((uintptr_t)this + offset);
         return (handle != 0xffffffff);
     }
-    virtual void sub_2B07D70() = 0;
+    virtual void sub_2B07D70() = 0; // 308
     virtual void sub_2B08240() = 0;
     virtual void sub_2B08940() = 0;
     virtual void sub_290E410() = 0;
     virtual void sub_290E430() = 0;
     virtual void sub_290E450() = 0;
-    virtual void sub_290E470() = 0;
+    virtual void sub_290E470() = 0; // underwater minux 10
     virtual void sub_2B42550() = 0;
     virtual void sub_2D38700() = 0;
     virtual void sub_2A99C60() = 0;
     virtual void sub_2CBFE80() = 0;
     virtual float C_DOTA_BaseNPC__GetZChangeSpeed(void) = 0;
-    virtual float C_DOTA_BaseNPC__GetBonusFlyHeight(void) = 0;
+    virtual float C_DOTA_BaseNPC__GetBonusFlyHeight(void) = 0; // 320
     virtual bool C_DOTA_BaseNPC__ShouldDoFlyHeightVisual(void) = 0;
     virtual void sub_2ED6660() = 0;
     virtual bool C_DOTA_BaseNPC__IsPortraitEntity(void) = 0;
@@ -70,6 +70,8 @@ public:
     virtual float C_DOTA_BaseNPC__GetMana(void) = 0;
     virtual float C_DOTA_BaseNPC__GetMaxMana(void) = 0;
     virtual float C_DOTA_BaseNPC__GetManaThinkRegen(void) = 0;
+    virtual void unk_29ae2c0() = 0;
+    virtual void unk_29ae2f0() = 0;
     virtual float C_DOTA_BaseNPC__GetPhysicalArmorBaseValue() = 0;
     virtual void sub_2EAF5C0() = 0;
     virtual void sub_2EAF8A0() = 0;
@@ -102,11 +104,11 @@ public:
     virtual void sub_2ED6860() = 0;
     virtual void sub_2ED6870() = 0;
     virtual void sub_2ED6890() = 0;
+    virtual void sub_2ED6891() = 0;
     virtual bool C_DOTA_BaseNPC__IsDemon(void) = 0;
     virtual bool C_DOTA_BaseNPC__IsRoshan(void) = 0;
     virtual bool C_DOTA_BaseNPC__ShouldForwardPurchaseRequest(void) = 0;
     virtual bool C_DOTA_BaseNPC__IsZombie(void) = 0;
-    virtual bool C_DOTA_BaseNPC__GetPortraitActivityModifier(void) = 0;
     virtual bool C_DOTA_BaseNPC__CanAcceptTargetToAttack(CBaseEntity* target) = 0;
     virtual void sub_2ED6910() = 0;
     virtual void C_DOTA_BaseNPC__UpdateSelectionRing(void) = 0;
@@ -190,8 +192,6 @@ public:
     virtual void sub_2D3B490() = 0;
     virtual void sub_2ED6EF0() = 0;
     virtual bool C_DOTA_BaseNPC__ShouldPerformLean(void) = 0;
-    virtual void loc_2DB4AF0() = 0;
-    virtual void sub_2D3B4B0() = 0;
     virtual void C_DOTA_BaseNPC__UsesConstantGesture(bool) = 0;
     virtual void C_DOTA_BaseNPC__GetConstantGestureWeight() = 0;
     virtual void C_DOTA_BaseNPC__GetConstantGestureCycle() = 0;

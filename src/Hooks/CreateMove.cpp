@@ -72,8 +72,6 @@ static std::string Buttons2ButtonStr( int32_t buttons ) {
 //angle changed with +left/right stays the same.
 //position is a delta, changes with arrow keys
 bool Hooks::CreateMove( IClientMode *thisptr, CUserCmd* cmd, QAngle &angle, Vector &pos ) {
-
-
     /* I'm gonna grab Camera here since this gets called in-game */
     camera = GetCurrentCamera();
     if( camera ){
@@ -88,6 +86,10 @@ bool Hooks::CreateMove( IClientMode *thisptr, CUserCmd* cmd, QAngle &angle, Vect
             cameraVMT->HookVM( Hooks::GetFoWAmount, 26 );
             cameraVMT->ApplyVMT();
         }
+    }
+
+    if( mc_send_status->GetBool() ){
+        engine->ClientCmd_Unrestricted("status");
     }
 
     if( mc_end_createmove->GetBool() )

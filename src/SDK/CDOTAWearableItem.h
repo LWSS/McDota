@@ -4,7 +4,6 @@
 #include "CBaseCombatCharacter.h"
 #include "vector.h"
 
-struct RenderableInstance_t;
 struct ClientModelRenderInfo_t;
 struct animevent_t;
 
@@ -19,7 +18,7 @@ class CDOTAWearableItem : CBaseEntity
 public:
     virtual void C_EconWearable__GiveTo(CBaseEntity *entity) = 0;
     virtual bool C_EconEntity__ShouldShowToolTip(void) = 0;
-    virtual void C_EconEntity__InternalDrawModel(int, const RenderableInstance_t &) = 0;
+    virtual void C_EconEntity__InternalDrawModel(int flags, const RenderableInstance_t &) = 0;
     virtual void C_EconEntity__OnInternalDrawModel(ClientModelRenderInfo_t *) = 0;
     virtual void C_EconEntity__OnHandleAnimEvent(C_BaseViewModel *, animevent_t *) = 0;
     virtual void C_EconEntity__UseFlexDelayedWeights(void) = 0;

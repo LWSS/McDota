@@ -73,7 +73,6 @@ public:
     virtual void GetScreenSize( int &width, int &height ) = 0;
     virtual bool IsDrawingLoadingImage(void) = 0;
     virtual void HideLoadingPlaque(void) = 0; // 50
-    virtual const char* GetGameDirectory(void) = 0;
     virtual const char* GetLevelName(void) = 0;
     virtual const char* GetLevelNameShort(void) = 0;
     virtual void* GetVoiceTweakAPI(void) = 0;
@@ -83,7 +82,7 @@ public:
     // Demo Recording and Playback related functions
     virtual bool IsDemoPaused(void) = 0;
     virtual bool IsDemoSkipping(void) = 0;
-    virtual int GetDemoRecordingTick(void) = 0; // 60
+    virtual int GetDemoRecordingTick(void) = 0;
     virtual int GetDemoPlaybackTick(void) = 0;
     virtual int GetDemoPlaybackStartTick(void) = 0;
     virtual float GetDemoPlaybackTimeScale(void) = 0;
@@ -94,7 +93,7 @@ public:
     virtual void GetMainMenuBackgroundName( char** buffer, int bufferLen ) = 0;
     virtual void GetUILanguage( char** buffer, int bufferLen ) = 0;
     virtual bool IsSkyboxVisibleFromPoint( const Vector &point ) = 0;
-    virtual float GetScreenAspectRatio( int width, int height ) = 0; // 70
+    virtual float GetScreenAspectRatio( int width, int height ) = 0;
     virtual int GetEngineBuildNumber(void) = 0;
     virtual const char* GetProductVersionString(void) = 0; // eg "47"
     virtual int GetBuildVersion(void);
@@ -103,7 +102,7 @@ public:
     virtual int GetConnectedServerNetworkVersion(void) = 0;
 	virtual int GetAppID(void) = 0; // steam App ID (570)
 	virtual void ReadConfiguration( int splitScreenSlot );
-	virtual void SetAchievementMgr( void* achievementMgr ); // 80
+	virtual void SetAchievementMgr( void* achievementMgr );
 	virtual void* GetAchivementMgr( void );
 	/* Xbox-Related */
 	virtual void OnStorageDeviceAttached( int );
@@ -114,7 +113,7 @@ public:
 	virtual void SetLocalPlayerIsResolvable( const char*, int slot, bool state );
 	virtual bool IsLocalPlayerResolvable( void );
 	virtual void* GetSinglePlayerSharedMemorySpace( const char*, int );
-	virtual void RegisterDemoCustomDataCallback(); //(CUtlSymbolLarge,void (*)(uchar *,ulong)) // 90
+	virtual void RegisterDemoCustomDataCallback(); //(CUtlSymbolLarge,void (*)(uchar *,ulong))
 	virtual void RecordDemoCustomData(void (*)(unsigned char *,unsigned long),void const*,unsigned long);
 	virtual void SetPitchScale( float pitch );
 	virtual float GetPitchScale( void );

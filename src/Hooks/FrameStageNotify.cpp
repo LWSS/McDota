@@ -26,9 +26,6 @@ void Hooks::FrameStageNotify( CSource2Client *thisptr, ClientFrameStage_t stage 
 
     Zoom::FrameStageNotify( thisptr, stage );
 
-    if( mc_send_status->GetBool() ){
-        engine->ClientCmd_Unrestricted("status");
-    }
     switch( stage ){
         case ClientFrameStage_t::FRAME_START:
 
@@ -63,8 +60,7 @@ void Hooks::FrameStageNotify( CSource2Client *thisptr, ClientFrameStage_t stage 
 
                 MC_PRINTF("Making new localPlayer VMT\n");
                 localPlayerVMT = new VMT( localPlayer );
-                localPlayerVMT->HookVM( Hooks::SendMove, 330 );
-                localPlayerVMT->HookVM( Hooks::PrepareUnitOrders, 432 );
+                localPlayerVMT->HookVM( Hooks::PrepareUnitOrders, 436 );
                 localPlayerVMT->ApplyVMT();
                 MC_PRINTF("LocalPlayer @ %p\n", (void*)localPlayer);
             }

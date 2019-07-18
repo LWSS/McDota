@@ -149,9 +149,6 @@ R"zz(
 					<Panel class='SettingsSection'>
 						<DOTASettingsCheckbox convar='mc_log_createmove' text='Log CreateMove' onactivate='clickSound()' />
 						<DOTASettingsCheckbox convar='mc_log_clientevents' text='Log ClientEvents' onactivate='clickSound()' />
-						<DOTASettingsCheckbox convar='mc_log_sendnetmsg' text='Log SendNetMsg' onactivate='clickSound()' />
-						<DOTASettingsCheckbox convar='mc_log_sendnetmsg_filter_commons' text='^ Filter Commons' onactivate='clickSound()' />
-						<DOTASettingsCheckbox convar='mc_log_sendnetmsg_to_string' text='^^ To String' onactivate='clickSound()' />
 						<DOTASettingsCheckbox convar='mc_log_prepareunitorders' text='Log PrepUnitOrders' onactivate='clickSound()' />
 						<DOTASettingsCheckbox convar='mc_log_runscript' text='Log RunScript' onactivate='clickSound()' />
 						<DOTASettingsCheckbox convar='mc_retarget_orders' text='Retarget Orders' onactivate='clickSound()' />
@@ -166,6 +163,9 @@ R"zz(
 						<DOTASettingsCheckbox convar='mc_log_recvnetmsg' text='Log RecvNetMsg' onactivate='clickSound()' />
 						<DOTASettingsCheckbox convar='mc_log_recvnetmsg_filter_commons' text='^ Filter Commons' onactivate='clickSound()' />
 						<DOTASettingsCheckbox convar='mc_log_recvnetmsg_to_string' text='^^ ToString' onactivate='clickSound()' />
+						<DOTASettingsCheckbox convar='mc_log_sendnetmsg' text='Log SendNetMsg' onactivate='clickSound()' />
+						<DOTASettingsCheckbox convar='mc_log_sendnetmsg_filter_commons' text='^ Filter Commons' onactivate='clickSound()' />
+						<DOTASettingsCheckbox convar='mc_log_sendnetmsg_to_string' text='^^ To String' onactivate='clickSound()' />
 					</Panel>
 				</Panel>
 			</Panel>

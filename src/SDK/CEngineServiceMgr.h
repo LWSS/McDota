@@ -11,7 +11,7 @@ struct ActiveLoop_t;
 struct EventClientOutput_t;
 struct RenderDeviceInfo_t;
 
-// xref "-heapcheck" to CEngineServiceMgr::Init()
+// xref "Duplicate engine service named" to CEngineServiceMgr::RegisterEngineService()
 class CEngineServiceMgr : IAppSystem
 {
 public:
@@ -50,6 +50,7 @@ public:
     virtual void UninstallSwitchLoopModeStatusNotify( ISwitchLoopModeStatusNotify * ) = 0;
     virtual void InstallAddonListChangeNotify( IAddonListChangeNotify * ) = 0;
     virtual void UninstallAddonListChangeNotify( IAddonListChangeNotify * ) = 0;
+    virtual void SetHighFPS( bool state ); // (NEW) added during TI 2019 battlepass 7-17 - probably to do with summer scrub or dota underlords?
     virtual void ExitMainLoop( void ) = 0;
     virtual void RegisterPrerequisite( IPrerequisite * ) = 0;
     virtual void *LookupLocalizationToken( const char * ) = 0;

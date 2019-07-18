@@ -10,7 +10,7 @@ bool Interfaces::FindInterfaces()
 {
     client = GetInterface<CSource2Client>("../../dota/bin/linuxsteamrt64/libclient.so", "Source2Client002", 129 );
     cvar = GetInterface<ICvar>( "./libvstdlib.so", "VEngineCvar007", 52 );
-    engine = GetInterface<IEngineClient>( "./libengine2.so", "Source2EngineToClient001", 167 );
+    engine = GetInterface<IEngineClient>( "./libengine2.so", "Source2EngineToClient001", 173 );
     inputSystem = GetInterface<IInputSystem>( "./libinputsystem.so", "InputSystemVersion001", 89 );
     inputInternal = GetInterface<IInputInternal>("./libvgui2.so", "VGUI_InputInternal001", 101 );
     networkClientService = GetInterface<INetworkClientService>("./libengine2.so", "NetworkClientService_001", 69 );
@@ -18,11 +18,12 @@ bool Interfaces::FindInterfaces()
     splitScreenService = GetInterface<CSplitScreenService>("./libengine2.so", "SplitScreenService_001", 46 );
     panoramaEngine = GetInterface<IPanoramaUIEngine>("./libpanorama.so", "PanoramaUIEngine001", 17 );
     fontManager = GetInterface<CFontManager>("./libmaterialsystem2.so", "FontManager_001", 45 );
-    engineServiceMgr = GetInterface<CEngineServiceMgr>("./libengine2.so", "EngineServiceMgr001", 50 );
+    engineServiceMgr = GetInterface<CEngineServiceMgr>("./libengine2.so", "EngineServiceMgr001", 51 );
     particleSystemMgr = GetInterface<CParticleSystemMgr>("./libparticles.so", "ParticleSystemMgr003", 57 );
     networkMessages = GetInterface<CNetworkMessages>("./libnetworksystem.so", "NetworkMessagesVersion001", 34 );
     gameEventSystem = GetInterface<CGameEventSystem>("./libengine2.so", "GameEventSystemClientV001", 21 );
     networkStrings = GetInterface<CNetworkStringTableContainer>("./libengine2.so", "Source2EngineToClientStringTable001", 19);
+    materialSystem = GetInterface<IMaterialSystem>("./libmaterialsystem2.so", "VMaterialSystem2_001", 36);
 
     if( !requestedInterfaces.empty() ){
         for( long unsigned int i = 0; i < requestedInterfaces.size(); i ++ ){

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "MemoryProtection.h"
+#include "Memory.h"
 
 #include <cstdint>
 #include <vector>
@@ -14,7 +14,7 @@ inline uint32_t CountVMs( void* interface )
 
 	uint32_t methodCount = 0;
 
-	while ( vmt && (*vmt)[methodCount] && ( MemoryProtection::GetProtectionFlags( (*vmt)[methodCount] ) & PF_X ) )
+	while ( vmt && (*vmt)[methodCount] && ( Memory::GetProtectionFlags( (*vmt)[methodCount] ) & PF_X ) )
 		methodCount++;
 
 	return methodCount;
