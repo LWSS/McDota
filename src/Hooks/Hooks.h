@@ -44,9 +44,3 @@ namespace PaintTraverse
 {
     bool InitFonts();
 }
-
-
-// (libclient)
-//GCSDK::CGCClient::DispatchPacket(GCSDK::IMsgNetPacket *)
-//GCSDK::CGCClient::BSendMessage(GCSDK::CProtoBufMsgBase const&)
-

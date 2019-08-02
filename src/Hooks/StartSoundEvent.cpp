@@ -1,4 +1,4 @@
-#include "hooks.h"
+#include "Hooks.h"
 
 typedef void (* StartSoundEventFn)( CSoundOpSystem *, const char*, int, short, void const *, int );
 typedef void (* StartSoundEvent2Fn)( CSoundOpSystem *, unsigned int, int, sound_voice_layer_t, short, const char *, void const *, int, SoundEventGuid_t ) ;

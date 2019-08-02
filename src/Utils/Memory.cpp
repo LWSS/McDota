@@ -5,7 +5,7 @@
 
 /* Read Memory Protection without parsing /proc/$$/maps
  * Stack overflow btfo'd */
-static int flags = 0;
+static unsigned int flags = 0;
 static uintptr_t addr;
 unsigned int Memory::GetProtectionFlags( uintptr_t address ) {
     flags = 0;
@@ -31,7 +31,7 @@ unsigned int Memory::GetProtectionFlags( uintptr_t address ) {
     return flags;
 }
 
-static const char unk[] = "ERROR! UNKNOWN MODULE!";
+static const char unk[] = "ERROR! UNKNOWN MODULE! IS IT THE STACK(0x7FF)?";
 static uintptr_t moduleAddr;
 static const char *ret;
 const char *Memory::GetModuleName( uintptr_t address ) {

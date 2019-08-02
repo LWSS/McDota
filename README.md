@@ -50,11 +50,14 @@ Press `Insert` to Open/Close the in-game Menu ( works in-game and in-menu )
 * There is a very rare tcmalloc bug I have encountered that will just crash your game. I can't seem to reproduce it when it happens.
 * Sometimes the UI will not open on the first time, I think I have fixed this, but if this happens to you, check the console and just try again.
 * Debug builds do not unload
+* SELinux might cause a problem with hardhooks
+
 ## Credits
 LWSS(me) - Founder
 
 [praydog](https://github.com/praydog) - His [research](http://praydog.com/index.php/2015/06/24/an-analysis-of-the-source-2-engine-part-1-the-schema-system/) into the SchemaSystem helped me especially when I was starting the project.
 
+[subhook](https://github.com/Zeex/subhook) - I Use a modified version of this library to do the Hard Hooks used for GC msgs ( changing .code section )
 
 ## License
 GPL3 - 

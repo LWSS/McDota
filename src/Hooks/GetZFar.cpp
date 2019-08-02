@@ -1,4 +1,4 @@
-#include "hooks.h"
+#include "Hooks.h"
 #include "../Settings.h"
 
 typedef float (* GetZFarFn)( CDotaCamera*, float );

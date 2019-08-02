@@ -365,6 +365,28 @@ static bool FindRichPresence()
 	return true;
 }
 
+static bool FindHardHooks()
+{
+	//GCSDK::CGCClient::DispatchPacket(GCSDK::IMsgNetPacket *)
+	// xref for "You have been waiting for"
+	DispatchPacketFnAddr = PatternFinder::FindPatternInModule( "libclient.so", "55 48 89 E5 41 57 49 89 FF 41 56 41 55 41 54 4C 8D 25 ?? ?? ?? ?? 53 48 89 F3 48", "DispatchPacket()" );
+
+	if( !DispatchPacketFnAddr ){
+		MC_PRINTF_ERROR("DispatchPacketFn sig is broke!\n");
+		return false;
+	}
+
+    //GCSDK::CProtoBufMsgBase::BAsyncSendProto(GCSDK::CProtoBufMsgBase::IProtoBufSendHandler &, unsigned int, CMsgProtoBufHeader const&, google::protobuf::Message const&)
+    //xref "CProtoBufMsg::BAsyncSendProto"
+    BAsyncSendProtoFnAddr = PatternFinder::FindPatternInModule( "libclient.so", "55 48 89 E5 41 57 41 56 49 89 D6 41 55 41 54 49 89 CC 53 48 83", "BAsyncSendProto()" );
+    if( !BAsyncSendProtoFnAddr ){
+        MC_PRINTF_ERROR("BAsyncSendProtoFn sig is broke!\n");
+        return false;
+    }
+
+	return true;
+}
+
 
 bool Scanner::FindAllSigs( )
 {
@@ -382,6 +404,7 @@ bool Scanner::FindAllSigs( )
 	sigsOK &= FindAcceptMatch();
 	sigsOK &= FindWorldToScreen();
 	sigsOK &= FindRichPresence();
+	sigsOK &= FindHardHooks();
 
 	return sigsOK;
 }

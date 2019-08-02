@@ -8,8 +8,7 @@ R"zz(
 	</styles>
 
 	<script>
-		function changeTab( nTab )
-		{
+		function changeTab( nTab ){
 			/* All tabs set invis first */
 			$( '#McTabGeneral' ).visible = false;
 			$( '#McTabAbout' ).visible = false;
@@ -31,12 +30,12 @@ R"zz(
 					break;
 			}
 		}
-		function closeSelf()
-		{
+
+		function closeSelf(){
 			$( '#McDotaMain' ).visible = false;
 		}
-		function setAboutText( nContributor )
-		{
+
+		function setAboutText( nContributor ){
 			switch( nContributor ){
 				case 0:
 					$( '#aboutText' ).text = 'LWSS: Main Developer and Founder';
@@ -46,6 +45,7 @@ R"zz(
 					break;
 			}
 		}
+
 		function clearAboutText(){
 			$( '#aboutText' ).text = '';
 		}
@@ -53,9 +53,37 @@ R"zz(
 		function clickSound(){
             $.DispatchEvent( 'PlaySoundEffect', 'ui_team_select_pick_team' );
 		}
+
 		function executeJS(){
 			/* eval - It just werks */
 			eval( $( '#JSText' ).text );
+		}
+
+		function addWarning( text ){
+			var parent = $('#McDotaMain');
+			var tooltip = parent.FindChild('McToolTip');
+			if( tooltip == null ){
+				tooltip = $.CreatePanel('Panel', parent, 'McToolTip');
+				tooltip.BLoadLayoutFromString("
+				<root>
+					<styles>
+
+					</styles>
+					<scripts>
+
+					</scripts>
+					<Panel style='width: 300px; height: 80px; horizontal-align: center; vertical-align: top; z-index: 9999; background-color: gradient( linear, 0% 0%, 0% 100%, from( #CC1015 ), to( #DC7510 ) ); flow-children: down;'>
+						<Label id='McTitle' style='horizontal-align: center; font-size: 20; color: #000000; font-weight: bold;' text='WARNING' />
+						<Label id='McText' style='font-size: 16; color: #000000;' text='" + text + "' />
+					</Panel>
+				</root>
+				", false, false);
+			}
+			tooltip.visible = true;
+		}
+
+		function removeWarning( ){
+			$('#McDotaMain').FindChild('McToolTip').visible = false;
 		}
 	</script>
 
@@ -103,7 +131,7 @@ R"zz(
 				</Panel>
 				<Panel id='RightColumn' class='SettingsColumn' style='width: 50%;'>
 					<Panel class='SettingsSection'>
-						<TextEntry id='JSText' class='TextEntryNormal' style='height: 300px;' placeholder='Execute Panorama JS here' multiline='true' />
+						<TextEntry id='JSText' maxchars='1000' class='TextEntryNormal' style='height: 300px; font-size: 14;' placeholder='Execute Panorama JS here' multiline='true' />
 						<Button id='JSExecute' class='ControlIconButton' text='execute' onactivate='executeJS()'/>
 					</Panel>
 				</Panel>
@@ -166,6 +194,8 @@ R"zz(
 						<DOTASettingsCheckbox convar='mc_log_sendnetmsg' text='Log SendNetMsg' onactivate='clickSound()' />
 						<DOTASettingsCheckbox convar='mc_log_sendnetmsg_filter_commons' text='^ Filter Commons' onactivate='clickSound()' />
 						<DOTASettingsCheckbox convar='mc_log_sendnetmsg_to_string' text='^^ To String' onactivate='clickSound()' />
+						<DOTASettingsCheckbox convar='mc_log_GC_recv' text='Log GC Recv' onactivate='clickSound()' onmouseover='addWarning("GC Logs use Hard Hooks. Hard Hooks are not safe. They are not detected but may be in the future. Restart your game after Enabling.")' onmouseout='removeWarning()'/>
+						<DOTASettingsCheckbox convar='mc_log_GC_send' text='Log GC Send' onactivate='clickSound()' onmouseover='addWarning("GC Logs use Hard Hooks. Hard Hooks are not safe. They are not detected but may be in the future. Restart your game after Enabling.")' onmouseout='removeWarning()'/>
 					</Panel>
 				</Panel>
 			</Panel>

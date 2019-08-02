@@ -1,4 +1,4 @@
-#include "hooks.h"
+#include "Hooks.h"
 #include <csignal>
 
 typedef void ( *PostEventAbstractFn)( CGameEventSystem *, int, bool, int, const unsigned char *, CNetworkSerializerPB*, google::protobuf::Message*, unsigned long, NetChannelBufType_t );

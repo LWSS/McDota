@@ -35,8 +35,32 @@ static panorama::IUIPanel* GetHudRoot( ){
     }
     return ret;
 }
+
+static inline void EscapeQuotes( ) {
+    std::string result;
+    result.reserve(result.length() * 2);
+
+    for( size_t i = 0; i < mainXML.size(); i++ ){
+        switch( mainXML[i] ){
+            case '"':
+                result += '\\';
+
+            default:
+                result += mainXML[i];
+        }
+    }
+    mainXML = result;
+}
 static bool SetupAndCheckPanels()
 {
+    static bool bFirst = true;
+    if( bFirst ){
+        /* Get rid of newlines in the XML, they mess up the javascript syntax */
+        std::replace(mainXML.begin(), mainXML.end(), '\n', ' ');
+        /* Escape double-quotes in the XML */
+        EscapeQuotes();
+        bFirst = false;
+    }
     /* Grab needed root panel if we don't have it already */
     if( engine->IsInGame() ){
         panorama::IUIPanel* panel = GetHudRoot();

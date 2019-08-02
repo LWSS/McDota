@@ -1,4 +1,4 @@
-#include "hooks.h"
+#include "Hooks.h"
 
 #include "../Utils/Util.h"
 #include "../Utils/Util_sdk.h"

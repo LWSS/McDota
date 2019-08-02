@@ -1,4 +1,4 @@
-#include "hooks.h"
+#include "Hooks.h"
 
 #include "../Utils/Protobuf.h"
 #include "../Settings.h"

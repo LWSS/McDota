@@ -12,7 +12,7 @@ namespace Util
 {
     namespace Protobuf
     {
-        void LogMessageContents( google::protobuf::Message* m, int tabNum = 0 );
+        void LogMessageContents( const google::protobuf::Message* m, int tabNum = 0 );
 
         /* These return true if found/changed */
         bool EditFieldTraverseInt32( google::protobuf::Message* msg, const char *name, int32_t value );

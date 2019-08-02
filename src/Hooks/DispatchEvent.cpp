@@ -1,4 +1,4 @@
-#include "hooks.h"
+#include "Hooks.h"
 
 typedef void (* DispatchEventFn)( panorama::UIEngine*, panorama::IUIEvent * );
 

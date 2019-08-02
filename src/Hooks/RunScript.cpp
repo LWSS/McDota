@@ -1,4 +1,4 @@
-#include "hooks.h"
+#include "Hooks.h"
 #include "../Settings.h"
 typedef int (* RunScriptFn)( panorama::UIEngine*, panorama::IUIPanel *,char const*,char const*,int,int,bool );
 

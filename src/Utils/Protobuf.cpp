@@ -3,15 +3,21 @@
 #include "Util.h" // log
 
 /* adapted from: https://stackoverflow.com/questions/23963978/c-protobuf-how-to-iterate-through-fields-of-message/35294011 */
-void Util::Protobuf::LogMessageContents( google::protobuf::Message *m, int tabNum ) {
+void Util::Protobuf::LogMessageContents( const google::protobuf::Message *m, int tabNum ) {
     const google::protobuf::Descriptor *desc       = m->GetDescriptor();
     const google::protobuf::Reflection *refl       = m->GetReflection();
+    std::string temp;
 
     if( !desc || !refl ){
         return;
     }
 
     int fieldCount= desc->field_count();
+
+    if( fieldCount <= 0 ){
+        Util::Log("{ (Empty Msg) }\n");
+        return;
+    }
 
     Util::Log("%s {\n", desc->full_name().c_str());
     for( int tabs = 0; tabs < tabNum; tabs++ ){ Util::Log("  "); }
@@ -26,7 +32,7 @@ void Util::Protobuf::LogMessageContents( google::protobuf::Message *m, int tabNu
             case google::protobuf::FieldDescriptor::TYPE_DOUBLE:
                 if( field->is_repeated() ){
                     for( int j = 0; j < refl->FieldSize( *m, field ); j++ ){
-                        Util::Log("repeated:(#%d)-%f\n", j, refl->GetRepeatedDouble( *m, field, j ) );
+                        Util::Log("repeated:(#%d)-(%f)\n", j, refl->GetRepeatedDouble( *m, field, j ) );
                     }
                 } else {
                     Util::Log("%f\n", refl->GetDouble( *m, field ));
@@ -35,7 +41,7 @@ void Util::Protobuf::LogMessageContents( google::protobuf::Message *m, int tabNu
             case google::protobuf::FieldDescriptor::TYPE_FLOAT:
                 if( field->is_repeated() ){
                     for( int j = 0; j < refl->FieldSize( *m, field ); j++ ){
-                        Util::Log("repeated:(#%d)-%f\n", j, refl->GetRepeatedFloat( *m, field, j ) );
+                        Util::Log("repeated:(#%d)-(%f)\n", j, refl->GetRepeatedFloat( *m, field, j ) );
                     }
                 } else {
                     Util::Log("%f\n", refl->GetFloat( *m, field ));
@@ -44,7 +50,7 @@ void Util::Protobuf::LogMessageContents( google::protobuf::Message *m, int tabNu
             case google::protobuf::FieldDescriptor::TYPE_INT64:
                 if( field->is_repeated() ){
                     for( int j = 0; j < refl->FieldSize( *m, field ); j++ ){
-                        Util::Log("repeated:(#%d)-%lld\n", j, refl->GetRepeatedInt64( *m, field, j ) );
+                        Util::Log("repeated:(#%d)-(%lld)\n", j, refl->GetRepeatedInt64( *m, field, j ) );
                     }
                 } else {
                     Util::Log( "%lld\n", refl->GetInt64( *m, field ) );
@@ -53,7 +59,7 @@ void Util::Protobuf::LogMessageContents( google::protobuf::Message *m, int tabNu
             case google::protobuf::FieldDescriptor::TYPE_UINT64:
                 if( field->is_repeated() ){
                     for( int j = 0; j < refl->FieldSize( *m, field ); j++ ){
-                        Util::Log("repeated:(#%d)-%lld\n", j, refl->GetRepeatedUInt64( *m, field, j ) );
+                        Util::Log("repeated:(#%d)-(%lld)\n", j, refl->GetRepeatedUInt64( *m, field, j ) );
                     }
                 } else {
                     Util::Log("%lld\n", refl->GetUInt64( *m, field ));
@@ -62,7 +68,7 @@ void Util::Protobuf::LogMessageContents( google::protobuf::Message *m, int tabNu
             case google::protobuf::FieldDescriptor::TYPE_INT32:
                 if( field->is_repeated() ){
                     for( int j = 0; j < refl->FieldSize( *m, field ); j++ ){
-                        Util::Log("repeated:(#%d)-%d\n", j, refl->GetRepeatedInt32( *m, field, j ) );
+                        Util::Log("repeated:(#%d)-(%d)\n", j, refl->GetRepeatedInt32( *m, field, j ) );
                     }
                 } else {
                     Util::Log("%d\n", refl->GetInt32( *m, field ));
@@ -71,7 +77,7 @@ void Util::Protobuf::LogMessageContents( google::protobuf::Message *m, int tabNu
             case google::protobuf::FieldDescriptor::TYPE_FIXED64:
                 if( field->is_repeated() ){
                     for( int j = 0; j < refl->FieldSize( *m, field ); j++ ){
-                        Util::Log("repeated:(#%d)- %lld\n", j, refl->GetRepeatedUInt64( *m, field, j ) );
+                        Util::Log("repeated:(#%d)-(%lld)\n", j, refl->GetRepeatedUInt64( *m, field, j ) );
                     }
                 } else {
                     Util::Log("%lld\n", refl->GetUInt64( *m, field ));
@@ -80,7 +86,7 @@ void Util::Protobuf::LogMessageContents( google::protobuf::Message *m, int tabNu
             case google::protobuf::FieldDescriptor::TYPE_FIXED32:
                 if( field->is_repeated() ){
                     for( int j = 0; j < refl->FieldSize( *m, field ); j++ ){
-                        Util::Log("repeated:(#%d)-%d\n", j, refl->GetRepeatedUInt32( *m, field, j ) );
+                        Util::Log("repeated:(#%d)(-%d)\n", j, refl->GetRepeatedUInt32( *m, field, j ) );
                     }
                 } else {
                     Util::Log("%d\n", refl->GetUInt32( *m, field ));
@@ -89,20 +95,23 @@ void Util::Protobuf::LogMessageContents( google::protobuf::Message *m, int tabNu
             case google::protobuf::FieldDescriptor::TYPE_BOOL:
                 if( field->is_repeated() ){
                     for( int j = 0; j < refl->FieldSize( *m, field ); j++ ){
-                        Util::Log("repeated:(#%d)-%s\n", j, refl->GetRepeatedBool( *m, field, j ) ? "true" : "false" );
+                        Util::Log("repeated:(#%d)-(%s)\n", j, refl->GetRepeatedBool( *m, field, j ) ? "true" : "false" );
                     }
                 } else {
                     Util::Log("%s\n", refl->GetBool( *m, field ) ? "true" : "false" );
                 }
                 break;
             case google::protobuf::FieldDescriptor::TYPE_STRING:
+                Util::Log("String parsing is busted.\n");
+                /*
                 if( field->is_repeated() ){
                     for( int j = 0; j < refl->FieldSize( *m, field ); j++ ){
-                        Util::Log("repeated:(#%d)-%s\n", j, refl->GetRepeatedString( *m, field, j ).c_str() );
+                        Util::Log("repeated:(#%d)-(%s)\n", j, refl->GetRepeatedString( *m, field, j ).c_str() );
                     }
                 } else {
-                    Util::Log("%s\n", refl->GetString( *m, field ).c_str());
-                }
+                    temp = refl->GetString( *m, field );
+                    Util::Log("(%s)\n", temp.c_str());
+                }*/
                 break;
             case google::protobuf::FieldDescriptor::TYPE_GROUP: // deprecated
                 Util::Log("We found a group tag!\n");

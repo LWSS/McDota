@@ -408,6 +408,40 @@ public:
     virtual google::protobuf::Metadata* GetMetaData(void) = 0;
 };
 */
+
+class CMsgProtoBufHeader;
+class IProtoBufSendHandler;
+
+class CProtoBufMsgBase
+{
+public:
+    virtual void DESTROY() = 0;
+    virtual void DESTROY2() = 0;
+    virtual google::protobuf::Message *GetGenericBody(void) = 0;
+};
+
+class CStructNetPacket
+{
+public:
+    virtual void DESTROY();
+    virtual void DESTROY2();
+    virtual void DestroyThis(void);
+    virtual int GetEMsgFormatType(void);
+    virtual void* GetCNetPacket(void);
+    virtual const void *PubData(void); // Pointer-Unsigned-Byte Data
+    virtual uint32_t CubData(void); // Count-Unsigned-Byte Data - u can find some of this in the steamworks sdk
+    virtual int GetEMsg(void);
+    virtual int GetSourceJobID(void);
+    virtual unsigned long long GetTargetJobID(void);
+    virtual void SetTargetJobID(unsigned long long);
+    virtual int64_t GetSteamID(void);
+    virtual void SetSteamID(int64_t CSteamID);
+    virtual unsigned int GetSourceAppID(void);
+    virtual void SetSourceAppID(unsigned int);
+    virtual bool BHasTargetJobName(void);
+    virtual const char *GetTargetJobName(void);
+};
+
 class CProtobuffBinding
 {
 public:

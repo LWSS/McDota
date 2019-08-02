@@ -8,7 +8,8 @@
 #include <thread>
 
 #include "GUI/Gui.h"
-#include "Hooks/hooks.h"
+#include "Hooks/Hooks.h"
+#include "Hooks/HardHooks.h"
 #include "Scanner.h"
 #include "Interfaces.h"
 #include "Netvars.h"
@@ -174,6 +175,10 @@ int __attribute__((constructor)) Startup()
 /* Called when un-injecting the library */
 void __attribute__((destructor)) Shutdown()
 {
+    /* Remove Hard Hooks (if any) */
+    HardHooks::BAsyncSendProto.Remove();
+    HardHooks::DispatchPacket.Remove();
+
     /* Release all VMTs */
     for( VMT* vmt : createdVMTs ){
         delete vmt;

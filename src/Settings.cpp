@@ -49,6 +49,8 @@ bool Settings::RegisterCustomConvars( ) {
     mc_log_recvnetmsg_filter_commons = Util::RegisterConVar( "mc_log_recvnetmsg_filter_commons", "false" );
     mc_log_prepareunitorders = Util::RegisterConVar( "mc_log_prepareunitorders", "false" );
 	mc_log_runscript = Util::RegisterConVar( "mc_log_runscript", "false" );
+	mc_log_GC_recv = Util::RegisterConVar( "mc_log_GC_recv", "false" );
+	mc_log_GC_send = Util::RegisterConVar( "mc_log_GC_send", "false" );
 
 	mc_raw_command = Util::RegisterConVar( "mc_raw_command", "say wow!" );
 	mc_cmd_src = Util::RegisterConVar( "mc_cmd_src", "0" );
