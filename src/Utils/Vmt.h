@@ -10,7 +10,7 @@ inline std::vector<VMT*> createdVMTs;
 
 inline uint32_t CountVMs( void* interface )
 {
-	uintptr_t** vmt = reinterpret_cast<uintptr_t**>(interface);
+	auto** vmt = reinterpret_cast<uintptr_t**>(interface);
 
 	uint32_t methodCount = 0;
 
@@ -34,7 +34,7 @@ public:
         ReleaseVMT();
         delete[] vmt;
     }
-	VMT(void* interface, bool copyRTTI = true, int32_t rttiPrefixAmount = 2)
+	explicit VMT(void* interface, bool copyRTTI = true, int32_t rttiPrefixAmount = 2)
 	{
 		this->interface = reinterpret_cast<uintptr_t**>(interface);
 

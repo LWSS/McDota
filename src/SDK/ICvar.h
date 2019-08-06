@@ -1,5 +1,5 @@
 #pragma once
-#include <string.h>
+#include <cstring>
 #include "IAppSystem.h"
 #include "Convar.h"
 

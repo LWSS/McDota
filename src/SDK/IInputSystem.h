@@ -513,7 +513,7 @@ public:
 
 	virtual void PollInputState( bool ) = 0;
 	// Gets time of last polling in ms
-	virtual int GetPollTick( void ) const = 0;
+	[[nodiscard]] virtual int GetPollTick( void ) const = 0;
 
 	virtual bool IsButtonDown( ButtonCode_t code ) = 0;
 
@@ -560,7 +560,7 @@ public:
 	virtual ButtonCode_t StringToButtonCode( const char *) = 0;
 	virtual AnalogCode_t StringToAnalogCode( const char *) = 0;
 
-	// Sleeps until input happens. Pass a negative number to sleep infinitely
+	// Sleeps until input happens. Pass a negative number to sleep infinitely TODO: Is it typo? (slee/sleep)
 	virtual void SleeUntilInput( int maxSleepTimeMS = -1 ) = 0;
 
 	virtual void VirtualKeyToButtonCode( int nVirtKey ) = 0;

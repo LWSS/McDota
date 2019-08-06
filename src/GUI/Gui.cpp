@@ -22,7 +22,7 @@ static panorama::IUIPanel* GetHudRoot( ){
 
     if( !panoramaEngine->AccessUIEngine()->IsValidPanelPointer(panel) ){
         MC_PRINTF_WARN("Failed to grab Last Event Target Panel!\n");
-        return NULL;
+        return nullptr;
     }
     panorama::IUIPanel *itr = panel;
     panorama::IUIPanel *ret = nullptr;
@@ -40,13 +40,13 @@ static inline void EscapeQuotes( ) {
     std::string result;
     result.reserve(result.length() * 2);
 
-    for( size_t i = 0; i < mainXML.size(); i++ ){
-        switch( mainXML[i] ){
+    for(char i : mainXML){
+        switch( i ){
             case '"':
                 result += '\\';
 
             default:
-                result += mainXML[i];
+                result += i;
         }
     }
     mainXML = result;
@@ -92,7 +92,7 @@ static bool SetupAndCheckPanels()
     if( panoramaEngine->AccessUIEngine()->IsValidPanelPointer( UI::mcDota ) ){
         if( (engine->IsInGame() && UI::mcDota->GetParent() != UI::hudRoot) ||
             (!engine->IsInGame() && UI::mcDota->GetParent() != UI::dashRoot) ){
-            UI::mcDota = NULL;
+            UI::mcDota = nullptr;
         }
     }
     /* Going from in-game back to menu, change the pointer to our existing panel if it is there. */

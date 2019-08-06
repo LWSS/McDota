@@ -14,7 +14,7 @@ namespace Util
 
 	ButtonCode_t GetButtonCode(const char* buttonName);
     /* 136 flag is client & archive */
-	ConVar *RegisterConVar( const char *name, const char *defaultValue, uint32_t flags = 136, const char *helpString = NULL, bool bMin = false, float fMin = 0.0f, bool bMax = false, float fMax = false );
+	ConVar *RegisterConVar( const char *name, const char *defaultValue, uint32_t flags = 136, const char *helpString = nullptr, bool bMin = false, float fMin = 0.0f, bool bMax = false, float fMax = false );
 	void SpewDataMap( Datamap *dMap, bool toLogFile = false );
 	int FindDataMapElementOffset( Datamap *dMap, const char *element );
 }

@@ -127,7 +127,7 @@ static bool FindViewRender()
         return false;
     }
 	typedef CViewRender* (* GetViewRenderFn)();
-    GetViewRenderFn GetViewRender = reinterpret_cast<GetViewRenderFn>(GetAbsoluteAddress(initGameSystemsFunc + 11, 1, 5));
+    auto GetViewRender = reinterpret_cast<GetViewRenderFn>(GetAbsoluteAddress(initGameSystemsFunc + 11, 1, 5));
     viewRender = GetViewRender();
     return true;
 }
@@ -156,7 +156,7 @@ static bool FindClientMode()
 		return false;
 	}
 	typedef IClientMode* (*GetClientModeFn) ( int splitScreenslot );
-	GetClientModeFn GetClientMode = reinterpret_cast<GetClientModeFn>( GetAbsoluteAddress( hudUpdateFn + 27, 1, 5 ) );
+	auto GetClientMode = reinterpret_cast<GetClientModeFn>( GetAbsoluteAddress( hudUpdateFn + 27, 1, 5 ) );
 
 	if( !GetClientMode ){
 		MC_PRINTF_ERROR("GetClientMode function is NULL\n");
@@ -203,7 +203,7 @@ static bool FindGameEventManager()
     uintptr_t playerInfoChangedFn = reinterpret_cast<uintptr_t>( (void*)(client->*playerInfoChangedPtr) );
 
 
-    uintptr_t gameEventManagerAddr = reinterpret_cast<uintptr_t>( GetAbsoluteAddress(playerInfoChangedFn + 52, 3, 7) );
+    auto gameEventManagerAddr = reinterpret_cast<uintptr_t>( GetAbsoluteAddress(playerInfoChangedFn + 52, 3, 7) );
     if( !gameEventManagerAddr ){
         MC_PRINTF_ERROR("Game Event Manager Addr sig broke!\n");
         return false;
@@ -232,7 +232,7 @@ static bool FindDBPlayPanel()
 		return false;
 	}
 
-	uintptr_t playPanelAddr = reinterpret_cast<uintptr_t>( GetAbsoluteAddress( playPanelLine, 3, 7 ) );
+	auto playPanelAddr = reinterpret_cast<uintptr_t>( GetAbsoluteAddress( playPanelLine, 3, 7 ) );
 
 	if( !playPanelAddr ){
 		MC_PRINTF_ERROR("DBPlayPanelAddr is NULL\n");
@@ -261,7 +261,7 @@ static bool FindSoundOpSystem()
         return false;
     }
 
-    uintptr_t soundOpSystemAddr = reinterpret_cast<uintptr_t>( GetAbsoluteAddress( soundOpSystemLine, 3, 7 ) );
+    auto soundOpSystemAddr = reinterpret_cast<uintptr_t>( GetAbsoluteAddress( soundOpSystemLine, 3, 7 ) );
 
     if( !soundOpSystemAddr ){
         MC_PRINTF_ERROR("SoundOpSystemAddr is NULL!\n");
@@ -348,7 +348,7 @@ static bool FindRichPresence()
 	uintptr_t NotifyClientSignon = reinterpret_cast<uintptr_t>( (void*)(client->*notifyClientSignonPtr) );
 
 	typedef CDOTARichPresence* ( *GetRichPresenceFn )();
-	GetRichPresenceFn GetRichPresence = reinterpret_cast<GetRichPresenceFn>( GetAbsoluteAddress(NotifyClientSignon + 52, 1, 5) );
+	auto GetRichPresence = reinterpret_cast<GetRichPresenceFn>( GetAbsoluteAddress(NotifyClientSignon + 52, 1, 5) );
 
 	richPresence = GetRichPresence();
 

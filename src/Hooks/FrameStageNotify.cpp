@@ -68,9 +68,8 @@ void Hooks::FrameStageNotify( CSource2Client *thisptr, ClientFrameStage_t stage 
             }
 
             if( !netChannelVMT || (engine->GetNetChannelInfo() != (void*)netChannelVMT->interface ) ){
-                if( netChannelVMT ){
                     delete netChannelVMT;
-                }
+
                 if( engine->GetNetChannelInfo() ) {
                     MC_PRINTF( "Grabbing new NetChannel VMT - %p\n", (void*)engine->GetNetChannelInfo() );
                     netChannelVMT = new VMT( engine->GetNetChannelInfo( ) );
@@ -87,14 +86,12 @@ void Hooks::FrameStageNotify( CSource2Client *thisptr, ClientFrameStage_t stage 
 
             localPlayer = (CDotaPlayer*)entitySystem->GetBaseEntity(engine->GetLocalPlayer());
             if( !localPlayer ){
-                if( localPlayerVMT )
-                    delete localPlayerVMT;
+                delete localPlayerVMT;
                 break;
             }
 
             if( !localPlayerVMT || (void*)localPlayerVMT->interface != localPlayer ){
-                if( localPlayerVMT )
-                    delete localPlayerVMT;
+              delete localPlayerVMT;
 
                 MC_PRINTF("Making new localPlayer VMT\n");
                 localPlayerVMT = new VMT( localPlayer );

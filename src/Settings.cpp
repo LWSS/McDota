@@ -25,10 +25,10 @@ bool Settings::RegisterCustomConvars( ) {
 	mc_esp_filter_creeps_enemy = Util::RegisterConVar( "mc_esp_filter_creeps_enemy", "false" );
 	mc_esp_filter_illusions_enemy = Util::RegisterConVar( "mc_esp_filter_illusions_enemy", "false" );
 
-	mc_camera_pitch_add = Util::RegisterConVar( "mc_camera_pitch_add", "0.0", 136, NULL, true, -1.0f, true, 360.0f );
-	mc_camera_yaw_add = Util::RegisterConVar( "mc_camera_yaw_add", "0.0", 136, NULL, true, 0.0f );
+	mc_camera_pitch_add = Util::RegisterConVar( "mc_camera_pitch_add", "0.0", 136, nullptr, true, -1.0f, true, 360.0f );
+	mc_camera_yaw_add = Util::RegisterConVar( "mc_camera_yaw_add", "0.0", 136, nullptr, true, 0.0f );
 
-	mc_camera_distance = Util::RegisterConVar( "mc_camera_distance", "1134.0", 136, NULL, true, 0.0f );
+	mc_camera_distance = Util::RegisterConVar( "mc_camera_distance", "1134.0", 136, nullptr, true, 0.0f );
 
 	mc_fog_disable = Util::RegisterConVar( "mc_fog_disable", "false" );
 	mc_fow_disable = Util::RegisterConVar( "mc_fow_disable", "false" );

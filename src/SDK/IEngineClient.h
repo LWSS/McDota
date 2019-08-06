@@ -53,7 +53,7 @@ public:
     virtual bool IsInGame(void) = 0;
     virtual bool IsConnected(void) = 0;
     virtual void ConNPrintf( int unk, const char* str, ... ) = 0; // 30
-    virtual void ConNXPrintf( void * const printf_options_t, const char* str, ... ) = 0;
+    virtual void ConNXPrintf( void * printf_options_t, const char* str, ... ) = 0;
     virtual INetChannel* GetNetChannelInfo( int splitScreenSlot = 0 ) = 0;
     virtual bool IsPlayingDemo(void) = 0;
     virtual bool IsRecordingDemo(void) = 0;

@@ -115,8 +115,8 @@ public:
     bool			WriteBitsFromBuffer( class bf_read *pIn, int nBits );
 
     void			WriteBitAngle( float fAngle, int numbits );
-    void			WriteBitCoord (const float f);
-    void			WriteBitCoordMP( const float f, bool bIntegral, bool bLowPrecision );
+    void			WriteBitCoord (float f);
+    void			WriteBitCoordMP( float f, bool bIntegral, bool bLowPrecision );
     void			WriteBitFloat(float val);
     void			WriteBitVec3Coord( const Vector& fa );
     void			WriteBitNormal( float f );
@@ -144,17 +144,17 @@ public:
 public:
 
     // How many bytes are filled in?
-    int				GetNumBytesWritten() const;
-    int				GetNumBitsWritten() const;
+    [[nodiscard]] int				GetNumBytesWritten() const;
+    [[nodiscard]] int				GetNumBitsWritten() const;
     int				GetMaxNumBits();
     int				GetNumBitsLeft();
     int				GetNumBytesLeft();
     unsigned char*	GetData();
-    const unsigned char*	GetData() const;
+    [[nodiscard]] const unsigned char*	GetData() const;
 
     // Has the buffer overflowed?
     bool			CheckForOverflow(int nBits);
-    inline bool		IsOverflowed() const {return m_bOverflow;}
+    [[nodiscard]] inline bool		IsOverflowed() const {return m_bOverflow;}
 
     void			SetOverflowFlag();
 };

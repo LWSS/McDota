@@ -21,7 +21,7 @@ public:
     virtual bool ChangedSinceTick( int tick );
 
     // Accessors (length -1 means don't change user data if string already exits)
-    virtual int AddString( bool isServer, const char * value, int length = -1, void const * userData = 0 );
+    virtual int AddString( bool isServer, const char * value, int length = -1, void const * userData = nullptr );
     virtual const char *GetString( int stringNumber, bool );
     virtual void SetStringUserData( int stringNumber, int length, void const *userData, bool );
     virtual const void *GetStringUserData( int stringNumber, int *length );

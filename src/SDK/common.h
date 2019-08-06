@@ -83,7 +83,7 @@ interface* GetInterface(const char* filename, const char* version, uint32_t expe
 		if ( strcmp( cur_interface->m_pName, version ) != 0 )
 			continue;
 
-		data.interface = (void*)cur_interface->m_CreateFn();
+		data.interface = cur_interface->m_CreateFn();
 		grabbedInterfaces.push_back(data);
 		return reinterpret_cast<interface*>(cur_interface->m_CreateFn());
     }
@@ -96,7 +96,7 @@ interface* GetInterface(const char* filename, const char* version, uint32_t expe
 inline uintptr_t GetAbsoluteAddress(uintptr_t instruction_ptr, int offset, int size)
 {
 	return instruction_ptr + *reinterpret_cast<int32_t*>(instruction_ptr + offset) + size;
-};
+}
 
 template <typename T>
 T GetSymbolAddress(const char* filename, const char* symbol)
@@ -106,4 +106,4 @@ T GetSymbolAddress(const char* filename, const char* symbol)
 	dlclose(handle);
 
 	return result;
-};
+}

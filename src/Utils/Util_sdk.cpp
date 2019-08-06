@@ -1,7 +1,6 @@
 #include "Util_sdk.h"
 #include "Util.h"
 
-#include <string>
 
 #include "../Interfaces.h"
 ButtonCode_t Util::GetButtonCode(const char* buttonName)
@@ -125,13 +124,13 @@ ConVar *Util::RegisterConVar( const char *name, const char *defaultValue, uint32
 	/** GHETTO HACKS AHEAD - BEWARE! **/
 	// we're gonna base our convar off of this random one
 	ConCommandBase* sens = cvar->FindCommandBase("sensitivity");
-	ConCommandBase* command = new ConCommandBase;
+	auto* command = new ConCommandBase;
 	// copy er' in
 	memcpy(command, sens, sizeof(ConCommandBase));
 	// Lastly, change the variables we want to be different.
 	command->isRegistered = false;
 	command->flags = flags;
-	command->next = NULL;
+	command->next = nullptr;
 	command->thisptr = command;
 	command->hasMin = bMin;
 	command->hasMax = bMax;
@@ -139,7 +138,7 @@ ConVar *Util::RegisterConVar( const char *name, const char *defaultValue, uint32
 	command->maxVal = fMax;
 	//command->unk = NULL;
 	//command->unk2 = NULL;
-    command->fValue = strtof(defaultValue, NULL);
+    command->fValue = strtof(defaultValue, nullptr);
     command->iValue = atoi(defaultValue);
 
 	size_t nameLen = strlen(name) + 1;
@@ -148,7 +147,7 @@ ConVar *Util::RegisterConVar( const char *name, const char *defaultValue, uint32
 		strncpy( command->name, name, nameLen);
 	} else {
         MC_PRINTF_ERROR("Error allocating space for ConVar name (%s)!\n", name);
-		return NULL;
+		return nullptr;
 	}
 
 
@@ -161,7 +160,7 @@ ConVar *Util::RegisterConVar( const char *name, const char *defaultValue, uint32
         strncpy( command->strDefault, defaultValue, valueLen );
 	} else {
         MC_PRINTF_ERROR("[%s]Error allocating space for ConVar values (%s)!\n", name);
-		return NULL;
+		return nullptr;
 	}
 
 	if( helpString ){
@@ -171,10 +170,10 @@ ConVar *Util::RegisterConVar( const char *name, const char *defaultValue, uint32
 			strncpy( command->description, helpString, descLen );
 		} else{
 			MC_PRINTF_ERROR("[%s]Error allocating space for ConVar description (%s)!\n", name);
-			return NULL;
+			return nullptr;
 		}
 	} else {
-		command->description = NULL;
+		command->description = nullptr;
 	}
 
 	cvar->RegisterConCommand( command );

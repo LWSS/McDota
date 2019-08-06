@@ -20,9 +20,10 @@ It has been built from the ground-up to be faster and better than previous cheat
 * More...
 ## System Requirements
 * CMake
-* a C++17 compiler ( like clang or gcc )
-* Build essentials( Make, gdb, etc.. )
-* google protobufs development library
+* a C++17 compiler ( like `clang` or `gcc` )
+* Build essentials( make, `gdb`, etc.. )
+* zlib-dev (`zlib1g-dev` in ubuntu)
+* [google protobufs](https://github.com/protocolbuffers/protobuf) development library
 ## Build Instructions
 `cmake . && make -j`
 

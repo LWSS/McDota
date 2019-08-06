@@ -5,7 +5,7 @@
 #include <chrono> // chrono time stuff
 #include <dlfcn.h> //dlopen
 #include <link.h> // link map
-#include <string.h>
+#include <cstring>
 #include <fstream>
 #include <sstream>
 
@@ -22,7 +22,7 @@ void Util::Log(char const * format, ...)
 	} else {
 		logFile = fopen(Util::logFileName, "a"); // append to log
 	}
-	setbuf( logFile, NULL ); // Turn off buffered I/O, decreases performance but if crash occurs, no unflushed buffer.
+	setbuf( logFile, nullptr ); // Turn off buffered I/O, decreases performance but if crash occurs, no unflushed buffer.
 	va_list args;
 	va_start(args, format);
 	vsnprintf(buffer, 4096, format, args);
@@ -42,10 +42,10 @@ long Util::GetEpochMs()
  * You need to save the prev/curr/next void ptrs for unloading. */
 void Util::RemoveLinkMapEntry(const char *partialName, void **prev, void **curr, void **next)
 {
-    struct link_map *map = reinterpret_cast<struct link_map*>(dlopen(NULL, RTLD_NOW));
+    auto *map = reinterpret_cast<struct link_map*>(dlopen(nullptr, RTLD_NOW));
     map = map->l_next->l_next;
     while (map) {
-        if( strstr( map->l_name, partialName ) != NULL ){
+        if( strstr( map->l_name, partialName ) != nullptr ){
             *prev = map->l_prev;
             *curr = map;
             *next = map->l_next;
@@ -65,19 +65,19 @@ void Util::RestoreLinkMapEntry(void *prev, void *curr, void *next)
 {
 	if( prev )
 	{
-		link_map *previousEntry = reinterpret_cast<link_map*>(prev);
+		auto *previousEntry = reinterpret_cast<link_map*>(prev);
 		previousEntry->l_next = reinterpret_cast<link_map*>(curr);
 	}
 	if( next )
 	{
-		link_map *nextEntry = reinterpret_cast<link_map*>(next);
+		auto *nextEntry = reinterpret_cast<link_map*>(next);
 		nextEntry->l_prev = reinterpret_cast<link_map*>(curr);
 	}
 }
 
 void Util::DumpLinkMaps( )
 {
-    struct link_map *map = reinterpret_cast<struct link_map*>(dlopen(NULL, RTLD_NOW));
+    auto *map = reinterpret_cast<struct link_map*>(dlopen(nullptr, RTLD_NOW));
     map = map->l_next->l_next;
     while (map) {
         Util::Log("%s\n", map->l_name);

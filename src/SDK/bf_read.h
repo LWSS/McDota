@@ -62,7 +62,7 @@ public:
     void			SetAssertOnOverflow( bool bAssert );
 
     // This can be set to assign a name that gets output if the buffer overflows.
-    const char*		GetDebugName() const { return m_pDebugName; }
+    [[nodiscard]] const char*		GetDebugName() const { return m_pDebugName; }
     void			SetDebugName( const char *pName );
 
     void			ExciseBits( int startbit, int bitstoremove );
@@ -87,7 +87,7 @@ public:
     // Get the base pointer.
     const unsigned char*	GetBasePointer() { return m_pData; }
 
-    BITBUF_INLINE int TotalBytesAvailable( void ) const
+    [[nodiscard]] BITBUF_INLINE int TotalBytesAvailable( void ) const
     {
         return m_nDataBytes;
     }
@@ -170,7 +170,7 @@ public:
 
     // Reads a string and allocates memory for it. If the string in the buffer
     // is > 2048 bytes, then pOverflow is set to true (if it's not NULL).
-    char*			ReadAndAllocateString( bool *pOverflow = 0 );
+    char*			ReadAndAllocateString( bool *pOverflow = nullptr );
 
     // Returns nonzero if any bits differ
     int				CompareBits( bf_read * RESTRICT other, int bits ) RESTRICT;
@@ -181,10 +181,10 @@ public:
     int				GetNumBytesLeft();
     int				GetNumBytesRead();
     int				GetNumBitsLeft();
-    int				GetNumBitsRead() const;
+    [[nodiscard]] int				GetNumBitsRead() const;
 
     // Has the buffer overflowed?
-    inline bool		IsOverflowed() const {return m_bOverflow;}
+    [[nodiscard]] inline bool		IsOverflowed() const {return m_bOverflow;}
 
     inline bool		Seek(int iBit);					// Seek to a specific bit.
     inline bool		SeekRelative(int iBitDelta);	// Seek to an offset from the current position.

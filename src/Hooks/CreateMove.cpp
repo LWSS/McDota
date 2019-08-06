@@ -1,9 +1,7 @@
 #include "Hooks.h"
 
-#include <csignal>
 #include <sstream>
 
-#include "../Utils/Util.h"
 #include "../Settings.h"
 
 typedef bool (* CreateMoveFn)( IClientMode*, CUserCmd*, QAngle&, Vector& );
@@ -76,9 +74,8 @@ bool Hooks::CreateMove( IClientMode *thisptr, CUserCmd* cmd, QAngle &angle, Vect
     camera = GetCurrentCamera();
     if( camera ){
         if( !cameraVMT || ( cameraVMT && cameraVMT->interface != (void*)camera ) ){
-            if( cameraVMT ){
-                delete cameraVMT;
-            }
+          delete cameraVMT;
+
             MC_PRINTF("Grabbing new CameraVMT\n");
             cameraVMT = new VMT( camera );
             cameraVMT->HookVM( Hooks::GetFogEnd, 19 );

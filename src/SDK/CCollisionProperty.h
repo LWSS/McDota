@@ -11,12 +11,12 @@ struct ChangeAccessorFieldPathIndex_t;
 class CCollisionProperty
 {
 public:
-    virtual CSchemaClassBinding* Schema_DynamicBinding(void);
+    virtual CSchemaClassBinding* Schema_DynamicBinding();
     virtual Datamap* GetPredDescMap();
 
 
     /* Use CBaseEntity->WorldAlignMins/Maxs Instead of this crap I reversed for no reason */
-    inline const Vector * const GetMins()
+    inline const Vector * GetMins()
     {
         static int offset = Util::FindDataMapElementOffset( this->GetPredDescMap(), "m_vecMins" );
         if( !offset )
@@ -24,7 +24,7 @@ public:
         return (const Vector * const)((uintptr_t)this + offset);
     }
 
-    inline const Vector * const GetMaxs()
+    inline const Vector * GetMaxs()
     {
         static int offset = Util::FindDataMapElementOffset( this->GetPredDescMap(), "m_vecMaxs" );
         if( !offset )

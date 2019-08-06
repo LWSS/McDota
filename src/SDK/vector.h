@@ -1,8 +1,8 @@
 #pragma GCC diagnostic ignored "-Wunused-value"
 #pragma GCC diagnostic ignored "-Wreturn-type"
 
-#include <math.h>
-#include <stdlib.h>
+#include <cmath>
+#include <cstdlib>
 
 #pragma once
 
@@ -59,7 +59,7 @@ struct matrix3x4_t
 	float *operator[](int i)				{ Assert((i >= 0) && (i < 3)); return m_flMatVal[i]; }
 	const float *operator[](int i) const	{ Assert((i >= 0) && (i < 3)); return m_flMatVal[i]; }
 	float *Base()							{ return &m_flMatVal[0][0]; }
-	const float *Base() const				{ return &m_flMatVal[0][0]; }
+	[[nodiscard]] const float *Base() const				{ return &m_flMatVal[0][0]; }
 
 	float m_flMatVal[3][4];
 };
@@ -71,7 +71,7 @@ public:
 	Vector(void);
 	Vector(float X, float Y, float Z);
 	void Init(float ix = 0.0f, float iy = 0.0f, float iz = 0.0f);
-	bool IsValid() const;
+	[[nodiscard]] bool IsValid() const;
 	float operator[](int i) const;
 	float& operator[](int i);
 	inline void Zero();
@@ -85,13 +85,13 @@ public:
 	inline Vector&	operator/=(float s);
 	inline Vector&	operator+=(float fl);
 	inline Vector&	operator-=(float fl);
-	inline float	Length() const;
-	inline float LengthSqr(void) const
+	[[nodiscard]] inline float	Length() const;
+	[[nodiscard]] inline float LengthSqr(void) const
 	{
 		CHECK_VALID(*this);
 		return (x*x + y*y + z*z);
 	}
-	bool IsZero(float tolerance = 0.01f) const
+	[[nodiscard]] bool IsZero(float tolerance = 0.01f) const
 	{
 		return (x > -tolerance && x < tolerance &&
 			y > -tolerance && y < tolerance &&
@@ -99,11 +99,11 @@ public:
 	}
 	Vector	Normalize();
 	float	NormalizeInPlace();
-	inline float	DistTo(const Vector &vOther) const;
-	inline float	DistToSqr(const Vector &vOther) const;
-	float	Dot(const Vector& vOther) const;
-	float	Length2D(void) const;
-	float	Length2DSqr(void) const;
+	[[nodiscard]] inline float	DistTo(const Vector &vOther) const;
+	[[nodiscard]] inline float	DistToSqr(const Vector &vOther) const;
+	[[nodiscard]] float	Dot(const Vector& vOther) const;
+	[[nodiscard]] float	Length2D(void) const;
+	[[nodiscard]] float	Length2DSqr(void) const;
 	Vector& operator=(const Vector &vOther);
 	Vector	operator-(void) const;
 	Vector	operator+(const Vector& v) const;
@@ -114,7 +114,7 @@ public:
 	Vector	operator/(float fl) const;
 	// Base address...
 	float* Base();
-	float const* Base() const;
+	[[nodiscard]] float const* Base() const;
 };
 
 //===============================================
@@ -262,11 +262,9 @@ inline float Vector::Length(void) const
 {
 	CHECK_VALID(*this);
 
-	float root = 0.0f;
-
 	float sqsr = x*x + y*y + z*z;
 
-	root = sqrt(sqsr);
+	float root = sqrt(sqsr);
 
 	return root;
 }
@@ -275,11 +273,9 @@ inline float Vector::Length2D(void) const
 {
 	CHECK_VALID(*this);
 
-	float root = 0.0f;
-
 	float sqst = x*x + y*y;
 
-	root = sqrt(sqst);
+	float root = sqrt(sqst);
 
 	return root;
 }
@@ -435,7 +431,7 @@ inline float Vector::Dot(const Vector& vOther) const
 inline float VectorLength(const Vector& v)
 {
 	CHECK_VALID(v);
-	return (float)FastSqrt(v.x*v.x + v.y*v.y + v.z*v.z);
+	return FastSqrt(v.x*v.x + v.y*v.y + v.z*v.z);
 }
 
 //VECTOR SUBTRAC
@@ -553,13 +549,13 @@ public:
 	// Construction/destruction
 	Vector2D(void);
 	Vector2D(float X, float Y);
-	Vector2D(const float *pFloat);
+	explicit Vector2D(const float *pFloat);
 
 	// Initialization
 	void Init(float ix = 0.0f, float iy = 0.0f);
 
 	// Got any nasty NAN's?
-	bool IsValid() const;
+	[[nodiscard]] bool IsValid() const;
 
 	// array access...
 	float operator[](int i) const;
@@ -567,7 +563,7 @@ public:
 
 	// Base address...
 	float* Base();
-	float const* Base() const;
+	[[nodiscard]] float const* Base() const;
 
 	// Initialization methods
 	void Random(float minVal, float maxVal);
@@ -588,13 +584,13 @@ public:
 	void	Negate();
 
 	// Get the Vector2D's magnitude.
-	float	Length() const;
+	[[nodiscard]] float	Length() const;
 
 	// Get the Vector2D's magnitude squared.
-	float	LengthSqr(void) const;
+	[[nodiscard]] float	LengthSqr(void) const;
 
 	// return true if this vector is (0,0) within tolerance
-	bool IsZero(float tolerance = 0.01f) const
+	[[nodiscard]] bool IsZero(float tolerance = 0.01f) const
 	{
 		return (x > -tolerance && x < tolerance &&
 			y > -tolerance && y < tolerance);
@@ -606,14 +602,14 @@ public:
 	float	NormalizeInPlace();
 
 	// Compare length.
-	bool	IsLengthGreaterThan(float val) const;
-	bool	IsLengthLessThan(float val) const;
+	[[nodiscard]] bool	IsLengthGreaterThan(float val) const;
+	[[nodiscard]] bool	IsLengthLessThan(float val) const;
 
 	// Get the distance from this Vector2D to the other one.
-	float	DistTo(const Vector2D &vOther) const;
+	[[nodiscard]] float	DistTo(const Vector2D &vOther) const;
 
 	// Get the distance from this Vector2D to the other one squared.
-	float	DistToSqr(const Vector2D &vOther) const;
+	[[nodiscard]] float	DistToSqr(const Vector2D &vOther) const;
 
 	// Copy
 	void	CopyToArray(float* rgfl) const;
@@ -624,7 +620,7 @@ public:
 	void	MulAdd(const Vector2D& a, const Vector2D& b, float scalar);
 
 	// Dot product.
-	float	Dot(const Vector2D& vOther) const;
+	[[nodiscard]] float	Dot(const Vector2D& vOther) const;
 
 	// assignment
 	Vector2D& operator=(const Vector2D &vOther);
@@ -644,11 +640,11 @@ public:
 	Vector2D	operator/(float fl) const;
 
 	// Cross product between two vectors.
-	Vector2D	Cross(const Vector2D &vOther) const;
+	[[nodiscard]] Vector2D	Cross(const Vector2D &vOther) const;
 
 	// Returns a Vector2D with the min or max in X, Y, and Z.
-	Vector2D	Min(const Vector2D &vOther) const;
-	Vector2D	Max(const Vector2D &vOther) const;
+	[[nodiscard]] Vector2D	Min(const Vector2D &vOther) const;
+	[[nodiscard]] Vector2D	Max(const Vector2D &vOther) const;
 
 #else
 
@@ -998,7 +994,7 @@ inline float Vector2D::Dot(const Vector2D& vOther) const
 inline float Vector2DLength(const Vector2D& v)
 {
 	Assert(v.IsValid());
-	return (float)FastSqrt(v.x*v.x + v.y*v.y);
+	return FastSqrt(v.x*v.x + v.y*v.y);
 }
 
 inline float Vector2D::LengthSqr(void) const
@@ -1194,15 +1190,15 @@ public:
 	//      QAngle(RadianEuler const &angles);      // evil auto type promotion!!!
 
 	// Allow pass-by-value
-	operator QAngleByValue &()              { return *((QAngleByValue *)(this)); }
-	operator const QAngleByValue &() const  { return *((const QAngleByValue *)(this)); }
+	explicit operator QAngleByValue &()              { return *((QAngleByValue *)(this)); }
+	explicit operator const QAngleByValue &() const  { return *((const QAngleByValue *)(this)); }
 
 	// Initialization
 	void Init(float ix = 0.0f, float iy = 0.0f, float iz = 0.0f);
 	void Random(float minVal, float maxVal);
 
 	// Got any nasty NAN's?
-	bool IsValid() const;
+	[[nodiscard]] bool IsValid() const;
 	void Invalidate();
 
 	// array access...
@@ -1211,13 +1207,13 @@ public:
 
 	// Base address...
 	float* Base();
-	float const* Base() const;
+	[[nodiscard]] float const* Base() const;
 
 	// equality
 	bool operator==(const QAngle& v) const;
 	bool operator!=(const QAngle& v) const;
 
-	bool IsZero(float tolerance = 0.01f) const
+	[[nodiscard]] bool IsZero(float tolerance = 0.01f) const
 	{
 		return (x > -tolerance && x < tolerance &&
 				y > -tolerance && y < tolerance &&
@@ -1231,8 +1227,8 @@ public:
 	QAngle& operator/=(float s);
 
 	// Get the vector's magnitude.
-	float   Length() const;
-	float   LengthSqr() const;
+	[[nodiscard]] float   Length() const;
+	[[nodiscard]] float   LengthSqr() const;
 
 	// negate the QAngle components
 	//void  Negate();
@@ -1395,7 +1391,7 @@ inline float QAngle::operator[](int i) const
 inline float QAngle::Length() const
 {
 	CHECK_VALID(*this);
-	return (float)FastSqrt(LengthSqr());
+	return FastSqrt(LengthSqr());
 }
 
 
