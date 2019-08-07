@@ -19,7 +19,7 @@ bool Integrity::VMTsHaveMisMatch( ) {
 
     if( engine->IsInGame() ){
         int localID = engine->GetLocalPlayer();
-        CDotaPlayer *localPlayer = (CDotaPlayer*)entitySystem->GetBaseEntity(localID);
+        auto *localPlayer = (CDotaPlayer*)entitySystem->GetBaseEntity(localID);
         if( !localPlayer )
             MC_PRINTF_ERROR("Couldn't grab localplayer while in-game\n");
         if( dotaPlayerNum != CountVMs(localPlayer) ){
@@ -85,17 +85,17 @@ bool Integrity::VMTsHaveMisMatch( ) {
 bool Integrity::CheckInterfaceVMs( )
 {
     bool areVMsGood = true;
-    for( unsigned int i = 0; i < grabbedInterfaces.size(); i++ ){
-        if( grabbedInterfaces[i].numVMs == 0 )
+    for(auto & grabbedInterface : grabbedInterfaces){
+        if( grabbedInterface.numVMs == 0 )
             continue;
-        uint32_t vmCount = CountVMs(grabbedInterfaces[i].interface);
+        uint32_t vmCount = CountVMs(grabbedInterface.interface);
 
-        if( grabbedInterfaces[i].numVMs != vmCount ){
+        if( grabbedInterface.numVMs != vmCount ){
             ConMsg("Warning: Interface \"%s\"(%s) (%p) Has Changed. Expected it to have %d VMs; has %d VMs. Check for Broken offsets and Update interfaces.cpp \n",
-                   grabbedInterfaces[i].name,
-                   Memory::GetModuleName( (uintptr_t)grabbedInterfaces[i].interface ),
-                   grabbedInterfaces[i].interface,
-                   grabbedInterfaces[i].numVMs,
+                   grabbedInterface.name,
+                   Memory::GetModuleName( (uintptr_t)grabbedInterface.interface ),
+                   grabbedInterface.interface,
+                   grabbedInterface.numVMs,
                    vmCount);
 
             areVMsGood = false;

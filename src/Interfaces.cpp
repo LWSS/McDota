@@ -26,9 +26,9 @@ bool Interfaces::FindInterfaces()
     materialSystem = GetInterface<IMaterialSystem>("./libmaterialsystem2.so", "VMaterialSystem2_001", 36);
 
     if( !requestedInterfaces.empty() ){
-        for( long unsigned int i = 0; i < requestedInterfaces.size(); i ++ ){
-            if( !requestedInterfaces[i].interface ){
-                ConMsg( "Interface: (%s) is Null!\n", requestedInterfaces[i].name );
+        for(auto & requestedInterface : requestedInterfaces){
+            if( !requestedInterface.interface ){
+                ConMsg( "Interface: (%s) is Null!\n", requestedInterface.name );
             }
         }
         return false;
@@ -54,13 +54,13 @@ void Interfaces::DumpInterfaces( const char *fileName )
 
 	FILE *logFile;
 	logFile = fopen(fileName, "a");
-    setbuf( logFile, NULL ); // turn off buffered I/O so it writes even if a crash occurs soon after.
+    setbuf( logFile, nullptr ); // turn off buffered I/O so it writes even if a crash occurs soon after.
     fprintf(logFile, "\n\n***************** Start of Log *****************\n");
     for ( const dlinfo_t& module: modules )
     {
         if( !module.library )
             continue;
-        if( strcasestr( module.library, "dota" ) == NULL ) // want dota to be in filepath
+        if( strcasestr( module.library, "dota" ) == nullptr ) // want dota to be in filepath
             continue;
         if( strcasestr( module.library, "libsteam_api.so" ) )
             continue;
@@ -70,13 +70,13 @@ void Interfaces::DumpInterfaces( const char *fileName )
         fprintf(logFile, "-- Module Name: %s --\n", module.library);
 
         void *library = dlopen(module.library, RTLD_NOLOAD | RTLD_NOW);
-        if ( library == NULL ){
+        if ( library == nullptr ){
             fprintf(logFile, "**Couldn't open library**\n");
             continue;
         }
 
         void *createInterfaceSym = dlsym(library, "CreateInterface");
-        if ( createInterfaceSym == NULL ) {
+        if ( createInterfaceSym == nullptr ) {
             fprintf( logFile, "**Couldn't find CreateInterface**\n" );
             dlclose(library);
             continue;

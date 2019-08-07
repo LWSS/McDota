@@ -1,25 +1,21 @@
-#include <chrono>
-#include <fcntl.h>
-#include <sys/stat.h>
 #include <csignal>
-#include <fstream>
-#include <sstream>
-#include <zconf.h> //readlink
+ //readlink
+#include <random>
 #include <thread>
 
 #include "GUI/Gui.h"
-#include "Hooks/Hooks.h"
 #include "Hooks/HardHooks.h"
-#include "Scanner.h"
+#include "Hooks/Hooks.h"
 #include "Interfaces.h"
 #include "Netvars.h"
+#include "SDK/ConMsg.h"
+#include "Scanner.h"
+#include "Settings.h"
+#include "Utils/Integritycheck.h"
 #include "Utils/Util.h"
 #include "Utils/Util_sdk.h"
-#include "Utils/Integritycheck.h"
-#include "SDK/ConMsg.h"
-#include "Settings.h"
 
-const char *Util::logFileName = "/tmp/dota.log";
+ const char *Util::logFileName = "/tmp/dota.log";
 void *mcPrev, *mcCurr, *mcNext;
 
 struct sigaction sa;
@@ -39,7 +35,7 @@ static void SignalHandler( int sigNum, siginfo_t *si, void * uContext )
         return;
     }
 
-    if( strstr( procName.c_str(), "uload" ) == NULL ){
+    if( strstr( procName.c_str(), "uload" ) == nullptr ){
         Util::Log("Received a Foreign Unload Signal from Process: (%s). Intruder alert!", procName.c_str());
         return;
     }
@@ -142,14 +138,15 @@ void Main()
     gameEventSystemVMT->HookVM(Hooks::PostEventAbstract, 15);
     gameEventSystemVMT->ApplyVMT();
 
-    srand(time(NULL)); // Seed random # Generator so we can call rand() later
+  std::random_device dev;
+  srand(dev()); // Seed random # Generator so we can call rand() later
 
     Util::RemoveLinkMapEntry("libMcDota.so", &mcPrev, &mcCurr, &mcNext);
     Netvars::DumpNetvars( "/tmp/dotanetvars.txt" );
     Netvars::CacheNetvars();
 
     int localID = engine->GetLocalPlayer();
-    CDotaPlayer *localPlayer = (CDotaPlayer*)entitySystem->GetBaseEntity(localID);
+    auto *localPlayer = (CDotaPlayer*)entitySystem->GetBaseEntity(localID);
     if( !localPlayer )
         return;
 
@@ -211,18 +208,10 @@ void __attribute__((destructor)) Shutdown()
         /* Cleanup ConVars we have made */
         for( ConCommandBase* var : Util::createdConvars ){
             cvar->UnregisterConCommand(var);
-            if( var->name ){
                 delete[] var->name;
-            }
-            if( var->strValue ){
                 delete[] var->strValue;
-            }
-            if( var->strDefault ){
                 delete[] var->strDefault;
-            }
-            if( var->description ){
                 delete[] var->description;
-            }
             delete var;
         }
         cvar->FindVar("cl_mouseenable")->SetValue(1);
@@ -233,5 +222,5 @@ void __attribute__((destructor)) Shutdown()
 
     /* Restore previous signal handler */
     /* SIGXCPU actually just normally kills the game lol */
-    sigaction(SIGXCPU, &oldSa, NULL );
+    sigaction(SIGXCPU, &oldSa, nullptr );
 }

@@ -3,8 +3,6 @@
 #include "../Interfaces.h"
 #include "../Utils/Protobuf.h"
 
-#include <csignal>
-
 bool HardHooks::MyBAsyncSendProto( IProtoBufSendHandler &handler, unsigned int unk,
                                     CMsgProtoBufHeader const &header, google::protobuf::Message const &msg ) {
     Util::Log("AsyncSendProto Yahoo! - Msg(%p)\n", (void*)&msg);

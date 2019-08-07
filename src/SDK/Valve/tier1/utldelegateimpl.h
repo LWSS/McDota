@@ -301,7 +301,7 @@ typedef const void * DefaultVoid;
             // Unsupported member function type -- force a compile failure.
             // (it's illegal to have a array with negative size).
             typedef char ERROR_Unsupported_member_function_pointer_on_this_compiler[N-100];
-            return 0;
+            return nullptr;
         }
     };
 
@@ -607,8 +607,8 @@ public:
 		m_pthis=0; m_pFunction=0; m_pStaticFunction=0;
 	}
 #else
-    CUtlAbstractDelegate() : m_pthis(0), m_pFunction(0) {};
-    void Clear() {	m_pthis=0; m_pFunction=0;	}
+    CUtlAbstractDelegate() : m_pthis(nullptr), m_pFunction(nullptr) {};
+    void Clear() {	m_pthis=nullptr; m_pFunction=nullptr;	}
 #endif
 public:
 #if !defined(FASTDELEGATE_USESTATICFUNCTIONHACK)
@@ -626,13 +626,13 @@ public:
 			return true;
 	}
 #else // Evil Method
-    inline bool IsEqual (const CUtlAbstractDelegate &x) const
+    [[nodiscard]] inline bool IsEqual (const CUtlAbstractDelegate &x) const
     {
         return m_pthis==x.m_pthis && m_pFunction==x.m_pFunction;
     }
 #endif
     // Provide a strict weak ordering for DelegateMementos.
-    inline bool IsLess(const CUtlAbstractDelegate &right) const
+    [[nodiscard]] inline bool IsLess(const CUtlAbstractDelegate &right) const
     {
         // deal with static function pointers first
 #if !defined(FASTDELEGATE_USESTATICFUNCTIONHACK)
@@ -652,11 +652,11 @@ public:
     // m_pFunction can be zero even if the delegate is not empty!
     inline bool operator ! () const		// Is it bound to anything?
     {
-        return m_pthis==0 && m_pFunction==0;
+        return m_pthis==nullptr && m_pFunction==nullptr;
     }
-    inline bool IsEmpty() const		// Is it bound to anything?
+    [[nodiscard]] inline bool IsEmpty() const		// Is it bound to anything?
     {
-        return m_pthis==0 && m_pFunction==0;
+        return m_pthis==nullptr && m_pFunction==nullptr;
     }
 public:
     CUtlAbstractDelegate & operator = (const CUtlAbstractDelegate &right)
@@ -763,7 +763,7 @@ namespace detail
         }
 #endif
         // These functions are required for invoking the stored function
-        inline GenericClass *GetClosureThis() const { return m_pthis; }
+        [[nodiscard]] inline GenericClass *GetClosureThis() const { return m_pthis; }
         inline GenericMemFunc GetClosureMemPtr() const { return reinterpret_cast<GenericMemFunc>(m_pFunction); }
 
 // There are a few ways of dealing with static function pointers.
@@ -994,7 +994,7 @@ public:
     }
     // Static functions. We convert them into a member function call.
     // This constructor also provides implicit conversion
-    FastDelegate0(DesiredRetType (*function_to_bind)() )
+    explicit FastDelegate0(DesiredRetType (*function_to_bind)() )
     {
         Bind(function_to_bind);
     }
@@ -1022,7 +1022,7 @@ private:
     } UselessTypedef;
     typedef StaticFunctionPtr SafeBoolStruct::*unspecified_bool_type;
 public:
-    operator unspecified_bool_type() const
+    explicit operator unspecified_bool_type() const
     {
         return IsEmpty()? 0: &SafeBoolStruct::m_nonzero;
     }
@@ -1039,7 +1039,7 @@ public:
     {	// Is it bound to anything?
         return !m_Closure;
     }
-    inline bool IsEmpty() const
+    [[nodiscard]] inline bool IsEmpty() const
     {
         return !m_Closure;
     }
@@ -1120,7 +1120,7 @@ public:
     }
     // Static functions. We convert them into a member function call.
     // This constructor also provides implicit conversion
-    FastDelegate1(DesiredRetType (*function_to_bind)(Param1 p1) )
+    explicit FastDelegate1(DesiredRetType (*function_to_bind)(Param1 p1) )
     {
         Bind(function_to_bind);
     }
@@ -1148,7 +1148,7 @@ private:
     } UselessTypedef;
     typedef StaticFunctionPtr SafeBoolStruct::*unspecified_bool_type;
 public:
-    operator unspecified_bool_type() const
+    explicit operator unspecified_bool_type() const
     {
         return IsEmpty()? 0: &SafeBoolStruct::m_nonzero;
     }
@@ -1165,7 +1165,7 @@ public:
     {	// Is it bound to anything?
         return !m_Closure;
     }
-    inline bool IsEmpty() const
+    [[nodiscard]] inline bool IsEmpty() const
     {
         return !m_Closure;
     }
@@ -1246,7 +1246,7 @@ public:
     }
     // Static functions. We convert them into a member function call.
     // This constructor also provides implicit conversion
-    FastDelegate2(DesiredRetType (*function_to_bind)(Param1 p1, Param2 p2) )
+    explicit FastDelegate2(DesiredRetType (*function_to_bind)(Param1 p1, Param2 p2) )
     {
         Bind(function_to_bind);
     }
@@ -1274,7 +1274,7 @@ private:
     } UselessTypedef;
     typedef StaticFunctionPtr SafeBoolStruct::*unspecified_bool_type;
 public:
-    operator unspecified_bool_type() const
+    explicit operator unspecified_bool_type() const
     {
         return IsEmpty()? 0: &SafeBoolStruct::m_nonzero;
     }
@@ -1291,7 +1291,7 @@ public:
     {	// Is it bound to anything?
         return !m_Closure;
     }
-    inline bool IsEmpty() const
+    [[nodiscard]] inline bool IsEmpty() const
     {
         return !m_Closure;
     }
@@ -1372,7 +1372,7 @@ public:
     }
     // Static functions. We convert them into a member function call.
     // This constructor also provides implicit conversion
-    FastDelegate3(DesiredRetType (*function_to_bind)(Param1 p1, Param2 p2, Param3 p3) )
+    explicit FastDelegate3(DesiredRetType (*function_to_bind)(Param1 p1, Param2 p2, Param3 p3) )
     {
         Bind(function_to_bind);
     }
@@ -1400,7 +1400,7 @@ private:
     } UselessTypedef;
     typedef StaticFunctionPtr SafeBoolStruct::*unspecified_bool_type;
 public:
-    operator unspecified_bool_type() const
+    explicit operator unspecified_bool_type() const
     {
         return IsEmpty()? 0: &SafeBoolStruct::m_nonzero;
     }
@@ -1417,7 +1417,7 @@ public:
     {	// Is it bound to anything?
         return !m_Closure;
     }
-    inline bool IsEmpty() const
+    [[nodiscard]] inline bool IsEmpty() const
     {
         return !m_Closure;
     }
@@ -1498,7 +1498,7 @@ public:
     }
     // Static functions. We convert them into a member function call.
     // This constructor also provides implicit conversion
-    FastDelegate4(DesiredRetType (*function_to_bind)(Param1 p1, Param2 p2, Param3 p3, Param4 p4) )
+    explicit FastDelegate4(DesiredRetType (*function_to_bind)(Param1 p1, Param2 p2, Param3 p3, Param4 p4) )
     {
         Bind(function_to_bind);
     }
@@ -1526,7 +1526,7 @@ private:
     } UselessTypedef;
     typedef StaticFunctionPtr SafeBoolStruct::*unspecified_bool_type;
 public:
-    operator unspecified_bool_type() const
+    explicit operator unspecified_bool_type() const
     {
         return IsEmpty()? 0: &SafeBoolStruct::m_nonzero;
     }
@@ -1543,7 +1543,7 @@ public:
     {	// Is it bound to anything?
         return !m_Closure;
     }
-    inline bool IsEmpty() const
+    [[nodiscard]] inline bool IsEmpty() const
     {
         return !m_Closure;
     }
@@ -1624,7 +1624,7 @@ public:
     }
     // Static functions. We convert them into a member function call.
     // This constructor also provides implicit conversion
-    FastDelegate5(DesiredRetType (*function_to_bind)(Param1 p1, Param2 p2, Param3 p3, Param4 p4, Param5 p5) )
+    explicit FastDelegate5(DesiredRetType (*function_to_bind)(Param1 p1, Param2 p2, Param3 p3, Param4 p4, Param5 p5) )
     {
         Bind(function_to_bind);
     }
@@ -1652,7 +1652,7 @@ private:
     } UselessTypedef;
     typedef StaticFunctionPtr SafeBoolStruct::*unspecified_bool_type;
 public:
-    operator unspecified_bool_type() const
+    explicit operator unspecified_bool_type() const
     {
         return IsEmpty()? 0: &SafeBoolStruct::m_nonzero;
     }
@@ -1669,7 +1669,7 @@ public:
     {	// Is it bound to anything?
         return !m_Closure;
     }
-    inline bool IsEmpty() const
+    [[nodiscard]] inline bool IsEmpty() const
     {
         return !m_Closure;
     }
@@ -1750,7 +1750,7 @@ public:
     }
     // Static functions. We convert them into a member function call.
     // This constructor also provides implicit conversion
-    FastDelegate6(DesiredRetType (*function_to_bind)(Param1 p1, Param2 p2, Param3 p3, Param4 p4, Param5 p5, Param6 p6) )
+    explicit FastDelegate6(DesiredRetType (*function_to_bind)(Param1 p1, Param2 p2, Param3 p3, Param4 p4, Param5 p5, Param6 p6) )
     {
         Bind(function_to_bind);
     }
@@ -1778,7 +1778,7 @@ private:
     } UselessTypedef;
     typedef StaticFunctionPtr SafeBoolStruct::*unspecified_bool_type;
 public:
-    operator unspecified_bool_type() const
+    explicit operator unspecified_bool_type() const
     {
         return IsEmpty()? 0: &SafeBoolStruct::m_nonzero;
     }
@@ -1795,7 +1795,7 @@ public:
     {	// Is it bound to anything?
         return !m_Closure;
     }
-    inline bool IsEmpty() const
+    [[nodiscard]] inline bool IsEmpty() const
     {
         return !m_Closure;
     }
@@ -1876,7 +1876,7 @@ public:
     }
     // Static functions. We convert them into a member function call.
     // This constructor also provides implicit conversion
-    FastDelegate7(DesiredRetType (*function_to_bind)(Param1 p1, Param2 p2, Param3 p3, Param4 p4, Param5 p5, Param6 p6, Param7 p7) )
+    explicit FastDelegate7(DesiredRetType (*function_to_bind)(Param1 p1, Param2 p2, Param3 p3, Param4 p4, Param5 p5, Param6 p6, Param7 p7) )
     {
         Bind(function_to_bind);
     }
@@ -1904,7 +1904,7 @@ private:
     } UselessTypedef;
     typedef StaticFunctionPtr SafeBoolStruct::*unspecified_bool_type;
 public:
-    operator unspecified_bool_type() const
+    explicit operator unspecified_bool_type() const
     {
         return IsEmpty()? 0: &SafeBoolStruct::m_nonzero;
     }
@@ -1921,7 +1921,7 @@ public:
     {	// Is it bound to anything?
         return !m_Closure;
     }
-    inline bool IsEmpty() const
+    [[nodiscard]] inline bool IsEmpty() const
     {
         return !m_Closure;
     }
@@ -2002,7 +2002,7 @@ public:
     }
     // Static functions. We convert them into a member function call.
     // This constructor also provides implicit conversion
-    FastDelegate8(DesiredRetType (*function_to_bind)(Param1 p1, Param2 p2, Param3 p3, Param4 p4, Param5 p5, Param6 p6, Param7 p7, Param8 p8) )
+    explicit FastDelegate8(DesiredRetType (*function_to_bind)(Param1 p1, Param2 p2, Param3 p3, Param4 p4, Param5 p5, Param6 p6, Param7 p7, Param8 p8) )
     {
         Bind(function_to_bind);
     }
@@ -2030,7 +2030,7 @@ private:
     } UselessTypedef;
     typedef StaticFunctionPtr SafeBoolStruct::*unspecified_bool_type;
 public:
-    operator unspecified_bool_type() const
+    explicit operator unspecified_bool_type() const
     {
         return IsEmpty()? 0: &SafeBoolStruct::m_nonzero;
     }
@@ -2047,7 +2047,7 @@ public:
     {	// Is it bound to anything?
         return !m_Closure;
     }
-    inline bool IsEmpty() const
+    [[nodiscard]] inline bool IsEmpty() const
     {
         return !m_Closure;
     }
@@ -2112,7 +2112,7 @@ public:
             : BaseType(pthis, function_to_bind)
     { }
 
-    CUtlDelegate(R (*function_to_bind)(  ))
+    explicit CUtlDelegate(R (*function_to_bind)(  ))
             : BaseType(function_to_bind)
     { }
 
@@ -2152,7 +2152,7 @@ public:
             : BaseType(pthis, function_to_bind)
     { }
 
-    CUtlDelegate(R (*function_to_bind)( Param1 p1 ))
+    explicit CUtlDelegate(R (*function_to_bind)( Param1 p1 ))
             : BaseType(function_to_bind)
     { }
 
@@ -2192,7 +2192,7 @@ public:
             : BaseType(pthis, function_to_bind)
     { }
 
-    CUtlDelegate(R (*function_to_bind)( Param1 p1, Param2 p2 ))
+    explicit CUtlDelegate(R (*function_to_bind)( Param1 p1, Param2 p2 ))
             : BaseType(function_to_bind)
     { }
 
@@ -2232,7 +2232,7 @@ public:
             : BaseType(pthis, function_to_bind)
     { }
 
-    CUtlDelegate(R (*function_to_bind)( Param1 p1, Param2 p2, Param3 p3 ))
+    explicit CUtlDelegate(R (*function_to_bind)( Param1 p1, Param2 p2, Param3 p3 ))
             : BaseType(function_to_bind)
     { }
 
@@ -2272,7 +2272,7 @@ public:
             : BaseType(pthis, function_to_bind)
     { }
 
-    CUtlDelegate(R (*function_to_bind)( Param1 p1, Param2 p2, Param3 p3, Param4 p4 ))
+    explicit CUtlDelegate(R (*function_to_bind)( Param1 p1, Param2 p2, Param3 p3, Param4 p4 ))
             : BaseType(function_to_bind)
     { }
 
@@ -2312,7 +2312,7 @@ public:
             : BaseType(pthis, function_to_bind)
     { }
 
-    CUtlDelegate(R (*function_to_bind)( Param1 p1, Param2 p2, Param3 p3, Param4 p4, Param5 p5 ))
+    explicit CUtlDelegate(R (*function_to_bind)( Param1 p1, Param2 p2, Param3 p3, Param4 p4, Param5 p5 ))
             : BaseType(function_to_bind)
     { }
 
@@ -2352,7 +2352,7 @@ public:
             : BaseType(pthis, function_to_bind)
     { }
 
-    CUtlDelegate(R (*function_to_bind)( Param1 p1, Param2 p2, Param3 p3, Param4 p4, Param5 p5, Param6 p6 ))
+    explicit CUtlDelegate(R (*function_to_bind)( Param1 p1, Param2 p2, Param3 p3, Param4 p4, Param5 p5, Param6 p6 ))
             : BaseType(function_to_bind)
     { }
 
@@ -2392,7 +2392,7 @@ public:
             : BaseType(pthis, function_to_bind)
     { }
 
-    CUtlDelegate(R (*function_to_bind)( Param1 p1, Param2 p2, Param3 p3, Param4 p4, Param5 p5, Param6 p6, Param7 p7 ))
+    explicit CUtlDelegate(R (*function_to_bind)( Param1 p1, Param2 p2, Param3 p3, Param4 p4, Param5 p5, Param6 p6, Param7 p7 ))
             : BaseType(function_to_bind)
     { }
 
@@ -2432,7 +2432,7 @@ public:
             : BaseType(pthis, function_to_bind)
     { }
 
-    CUtlDelegate(R (*function_to_bind)( Param1 p1, Param2 p2, Param3 p3, Param4 p4, Param5 p5, Param6 p6, Param7 p7, Param8 p8 ))
+    explicit CUtlDelegate(R (*function_to_bind)( Param1 p1, Param2 p2, Param3 p3, Param4 p4, Param5 p5, Param6 p6, Param7 p7, Param8 p8 ))
             : BaseType(function_to_bind)
     { }
 

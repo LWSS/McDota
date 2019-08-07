@@ -6,7 +6,7 @@
 void Netvars::DumpNetvars( const char *fileName ) {
     FILE *logFile;
     logFile = fopen(fileName, "a");
-    setbuf( logFile, NULL ); // turn off buffered I/O so it writes even if a crash occurs soon after.
+    setbuf( logFile, nullptr ); // turn off buffered I/O so it writes even if a crash occurs soon after.
     fprintf(logFile, "\n\n***************** Start of Log *****************\n");
 
     for( ClientClass *classes = client->GetAllClasses(); classes; classes = classes->m_pNext ){

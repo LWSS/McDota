@@ -1,7 +1,6 @@
 #include "Hooks.h"
 #include <csignal>
 
-#include "../Utils/Util.h"
 #include "../Utils/Protobuf.h"
 #include "../Settings.h"
 
@@ -31,7 +30,7 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
     if( mc_allow_customnames->GetBool() ){
         info = networkMessages->GetNetMessageInfo(messageHandle);
         name = info->pProtobufBinding->GetName();
-        if( strstr( name, "CNETMsg_SetConVar" ) != NULL ){
+        if( strstr( name, "CNETMsg_SetConVar" ) != nullptr ){
             if( Util::GetEpochMs() - lastSetConVarMsg < 100 ){
                 return true;
             }
@@ -43,7 +42,7 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
         info = networkMessages->GetNetMessageInfo(messageHandle);
         name = info->pProtobufBinding->GetName();
 
-        if( strstr(name, "CCLCMsg_ServerStatus") != NULL ){
+        if( strstr(name, "CCLCMsg_ServerStatus") != nullptr ){
             for( int i = 0; i < mc_send_freq->GetInt(); i++ ){
                 engine->GetNetChannelInfo()->SetMaxRoutablePayloadSize(99999999);
                 engine->GetNetChannelInfo()->SetMaxBufferSize(NetChannelBufType_t::BUF_DEFAULT, 99999999);
@@ -56,7 +55,7 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
         info = networkMessages->GetNetMessageInfo(messageHandle);
         name = info->pProtobufBinding->GetName();
 
-        if( strstr(name, "CCLCMsg_VoiceData") != NULL ){
+        if( strstr(name, "CCLCMsg_VoiceData") != nullptr ){
             for( int i = 0; i < mc_send_freq->GetInt(); i++ ){
                 engine->GetNetChannelInfo()->SetMaxRoutablePayloadSize(99999999);
                 engine->GetNetChannelInfo()->SetMaxBufferSize(NetChannelBufType_t::BUF_DEFAULT, 99999999);
@@ -69,7 +68,7 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
         info = networkMessages->GetNetMessageInfo(messageHandle);
         name = info->pProtobufBinding->GetName();
 
-        if( strstr(name, "CDOTAClientMsg_ExecuteOrders") != NULL ){
+        if( strstr(name, "CDOTAClientMsg_ExecuteOrders") != nullptr ){
             CUtlString string;
             string.m_Memory.m_pMemory = new uint8_t[4096];
             string.m_Memory.m_nAllocationCount = 4096;

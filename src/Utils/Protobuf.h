@@ -8,9 +8,7 @@
 #include <vector>
 
 /* Various functions that deal with protobuf messages */
-namespace Util
-{
-    namespace Protobuf
+namespace Util::Protobuf
     {
         void LogMessageContents( const google::protobuf::Message* m, int tabNum = 0 );
 
@@ -22,7 +20,7 @@ namespace Util
         bool EditFieldTraverseFloat( google::protobuf::Message* msg, const char *name, float value );
         bool EditFieldTraverseDouble( google::protobuf::Message* msg, const char *name, double value );
         bool EditFieldTraverseBool( google::protobuf::Message* msg, const char *name, bool value );
-        bool EditFieldTraverseString( google::protobuf::Message* msg, const char *name, std::string value );
+        bool EditFieldTraverseString( google::protobuf::Message* msg, const char *name, const std::string& value );
         bool EditFieldTraverseEnumValue( google::protobuf::Message* msg, const char *name, int value );
 
         std::optional<int32_t> GetFieldTraverseInt32( google::protobuf::Message* msg, const char *name );
@@ -46,4 +44,3 @@ namespace Util
         std::vector<std::string> GetRepeatedFieldTraverseString( google::protobuf::Message* msg, const char *name );
         std::vector<int> GetRepeatedFieldTraverseEnumValue( google::protobuf::Message* msg, const char *name );
     }
-}

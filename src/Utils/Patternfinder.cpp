@@ -2,14 +2,14 @@
 
 #include <link.h> // dl_iterate_phdr
 #include <vector>
-#include <string.h> //strcasestr
+#include <cstring> //strcasestr
 #include "../Interfaces.h"
 
 // taken from aixxe's cstrike-basehook-linux
 static bool GetLibraryInformation(const char* library, uintptr_t* address, size_t* size) {
     static std::vector<dlinfo_t> libraries;
 
-    if (libraries.size() == 0) {
+    if (libraries.empty()) {
         dl_iterate_phdr([] (struct dl_phdr_info* info, size_t, void*) {
             dlinfo_t library_info = {};
             library_info.library = info->dlpi_name;

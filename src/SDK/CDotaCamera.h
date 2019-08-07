@@ -53,43 +53,43 @@ public:
     /* Xref "SetCameraYaw", CDOTA_PanoramaScript_GameUI::SetCameraYaw() will be right above it */
     void SetExtraYaw( float amount )
     {
-        float *extraYaw = (float*)((uintptr_t)this + (0x264 + debugBinsDelta));
+        auto *extraYaw = (float*)((uintptr_t)this + (0x264 + debugBinsDelta));
         *extraYaw = amount;
     }
 
     void SetMinPitch( float amount )
     {
-        float *minPitch = (float*)((uintptr_t)this + (0x260 + debugBinsDelta));
+        auto *minPitch = (float*)((uintptr_t)this + (0x260 + debugBinsDelta));
         *minPitch = amount;
     }
 
     void SetMaxPitch( float amount )
     {
-        float *maxPitch = (float*)((uintptr_t)this + (0x25C + debugBinsDelta));
+        auto *maxPitch = (float*)((uintptr_t)this + (0x25C + debugBinsDelta));
         *maxPitch = amount;
     }
 
     float GetMinPitch( )
     {
-        float *minPitch = (float*)((uintptr_t)this + (0x260 + debugBinsDelta));
+        auto *minPitch = (float*)((uintptr_t)this + (0x260 + debugBinsDelta));
         return *minPitch;
     }
 
     float GetMaxPitch( )
     {
-        float *maxPitch = (float*)((uintptr_t)this + (0x25C + debugBinsDelta));
+        auto *maxPitch = (float*)((uintptr_t)this + (0x25C + debugBinsDelta));
         return *maxPitch;
     }
 
     void SetDistanceToLookAtPos( float dist )
     {
-        float *distance = (float*)((uintptr_t)this + (0x268 + debugBinsDelta));
+        auto *distance = (float*)((uintptr_t)this + (0x268 + debugBinsDelta));
         *distance = dist;
     }
 
     void SetFOWAmount( float amount )
     {
-        float *fowAmount = (float*)((uintptr_t)this + 0x60);
+        auto *fowAmount = (float*)((uintptr_t)this + 0x60);
         *fowAmount = amount;
     }
 };

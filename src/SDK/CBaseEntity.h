@@ -51,7 +51,7 @@ struct RenderableInstance_t{
 class CBaseEntity
 {
 public:
-    inline const DOTATeam_t GetTeam( )
+    inline DOTATeam_t GetTeam( )
     {
         static int offset = Util::FindDataMapElementOffset( this->C_DOTAPlayer__GetPredDescMap(), "m_iTeamNum" );
         if( !offset ){
@@ -60,25 +60,25 @@ public:
         }
         return *( DOTATeam_t* )( ((uintptr_t)this) + offset );
     }
-    inline QAngle* const GetNetworkAngles( )
+    inline QAngle* GetNetworkAngles( )
     {
         static int offset = Util::FindDataMapElementOffset( this->C_DOTAPlayer__GetPredDescMap(), "m_angNetworkAngles" );
         if( !offset ){
             Util::Log("ERROR NetworkAngles offset is Zero!\n");
-            return NULL;
+            return nullptr;
         }
         return ( QAngle* )( ((uintptr_t)this) + offset );
     }
-    inline Vector* const GetNetworkOrigin( )
+    inline Vector* GetNetworkOrigin( )
     {
         static int offset = Util::FindDataMapElementOffset( this->C_DOTAPlayer__GetPredDescMap(), "m_vecNetworkOrigin" );
         if( !offset ){
             Util::Log("ERROR NetworkOrigin offset is Zero!\n");
-            return NULL;
+            return nullptr;
         }
         return ( Vector* )( ((uintptr_t)this) + offset );
     }
-    inline const int GetOwnerID( )
+    inline int GetOwnerID( )
     {
         static int offset = Util::FindDataMapElementOffset( this->C_DOTAPlayer__GetPredDescMap(), "m_hOwnerEntity" );
         if( !offset ){

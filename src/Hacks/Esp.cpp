@@ -35,7 +35,7 @@ static bool GetBox( CBaseEntity* entity, int* x, int* y, int* w, int* h )
     for( const auto &vec : points ){
         int tempX = 0, tempY = 0;
 
-        GetVectorInScreenSpace(vec, tempX, tempY, NULL);
+        GetVectorInScreenSpace(vec, tempX, tempY, nullptr);
         /* Is Off-Screen */
         if( tempX < 0 || tempY < 0 || tempX > maxX || tempY > maxY ){
             return false;
@@ -79,7 +79,7 @@ void ESP::PaintTraverse( IVPanel *thisptr, IVGuiPaintSurface *surface, VPANEL pa
             goodToGo = true;
 
         if( entity->C_BaseEntity__InLocalTeam() ){
-            if( strstr(entity->Schema_DynamicBinding()->bindingName, "DOTA_Unit_Hero") != NULL ){
+            if( strstr(entity->Schema_DynamicBinding()->bindingName, "DOTA_Unit_Hero") != nullptr ){
                 if( mc_esp_filter_heroes_friend->GetBool() ) {
                     goodToGo = true;
                 }
@@ -88,23 +88,23 @@ void ESP::PaintTraverse( IVPanel *thisptr, IVGuiPaintSurface *surface, VPANEL pa
                     if( entity->C_BaseModelEntity__CanBeSeenByTeam( enemyTeam ) )
                         goodToGo = true;
                 }
-            } else if( strstr(entity->Schema_DynamicBinding()->bindingName, "C_DOTA_BaseNPC_Creep") != NULL ){
+            } else if( strstr(entity->Schema_DynamicBinding()->bindingName, "C_DOTA_BaseNPC_Creep") != nullptr ){
                 if( mc_esp_filter_creeps_friend->GetBool() )
                     goodToGo = true;
             }
         } else {
-            if( strstr(entity->Schema_DynamicBinding()->bindingName, "DOTA_Unit_Hero") != NULL ){
+            if( strstr(entity->Schema_DynamicBinding()->bindingName, "DOTA_Unit_Hero") != nullptr ){
                 if( mc_esp_filter_heroes_enemy->GetBool() ){
                     goodToGo = true;
                 }
                 if( mc_esp_filter_illusions_enemy->GetBool() ){
-                    CDotaBaseNPC *npc = (CDotaBaseNPC*)entity;
+                    auto *npc = (CDotaBaseNPC*)entity;
                     if( npc->IsIllusion() ){
                         goodToGo = true;
                     }
                 }
             }
-            if( mc_esp_filter_creeps_enemy->GetBool() && strstr(entity->Schema_DynamicBinding()->bindingName, "C_DOTA_BaseNPC_Creep") != NULL )
+            if( mc_esp_filter_creeps_enemy->GetBool() && strstr(entity->Schema_DynamicBinding()->bindingName, "C_DOTA_BaseNPC_Creep") != nullptr )
                 goodToGo = true;
         }
 
@@ -128,13 +128,13 @@ void ESP::PaintTraverse( IVPanel *thisptr, IVGuiPaintSurface *surface, VPANEL pa
             strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L"(%d)%s", i, entity->Schema_DynamicBinding()->bindingName );
 
 
-            if( strstr( entity->Schema_DynamicBinding()->bindingName, "C_DOTAPlayer" ) != NULL ){
-                CDotaPlayer *player = (CDotaPlayer*)entity;
+            if( strstr( entity->Schema_DynamicBinding()->bindingName, "C_DOTAPlayer" ) != nullptr ){
+                auto *player = (CDotaPlayer*)entity;
                 strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" - %s", player->C_DOTAPlayer__GetPlayerName() );
             }
 
             if( strstr( entity->Schema_DynamicBinding()->bindingName, "DOTA_Unit_Hero" ) ){
-                CDotaBaseNPC *npc = (CDotaBaseNPC*)entity;
+                auto *npc = (CDotaBaseNPC*)entity;
                 strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" -Mana: (%g/%g)", npc->C_DOTA_BaseNPC__GetMana(), npc->C_DOTA_BaseNPC__GetMaxMana() );
                 strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" -Dmg Min(%d)/Max(%d)", npc->C_DOTA_BaseNPC__GetDamageMin(), npc->C_DOTA_BaseNPC__GetDamageMax() );
                 strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" -MagicImm?(%s)", npc->C_DOTA_BaseNPC__IsMagicImmune() ? "yes" : "no" );
@@ -167,7 +167,7 @@ void ESP::PaintTraverse( IVPanel *thisptr, IVGuiPaintSurface *surface, VPANEL pa
             }
         }
 
-        CDotaBaseNPC *npc = (CDotaBaseNPC*)entity;
+        auto *npc = (CDotaBaseNPC*)entity;
 
         if( mc_esp_type_bbox->GetBool() )
             npc->C_BaseEntity__DrawEntityDebugOverlays(OverlayFlags_t::BBOX);

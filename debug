@@ -20,7 +20,7 @@ filename="libMcDota.so"
 sudo echo "2" | sudo tee /proc/sys/kernel/yama/ptrace_scope # Only allows root to inject code. This is temporary until reboot.
 
 # Adjust the Sleep time below for your system if needed. 
-# This sends 2 interrupts to CS:GO after gdb attachs so gdb will drop into a shell.
+# This sends 2 interrupts to DOTA after gdb attachs so gdb will drop into a shell.
 sleep 3 && kill -2 "$dota_pid" && sleep 1 && kill -2 "$dota_pid" &
 
 # dlopen method Credits: Aixxe @ aixxe.net

@@ -6,6 +6,7 @@
 void Util::Protobuf::LogMessageContents( const google::protobuf::Message *m, int tabNum ) {
     const google::protobuf::Descriptor *desc       = m->GetDescriptor();
     const google::protobuf::Reflection *refl       = m->GetReflection();
+
     std::string temp;
 
     if( !desc || !refl ){
@@ -488,7 +489,7 @@ bool Util::Protobuf::EditFieldTraverseBool( google::protobuf::Message *msg, cons
     return foundTarget;
 }
 
-bool Util::Protobuf::EditFieldTraverseString( google::protobuf::Message *msg, const char *name, std::string value ) {
+bool Util::Protobuf::EditFieldTraverseString( google::protobuf::Message *msg, const char *name, const std::string& value ) {
     const google::protobuf::Descriptor *desc       = msg->GetDescriptor();
     const google::protobuf::Reflection *refl       = msg->GetReflection();
 
@@ -911,15 +912,15 @@ std::vector<int32_t> Util::Protobuf::GetRepeatedFieldTraverseInt32( google::prot
                 for( int j = 0; j < refl->FieldSize( *msg, field ); j++ ){
                     google::protobuf::Message *mfield = refl->MutableRepeatedMessage( msg, field, j );
                     std::vector<int32_t> more = GetRepeatedFieldTraverseInt32( mfield, name );
-                    for( size_t k = 0; k < more.size(); k++ ){
-                        ret.push_back( more[k] );
+                    for(int k : more){
+                        ret.push_back( k );
                     }
                 }
             } else {
                 google::protobuf::Message *mfield = refl->MutableMessage( msg, field );
                 std::vector<int32_t> more = GetRepeatedFieldTraverseInt32( mfield, name );
-                for( size_t k = 0; k < more.size(); k++ ){
-                    ret.push_back( more[k] );
+                for(int k : more){
+                    ret.push_back( k );
                 }
             }
         }
@@ -960,15 +961,15 @@ std::vector<uint32_t> Util::Protobuf::GetRepeatedFieldTraverseUInt32( google::pr
                 for( int j = 0; j < refl->FieldSize( *msg, field ); j++ ){
                     google::protobuf::Message *mfield = refl->MutableRepeatedMessage( msg, field, j );
                     std::vector<uint32_t> more = GetRepeatedFieldTraverseUInt32( mfield, name );
-                    for( size_t k = 0; k < more.size(); k++ ){
-                        ret.push_back( more[k] );
+                    for(unsigned int k : more){
+                        ret.push_back( k );
                     }
                 }
             } else {
                 google::protobuf::Message *mfield = refl->MutableMessage( msg, field );
                 std::vector<uint32_t> more = GetRepeatedFieldTraverseUInt32( mfield, name );
-                for( size_t k = 0; k < more.size(); k++ ){
-                    ret.push_back( more[k] );
+                for(unsigned int k : more){
+                    ret.push_back( k );
                 }
             }
         }
@@ -1010,15 +1011,15 @@ std::vector<int64_t> Util::Protobuf::GetRepeatedFieldTraverseInt64( google::prot
                 for( int j = 0; j < refl->FieldSize( *msg, field ); j++ ){
                     google::protobuf::Message *mfield = refl->MutableRepeatedMessage( msg, field, j );
                     std::vector<int64_t> more = GetRepeatedFieldTraverseInt64( mfield, name );
-                    for( size_t k = 0; k < more.size(); k++ ){
-                        ret.push_back( more[k] );
+                    for(long k : more){
+                        ret.push_back( k );
                     }
                 }
             } else {
                 google::protobuf::Message *mfield = refl->MutableMessage( msg, field );
                 std::vector<int64_t> more = GetRepeatedFieldTraverseInt64( mfield, name );
-                for( size_t k = 0; k < more.size(); k++ ){
-                    ret.push_back( more[k] );
+                for(long k : more){
+                    ret.push_back( k );
                 }
             }
         }
@@ -1059,15 +1060,15 @@ std::vector<uint64_t> Util::Protobuf::GetRepeatedFieldTraverseUInt64( google::pr
                 for( int j = 0; j < refl->FieldSize( *msg, field ); j++ ){
                     google::protobuf::Message *mfield = refl->MutableRepeatedMessage( msg, field, j );
                     std::vector<uint64_t> more = GetRepeatedFieldTraverseUInt64( mfield, name );
-                    for( size_t k = 0; k < more.size(); k++ ){
-                        ret.push_back( more[k] );
+                    for(unsigned long k : more){
+                        ret.push_back( k );
                     }
                 }
             } else {
                 google::protobuf::Message *mfield = refl->MutableMessage( msg, field );
                 std::vector<uint64_t> more = GetRepeatedFieldTraverseUInt64( mfield, name );
-                for( size_t k = 0; k < more.size(); k++ ){
-                    ret.push_back( more[k] );
+                for(unsigned long k : more){
+                    ret.push_back( k );
                 }
             }
         }
@@ -1108,15 +1109,15 @@ std::vector<float> Util::Protobuf::GetRepeatedFieldTraverseFloat( google::protob
                 for( int j = 0; j < refl->FieldSize( *msg, field ); j++ ){
                     google::protobuf::Message *mfield = refl->MutableRepeatedMessage( msg, field, j );
                     std::vector<float> more = GetRepeatedFieldTraverseFloat( mfield, name );
-                    for( size_t k = 0; k < more.size(); k++ ){
-                        ret.push_back( more[k] );
+                    for(float k : more){
+                        ret.push_back( k );
                     }
                 }
             } else {
                 google::protobuf::Message *mfield = refl->MutableMessage( msg, field );
                 std::vector<float> more = GetRepeatedFieldTraverseFloat( mfield, name );
-                for( size_t k = 0; k < more.size(); k++ ){
-                    ret.push_back( more[k] );
+                for(float k : more){
+                    ret.push_back( k );
                 }
             }
         }
@@ -1157,15 +1158,15 @@ std::vector<double> Util::Protobuf::GetRepeatedFieldTraverseDouble( google::prot
                 for( int j = 0; j < refl->FieldSize( *msg, field ); j++ ){
                     google::protobuf::Message *mfield = refl->MutableRepeatedMessage( msg, field, j );
                     std::vector<double> more = GetRepeatedFieldTraverseDouble( mfield, name );
-                    for( size_t k = 0; k < more.size(); k++ ){
-                        ret.push_back( more[k] );
+                    for(double k : more){
+                        ret.push_back( k );
                     }
                 }
             } else {
                 google::protobuf::Message *mfield = refl->MutableMessage( msg, field );
                 std::vector<double> more = GetRepeatedFieldTraverseDouble( mfield, name );
-                for( size_t k = 0; k < more.size(); k++ ){
-                    ret.push_back( more[k] );
+                for(double k : more){
+                    ret.push_back( k );
                 }
             }
         }
@@ -1206,15 +1207,15 @@ std::vector<bool> Util::Protobuf::GetRepeatedFieldTraverseBool( google::protobuf
                 for( int j = 0; j < refl->FieldSize( *msg, field ); j++ ){
                     google::protobuf::Message *mfield = refl->MutableRepeatedMessage( msg, field, j );
                     std::vector<bool> more = GetRepeatedFieldTraverseBool( mfield, name );
-                    for( size_t k = 0; k < more.size(); k++ ){
-                        ret.push_back( more[k] );
+                    for(auto && k : more){
+                        ret.push_back( k );
                     }
                 }
             } else {
                 google::protobuf::Message *mfield = refl->MutableMessage( msg, field );
                 std::vector<bool> more = GetRepeatedFieldTraverseBool( mfield, name );
-                for( size_t k = 0; k < more.size(); k++ ){
-                    ret.push_back( more[k] );
+                for(auto && k : more){
+                    ret.push_back( k );
                 }
             }
         }
@@ -1255,15 +1256,15 @@ std::vector<std::string> Util::Protobuf::GetRepeatedFieldTraverseString( google:
                 for( int j = 0; j < refl->FieldSize( *msg, field ); j++ ){
                     google::protobuf::Message *mfield = refl->MutableRepeatedMessage( msg, field, j );
                     std::vector<std::string> more = GetRepeatedFieldTraverseString( mfield, name );
-                    for( size_t k = 0; k < more.size(); k++ ){
-                        ret.push_back( more[k] );
+                    for(const auto & k : more){
+                        ret.push_back( k );
                     }
                 }
             } else {
                 google::protobuf::Message *mfield = refl->MutableMessage( msg, field );
                 std::vector<std::string> more = GetRepeatedFieldTraverseString( mfield, name );
-                for( size_t k = 0; k < more.size(); k++ ){
-                    ret.push_back( more[k] );
+                for(const auto & k : more){
+                    ret.push_back( k );
                 }
             }
         }
@@ -1304,15 +1305,15 @@ std::vector<int> Util::Protobuf::GetRepeatedFieldTraverseEnumValue( google::prot
                 for( int j = 0; j < refl->FieldSize( *msg, field ); j++ ){
                     google::protobuf::Message *mfield = refl->MutableRepeatedMessage( msg, field, j );
                     std::vector<int> more = GetRepeatedFieldTraverseEnumValue( mfield, name );
-                    for( size_t k = 0; k < more.size(); k++ ){
-                        ret.push_back( more[k] );
+                    for(int k : more){
+                        ret.push_back( k );
                     }
                 }
             } else {
                 google::protobuf::Message *mfield = refl->MutableMessage( msg, field );
                 std::vector<int> more = GetRepeatedFieldTraverseEnumValue( mfield, name );
-                for( size_t k = 0; k < more.size(); k++ ){
-                    ret.push_back( more[k] );
+                for(int k : more){
+                    ret.push_back( k );
                 }
             }
         }

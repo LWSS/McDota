@@ -11,7 +11,7 @@ class CUtlVector
 			return m_Memory[i];
 		}
 
-		int Count() const
+		[[nodiscard]] int Count() const
 		{
 			return m_Size;
 		}
