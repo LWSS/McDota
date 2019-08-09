@@ -1,81 +1,72 @@
 #include "Integritycheck.h"
 
-bool Integrity::VMTsHaveMisMatch( ) {
+static void PrintVMTError( const char *className, uint32_t old, uint32_t now ){
+    MC_PRINTF_ERROR("%s VM count does not match! [%d]->[%d]\n", className, old, now);
+}
 
-    uint32_t cameraNum = 42;
-    uint32_t clientModeNum = 64;
-    uint32_t dotaPlayerNum = 439;
-    uint32_t gameEventManagerNum = 17;
-    uint32_t networkMessagesNum = 34;
-    uint32_t panoramaCPanel2DNum = 80;
-    uint32_t panoramaUIPanelNum = 334;
-    uint32_t viewRenderNum = 35;
-    uint32_t vScriptGameSystemNum = 58;
-    uint32_t panoramaEngineNum = 182;
-    uint32_t networkClientServiceNum = 69;
-    uint32_t networkGameClientNum = 123;
+struct VMTEntry
+{
+    const char *name;
+    void **ptrToAddr;
+    uint32_t expectedLen;
+} vms[] = {
+        { "Camera", (void**)&camera, 42 },
+        { "Client Mode", (void**)&clientMode, 65 },
+        { "Game Event Manager", (void**)&gameEventManager, 17 },
+        { "NetworkMessages", (void**)&networkMessages, 34 },
+        { "CPanel2D", (void**)&gDBPlayPanel, 81 },
+        { "viewRender", (void**)&viewRender, 35 },
+        { "vScriptSystem", (void**)&vscriptSystem, 58 },
+        { "networkClientService", (void**)&networkClientService, 69 },
+};
+
+bool Integrity::VMTsHaveMisMatch( ) {
+    uint32_t dotaPlayerNum = 443;
+    uint32_t panoramaUIPanelNum = 338;
+    uint32_t uiEngineNum = 182;
+    uint32_t networkGameClientNum = 124;
 
     bool mismatchFound = false;
 
+    /* Custom Checks */
     if( engine->IsInGame() ){
         int localID = engine->GetLocalPlayer();
         auto *localPlayer = (CDotaPlayer*)entitySystem->GetBaseEntity(localID);
         if( !localPlayer )
             MC_PRINTF_ERROR("Couldn't grab localplayer while in-game\n");
         if( dotaPlayerNum != CountVMs(localPlayer) ){
-            MC_PRINTF_ERROR("localPlayerVMs does not match; Is: (%d), should be: (%d)\n", CountVMs(localPlayer), dotaPlayerNum);
+            PrintVMTError( "localPlayer", dotaPlayerNum, CountVMs( localPlayer ) );
             mismatchFound = true;
         }
-    }
-
-    if( CountVMs(camera) != cameraNum ){
-        MC_PRINTF_ERROR("Camera VM count does not match; Is: (%d), should be: (%d)\n", CountVMs(camera), cameraNum);
-        mismatchFound = true;
-    }
-    if( CountVMs(clientMode) != clientModeNum ){
-        MC_PRINTF_ERROR("Client Mode VM count does not match; Is: (%d), should be: (%d)\n", CountVMs(clientMode), clientModeNum);
-        mismatchFound = true;
-    }
-    if( CountVMs(gameEventManager) != gameEventManagerNum ){
-        MC_PRINTF_ERROR("Game Event Manager VM count does not match; Is: (%d), should be: (%d)\n", CountVMs(gameEventManager), gameEventManagerNum);
-        mismatchFound = true;
-    }
-    if( CountVMs(networkMessages) != networkMessagesNum ){
-        MC_PRINTF_ERROR("NetworkMessages VM count does not match; Is: (%d), should be: (%d)\n", CountVMs(networkMessages), networkMessagesNum);
-        mismatchFound = true;
-    }
-    if( CountVMs(gDBPlayPanel) != panoramaCPanel2DNum ){
-        MC_PRINTF_ERROR("CPanel2D VM count does not match; Is: (%d), should be: (%d)\n", CountVMs(gDBPlayPanel), panoramaCPanel2DNum);
-        mismatchFound = true;
     }
 
     panorama::IUIPanel *exampleUIPanel = panoramaEngine->AccessUIEngine()->GetPanelArray()->slots[0].panel; // 0 = DotaDashboard
     if( panoramaEngine->AccessUIEngine()->IsValidPanelPointer(exampleUIPanel) ){
         if( CountVMs(exampleUIPanel) != panoramaUIPanelNum ){
-            MC_PRINTF_ERROR("UIPanelVMs does not match; Is: (%d), should be: (%d)\n", CountVMs(exampleUIPanel), panoramaUIPanelNum);
+            PrintVMTError( "UIPanel", panoramaUIPanelNum, CountVMs( exampleUIPanel ) );
             mismatchFound = true;
         }
     } else {
         MC_PRINTF_WARN("UI Panel[0] was INVALID!\n");
     }
-    if( CountVMs(viewRender) != viewRenderNum ){
-        MC_PRINTF_ERROR("viewRender VM count does not match; Is: (%d), should be: (%d)\n", CountVMs(viewRender), viewRenderNum);
+
+    if( CountVMs(networkClientService->GetIGameClient()) != networkGameClientNum ){
+        PrintVMTError( "networkGameClient", networkGameClientNum, CountVMs( networkClientService->GetIGameClient( ) ) );
         mismatchFound = true;
     }
-    if( CountVMs(vscriptSystem) != vScriptGameSystemNum ){
-        MC_PRINTF_ERROR("vScriptSystem VM count does not match; Is: (%d), should be: (%d)\n", CountVMs(vscriptSystem), vScriptGameSystemNum);
+
+    if( CountVMs(panoramaEngine->AccessUIEngine()) != uiEngineNum ){
+        PrintVMTError( "Panorama UI Engine", uiEngineNum, CountVMs( panoramaEngine->AccessUIEngine( ) ) );
         mismatchFound = true;
     }
-    if( CountVMs(panoramaEngine->AccessUIEngine()) != panoramaEngineNum ){
-        MC_PRINTF_ERROR("Panorama UI Engine VM count does not match; Is: (%d), should be: (%d)\n", CountVMs(panoramaEngine->AccessUIEngine()), panoramaEngineNum);
-        mismatchFound = true;
-    }
-    if( CountVMs(networkClientService) != networkClientServiceNum ){
-        MC_PRINTF_ERROR("networkClientService VM count does not match; Is: (%d), should be: (%d)\n", CountVMs(networkClientService), networkClientServiceNum);
-        mismatchFound = true;
-    } else if( CountVMs(networkClientService->GetIGameClient()) != networkGameClientNum ){
-        MC_PRINTF_ERROR("networkClientService->IGameClient() VM count does not match; Is: (%d), should be: (%d)\n", CountVMs(networkClientService->GetIGameClient()), networkGameClientNum);
-        mismatchFound = true;
+
+    /* Static Checks */
+    for( const VMTEntry &i : vms ){
+        uint32_t num = CountVMs( *i.ptrToAddr );
+        if( num != i.expectedLen ){
+            PrintVMTError( i.name, i.expectedLen, num );
+            mismatchFound = true;
+        }
     }
 
     return mismatchFound;

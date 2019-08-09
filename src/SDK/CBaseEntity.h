@@ -210,11 +210,13 @@ public:
     virtual void C_BaseEntity__OnTakeDamage(void* CTakeDamageInfo);
     virtual void C_BaseEntity__TakeDamage(void* CTakeDamageInfo);
     virtual void sub_26F57E0();
+    virtual void unk_newFuncHashBucket(); // added with summer scrub pt2 - elf_gnu_hash_bucket
     virtual void sub_2937C60();
     virtual int C_BaseEntity__ClothSettingsTypeID(); // a guess
     virtual void sub_2907330();
     virtual void unk_elfshit(); //  rax, qword ptr ds:stru_D90.st_name - added 7-17-19
     virtual void* C_BasePlayer__GetPredictionOwner(void);
+    virtual void unk_NewFunc(); // added with summer scrub pt2
     virtual void C_BaseEntity__InitPredictable(void* C_BasePlayer);
     virtual void C_BaseAnimating__SetPredictable(bool predictable);
     virtual void C_BaseEntity__DecalTrace(void* CGameTrace, const char* unk);

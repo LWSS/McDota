@@ -69,6 +69,7 @@ public:
     virtual void C_BasePlayer__OnAmmoCountChanged(int unk, unsigned int unk2, unsigned int unk3);
     virtual void C_BasePlayer__OnWearablesChanged(void);
     virtual void C_BasePlayer__OnBecomeLocalPlayer(void);
+    virtual void unk_newEmptyFunc(); // added with summer scrub pt2
     virtual void C_BasePlayer__CalcView(Vector &eyeOrigin, QAngle &eyeAngles, float &zNear, float &zFar, float &fov);
     virtual void C_BasePlayer__CalcViewModelView(const Vector& eyeOrigin, const QAngle& eyeAngles);
     virtual void C_BasePlayer__CalcRoll(const QAngle& angles, const Vector& velocity, float rollangle, float rollspeed);
@@ -84,6 +85,7 @@ public:
     virtual Vector* C_BasePlayer__GetAutoaimVector(float fovMaybe);
     virtual void C_DOTAPlayer__CreateMove(void* CUserCmd, QAngle &unk, Vector &unk2);
     virtual void C_DOTAPlayer__SendMove(int unk);
+    virtual void unk_EmptyFunc(); // added with summer scrub pt2
     virtual void C_BasePlayer__AvoidPhysicsProps(void* CUserCmd);
     virtual void C_BasePlayer__PlayerUse(void* C_BaseEntity);
     virtual void* C_BasePlayer__GetUseTarget(void);

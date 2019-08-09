@@ -51,7 +51,7 @@ inline uintptr_t DispatchPacketFnAddr;
 inline uintptr_t BAsyncSendProtoFnAddr;
 
 #define MC_PRINTF(f_, ...) cvar->ConsoleColorPrintf(ColorRGBA( 255, 140, 5 ), ("[McDota] " f_), ##__VA_ARGS__)
-#define MC_PRINTF_ERROR(f_, ...) cvar->ConsoleColorPrintf(ColorRGBA( 225, 5, 5 ), ("[McDota:%s] " f_ ), __FUNCTION__, ##__VA_ARGS__)
+#define MC_PRINTF_ERROR(f_, ...) cvar->ConsoleColorPrintf(ColorRGBA( 255, 20, 140 ), ("[McDota:%s] " f_ ), __FUNCTION__, ##__VA_ARGS__)
 #define MC_PRINTF_WARN(f_, ...) cvar->ConsoleColorPrintf(ColorRGBA( 255, 223, 0 ), ("[McDota:%s] " f_ ), __FUNCTION__, ##__VA_ARGS__)
 
 namespace Interfaces

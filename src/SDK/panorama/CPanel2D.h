@@ -2,6 +2,7 @@
 
 #include "types.h"
 
+// xref "CPanel2D::BSetProperty" to BSetProperty (libclient)
 namespace panorama
 {
     class CPanel2D
@@ -30,6 +31,7 @@ namespace panorama
         virtual void OnClick(panorama::IUIPanel *panel, panorama::MouseData_t const &) = 0;
         virtual void sub_23BF260() = 0;
         virtual bool BIsClientPanelEvent(panorama::CPanoramaSymbol) = 0;
+        virtual bool sub_3BC94E0() = 0;
         virtual void sub_4555580() = 0;
         virtual bool BSetProperty(panorama::CPanoramaSymbol, const char *) = 0;
         virtual bool BIsDelayedProperty(panorama::CPanoramaSymbol) = 0;

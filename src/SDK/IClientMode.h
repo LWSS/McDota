@@ -3,7 +3,7 @@
 #include "vector.h"
 #include "IInputSystem.h"
 
-/* xref "dota_chat_ban_notification" to get to ClientModeDOTANormal::CanVoiceChat() */
+/* xref "dota_chat_ban_notification" to get to ClientModeDOTANormal::CanVoiceChat() (libclient) - 1st one, has "userid", is short */
 class IClientMode
 {
 public:
@@ -33,6 +33,7 @@ public:
     virtual void StartMessageMode(int) = 0;
     virtual void sub_2DC5F20() = 0;
     virtual void sub_2DC4A00() = 0;
+    virtual void sub_28DF9F0() = 0;
     virtual void OverrideMouseInput(float *, float *) = 0;
     virtual void OverrideJoystickInput(float *, float *) = 0;
     virtual bool CreateMove(CUserCmd *cmd, QAngle &, Vector &) = 0;

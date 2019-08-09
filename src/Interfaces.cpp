@@ -10,7 +10,7 @@ bool Interfaces::FindInterfaces()
 {
     client = GetInterface<CSource2Client>("../../dota/bin/linuxsteamrt64/libclient.so", "Source2Client002", 129 );
     cvar = GetInterface<ICvar>( "./libvstdlib.so", "VEngineCvar007", 52 );
-    engine = GetInterface<IEngineClient>( "./libengine2.so", "Source2EngineToClient001", 173 );
+    engine = GetInterface<IEngineClient>( "./libengine2.so", "Source2EngineToClient001", 174 );
     inputSystem = GetInterface<IInputSystem>( "./libinputsystem.so", "InputSystemVersion001", 89 );
     inputInternal = GetInterface<IInputInternal>("./libvgui2.so", "VGUI_InputInternal001", 101 );
     networkClientService = GetInterface<INetworkClientService>("./libengine2.so", "NetworkClientService_001", 69 );

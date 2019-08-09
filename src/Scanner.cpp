@@ -90,7 +90,7 @@ static bool FindVScript()
 
 static bool FindPanelArrayOffset()
 {
-	unsigned int knownGoodOffset = 0x1C0;
+	unsigned int knownGoodOffset = 0x1b8;
 	//  CUIEngine::IsValidPanelPointer()
 	//
 	//   55                      push    rbp

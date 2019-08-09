@@ -59,6 +59,10 @@ namespace panorama
         virtual bool IsVisible(void) = 0;
         virtual bool IsTransparent(void) = 0;
         virtual void SetLayoutLoadedFromParent(IUIPanel *) = 0;
+        virtual void unk_setInt(int unk) = 0; // These 4 are Related.
+        virtual void unk_setInt2(int unk) = 0;// Added with Summer Scrub pt2
+        virtual int unk_getInt(void) = 0;     // ^^
+        virtual int unk_getInt2(void) = 0;    // ^^
         virtual void SetPanelIntoContext(IUIPanel *) = 0;
         virtual void* GetLayoutFile(void) = 0;
         virtual void GetLayoutFileLoadedFrom(void) = 0;

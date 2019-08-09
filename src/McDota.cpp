@@ -1,8 +1,3 @@
-#include <csignal>
- //readlink
-#include <random>
-#include <thread>
-
 #include "GUI/Gui.h"
 #include "Hooks/HardHooks.h"
 #include "Hooks/Hooks.h"
@@ -15,7 +10,11 @@
 #include "Utils/Util.h"
 #include "Utils/Util_sdk.h"
 
- const char *Util::logFileName = "/tmp/dota.log";
+#include <csignal>
+#include <random>
+#include <thread>
+
+const char *Util::logFileName = "/tmp/dota.log";
 void *mcPrev, *mcCurr, *mcNext;
 
 struct sigaction sa;
