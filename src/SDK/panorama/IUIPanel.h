@@ -77,14 +77,14 @@ namespace panorama
         virtual IUIPanel* FindChildInLayoutFile(const char *) = 0;
         virtual void unk11() = 0;
         virtual IUIPanel* FindPanelInLayoutFile(const char *) = 0;
-        virtual bool IsDecendantOf(IUIPanel * const) = 0;
+        virtual bool IsDecendantOf(IUIPanel const * const) = 0;
         virtual void RemoveAndDeleteChildren(void) = 0;
         virtual void RemoveAndDeleteChildrenOfType(CPanoramaSymbol) = 0;
         virtual int GetChildCount(void) = 0;
         virtual IUIPanel* GetChild(int) = 0;
         virtual IUIPanel* GetFirstChild(void) = 0;
         virtual IUIPanel* GetLastChild(void) = 0;
-        virtual int GetChildIndex(IUIPanel * const) = 0;
+        virtual int GetChildIndex(IUIPanel const * const) = 0;
         virtual int GetChildCountOfType(CPanoramaSymbol) = 0;
         virtual int GetHiddenChildCount(void) = 0;
         virtual IUIPanel* GetHiddenChild(int) = 0;
@@ -167,7 +167,7 @@ namespace panorama
         virtual void AddClasses(CPanoramaSymbol *, unsigned int count) = 0;
         virtual void RemoveClass(const char *) = 0;
         virtual void RemoveClass(CPanoramaSymbol) = 0;
-        virtual void RemoveClasses(CPanoramaSymbol * const, unsigned int) = 0;
+        virtual void RemoveClasses(CPanoramaSymbol const * const, unsigned int) = 0;
         virtual void RemoveClasses(const char *) = 0;
         virtual void RemoveAllClasses(void) = 0;
         virtual void* GetClasses(void) = 0;
