@@ -11,7 +11,7 @@ struct ChangeAccessorFieldPathIndex_t;
 class CCollisionProperty
 {
 public:
-    virtual CSchemaClassBinding* Schema_DynamicBinding();
+    virtual CSchemaClassBinding* Schema_DynamicBinding(void);
     virtual Datamap* GetPredDescMap();
 
 
