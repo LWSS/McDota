@@ -83,7 +83,7 @@ public:
     virtual bool C_BasePlayer__Weapon_CanUse(void* C_BaseCombatWeapon);
     virtual void C_BasePlayer__Weapon_DropPrimary(void);
     virtual Vector* C_BasePlayer__GetAutoaimVector(float fovMaybe);
-    virtual void C_DOTAPlayer__CreateMove(void* CUserCmd, QAngle &unk, Vector &unk2);
+    virtual void C_DOTAPlayer__CreateMove(CUserCmd* cmd, QAngle &unk, Vector &unk2);
     virtual void C_DOTAPlayer__SendMove(int unk);
     virtual void unk_EmptyFunc(); // added with summer scrub pt2
     virtual void C_BasePlayer__AvoidPhysicsProps(void* CUserCmd);

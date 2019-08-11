@@ -117,5 +117,5 @@ bool Hooks::CreateMove( IClientMode *thisptr, CUserCmd* cmd, QAngle &angle, Vect
 
     }
 
-    return clientModeVMT->GetOriginalMethod<CreateMoveFn>( 28 )( thisptr, cmd, angle, pos );
+    return clientModeVMT->GetOriginalMethod<CreateMoveFn>( 29 )( thisptr, cmd, angle, pos );
 }

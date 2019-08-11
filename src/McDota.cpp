@@ -117,7 +117,7 @@ void Main()
     soundOpSystemVMT->ApplyVMT();
 
     clientModeVMT = new VMT(clientMode);
-    clientModeVMT->HookVM(Hooks::CreateMove, 28);
+    clientModeVMT->HookVM(Hooks::CreateMove, 29);
     clientModeVMT->ApplyVMT();
 
     panelVMT = new VMT(panel);
