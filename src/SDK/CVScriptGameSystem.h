@@ -7,8 +7,8 @@ public:
     virtual void IGameSystem__Init(void) = 0;
 	virtual void IGameSystem__PostInit(void) = 0;
 	virtual void IGameSystem__Shutdown(void) = 0;
-	virtual void CVScriptGameSystem__GameInit(void* EventGameInit_t) = 0;
-	virtual void CVScriptGameSystem__GameShutdown(void* EventGameShutdown_t) = 0;
+	virtual void CVScriptGameSystem__GameInit(void* const EventGameInit_t) = 0;
+	virtual void CVScriptGameSystem__GameShutdown(void* const EventGameShutdown_t) = 0;
 	virtual void sub_27924A0() = 0;// All these functions are empty void functions.
 	virtual void sub_27924B0() = 0;// they aren't that great
 	virtual void sub_285D370() = 0;

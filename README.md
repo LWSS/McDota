@@ -22,7 +22,6 @@ It has been built from the ground-up to be faster and better than previous cheat
 * CMake
 * a C++17 compiler ( like `clang` or `gcc` )
 * Build essentials( make, `gdb`, etc.. )
-* zlib-dev (`zlib1g-dev` in ubuntu)
 * [google protobufs](https://github.com/protocolbuffers/protobuf) development library
 ## Build Instructions
 `cmake . && make -j`
