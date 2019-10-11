@@ -21,7 +21,8 @@ public:
 	virtual void sub_20A90() = 0;
 	virtual void sub_20AB0() = 0;
 	virtual void loc_2BAD0() = 0;
-	virtual void ReloadAllShaders(void) = 0;
+	virtual void DynamicShaderCompile_ReloadAllShaders(void) = 0;
+	virtual void sub_SomeShaderStuff() = 0; // added sept 2019 dota+ update.
 	virtual bool IsDynamicShaderCompileEnabled(void) = 0;
 	virtual void SetMaterialParam_MaterialEditor() = 0;//(CWeakHandle<InfoForResourceTypeIMaterial2>,char const*,char const*)
 	virtual void AddFrameUpdateFunc( void (*)(void) ) = 0;

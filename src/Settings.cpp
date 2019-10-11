@@ -27,7 +27,6 @@ bool Settings::RegisterCustomConvars( ) {
 
 	mc_camera_pitch_add = Util::RegisterConVar( "mc_camera_pitch_add", "0.0", 136, nullptr, true, -1.0f, true, 360.0f );
 	mc_camera_yaw_add = Util::RegisterConVar( "mc_camera_yaw_add", "0.0", 136, nullptr, true, 0.0f );
-
 	mc_camera_distance = Util::RegisterConVar( "mc_camera_distance", "1134.0", 136, nullptr, true, 0.0f );
 
 	mc_fog_disable = Util::RegisterConVar( "mc_fog_disable", "false" );
@@ -36,8 +35,6 @@ bool Settings::RegisterCustomConvars( ) {
 
 	mc_airstuck_on = Util::RegisterConVar( "mc_airstuck_on", "false" );
 	mc_command_repeater = Util::RegisterConVar( "mc_command_repeater", "true" );
-
-	mc_ent_select = Util::RegisterConVar( "mc_ent_select", "1" );
 
 	mc_log_createmove = Util::RegisterConVar( "mc_log_createmove", "false" );
 	mc_log_clientevents = Util::RegisterConVar( "mc_log_clientevents", "false" );
@@ -52,16 +49,18 @@ bool Settings::RegisterCustomConvars( ) {
 	mc_log_GC_recv = Util::RegisterConVar( "mc_log_GC_recv", "false" );
 	mc_log_GC_send = Util::RegisterConVar( "mc_log_GC_send", "false" );
 
-	mc_raw_command = Util::RegisterConVar( "mc_raw_command", "say wow!" );
-	mc_cmd_src = Util::RegisterConVar( "mc_cmd_src", "0" );
 	mc_end_createmove = Util::RegisterConVar( "mc_end_createmove", "false" );
+	mc_crash_server = Util::RegisterConVar( "mc_crash_server", "false" );
+
+	mc_anti_mute = Util::RegisterConVar( "mc_anti_mute", "false" );
 	mc_send_voice = Util::RegisterConVar( "mc_send_voice", "false" );
 	mc_send_freq = Util::RegisterConVar( "mc_send_freq", "25" );
 	mc_send_status = Util::RegisterConVar( "mc_send_status", "false" );
+	mc_stall_connect = Util::RegisterConVar( "mc_stall_connect", "false" );
 
 	mc_retarget_orders = Util::RegisterConVar( "mc_retarget_orders", "false" );
-    mc_allow_customnames = Util::RegisterConVar( "mc_allow_customnames", "false" );
     mc_custom_str = Util::RegisterConVar( "mc_custom_str", "#as Mars (Lvl 25)" );
+	mc_custom_str_alt = Util::RegisterConVar( "mc_custom_str_alt", "test123" );
 	mc_custom_int = Util::RegisterConVar( "mc_custom_int", "1" );
 	mc_custom_x = Util::RegisterConVar( "mc_custom_x", "1" );
 	mc_custom_y = Util::RegisterConVar( "mc_custom_y", "1" );

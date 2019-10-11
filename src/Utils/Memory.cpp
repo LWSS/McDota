@@ -31,7 +31,7 @@ unsigned int Memory::GetProtectionFlags( uintptr_t address ) {
     return flags;
 }
 
-static const char unk[] = "ERROR! UNKNOWN MODULE! IS IT THE STACK(0x7FF)?";
+static const char unk[] = "Unknown";
 static uintptr_t moduleAddr;
 static const char *ret;
 const char *Memory::GetModuleName( uintptr_t address ) {

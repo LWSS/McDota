@@ -10,19 +10,19 @@ struct VMTEntry
     void **ptrToAddr;
     uint32_t expectedLen;
 } vms[] = {
-        { "Camera", (void**)&camera, 42 },
+        { "Camera", (void**)&camera, 52 },
         { "Client Mode", (void**)&clientMode, 65 },
         { "Game Event Manager", (void**)&gameEventManager, 17 },
         { "NetworkMessages", (void**)&networkMessages, 34 },
-        { "CPanel2D", (void**)&gDBPlayPanel, 81 },
+        { "CPanel2D", (void**)&gDBPlayPanel, 82 },
         { "viewRender", (void**)&viewRender, 35 },
         { "vScriptSystem", (void**)&vscriptSystem, 58 },
         { "networkClientService", (void**)&networkClientService, 69 },
 };
 
 bool Integrity::VMTsHaveMisMatch( ) {
-    uint32_t dotaPlayerNum = 443;
-    uint32_t panoramaUIPanelNum = 338;
+    uint32_t dotaPlayerNum = 445;
+    uint32_t panoramaUIPanelNum = 342;
     uint32_t uiEngineNum = 182;
     uint32_t networkGameClientNum = 124;
 

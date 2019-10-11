@@ -7,6 +7,7 @@
 typedef void (* FrameStageNotifyFn)( CSource2Client*, ClientFrameStage_t );
 
 //looks like they added stages 7 and 9
+/*
 static const char* Stage2String( ClientFrameStage_t stage ){
     switch( stage ){
         CASE_STRING( FRAME_UNDEFINED );
@@ -20,7 +21,7 @@ static const char* Stage2String( ClientFrameStage_t stage ){
         default:
             return std::to_string((int)stage).c_str();
     }
-}
+}*/
 void Hooks::FrameStageNotify( CSource2Client *thisptr, ClientFrameStage_t stage ) {
     //MC_PRINTF("FSN: %s\n", Stage2String(stage));
     CDotaPlayer *localPlayer;
@@ -67,8 +68,20 @@ void Hooks::FrameStageNotify( CSource2Client *thisptr, ClientFrameStage_t stage 
                 }
             }
 
-            if( !netChannelVMT || (engine->GetNetChannelInfo() != (void*)netChannelVMT->interface ) ){
-                    delete netChannelVMT;
+            if( //engine->IsInGame() &&
+             (!networkGameClientVMT || (networkClientService->GetIGameClient()) != (CNetworkGameClient*)networkGameClientVMT->interface) ){
+                //delete networkGameClientVMT;
+                if( networkClientService->GetIGameClient() ){
+                    MC_PRINTF( "Grabbing new NetworkGameClient VMT - %p\n", (void*)networkClientService->GetIGameClient() );
+                    networkGameClientVMT = new VMT( networkClientService->GetIGameClient() );
+                    networkGameClientVMT->ApplyVMT();
+                } else {
+                    MC_PRINTF_WARN("GetIGameClient() returned null! Aboring NetworkGameClient VMT\n");
+                }
+            }
+
+            if( /*engine->IsInGame()  && */(!netChannelVMT || (engine->GetNetChannelInfo() != (void*)netChannelVMT->interface)) ){
+                //delete netChannelVMT;
 
                 if( engine->GetNetChannelInfo() ) {
                     MC_PRINTF( "Grabbing new NetChannel VMT - %p\n", (void*)engine->GetNetChannelInfo() );
@@ -77,7 +90,7 @@ void Hooks::FrameStageNotify( CSource2Client *thisptr, ClientFrameStage_t stage 
                     netChannelVMT->HookVM( Hooks::PostReceivedNetMessage, 81 );
                     netChannelVMT->ApplyVMT( );
                 } else {
-                    MC_PRINTF_WARN("GetNetChannelInfo returned null! Aborting NetChannel Hook!\n");
+                    MC_PRINTF_WARN("GetNetChannelInfo returned null! Aborting NetChannel VMT!\n");
                 }
             }
 
@@ -90,12 +103,12 @@ void Hooks::FrameStageNotify( CSource2Client *thisptr, ClientFrameStage_t stage 
                 break;
             }
 
-            if( !localPlayerVMT || (void*)localPlayerVMT->interface != localPlayer ){
-              delete localPlayerVMT;
+            if( engine->IsInGame() && (!localPlayerVMT || (void*)localPlayerVMT->interface != localPlayer) ){
+                delete localPlayerVMT;
 
                 MC_PRINTF("Making new localPlayer VMT\n");
                 localPlayerVMT = new VMT( localPlayer );
-                localPlayerVMT->HookVM( Hooks::PrepareUnitOrders, 440 );
+                localPlayerVMT->HookVM( Hooks::PrepareUnitOrders, 442 );
                 localPlayerVMT->ApplyVMT();
                 MC_PRINTF("LocalPlayer @ %p\n", (void*)localPlayer);
             }

@@ -170,6 +170,10 @@ namespace panorama
         virtual void RemoveClasses(CPanoramaSymbol const * const, unsigned int) = 0;
         virtual void RemoveClasses(const char *) = 0;
         virtual void RemoveAllClasses(void) = 0;
+        virtual void loc_ECAB0() = 0; // Added sept 26, 2019; related
+        virtual void sub_EC3A0() = 0; // Added sept 26, 2019; related
+        virtual void sub_EC4B0() = 0; // Added sept 26, 2019; related
+        virtual void sub_EBFE0() = 0; // Added sept 26, 2019; related
         virtual void* GetClasses(void) = 0;
         virtual bool HasClass(const char *) = 0;
         virtual bool HasClass(CPanoramaSymbol) = 0;

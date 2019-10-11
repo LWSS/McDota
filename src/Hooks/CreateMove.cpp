@@ -3,6 +3,7 @@
 #include <sstream>
 
 #include "../Settings.h"
+#include "../protos/mcdota.pb.h"
 
 typedef bool (* CreateMoveFn)( IClientMode*, CUserCmd*, QAngle&, Vector& );
 
@@ -67,9 +68,12 @@ static std::string Buttons2ButtonStr( int32_t buttons ) {
     return ss.str();
 }
 
+bool lineInProgress = false;
+
 //angle changed with +left/right stays the same.
 //position is a delta, changes with arrow keys
 bool Hooks::CreateMove( IClientMode *thisptr, CUserCmd* cmd, QAngle &angle, Vector &pos ) {
+    bool ret;
     /* I'm gonna grab Camera here since this gets called in-game */
     camera = GetCurrentCamera();
     if( camera ){
@@ -89,8 +93,10 @@ bool Hooks::CreateMove( IClientMode *thisptr, CUserCmd* cmd, QAngle &angle, Vect
         engine->ClientCmd_Unrestricted("status");
     }
 
-    if( mc_end_createmove->GetBool() )
+    if( mc_end_createmove->GetBool() ){
+        cmd->tick_count = 0;
         return true;
+    }
 
     if( mc_airstuck_on->GetBool() ){
         MC_PRINTF("Airstucking...\n");
@@ -117,5 +123,7 @@ bool Hooks::CreateMove( IClientMode *thisptr, CUserCmd* cmd, QAngle &angle, Vect
 
     }
 
-    return clientModeVMT->GetOriginalMethod<CreateMoveFn>( 29 )( thisptr, cmd, angle, pos );
+    ret = clientModeVMT->GetOriginalMethod<CreateMoveFn>( 29 )( thisptr, cmd, angle, pos );
+    CreateMove::lastMouse3D = cmd->CursorRay;
+    return ret;
 }

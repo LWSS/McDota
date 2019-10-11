@@ -23,6 +23,21 @@ public:
 	void* N00000047; //0x0068
 };
 
+struct RnQueryAttr_t
+{
+	void *pskip; // guess
+	void *unk;
+	void *unk2;
+	int iUnk; // 0FFFFFFFFh
+	int iUnk2; // 100
+};
+
+struct Ray_t;
+struct CGameTrace
+{
+
+};
+
 /* xref "-pressdemo" to CSource2Client::Init */
 class CSource2Client : IAppSystem
 {
@@ -36,7 +51,7 @@ public:
 	virtual void sub_2B5FF30();
 	virtual void SendMove(int splitScreenSlot, int unk);
 	virtual void ProcessInput(int splitScreenSlot, float unk, bool unk2);
-	virtual void WriteUsercmdDeltaToBuffer(int splitScreenSlot, void* bf_write, int from, int to, bool isnewcommand); // 21
+	virtual void WriteUsercmdDeltaToBuffer(int splitScreenSlot, void* bf_write, int from, int to, bool isnewcommand); // 20
 	virtual void EncodeUserCmdToBuffer(int splitScreenSlot, void* bf_write, int slot);
 	virtual void DecodeIUserCmdFromBuffer(int splitScreenSlot, void* bf_read, int slot);
 	virtual void GetEntity2Networkable(int entIndex, void* Entity2Networkable_t);
@@ -45,8 +60,8 @@ public:
 	virtual void NotifyShouldTransmit();
 	virtual ClientClass* GetAllClasses(void);
 	virtual void ReceivedServerInfo(void* GameSessionConfiguration_t, void* ILoopModePrerequisiteRegistry);
-	virtual void FrameStageNotify(ClientFrameStage_t stage); // 29
-	virtual void HudVidInit(void);
+	virtual void FrameStageNotify(ClientFrameStage_t stage);
+	virtual void HudVidInit(void); // 30
 	virtual void HudUpdate(bool bActive);
 	virtual void HudReset(void);
 	virtual void HudText(void* client_textmessage_t);
@@ -67,7 +82,6 @@ public:
 	virtual void sub_2B60080();
 	virtual void sub_2B614E0();
 	virtual void sub_2B61530();
-	virtual void* GetMouth(int entIndex);
 	virtual void UpdateAudioState(void* AudioState_t, int splitScreenSlot);
 	virtual void sub_2B60040();
 	virtual void sub_2B6E830();
@@ -116,7 +130,7 @@ public:
 	virtual void DeleteProjectedTexture();
 	virtual void UpdateDeferredLight();
 	virtual void DeleteDeferredLight();
-	virtual void TraceRay(void* Ray_t, int RnQueryAttr_t, void* CGameTrace);
+	virtual void TraceRay(const Ray_t &ray, RnQueryAttr_t filter, CGameTrace* traceOut);
 	virtual void GetPointContents(Vector unk, int unk2);
 	virtual void LaunchApplicationOnExit(const char* pathMaybe);
 	virtual void DotaEconGetSoundReplacement(const char* pathMaybe);

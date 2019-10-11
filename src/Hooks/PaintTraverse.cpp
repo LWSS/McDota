@@ -39,7 +39,11 @@ void Hooks::PaintTraverse( IVPanel *thisptr, IVGuiPaintSurface *surface, VPANEL 
     surface->PopMakeCurrent(panel);
     */
 
+    surface->PushMakeCurrent(panel, false);
+
     ESP::PaintTraverse( thisptr, surface, panel, force_repaint, allow_force );
+
+    surface->PopMakeCurrent(panel);
 
     return panelVMT->GetOriginalMethod<PaintTraverseFn>( 55 )( thisptr, surface, panel, force_repaint, allow_force );
 }

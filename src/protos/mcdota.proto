@@ -1,0 +1,82 @@
+option optimize_for = SPEED;
+option cc_generic_services = false;
+
+
+message CDOTAClientMsg_TipAlert {
+	optional string tip_text = 1;
+}
+
+message CCLCMsg_SplitPlayerConnect {
+	optional string playername = 1;
+}
+
+message CDOTAClientMsg_EventCNY2015Cmd {
+	optional bytes data = 1;
+}
+
+message CDOTAClientMsg_RankWager {
+	optional bool announce_wager = 1;
+}
+
+message CDOTAClientMsg_EventPointsTip {
+	optional uint32 recipient_player_id = 1;
+}
+
+message CDOTAClientMsg_CoinWager {
+	optional uint32 wager_amount = 1;
+}
+
+message CMsg_CVars {
+	message CVar {
+		optional string name = 1;
+		optional string value = 2;
+	}
+
+	repeated .CMsg_CVars.CVar cvars = 1;
+}
+
+message CNETMsg_SetConVar {
+	optional .CMsg_CVars convars = 1;
+}
+
+message CNETMsg_StringCmd {
+	optional string command = 1;
+}
+
+message CDOTAMsg_CoachHUDPing {
+	optional uint32 x = 1;
+	optional uint32 y = 2;
+	optional string tgtpath = 3;
+}
+
+message CDOTAUserMsg_CoachHUDPing {
+	optional uint32 player_id = 1;
+	optional .CDOTAMsg_CoachHUDPing hud_ping = 2;
+}
+
+message CDOTAClientMsg_GuideSelectOption {
+	optional uint32 option = 1;
+	optional bool force_recalculate = 2;
+}
+
+message CDOTAClientMsg_GuideSelected {
+	optional uint64 guide_workshop_id = 1;
+	optional bool is_plus_guide = 2;
+}
+
+message CCLCMsg_CmdKeyValues {
+	optional bytes data = 1;
+}
+
+message CCLCMsg_FileCRCCheck {
+	optional int32 code_path = 1;
+	optional string path = 2;
+	optional int32 code_filename = 3;
+	optional string filename = 4;
+	optional fixed32 crc = 5;
+}
+
+message CCLCMsg_ClientMessage {
+	optional int32 msg_type = 1;
+	optional bytes data = 2;
+}

@@ -472,18 +472,20 @@ struct CUserCmd
 	int32_t command_number;
 	int32_t tick_count;
 	Vector viewangles;
-	Vector aimdirection;
+	Vector aimdirection; // sidemove/forwardmove for camera
 	int32_t buttons;
     int32_t unk;
 	unsigned char impulse;
-    /*
 	int32_t weaponselect; //0x0034
 	int32_t weaponsubtype; //0x0038
 	int32_t randomSeed; //0x003C
-	short mousedx;
-	short mousedy;
-	char _pad_0070[0x70];
-    */
+	short mouseX; //left-right [0->512)
+	short mouseY; //up-down [0->384)
+	short _pad;
+	short cameraWorldX; // left-right camera pos in world
+	short cameraWorldY; // forward-back camera pos in world.
+	char _pad2[6]; // some scoreboard/shop stuff
+	Vector CursorRay; // where cursor hits in world
 };
 
 struct PlatWindow_t__;

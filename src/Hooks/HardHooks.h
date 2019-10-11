@@ -16,12 +16,12 @@ namespace HardHooks
 
     typedef bool ( *DispatchPacketFn)( void *, CStructNetPacket * );
     typedef void ( *BSendMessageFn)( void *, CProtoBufMsgBase * );
-    typedef bool ( *BAsyncSendProtoFn)( IProtoBufSendHandler &, unsigned int, CMsgProtoBufHeader const&, google::protobuf::Message const& );
+    typedef bool ( *BAsyncSendProtoFn)( IProtoBufSendHandler &, unsigned int, CMsgProtoBufHeader const&, google::protobuf::Message * );
     typedef void ( *InitFromPacketInternalFn )( CProtoBufMsgBase *thisptr, CStructNetPacket *IMsgNetPacket );
     typedef void ( *CProtoBufMsgBaseConstructorFn )( CProtoBufMsgBase *babyMsg, unsigned int type );
 
     bool MyDispatchPacket( void* thisptr, CStructNetPacket *IMsgNetPacket );
     void MyBSendMessage( void* thisptr, CProtoBufMsgBase *msg );
-    bool MyBAsyncSendProto( IProtoBufSendHandler &, unsigned int, CMsgProtoBufHeader const&, google::protobuf::Message const& );
+    bool MyBAsyncSendProto( IProtoBufSendHandler &, unsigned int, CMsgProtoBufHeader const&, google::protobuf::Message * );
     void MyInitFromPacketInternal( CProtoBufMsgBase *thisptr, CStructNetPacket *IMsgNetPacket );
 }

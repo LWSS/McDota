@@ -55,7 +55,6 @@ struct NetMessageConnectionCrashed_t;
 struct NetMessageSplitscreenUserChanged_t;
 struct NetMessagePacketStart_t;
 struct NetMessagePacketEnd_t;
-struct SignonState_t;
 
 
 
@@ -102,7 +101,7 @@ public:
     virtual void SendStringCmd(int splitScreenSlot, const char* cmd) = 0;
     virtual void SplitScreenConnect(int splitScreenSlot) = 0;
     virtual int GetMaxSplitScreenPlayers(void) = 0;
-    virtual void* GetNetChannel(void) = 0;
+    virtual INetChannel* GetNetChannel(int splitScreenSlot) = 0;
     virtual void* GetViewEntity(void) = 0;
     virtual void UpdateAudioState(AudioState_t *, int splitScreenSlot) = 0;
     virtual void ClockDrift_AdjustFrameTime(float) = 0;
@@ -187,4 +186,8 @@ public:
     virtual void CopyExistingEntity(void *IEntityReport, void *CEntityReadInfo) = 0;
     virtual void CL_ClearState(bool) = 0;
     virtual void OnSwitchLoopModeFinished(const char*, unsigned int, bool) = 0;
+
+    int32_t *GetLocalDOTAPlayerID() {
+        return (int32_t*)((uintptr_t)this + 0xAC);
+    }
 };

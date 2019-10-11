@@ -21,7 +21,7 @@ public:
         static int offset = Util::FindDataMapElementOffset( this->GetPredDescMap(), "m_vecMins" );
         if( !offset )
             return nullptr;
-        return (const Vector * const)((uintptr_t)this + offset);
+        return (const Vector *)((uintptr_t)this + offset);
     }
 
     inline const Vector * GetMaxs()
@@ -29,7 +29,7 @@ public:
         static int offset = Util::FindDataMapElementOffset( this->GetPredDescMap(), "m_vecMaxs" );
         if( !offset )
             return nullptr;
-        return (const Vector * const)((uintptr_t)this + offset);
+        return (const Vector *)((uintptr_t)this + offset);
     }
 
 

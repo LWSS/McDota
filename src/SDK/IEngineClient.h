@@ -45,14 +45,10 @@ public:
     virtual int GetLocalPlayer( int splitScreenSlot = 0 ) = 0;
     virtual long GetLastTimestamp(void) = 0;
     virtual int GetLastServertick(void) = 0;
-    // AudioSource funcs
-    virtual void GetSentence(void) = 0;
-    virtual void GetSentenceLength(void) = 0;
-    //
     virtual int GetMaxClients(void) = 0;
     virtual bool IsInGame(void) = 0;
     virtual bool IsConnected(void) = 0;
-    virtual void ConNPrintf( int unk, const char* str, ... ) = 0; // 30
+    virtual void ConNPrintf( int unk, const char* str, ... ) = 0;
     virtual void ConNXPrintf( void * printf_options_t, const char* str, ... ) = 0;
     virtual INetChannel* GetNetChannelInfo( int splitScreenSlot = 0 ) = 0;
     virtual bool IsPlayingDemo(void) = 0;

@@ -90,6 +90,3 @@ namespace panorama
         virtual void OnDOTAGameUIStateChange(int DotaGameUIStateOld, int DotaGameUIStateNew) = 0;
     };
 }
-
-typedef void (* OnAcceptMatchFn)( panorama::CPanel2D* );
-inline OnAcceptMatchFn OnAcceptMatch;

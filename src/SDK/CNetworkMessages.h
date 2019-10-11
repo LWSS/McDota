@@ -7,9 +7,6 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/io/coded_stream.h>
 
-
-
-typedef int NetMessageHandle_t;
 struct NetMessageInfo_t;
 
 enum NetChannelBufType_t : int
@@ -20,7 +17,18 @@ enum NetChannelBufType_t : int
     BUF_VOICE = 2,
 };
 
-enum NetMessageTypes : short
+enum class SignonState_t : uint32_t {
+    SIGNONSTATE_NONE = 0,
+    SIGNONSTATE_CHALLENGE = 1,
+    SIGNONSTATE_CONNECTED = 2,
+    SIGNONSTATE_NEW = 3,
+    SIGNONSTATE_PRESPAWN = 4,
+    SIGNONSTATE_SPAWN = 5,
+    SIGNONSTATE_FULL = 6,
+    SIGNONSTATE_CHANGELEVEL = 7,
+};
+
+enum class NetMessageTypes : short
 {
     CNETMsg_NOP = 0,
     CNETMsg_Disconnect = 1,
@@ -479,7 +487,7 @@ public:
     const char *unscopedName;
     uint32_t categoryMask;
     int unk;
-    CProtobuffBinding *protobuffBinding;
+    CProtobuffBinding *protobufBinding;
     const char *groupName;
     short messageID;
     uint8_t groupID;
@@ -487,10 +495,15 @@ public:
     char _pad[22];
 };
 
+typedef CNetworkSerializerPB NetMessageHandle_t;
 
 struct MessageEntryWrapper {
     void *unk[2];
     CNetworkSerializerPB *entry;
+};
+
+struct MessageEntries {
+    std::array<MessageEntryWrapper, 334> messages;
 };
 
 struct NetMessageInfo_t
@@ -505,7 +518,7 @@ class CNetworkMessages
 public:
     virtual void RegisterNetworkCategory( unsigned int, const char* ) = 0;
     virtual void AssociateNetMessageWithChannelCategoryAbstract( NetMessageHandle_t *, unsigned int, bool) = 0;
-    virtual NetMessageHandle_t FindOrCreateNetMessage(int, void const* IProtobufBinding, unsigned int, void* INetworkSerializerBindingBuildFilter, bool, bool) = 0;
+    virtual NetMessageHandle_t* FindOrCreateNetMessage(int, void const* IProtobufBinding, unsigned int, void* INetworkSerializerBindingBuildFilter, bool, bool) = 0;
     virtual void SerializeAbstract(bf_read &buffer, NetMessageHandle_t *, void const*) = 0;
     virtual void UnserializeAbstract(bf_read &buffer, NetMessageHandle_t *, void*) = 0;
     virtual void UnserializeAbstract(bf_read &buffer, NetMessageHandle_t **, void **) = 0;
@@ -538,10 +551,16 @@ public:
     virtual void sub_1E4020() = 0;
     virtual void sub_1E4C50() = 0;
 
-    // usermessage list @ +0x1F0
-    char _pad[0x1F0];
-    MessageEntryWrapper *messageList;
-    // @ +0x420 some sort of protobuf descriptions
+    NetMessageHandle_t* GetMessageHandleByName( const char *partialName ){
+        for( size_t i = 0; i < this->messageList->messages.size(); i++ ){
+            if( strcasestr( this->messageList->messages[i].entry->unscopedName, partialName ) ){
+                return this->messageList->messages[i].entry;
+            }
+        }
+        return nullptr;
+    }
 
-    //TODO: actually gameEventSystem looks juicy
+    char _pad[0x1F0 - sizeof(void*)];
+    MessageEntries *messageList; // usermessage list @ +0x1F0
+    // @ +0x420 some sort of protobuf descriptions
 };

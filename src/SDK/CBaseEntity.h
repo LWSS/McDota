@@ -6,6 +6,7 @@
 #include "CCollisionProperty.h"
 #include "Datamap.h"
 #include "../Utils/Util.h"
+#include "CSource2Client.h"
 
 
 enum OverlayFlags_t : unsigned long long
@@ -150,9 +151,9 @@ public:
     virtual void sub_2A5E4E0();
     virtual void C_BaseFlex__SetupWeights(matrix3x4_t * matrix, int unk, float *unk2, float *unk3);
     virtual void C_BaseEntity__GetVectors(Vector *outForward, Vector *outRight, Vector *outUp);
-    virtual const Vector* const C_BaseEntity__WorldAlignMins(void);
-    virtual const Vector* const C_BaseEntity__WorldAlignMaxs(void);
-    virtual const Vector* const C_BaseEntity__WorldSpaceCenter(void);
+    virtual const Vector* C_BaseEntity__WorldAlignMins(void);
+    virtual const Vector* C_BaseEntity__WorldAlignMaxs(void);
+    virtual const Vector* C_BaseEntity__WorldSpaceCenter(void);
     virtual void sub_2A5E2D0();
     virtual void sub_2739BE0();
     virtual void C_BaseEntity__ValidateModelIndex(void);
@@ -253,10 +254,11 @@ public:
     virtual bool C_BaseEntity__ShouldDrawUnderwaterBulletBubbles(void);
     virtual void sub_273F850();
     virtual ColorRGBA C_BaseCombatCharacter__BloodColor(void);
-    virtual bool unk_something_new(void); //added with TI2019 battlepass, returns al.
+    virtual bool unk_something_new(void); //added with TI2019 battlepass, setz al
     virtual bool C_DOTAPlayer__IsPlayer(void);
     virtual bool C_BaseEntity__IsHMDAvatar(void);
     virtual void sub_26F5350();
+    virtual void sub_25DDBB0(); //added with sept 26 dota+ update.
     virtual bool C_BaseCombatCharacter__IsBaseCombatCharacter(void);
     virtual void* C_BaseCombatCharacter__MyCombatCharacterPointer(void);
     virtual void* C_BaseCombatCharacter__MyCombatCharacterPointer2(void);
@@ -323,6 +325,7 @@ public:
     virtual void C_BaseModelEntity__DamageDecal(int unk, int unk2);
     virtual void sub_26F56F0();
     virtual void sub_26F5700();
+    virtual void sub_25DDF10(); // added sept 26 dota+ update -- empty function.
     virtual void sub_26FF8D0();
     virtual bool C_BaseModelEntity__CanBeSeenByTeam(DOTATeam_t team) = 0;
     virtual bool C_BaseModelEntity__IsPartOfFOWSystem(void); // F.O.W. = Fog Of War

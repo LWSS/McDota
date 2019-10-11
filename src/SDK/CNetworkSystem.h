@@ -11,7 +11,7 @@ class CNetworkSystem : IAppSystem
 {
 public:
     // this one is kinda tough, they changed a lot of their networking
-    virtual void CNetworkSystem__InitGameServer(void) = 0;
+    virtual void CNetworkSystem__InitGameServer(void) = 0; // 11
     virtual void ShutdownGameServer(void) = 0;
     virtual void sub_1E95A0() = 0;
     virtual void loc_1E6B50() = 0;

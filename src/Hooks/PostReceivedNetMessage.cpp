@@ -5,6 +5,8 @@
 
 typedef void (* PostReceivedNetMessageFn)( INetChannel *, NetMessageHandle_t *, google::protobuf::Message*, NetChannelBufType_t const *);
 
+uint32_t biggestSignon = 0;
+
 void Hooks::PostReceivedNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHandle, google::protobuf::Message *msg, NetChannelBufType_t const *type ) {
 
     NetMessageInfo_t *info;
@@ -32,6 +34,19 @@ void Hooks::PostReceivedNetMessage( INetChannel *thisptr, NetMessageHandle_t *me
             delete[] string.m_Memory.m_pMemory;
         }
     }
+
+
+    info = networkMessages->GetNetMessageInfo( messageHandle );
+    name = info->pProtobufBinding->GetName();
+    /*
+    if( strstr( name, "CNETMsg_SignonState" ) ){
+        uint32_t signon = Util::Protobuf::GetFieldTraverseUInt32( msg, "signon_state" ).value();
+        if( signon > biggestSignon ){
+            biggestSignon = signon;
+        } else {
+            return;
+        }
+    }*/
 
 end:
     return netChannelVMT->GetOriginalMethod<PostReceivedNetMessageFn>(81)( thisptr, messageHandle, msg, type );

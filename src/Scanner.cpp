@@ -296,33 +296,6 @@ static bool FindAcceptMatch()
 	return true;
 }
 
-
-// I could probably calculate this myself but I'm missing the world matrix, engine->WorldToScreenMatrix seems to be gone in Source 2
-// Using this function is ez
-static bool FindWorldToScreen()
-{
-	// Xref "WorldToScreenX" to the rdi one. go to the function above it. this is the only function called in That function.
-	// GetVectorInScreenSpace()
-	// 55                      push    rbp
-	// 48 89 E5                mov     rbp, rsp
-	// 41 54                   push    r12
-	// 49 89 FC                mov     r12, rdi
-	// 53                      push    rbx
-	// 48 89 F3                mov     rbx, rsi
-	// 48 83 EC 50             sub     rsp, 50h
-	// 48 85 D2                test    rdx, rdx
-
-	uintptr_t funcAddr = PatternFinder::FindPatternInModule("libclient.so", "55 48 89 E5 41 54 49 89 FC 53 48 89 F3 48 83 EC ?? 48 85 D2", "WorldToScreen (GetVectorInScreenSpace)");
-	if( !funcAddr ){
-		MC_PRINTF_ERROR("On WorldToScreen sig is broke!\n");
-		return false;
-	}
-
-	GetVectorInScreenSpace = reinterpret_cast<GetVectorInScreenSpaceFn>( funcAddr );
-	return true;
-}
-
-
 static bool FindRichPresence()
 {
 	// CSource2Client::NotifyClientSignon()
@@ -367,7 +340,7 @@ static bool FindRichPresence()
 
 static bool FindHardHooks()
 {
-	//GCSDK::CGCClient::DispatchPacket(GCSDK::IMsgNetPacket *)
+	// GCSDK::CGCClient::DispatchPacket(GCSDK::IMsgNetPacket *)
 	// xref for "You have been waiting for"
 	DispatchPacketFnAddr = PatternFinder::FindPatternInModule( "libclient.so", "55 48 89 E5 41 57 49 89 FF 41 56 41 55 41 54 4C 8D 25 ?? ?? ?? ?? 53 48 89 F3 48", "DispatchPacket()" );
 
@@ -376,8 +349,8 @@ static bool FindHardHooks()
 		return false;
 	}
 
-    //GCSDK::CProtoBufMsgBase::BAsyncSendProto(GCSDK::CProtoBufMsgBase::IProtoBufSendHandler &, unsigned int, CMsgProtoBufHeader const&, google::protobuf::Message const&)
-    //xref "CProtoBufMsg::BAsyncSendProto"
+    // GCSDK::CProtoBufMsgBase::BAsyncSendProto(GCSDK::CProtoBufMsgBase::IProtoBufSendHandler &, unsigned int, CMsgProtoBufHeader const&, google::protobuf::Message const&)
+    // xref "CProtoBufMsg::BAsyncSendProto"
     BAsyncSendProtoFnAddr = PatternFinder::FindPatternInModule( "libclient.so", "55 48 89 E5 41 57 41 56 49 89 D6 41 55 41 54 49 89 CC 53 48 83", "BAsyncSendProto()" );
     if( !BAsyncSendProtoFnAddr ){
         MC_PRINTF_ERROR("BAsyncSendProtoFn sig is broke!\n");
@@ -387,10 +360,86 @@ static bool FindHardHooks()
 	return true;
 }
 
+static bool FindPhysicsQuery()
+{
+	// ent_grab(CCommandContext const&, CCommand const&)
+	// xref for "ent_grab", there are several that lead back
+	// Interface is in a big chunk a couple blocks up from the strings.
+	// E8 4C F0 0D 00                      call    sub_2791000
+	// 48 89 D9                            mov     rcx, rbx
+	// 4C 89 E2                            mov     rdx, r12
+	// 4C 89 FE                            mov     rsi, r15
+	// 48 8B 05 9C 96 62 02                mov     rax, cs:_g_pPhysicsQuery
+	// 48 C7 85 38 FE FF FF 01 30 08 00    mov     [rbp+var_1C8], 83001h
+	// 48 8B 38                            mov     rdi, [rax]
+	// E8 79 A4 12 00                      call    sub_27DC450
+	// F3 0F 10 05 9D 45 67 01             movss   xmm0, cs:dword_3D2657C
+	// 0F 2E 85 48 FF FF FF                ucomiss xmm0, [rbp+var_B8]
+	// 77 0D                               ja      short loc_26B1FF5
+
+	uintptr_t physicsQueryLine = PatternFinder::FindPatternInModule( "libclient.so", "48 8B 05 ?? ?? ?? ?? 48 C7 85 ?? ?? ?? ?? ?? ?? 08 00", "FindPhysicsQuery" );
+	if( !physicsQueryLine ){
+		MC_PRINTF_ERROR("FindPhysicsQuery sig is broke!\n");
+		return false;
+	}
+
+	// Update: physicsQuery seems to just be CVPhys2World now.
+	phys2World = ***reinterpret_cast<CVPhys2World****>( GetAbsoluteAddress( physicsQueryLine, 3, 7 ) );
+
+	return true;
+}
+
+static bool FindRenderGameSystem()
+{
+	// CViewRender::OnRenderStart() - lots of goodies in this function.
+	// 48 8B 05 3C F3 32 02    mov     rax, cs:_g_pRenderGameSystem
+	// 4C 8D 63 10             lea     r12, [rbx+10h]
+	// C6 83 B0 10 00 00 01    mov     byte ptr [rbx+10B0h], 1
+	// 48 8D 15 A2 98 4E 02    lea     rdx, g_WorldToView
+	// 4C 89 E6                mov     rsi, r12
+	// 4C 8D 0D 18 98 4E 02    lea     r9, g_WorldToScreen
+	// 4C 8D 05 D1 97 4E 02    lea     r8, _g_WorldToProjection
+	// 48 8B 38                mov     rdi, [rax]
+	// 48 8D 0D 47 98 4E 02    lea     rcx, g_ViewToProjection
+	// E8 02 B3 CC FF          call    CRenderGameSystem__GetMatricesForView
+	uintptr_t line = PatternFinder::FindPatternInModule( "libclient.so", "48 8B 05 ?? ?? ?? ?? 4C 8D 63 10 C6", "FindRenderGameSystem" );
+	if( !line ){
+		MC_PRINTF_ERROR("FindRenderGameSystem sig is broke!\n");
+		return false;
+	}
+
+	renderGameSystem = **reinterpret_cast<CRenderGameSystem***>( GetAbsoluteAddress( line, 3, 7 ) );
+	line += 18; // go to worldToView line
+	g_WorldToView = reinterpret_cast<VMatrix*>( GetAbsoluteAddress( line, 3, 7 ) );
+	line += 10;
+	g_WorldToScreen = reinterpret_cast<VMatrix*>( GetAbsoluteAddress( line, 3, 7 ) );
+	line += 7;
+	g_WorldToProjection = reinterpret_cast<VMatrix*>( GetAbsoluteAddress( line, 3, 7 ) );
+	line += 10;
+	g_ViewToProjection = reinterpret_cast<VMatrix*>( GetAbsoluteAddress( line, 3, 7 ) );
+	line += 7;
+	GetMatricesForView = reinterpret_cast<GetMatricesForViewFn>( GetAbsoluteAddress( line, 1, 5 ) );
+	return true;
+}
+
+static bool FindPanoramaScriptScopes()
+{
+	// xref "Usage: cl_panorama_script_help" to callback for that concmd. First function that the callback calls is our target.
+	// GetPanoramaScriptScopes
+	uintptr_t line = PatternFinder::FindPatternInModule( "libclient.so", "55 48 89 E5 41 57 41 56 41 55 41 54 53 48 83 EC ?? 80 3D ?? ?? ?? ?? 00 0F", "GetPanoramaScriptScopes" );
+	if( !line ){
+		MC_PRINTF_ERROR("FindPanoramaScriptScopes sig is broke!\n");
+		return false;
+	}
+
+	GetPanoramaScriptScopes = reinterpret_cast<GetPanoramaScriptScopesFn>( line );
+	return true;
+}
 
 bool Scanner::FindAllSigs( )
 {
 	bool sigsOK = true;
+
 	sigsOK &= FindGlobalVars();
 	sigsOK &= FindGameEntitySystem();
 	sigsOK &= FindVScript();
@@ -402,9 +451,11 @@ bool Scanner::FindAllSigs( )
 	sigsOK &= FindDBPlayPanel();
 	sigsOK &= FindSoundOpSystem();
 	sigsOK &= FindAcceptMatch();
-	sigsOK &= FindWorldToScreen();
 	sigsOK &= FindRichPresence();
 	sigsOK &= FindHardHooks();
+	sigsOK &= FindPhysicsQuery();
+	sigsOK &= FindRenderGameSystem();
+	sigsOK &= FindPanoramaScriptScopes();
 
 	return sigsOK;
 }

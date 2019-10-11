@@ -4,9 +4,9 @@
 #include "../Utils/Protobuf.h"
 #include "../Settings.h"
 
-#include <google/protobuf/text_format.h>
+#include "../protos/mcdota.pb.h"
 
-typedef bool (* SendNetMessageFn)( INetChannel *thisptr, NetMessageHandle_t *, void const*, NetChannelBufType_t );
+typedef bool (* SendNetMessageFn)( INetChannel *thisptr, NetMessageHandle_t *, google::protobuf::Message*, NetChannelBufType_t );
 
 static const char* Type2String( NetChannelBufType_t type )
 {
@@ -23,18 +23,62 @@ static const char* Type2String( NetChannelBufType_t type )
 
 long lastSetConVarMsg = 0;
 bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHandle, google::protobuf::Message* msg, NetChannelBufType_t type ) {
-
+    std::string scratch;
     NetMessageInfo_t *info;
     const char *name;
 
-    if( mc_allow_customnames->GetBool() ){
-        info = networkMessages->GetNetMessageInfo(messageHandle);
-        name = info->pProtobufBinding->GetName();
-        if( strstr( name, "CNETMsg_SetConVar" ) != nullptr ){
-            if( Util::GetEpochMs() - lastSetConVarMsg < 100 ){
-                return true;
-            }
-            lastSetConVarMsg = Util::GetEpochMs();
+    info = networkMessages->GetNetMessageInfo(messageHandle);
+    name = info->pProtobufBinding->GetName();
+
+    /*
+    if( mc_crash_server->GetBool() && strstr( name, "CNETMsg_SignonState" ) ){
+        uint32_t signon = Util::Protobuf::GetFieldTraverseUInt32(msg, "signon_state").value();
+        if( signon == (uint32_t)SignonState_t::SIGNONSTATE_PRESPAWN ){
+            mc_crash_server->SetValue(false);
+            int32_t value = 0xADADADAD;//mc_custom_int->GetInt();
+            Util::Log("Changing localID from %d to %d\n", *(networkClientService->GetIGameClient()->GetLocalDOTAPlayerID()), value);
+            *(networkClientService->GetIGameClient()->GetLocalDOTAPlayerID()) = value;
+            netChannelVMT->GetOriginalMethod<SendNetMessageFn>(62)( thisptr, messageHandle, msg, type );
+            return true;
+        }
+    }*/
+
+    if( mc_stall_connect->GetBool() && strstr( name, "CNETMsg_SignonState" ) ) {
+        uint32_t signon = Util::Protobuf::GetFieldTraverseUInt32( msg, "signon_state" ).value( );
+        if ( signon >= ( uint32_t )SignonState_t::SIGNONSTATE_PRESPAWN ) {
+            return true;
+        }
+    }
+
+    /*
+    if( strstr( name, "CCLCMsg_ClientInfo" ) ){
+        Util::Log("Suppressing clientinfo...\n");
+        return true;
+    }
+    if( strstr( name, "CMsgSource1LegacyListenEvents" ) ){
+        Util::Log("Suppressing listen events\n");
+        return true;
+    }*/
+
+    if( mc_anti_mute->GetBool() && strstr( name, "CNETMsg_StringCmd" ) ){
+        CNETMsg_StringCmd *ree = static_cast<CNETMsg_StringCmd*>( msg );
+        std::string command = std::string(ree->command().c_str());
+        if( command.find("say_team") == 0 ){
+            command.erase(0, 10);
+            command.pop_back();
+            CDOTAClientMsg_TipAlert tip;
+            tip.set_tip_text(command);
+            static auto msgHandle = networkMessages->GetMessageHandleByName("TipAlert");
+            netChannelVMT->GetOriginalMethod<SendNetMessageFn>(62)( thisptr, msgHandle, &tip, BUF_DEFAULT );
+            return true;
+        } else if( command.find("say") == 0 ){
+            command.erase(0, 5);
+            command.pop_back();
+            CDOTAClientMsg_TipAlert tip;
+            tip.set_tip_text(command);
+            static auto msgHandle = networkMessages->GetMessageHandleByName("TipAlert");
+            netChannelVMT->GetOriginalMethod<SendNetMessageFn>(62)( thisptr, msgHandle, &tip, BUF_DEFAULT );
+            return true;
         }
     }
 
@@ -74,11 +118,13 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
             string.m_Memory.m_nAllocationCount = 4096;
             string.m_Memory.m_nGrowSize = 4096;
             info->pProtobufBinding->ToString( msg, &string );
-            static int seq = 5000;
+            //static int seq = 5000;
+            static bool bFlip = false;
             for( int i = 0; i < mc_send_freq->GetInt(); i++ ){
                 engine->GetNetChannelInfo()->SetMaxRoutablePayloadSize(99999999);
                 engine->GetNetChannelInfo()->SetMaxBufferSize(NetChannelBufType_t::BUF_DEFAULT, 99999999);
-                Util::Protobuf::EditFieldTraverseInt32(msg, "sequence_number", seq++);
+                Util::Protobuf::EditFieldTraverseInt32(msg, "sequence_number", bFlip ? (INT_MAX) : -1);
+                bFlip = !bFlip;
                 netChannelVMT->GetOriginalMethod<SendNetMessageFn>(62)( thisptr, messageHandle, msg, type );
             }
             delete[] string.m_Memory.m_pMemory;
@@ -97,7 +143,7 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
             }
         }
 
-        Util::Log( "NetMessage: Type(%d-%s) - Message@: (%p) - info@: (%p) - name(%s) -type(%d)\n", type, Type2String(type), msg, info, info->pProtobufBinding->GetName(), info->pProtobufBinding->GetBufType() );
+        Util::Log( "NetMessage: Type(%d-%s) - Handle(%p) - Message@: (%p) - info@: (%p) - name(%s) -type(%d)\n", type, Type2String(type), messageHandle, msg, info, info->pProtobufBinding->GetName(), info->pProtobufBinding->GetBufType() );
 
         if( mc_log_sendnetmsg_to_string->GetBool() ){
 
@@ -130,5 +176,4 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
 
 end:
     return netChannelVMT->GetOriginalMethod<SendNetMessageFn>(62)( thisptr, messageHandle, msg, type );
-
 }

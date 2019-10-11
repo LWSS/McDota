@@ -2,6 +2,7 @@
 
 #include "../Interfaces.h"
 #include "../Settings.h"
+#include "../Utils/Draw.h"
 
 static bool GetBox( CBaseEntity* entity, int* x, int* y, int* w, int* h )
 {
@@ -33,23 +34,21 @@ static bool GetBox( CBaseEntity* entity, int* x, int* y, int* w, int* h )
     int leftMost = maxX, rightMost = 0, topMost = maxX, bottomMost = 0;
 
     for( const auto &vec : points ){
-        int tempX = 0, tempY = 0;
+        int screenX = 0, screenY = 0;
 
-        GetVectorInScreenSpace(vec, tempX, tempY, nullptr);
-        /* Is Off-Screen */
-        if( tempX < 0 || tempY < 0 || tempX > maxX || tempY > maxY ){
+        if( Draw::WorldToScreen( vec, screenX, screenY, *g_WorldToScreen ) ){
             return false;
         }
 
-        if( tempX < leftMost )
-            leftMost = tempX;
-        if( tempX > rightMost )
-            rightMost = tempX;
+        if( screenX < leftMost )
+            leftMost = screenX;
+        if( screenX > rightMost )
+            rightMost = screenX;
 
-        if( tempY < topMost )
-            topMost = tempY;
-        if( tempY > bottomMost )
-            bottomMost = tempY;
+        if( screenY < topMost )
+            topMost = screenY;
+        if( screenY > bottomMost )
+            bottomMost = screenY;
     }
 
     *x = leftMost;
@@ -65,8 +64,6 @@ void ESP::PaintTraverse( IVPanel *thisptr, IVGuiPaintSurface *surface, VPANEL pa
 
     int max = entitySystem->GetHighestEntityIndex();
     std::vector<Vector> drawSpots = {};
-
-    surface->PushMakeCurrent(panel, false);
 
     for( int i = 1; i <=max; i++ ){
         bool goodToGo = false;
@@ -131,6 +128,7 @@ void ESP::PaintTraverse( IVPanel *thisptr, IVGuiPaintSurface *surface, VPANEL pa
             if( strstr( entity->Schema_DynamicBinding()->bindingName, "C_DOTAPlayer" ) != nullptr ){
                 auto *player = (CDotaPlayer*)entity;
                 strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" - %s", player->C_DOTAPlayer__GetPlayerName() );
+                strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" - (%p)", (void*)player );
             }
 
             if( strstr( entity->Schema_DynamicBinding()->bindingName, "DOTA_Unit_Hero" ) ){
@@ -189,5 +187,4 @@ void ESP::PaintTraverse( IVPanel *thisptr, IVGuiPaintSurface *surface, VPANEL pa
             npc->C_BaseEntity__DrawEntityDebugOverlays(OverlayFlags_t::ENTITYVIEWOFFSET);
     }
 
-    surface->PopMakeCurrent(panel);
 }

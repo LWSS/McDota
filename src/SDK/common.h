@@ -28,15 +28,9 @@ inline void**& getvtable(void* inst, size_t offset = 0)
 	return *reinterpret_cast<void***>((size_t)inst + offset);
 }
 
-inline const void** getvtable(const void* inst, size_t offset = 0)
-{
-	return *reinterpret_cast<const void***>((size_t)inst + offset);
-}
-
-template<typename Fn>
-inline Fn getvfunc(const void* inst, size_t index, size_t offset = 0)
-{
-	return reinterpret_cast<Fn>(getvtable(inst, offset)[index]);
+template< typename Fn >
+inline Fn getvfunc( void* inst, size_t index, size_t offset = 0 ) {
+	return reinterpret_cast<Fn>(getvtable( inst, offset )[index]);
 }
 
 template <typename interface>
@@ -49,7 +43,7 @@ interface* GetInterface(const char* filename, const char* version, uint32_t expe
 	void* library = dlopen(filename, RTLD_NOLOAD | RTLD_NOW | RTLD_LOCAL);
 
 	if ( !library ){
-		ConMsg( "GetInterface(): Could not open library: %s\n", filename );
+		ConMsg( "%s: Could not open library: %s\n", __func__, filename );
 		requestedInterfaces.push_back(data);
 		return NULL;
 	}
@@ -58,7 +52,7 @@ interface* GetInterface(const char* filename, const char* version, uint32_t expe
 
 	if ( !createInterfaceSym ) {
 		dlclose(library);
-		ConMsg( "GetInterface(): Could not find \"CreateInterface\" for library: %s\n", filename );
+		ConMsg( "%s: Could not find \"CreateInterface\" for library: %s\n", __func__, filename );
 		requestedInterfaces.push_back(data);
 		return NULL;
 	}
@@ -74,7 +68,7 @@ interface* GetInterface(const char* filename, const char* version, uint32_t expe
 	dlclose(library);
 
 	if( !interface_list ){
-		ConMsg( "GetInterface(): Could not grab InterfaceList for library: %s\n", filename );
+		ConMsg( "%s: Could not grab InterfaceList for library: %s\n", __func__,  filename );
 		requestedInterfaces.push_back(data);
 		return NULL;
 	}
@@ -88,7 +82,7 @@ interface* GetInterface(const char* filename, const char* version, uint32_t expe
 		return reinterpret_cast<interface*>(cur_interface->m_CreateFn());
     }
 
-    ConMsg( "GetInterface(): Could not find Interface Named: %s in library %s\n", version, filename );
+    ConMsg( "%s: Could not find Interface Named: %s in library %s\n", __func__, version, filename );
 	requestedInterfaces.push_back(data);
 	return NULL;
 }

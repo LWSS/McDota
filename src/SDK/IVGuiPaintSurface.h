@@ -6,9 +6,6 @@
 
 typedef unsigned long long VPANEL;
 
-typedef void (* GetVectorInScreenSpaceFn)( Vector pos, int& iX, int& iY, Vector *vecOffset );
-inline GetVectorInScreenSpaceFn GetVectorInScreenSpace;
-
 class IVGuiPaintSurface
 {
 public:

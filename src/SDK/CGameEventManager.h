@@ -1,6 +1,6 @@
 #pragma once
 
-enum GameState : int
+enum class GameState : int
 {
     DOTA_GAMERULES_STATE_INIT = 0,
     DOTA_GAMERULES_WAIT_FOR_PLAYERS_TO_LOAD,

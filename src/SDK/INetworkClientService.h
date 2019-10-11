@@ -37,8 +37,8 @@ public:
     virtual bool IsDisconnecting( void ) = 0;
     virtual int GetDisconnectReason( void ) = 0;
     virtual int GetLocalPlayer( int splitScreenSlot ) = 0; // 40
-    virtual void SendStringCmd( int splitScreenSlot, const char* command ) = 0;
-    virtual void SplitScreenConnect( int splitScreenSlot ) = 0;
+    virtual void SendStringCmd( int splitScreenSlot, const char* command ) = 0; // el crasho
+    virtual void SplitScreenConnect( int splitScreenSlot ) = 0; // function bound to ss_add
     virtual int GetMaxSplitScreenPlayers( void ) = 0;
     virtual void* GetNetChannel( void ) = 0;
     virtual void ClockDriftAdjustFrameTime( double diff ) = 0;
@@ -49,7 +49,7 @@ public:
     virtual bool IsEntityReportActive( void ) = 0; // 50
     virtual void* GetEntityReport( void ) = 0;
     virtual void EntityReportTrack() = 0; // lots of classes as params
-    virtual bool SendNetMessage( int splitScreenSlot, NetMessageHandle_t handle, void const * something,  NetChannelBufType_t type ) = 0; // This function is trash and never gets called
+    virtual bool SendNetMessage( int splitScreenSlot, NetMessageHandle_t *handle, void const * something,  NetChannelBufType_t type ) = 0; // This function is trash and never gets called
     virtual void ReceivedServerInfo() = 0;
     virtual void GetGameSessionInitPrerequisites() = 0;
     virtual void StartChangelevel( void ) = 0;

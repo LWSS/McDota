@@ -6,11 +6,11 @@
 #include <link.h> // dl_iterate_phdr
 
 
-bool Interfaces::FindInterfaces()
+bool Interfaces::FindExportedInterfaces( )
 {
-    client = GetInterface<CSource2Client>("../../dota/bin/linuxsteamrt64/libclient.so", "Source2Client002", 129 );
+    client = GetInterface<CSource2Client>("../../dota/bin/linuxsteamrt64/libclient.so", "Source2Client002", 130 );
     cvar = GetInterface<ICvar>( "./libvstdlib.so", "VEngineCvar007", 52 );
-    engine = GetInterface<IEngineClient>( "./libengine2.so", "Source2EngineToClient001", 174 );
+    engine = GetInterface<IEngineClient>( "./libengine2.so", "Source2EngineToClient001", 172 );
     inputSystem = GetInterface<IInputSystem>( "./libinputsystem.so", "InputSystemVersion001", 89 );
     inputInternal = GetInterface<IInputInternal>("./libvgui2.so", "VGUI_InputInternal001", 101 );
     networkClientService = GetInterface<INetworkClientService>("./libengine2.so", "NetworkClientService_001", 69 );
@@ -23,7 +23,8 @@ bool Interfaces::FindInterfaces()
     networkMessages = GetInterface<CNetworkMessages>("./libnetworksystem.so", "NetworkMessagesVersion001", 34 );
     gameEventSystem = GetInterface<CGameEventSystem>("./libengine2.so", "GameEventSystemClientV001", 21 );
     networkStrings = GetInterface<CNetworkStringTableContainer>("./libengine2.so", "Source2EngineToClientStringTable001", 19);
-    materialSystem = GetInterface<IMaterialSystem>("./libmaterialsystem2.so", "VMaterialSystem2_001", 36);
+    materialSystem = GetInterface<IMaterialSystem>("./libmaterialsystem2.so", "VMaterialSystem2_001", 37);
+    networkSystem = GetInterface<CNetworkSystem>("./libnetworksystem.so", "NetworkSystemVersion001", 76);
 
     if( !requestedInterfaces.empty() ){
         for(auto & requestedInterface : requestedInterfaces){
@@ -60,7 +61,7 @@ void Interfaces::DumpInterfaces( const char *fileName )
     {
         if( !module.library )
             continue;
-        if( strcasestr( module.library, "dota" ) == nullptr ) // want dota to be in filepath
+        if( !strcasestr( module.library, "dota" ) ) // want dota to be in filepath
             continue;
         if( strcasestr( module.library, "libsteam_api.so" ) )
             continue;

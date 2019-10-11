@@ -85,6 +85,7 @@ public:
 	inline Vector&	operator/=(float s);
 	inline Vector&	operator+=(float fl);
 	inline Vector&	operator-=(float fl);
+	inline Vector  operator%(const Vector &v);
 	[[nodiscard]] inline float	Length() const;
 	[[nodiscard]] inline float LengthSqr(void) const
 	{
@@ -104,7 +105,6 @@ public:
 	[[nodiscard]] float	Dot(const Vector& vOther) const;
 	[[nodiscard]] float	Length2D(void) const;
 	[[nodiscard]] float	Length2DSqr(void) const;
-	Vector& operator=(const Vector &vOther);
 	Vector	operator-(void) const;
 	Vector	operator+(const Vector& v) const;
 	Vector	operator-(const Vector& v) const;
@@ -140,13 +140,6 @@ inline void Vector::Zero()
 inline void VectorClear(Vector& a)
 {
 	a.x = a.y = a.z = 0.0f;
-}
-//===============================================
-inline Vector& Vector::operator=(const Vector &vOther)
-{
-	CHECK_VALID(vOther);
-	x = vOther.x; y = vOther.y; z = vOther.z;
-	return *this;
 }
 //===============================================
 inline float& Vector::operator[](int i)
@@ -197,6 +190,17 @@ inline  Vector& Vector::operator-=(const Vector& v)
 	CHECK_VALID(v);
 	x -= v.x; y -= v.y; z -= v.z;
 	return *this;
+}
+//===============================================
+// Alias for Cross Product.
+inline  Vector Vector::operator%(const Vector& v)
+{
+	CHECK_VALID(*this);
+	CHECK_VALID(v);
+
+	return Vector(y*v.z - z*v.y,
+				  z*v.x - x*v.z,
+				  x*v.y - y*v.x);
 }
 //===============================================
 inline  Vector& Vector::operator*=(float fl)
@@ -1233,9 +1237,6 @@ public:
 	// negate the QAngle components
 	//void  Negate();
 
-	// No assignment operators either...
-	QAngle& operator=(const QAngle& src);
-
 #ifndef VECTOR_NO_SLOW_OPERATIONS
 	// copy constructors
 
@@ -1289,16 +1290,6 @@ inline void QAngle::Random(float minVal, float maxVal)
 	y = minVal + ((float)rand() / RAND_MAX) * (maxVal - minVal);
 	z = minVal + ((float)rand() / RAND_MAX) * (maxVal - minVal);
 	CHECK_VALID(*this);
-}
-
-//-----------------------------------------------------------------------------
-// assignment
-//-----------------------------------------------------------------------------
-inline QAngle& QAngle::operator=(const QAngle &vOther)
-{
-	CHECK_VALID(vOther);
-	x = vOther.x; y = vOther.y; z = vOther.z;
-	return *this;
 }
 
 //-----------------------------------------------------------------------------

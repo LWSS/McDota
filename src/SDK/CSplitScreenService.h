@@ -32,7 +32,7 @@ public:
     virtual bool IsValidSplitScreenSlot(int splitScreenSlot);
     virtual int FirstValidSplitScreenSlot(void);
     virtual int NextValidSplitScreenSlot(int splitScreenSlot);
-    virtual int  GetNumSplitScreenPlayers(void);
+    virtual int GetNumSplitScreenPlayers(void);
     virtual int GetSplitScreenPlayerEntity(int splitScreenSlot);
     virtual void* GetSplitScreenPlayerNetChan(int splitScreenSlot);
     virtual bool IsDisconnecting(int splitScreenSlot);

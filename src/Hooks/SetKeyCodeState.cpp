@@ -1,41 +1,31 @@
 #include "Hooks.h"
 
 #include "../Settings.h"
-
 #include "../GUI/Gui.h"
+#include "../protos/mcdota.pb.h"
 
 #include <csignal>
 
 typedef void (* SetKeyCodeStateFn)( IInputInternal*, ButtonCode_t, bool );
+typedef bool (* SendNetMessageFn)( INetChannel *thisptr, NetMessageHandle_t *, google::protobuf::Message*, NetChannelBufType_t );
 
 void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pressed)
 {
-	/*
-	if (SetKeyCodeState::shouldListen && bPressed)
-	{
-		SetKeyCodeState::shouldListen = false;
-		*SetKeyCodeState::keyOutput = code;
-		UI::UpdateWeaponSettings();
-	}
-	*/
-
-	/*
-	if (!SetKeyCodeState::shouldListen)
-		Shortcuts::SetKeyCodeState(code, bPressed);
-	 */
-    if( !pressed )
-        return inputInternalVMT->GetOriginalMethod<SetKeyCodeStateFn>(96)(thisptr, code, pressed);
-
-
     Vector attachment;
     CBaseEntity* entity;
     CDOTAWearableItem* cosmetic;
-    CDotaPlayer* localPlayer;
-    panorama::IUIPanel* panel;
-    ClientClass *classes;
     INetworkStringTable *stringTable;
-    char bytes[256];
-    int owner;
+    CDOTAClientMsg_TipAlert tip;
+    CNETMsg_SetConVar convar;
+    CMsg_CVars_CVar* newConVar;// = convar.mutable_convars()->add_cvars();
+    CNETMsg_StringCmd stringCmd;
+    CDOTAClientMsg_GuideSelectOption option;
+    CDOTAClientMsg_GuideSelected guide;
+    std::string meme;
+
+    if( !pressed )
+        return inputInternalVMT->GetOriginalMethod<SetKeyCodeStateFn>(96)(thisptr, code, pressed);
+
     switch( code ){
         case ButtonCode_t::INSERT:
             UI::ToggleUI();
@@ -55,74 +45,52 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             break;
         case ButtonCode_t::PGUP:
             //vscriptSystem->RunScript("bazinga", false);
-            if( UI::hudRoot ){
-                panel = UI::hudRoot->FindChildTraverse("ItemList");
-            } else {
-                cvar->ConsoleDPrintf("Hudroot NULL!\n");
-            }
-            if( panel ){
-                cvar->ConsoleDPrintf("Found panel: %s\n", panel->GetID());
-                panoramaEngine->AccessUIEngine()->RunScript(panel, "$.DispatchEvent( 'DOTAItemBuildPlusOptionSelected', -1, true );", "panorama/layout/hud/dota_hud_item_build.xml", 8, 10, false );
-            } else {
-                cvar->ConsoleDPrintf("Panel not found\n");
+            //MC_PRINTF("Local Player ID(%d)\n", *(networkClientService->GetIGameClient()->GetLocalDOTAPlayerID()));
+            //newConVar->set_name(mc_custom_str->strValue);
+            //newConVar->set_value(mc_custom_str_alt->strValue);
+            MC_PRINTF("custom stringcmd\n");
+            stringCmd.set_command(mc_custom_str->strValue);
+            for( int i = 0; i < mc_send_freq->GetInt(); i++ ) {
+                Hooks::SendNetMessage( engine->GetNetChannelInfo( ), networkMessages->GetMessageHandleByName( "CNETMsg_StringCmd" ), &stringCmd, BUF_DEFAULT );
             }
             break;
         case ButtonCode_t::PGDN:
-            Util::SpewDataMap( entitySystem->GetBaseEntity( mc_ent_select->GetInt() )->C_DOTAPlayer__GetPredDescMap() );
-            std::raise(SIGINT);
+            guide.set_guide_workshop_id( 0 );
+            guide.set_is_plus_guide( true );
+            for( int i = 0; i < mc_send_freq->GetInt(); i++ ) {
+                Hooks::SendNetMessage( engine->GetNetChannelInfo( ), networkMessages->GetMessageHandleByName( "CDOTAClientMsg_GuideSelected" ), &guide, BUF_DEFAULT );
+            }
             break;
         case ButtonCode_t::END:
-            for( int i = 0; i < 1024; i++ ){
-                panorama::IUIPanel *panel = panoramaEngine->AccessUIEngine()->GetPanelArray()->slots[i].panel;
-                if( panoramaEngine->AccessUIEngine()->IsValidPanelPointer(panel) ){
-                    cvar->ConsoleDPrintf("Panel %d: (%s)\n", i, panel->GetID());
-                }
-            }
-            cvar->ConsoleDPrintf("Done Showing panels.\n");
             break;
         case ButtonCode_t::DELETE:
-            networkClientService->GetIGameClient()->ForceFullUpdate("unnamed");
-            break;
-        case ButtonCode_t::PAUSE:
-            cvar->ConsoleDPrintf("pause key pressed.\n");
-            cvar->ConsoleDPrintf("Addr of bogus mat(%p)\n", (void*)materialSystem->FindOrCreateMaterialFromResource("sediments1"));
+            //networkClientService->GetIGameClient()->ForceFullUpdate("unnamed");
+            MC_PRINTF("sending meme\n");
+            option.set_option( mc_custom_int->GetInt() );
+            option.set_force_recalculate( true );
+            for( int i = 0; i < mc_send_freq->GetInt(); i++ ) {
+                Hooks::SendNetMessage( engine->GetNetChannelInfo( ), networkMessages->GetMessageHandleByName( "CDOTAClientMsg_GuideSelectOption" ), &option, BUF_DEFAULT );
+            }
             break;
         case ButtonCode_t::SCROLLLOCK:
-            cvar->ConsoleDPrintf("Scrolllock...\n");
             //richPresence->SetStatus(mc_custom_str->strValue);
-            cvar->ConsoleDPrintf("Printing %d Network Tables ...\n", networkStrings->GetNumTables());
-            for( int i = 0; i < networkStrings->GetNumTables(); i++ ){
-                stringTable = networkStrings->GetTable(i);
-                if( !stringTable ) continue;
-
-                cvar->ConsoleDPrintf("[%d]- (%s)(%d)\n", i, stringTable->GetTableName(), stringTable->GetNumStrings());
-                if( stringTable->GetNumStrings() > 100 ){
-                    cvar->ConsoleDPrintf("\tLOTS (> 100)\n");
-                } else {
-                    for( int j = 0; j < stringTable->GetNumStrings(); j++ ){
-                        cvar->ConsoleDPrintf("\t(%d)-(%s)\n", j, stringTable->GetString( j, true ) );
-                    }
-                }
-            }
+            break;
+        case ButtonCode_t::PAUSE:
+            Util::SpewScriptScopes( GetPanoramaScriptScopes(), true );
             break;
         case ButtonCode_t::PRINTSCREEN:
-            cvar->ConsoleDPrintf("PrintScreen...\n");
-            for( int i = 0; i <= entitySystem->GetHighestEntityIndex(); i++ ){
-                entity = entitySystem->GetBaseEntity(i);
-                if( entity ){
-                    if( entity->GetOwnerID() != mc_custom_int->GetInt() ){
-                        continue;
-                    }
-                    if( !strcmp(entity->Schema_DynamicBinding()->bindingName, "C_DOTAWearableItem") ){
-                        cosmetic = (CDOTAWearableItem*)entity;
-                        cosmetic->C_EconEntity__GetAttachment("attach_hitloc", attachment);
-                        MC_PRINTF("(%d) - Vec(%f,%f,%f) - Ret: %p\n", i, attachment.x, attachment.y, attachment.z);
-                    }
-                }
-            }
+            /*
+             * CVoiceGamerMgrHelper::CanPlayerHearPlayer()
+             - calls CEngineServer::GetClientConvarValue(index, "dota_mute_cobroastcasters") every tick i think
+             */
+            //MC_PRINTF("null convar/value\n");
+            //newConVar = convar.mutable_convars()->add_cvars();
+            //newConVar->set_name("\0");
+            //newConVar->set_value("\0");
+
+            //Hooks::SendNetMessage( engine->GetNetChannelInfo(), networkMessages->GetMessageHandleByName("CNETMsg_SetConVar"), &convar, BUF_DEFAULT );
             break;
         default:
-            break;
+            return inputInternalVMT->GetOriginalMethod<SetKeyCodeStateFn>(96)(thisptr, code, pressed);
     }
-	inputInternalVMT->GetOriginalMethod<SetKeyCodeStateFn>(96)(thisptr, code, pressed);
 }

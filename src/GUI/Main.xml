@@ -124,7 +124,7 @@ R"zz(
 						<DOTASettingsCheckbox convar='mc_autoaccept_on' text='AutoAccept' onactivate='clickSound()'/>
 						<DOTASettingsCheckbox convar='mc_fog_disable' text='No Fog' onactivate='clickSound()'/>
 						<DOTASettingsCheckbox convar='mc_fow_disable' text='No FoW' onactivate='clickSound()'/>
-						<DOTASettingsSlider convar='mc_camera_pitch_add' min='-1.0' max='360.0' text='Pitch Add' />
+						<DOTASettingsSlider convar='mc_camera_pitch_add' min='-1.0' max='360.0' text='Pitch' />
 						<DOTASettingsSlider convar='mc_camera_yaw_add' min='0.0' max='360.0' text='Yaw Add' />
 						<DOTASettingsSlider convar='mc_camera_distance' min='1134.0' max='4000.0' text='Camera Distance' />
 					</Panel>
@@ -133,6 +133,7 @@ R"zz(
 					<Panel class='SettingsSection'>
 						<TextEntry id='JSText' maxchars='1000' class='TextEntryNormal' style='height: 300px; font-size: 14;' placeholder='Execute Panorama JS here' multiline='true' />
 						<Button id='JSExecute' class='ControlIconButton' text='execute' onactivate='executeJS()'/>
+						<DOTASettingsCheckbox convar='mc_anti_mute' text='Anti-Mute(allies)' onactivate='clickSound()'/>
 					</Panel>
 				</Panel>
 			</Panel>
@@ -180,7 +181,6 @@ R"zz(
 						<DOTASettingsCheckbox convar='mc_log_prepareunitorders' text='Log PrepUnitOrders' onactivate='clickSound()' />
 						<DOTASettingsCheckbox convar='mc_log_runscript' text='Log RunScript' onactivate='clickSound()' />
 						<DOTASettingsCheckbox convar='mc_retarget_orders' text='Retarget Orders' onactivate='clickSound()' />
-						<DOTASettingsCheckbox convar='mc_allow_customnames' text='Allow Custom Names' onactivate='clickSound()' />
 						<DOTASettingsCheckbox convar='mc_send_voice' text='Kisak voice' onactivate='clickSound()' />
 						<DOTASettingsCheckbox convar='mc_send_status' text='Send Status' onactivate='clickSound()' />
 						<DOTASettingsSlider convar='mc_send_freq' min='5.0' max='2000.0' text='Send Freq' />

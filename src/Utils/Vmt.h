@@ -34,6 +34,7 @@ public:
         ReleaseVMT();
         delete[] vmt;
     }
+	// rttiPrefix 2??? Wtf? Yeah read this: https://web.archive.org/web/20170701021444/https://spockwangs.github.io/2011/01/31/cpp-object-model.html
 	explicit VMT(void* interface, bool copyRTTI = true, int32_t rttiPrefixAmount = 2)
 	{
 		this->interface = reinterpret_cast<uintptr_t**>(interface);
@@ -42,13 +43,14 @@ public:
 
 		original_vmt = *this->interface;
 
-		vmt = new uintptr_t[method_count];
         // Copy the Original Vtable.
 		if( copyRTTI ){
+			vmt = new uintptr_t[method_count + 1];
 			memcpy(vmt, &original_vmt[-rttiPrefixAmount], (sizeof(uintptr_t) * method_count) + sizeof(uintptr_t));
 			hasRTTI = true;
             rttiPrefix = rttiPrefixAmount;
 		} else {
+			vmt = new uintptr_t[method_count];
 			memcpy(vmt, original_vmt, sizeof(uintptr_t) * method_count);
 		}
 
@@ -87,5 +89,4 @@ public:
 		if( *this->interface && original_vmt )
 			*this->interface = original_vmt;
 	}
-    
 };

@@ -2,7 +2,7 @@
 
 #include "CDotaBaseNPC.h"
 
-enum DotaUnitOrder_t : int {
+enum class DotaUnitOrder_t : int {
     DOTA_UNIT_ORDER_NONE = 0,
     DOTA_UNIT_ORDER_MOVE_TO_POSITION = 1,
     DOTA_UNIT_ORDER_MOVE_TO_TARGET = 2,

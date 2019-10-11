@@ -29,6 +29,9 @@ inline CParticleSystemMgr* particleSystemMgr;
 inline CGameEventSystem* gameEventSystem;
 inline CNetworkStringTableContainer* networkStrings;
 inline IMaterialSystem* materialSystem;
+inline CVPhys2World* phys2World;
+inline CRenderGameSystem* renderGameSystem;
+inline CNetworkSystem* networkSystem;
 
 // VMT's
 inline VMT* cameraVMT;
@@ -42,20 +45,45 @@ inline VMT* clientModeVMT;
 inline VMT* soundOpSystemVMT;
 inline VMT* gameEventManagerVMT;
 inline VMT* gameEventSystemVMT;
-
-// Special Panels
-inline panorama::CPanel2D* gDBPlayPanel;
+inline VMT* networkSystemVMT;
+inline VMT* networkGameClientVMT;
 
 // HardHook Addresses
 inline uintptr_t DispatchPacketFnAddr;
 inline uintptr_t BAsyncSendProtoFnAddr;
 
+// Functions Types
+typedef GameScriptScopesWrapper* (* GetPanoramaScriptScopesFn)( void );
+typedef void (* OnAcceptMatchFn)( panorama::CPanel2D* );
+typedef void (* GetMatricesForViewFn)( CRenderGameSystem *thisptr, CViewSetup &view, VMatrix *worldToView, VMatrix *viewToProjection, VMatrix *worldToProjection, VMatrix *worldToScreen );
+
+// Function Pointers
+inline GetPanoramaScriptScopesFn GetPanoramaScriptScopes;
+inline OnAcceptMatchFn OnAcceptMatch;
+inline GetMatricesForViewFn GetMatricesForView;
+
+// Viewmatrixes
+inline VMatrix *g_WorldToView;
+inline VMatrix *g_WorldToScreen;
+inline VMatrix *g_WorldToProjection;
+inline VMatrix *g_ViewToProjection;
+/*
+inline GetMatricesForViewFn GetMatricesForView;
+inline VMatrix *g_WorldToView;
+inline VMatrix *g_WorldToScreen;
+inline VMatrix *g_WorldToProjection;
+inline VMatrix *g_ViewToProjection;
+*/
+// Custom
+inline panorama::CPanel2D* gDBPlayPanel; // Special Panel
+
 #define MC_PRINTF(f_, ...) cvar->ConsoleColorPrintf(ColorRGBA( 255, 140, 5 ), ("[McDota] " f_), ##__VA_ARGS__)
+#define MC_PRINTF_PLAIN(f_, ...) cvar->ConsoleColorPrintf(ColorRGBA( 255, 140, 5 ), ("" f_), ##__VA_ARGS__)
 #define MC_PRINTF_ERROR(f_, ...) cvar->ConsoleColorPrintf(ColorRGBA( 255, 20, 140 ), ("[McDota:%s] " f_ ), __FUNCTION__, ##__VA_ARGS__)
 #define MC_PRINTF_WARN(f_, ...) cvar->ConsoleColorPrintf(ColorRGBA( 255, 223, 0 ), ("[McDota:%s] " f_ ), __FUNCTION__, ##__VA_ARGS__)
 
 namespace Interfaces
 {
-	bool FindInterfaces();
+	bool FindExportedInterfaces( );
 	void DumpInterfaces( const char *fileName );
 }

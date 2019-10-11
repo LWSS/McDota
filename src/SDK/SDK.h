@@ -40,3 +40,7 @@
 #include "CParticleSystemMgr.h"
 #include "CGameEventSystem.h"
 #include "CNetworkStringTableContainer.h"
+#include "CVPhys2World.h"
+#include "Valve/tier0/memalloc.h"
+#include "CRenderGameSystem.h"
+#include "CPanoramaGameScriptScope.h"

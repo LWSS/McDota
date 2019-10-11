@@ -18,7 +18,7 @@ ButtonCode_t Util::GetButtonCode(const char* buttonName)
 
 static const char* DataFieldType2String( fieldtype_t type )
 {
-    switch( type )
+    switch( (int)type )
     {
         CASE_STRING( FIELD_VOID );
         CASE_STRING( FIELD_FLOAT );
@@ -181,4 +181,41 @@ ConVar *Util::RegisterConVar( const char *name, const char *defaultValue, uint32
     // cvar->ConsoleDPrintf("Registered convar %s @ %p\n", command->name, (void*)command);
 
     return cvar->FindVar(name);
+}
+
+void Util::SpewScriptScopes( GameScriptScopesWrapper *scopes, bool toLogFile ) {
+    for( size_t i = 0; i < scopes->numScopes; i++ ){
+        Util::Log("------ %s(%d) ------\n", scopes->scopes[i]->name, scopes->scopes[i]->numFuncs);
+
+        for( size_t j = 0; j < scopes->scopes[i]->numFuncs; j++ ){
+            ScopeFunction &func = scopes->scopes[i]->funcs[j];
+            Util::Log("%s %s ( ", GetArgTypeString(func.returnType), func.name);
+            const char *names = func.argNames;
+            if( names ){
+                for( int k = 0; k < func.argNum; k++ ){
+                    Util::Log( "%s %s, ", GetArgTypeString( func.argTypes[k] ), names );
+                    names += strlen( names ) + 1;
+                }
+            } else {
+                for( int k = 0; k < func.argNum; k++ ){
+                    Util::Log( "%s noname_arg_%d, ", GetArgTypeString( func.argTypes[k] ), k );
+                }
+            }
+            Util::Log(")\n");
+        }
+    }
+}
+
+void* Util::GetScriptScopeFunction( GameScriptScopesWrapper *scopes, const char *exactName ) {
+    Util::Log("GetScriptScopeFunction called!\n");
+    for( size_t i = 0; i < scopes->numScopes; i++ ) {
+        for ( size_t j = 0; j < scopes->scopes[i]->numFuncs; j++ ) {
+            ScopeFunction &func = scopes->scopes[i]->funcs[j];
+            if( !strcmp( func.name, exactName ) ){
+                Util::Log("Found func at %p\n", func.function);
+                return func.function;
+            }
+        }
+    }
+    return nullptr;
 }

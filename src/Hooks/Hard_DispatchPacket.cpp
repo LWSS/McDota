@@ -2,7 +2,7 @@
 #include "../Interfaces.h"
 
 bool HardHooks::MyDispatchPacket( void *thisptr, CStructNetPacket *IMsgNetPacket ) {
-    Util::Log("MyDispatchPacket(%p) - CNetPacket(%p)\n", (void*)IMsgNetPacket, IMsgNetPacket->GetCNetPacket());
+    Util::Log("[GC]Recv(%p) - CNetPacket(%p)\n", (void*)IMsgNetPacket, IMsgNetPacket->GetCNetPacket());
     //std::raise(SIGINT);
     //msg.ParseFromArray( IMsgNetPacket->PubData(), IMsgNetPacket->CubData() );
     
