@@ -26,6 +26,10 @@ It has been built from the ground-up to be faster and better than previous cheat
 ## Build Instructions
 `cmake . && make -j`
 
+*Note: did you get a protobuf error? Regenerate the protobuf files with your local version if needed.*
+
+`protoc --cpp_out=. ./src/protos/mcdota.proto && mv ./src/protos/mcdota.pb.cc ./src/protos/mcdota.pb.cpp`
+
 *For a Debug Build*
 `cmake . -DCMAKE_BUILD_TYPE="Debug" . && make -j`
 
