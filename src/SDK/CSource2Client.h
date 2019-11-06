@@ -4,6 +4,9 @@
 #include "vector.h"
 #include "definitions.h"
 #include "Schema.h"
+#include "CViewSetup.h"
+
+#include "../Utils/Util.h"
 
 class ClientClass
 {
@@ -23,19 +26,84 @@ public:
 	void* N00000047; //0x0068
 };
 
-struct RnQueryAttr_t
+class RnQueryAttr_t
 {
-	void *pskip; // guess
-	void *unk;
-	void *unk2;
-	int iUnk; // 0FFFFFFFFh
-	int iUnk2; // 100
+public:
+	/*
+    virtual bool ShouldHitEntity( void *CEntityInstance )
+    {
+        Util::Log("Uhhh Should Hit Entity called!\n");
+        return true;
+    }*/
+    void *unk; // defo a pointer
+    void *unk2;
+    void *unk3;
+    int entskipHandle; // 0x18 - 0FFFFFFFFh -1 for none
+    unsigned int maskMaybe; // 0x1C
+    int type; // 0x20 - have seen 7 and 1.
+    int unk4; // 0x24
+    bool (* HandleHitEnt)( void *IHandleEntity, int unk ); // 0x28
+    unsigned int mask;
+    float maxDist; // BIG GUESS 1.0f
+};
+class RnQueryTerrain : public RnQueryAttr_t
+{
+public:
+	void Init(unsigned int uMask, int entitySkipHandle = 0xFFFFFFFF, bool (* HitEntHandler)( void *, int ) = nullptr )
+	{
+		unk = 0;
+		unk2 = 0;
+		unk3 = 0;
+		unk4 = 0;
+		type = 1;
+		entskipHandle = entitySkipHandle;
+		maskMaybe = 0x9040000;
+		mask = uMask;
+		HandleHitEnt = HitEntHandler;
+		maxDist = 1.0f;
+	}
 };
 
-struct Ray_t;
+struct Ray_t
+{
+	VectorAligned start;
+	VectorAligned delta;
+	VectorAligned startOffset; // zero unless using mins/maxs
+	VectorAligned extents;     // ^^
+    int _unk;
+
+	bool isRay;
+	bool isSwept;
+    bool unkBool;
+    bool unkBool2;
+
+    void *_unk2;
+
+    void Init(Vector vecStart, Vector vecEnd)
+	{
+		delta = vecEnd - vecStart;
+        delta.w = 0.0f;
+		isSwept = (delta.LengthSqr() != 0);
+		extents.x = extents.y = extents.z = extents.w = 0.0f;
+        isRay = true;
+		startOffset.x = startOffset.y = startOffset.z = startOffset.w = 0.0f;
+		start = vecStart;
+        start.w = 0.0f;
+        _unk = 0;
+        unkBool = false;
+        unkBool2 = false;
+        _unk2 = 0;
+	}
+};
+
 struct CGameTrace
 {
-
+    Vector start;
+    Vector end;
+    Vector normal;
+    void *unks[2];
+    float fraction;
+    char _pad[0x300];
 };
 
 /* xref "-pressdemo" to CSource2Client::Init */
@@ -122,7 +190,7 @@ public:
 	virtual void* GetEntityInfo(void);
 	virtual void DescribeNetworkedField();
 	virtual void PerformClientSpecificSetupForPlayerViews();
-	virtual void* GetPlayerViewSetup(int splitScreenSlot);
+	virtual CViewSetup* GetPlayerViewSetup(int splitScreenSlot);
 	virtual void GetBugReportLaunchURLParameters(void* KeyValues);
 	virtual void sub_2B61BB0();
 	virtual void sub_2B600F0();
@@ -130,7 +198,7 @@ public:
 	virtual void DeleteProjectedTexture();
 	virtual void UpdateDeferredLight();
 	virtual void DeleteDeferredLight();
-	virtual void TraceRay(const Ray_t &ray, RnQueryAttr_t filter, CGameTrace* traceOut);
+	virtual int TraceRay(const Ray_t &ray, RnQueryAttr_t filter, CGameTrace* traceOut);
 	virtual void GetPointContents(Vector unk, int unk2);
 	virtual void LaunchApplicationOnExit(const char* pathMaybe);
 	virtual void DotaEconGetSoundReplacement(const char* pathMaybe);

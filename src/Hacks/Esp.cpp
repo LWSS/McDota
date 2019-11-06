@@ -137,12 +137,9 @@ void ESP::PaintTraverse( IVPanel *thisptr, IVGuiPaintSurface *surface, VPANEL pa
                 strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" -Dmg Min(%d)/Max(%d)", npc->C_DOTA_BaseNPC__GetDamageMin(), npc->C_DOTA_BaseNPC__GetDamageMax() );
                 strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" -MagicImm?(%s)", npc->C_DOTA_BaseNPC__IsMagicImmune() ? "yes" : "no" );
                 strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" -Illu?(%s)", npc->IsIllusion() ? "yes" : "no" );
-                CDotaBaseNPC *target = npc->C_DOTA_BaseNPC__GetChosenTarget();
-                if( target ){
-                    strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" -Target(%p)", (void*)target );
-                } else {
-                    strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" -Target(null)" );
-                }
+                strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" -Pos(%f,%f,%f)", npc->C_BaseEntity__WorldSpaceCenter()->x,
+                                    npc->C_BaseEntity__WorldSpaceCenter()->y,
+                                    npc->C_BaseEntity__WorldSpaceCenter()->z);
             }
 
             surface->DrawSetTextFont(ESP::paintFont);

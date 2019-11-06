@@ -30,7 +30,7 @@ namespace Hooks
     int RunScript( panorama::UIEngine* thisptr, panorama::IUIPanel *panel, const char* str1, const char* str2, int int1, int int2, bool bool1 );
     // CDotaPlayer
     void PrepareUnitOrders( CDotaPlayer *thisptr, DotaUnitOrder_t order, int targetIndex, Vector movePosition, int abilityIndex,PlayerOrderIssuer_t orderIssuer,
-                           CDotaBaseNPC* entity, bool queue, OrderQueueBehavior_t queueBehavior, bool showEffects );
+                           CDotaBaseNPC* entity, bool queue, bool showEffects );
     // CSoundOpSystem
     void StartSoundEvent( CSoundOpSystem *thisptr, const char *name, int entIndex, short unk, void const *something, int unk2 );
     void StartSoundEvent2( CSoundOpSystem *thisptr, unsigned int unk, int entIndex, sound_voice_layer_t voiceLayer, short unk2, const char *name, void const * something, int unk3, SoundEventGuid_t guid);

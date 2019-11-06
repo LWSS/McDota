@@ -220,12 +220,16 @@ static bool FindGameEventManager()
 
 static bool FindDBPlayPanel()
 {
-	// 48 8B 05 ?? ?? ?? ?? BE 07 00 00 00
-	// Right below "disconnect clicked disconnect button"
-	// 48 8B 05 E7 99 0A 03    mov     rax, cs:_g_pDBPlayPanel
-	// BE 07 00 00 00          mov     esi, 7
-	
-	uintptr_t playPanelLine = PatternFinder::FindPatternInModule("libclient.so", "48 8B 05 ?? ?? ?? ?? BE 07 00 00 00", "DBPlay Panel");
+	// 48 89 1D ?? ?? ?? ?? E8 ?? ?? ?? ?? 48 89 C7
+	// xref  "file://{resources}/layout/play.xml". DBPlay panel is a few lines above it.
+	// 48 89 1D 73 45 C3 01    mov     cs:DBPlayPanel, rbx   <-------------------------
+	// E8 B6 CA AD FE          call    __Znwm          ; operator new(ulong)
+	// 48 89 C7                mov     rdi, rax
+	// 49 89 C4                mov     r12, rax
+	// E8 BB D6 82 FF          call    loc_2C50EA0
+	// 48 8B 05 2C 0E 92 01    mov     rax, cs:off_4D44618
+
+	uintptr_t playPanelLine = PatternFinder::FindPatternInModule("libclient.so", "48 89 1D ?? ?? ?? ?? E8 ?? ?? ?? ?? 48 89 C7", "DBPlay Panel");
 
 	if( !playPanelLine ){
 		MC_PRINTF_ERROR("DBPlayPanel Sig is broke!\n");
@@ -239,7 +243,7 @@ static bool FindDBPlayPanel()
 		return false;
 	}
 
-	gDBPlayPanel = **reinterpret_cast<panorama::CPanel2D***>( playPanelAddr );
+	gDBPlayPanel = *reinterpret_cast<panorama::CPanel2D**>( playPanelAddr );
 
 	return true;
 }
@@ -362,22 +366,18 @@ static bool FindHardHooks()
 
 static bool FindPhysicsQuery()
 {
-	// ent_grab(CCommandContext const&, CCommand const&)
-	// xref for "ent_grab", there are several that lead back
-	// Interface is in a big chunk a couple blocks up from the strings.
-	// E8 4C F0 0D 00                      call    sub_2791000
-	// 48 89 D9                            mov     rcx, rbx
-	// 4C 89 E2                            mov     rdx, r12
-	// 4C 89 FE                            mov     rsi, r15
-	// 48 8B 05 9C 96 62 02                mov     rax, cs:_g_pPhysicsQuery
-	// 48 C7 85 38 FE FF FF 01 30 08 00    mov     [rbp+var_1C8], 83001h
-	// 48 8B 38                            mov     rdi, [rax]
-	// E8 79 A4 12 00                      call    sub_27DC450
-	// F3 0F 10 05 9D 45 67 01             movss   xmm0, cs:dword_3D2657C
-	// 0F 2E 85 48 FF FF FF                ucomiss xmm0, [rbp+var_B8]
-	// 77 0D                               ja      short loc_26B1FF5
+	// MaterialFootstepSound() - xref "LeftFoot" to find this function.
+    // 48 8B 05 E7 CA 5D 02                mov     rax, cs:_g_pPhysicsQuery
+    // 48 C7 85 48 FD FF FF 01 30 18 00    mov     [rbp+var_2B8], 183001h
+    // 48 8B 38                            mov     rdi, [rax]
+    // E8 EC 34 0B 00                      call    TraceRay
 
-	uintptr_t physicsQueryLine = PatternFinder::FindPatternInModule( "libclient.so", "48 8B 05 ?? ?? ?? ?? 48 C7 85 ?? ?? ?? ?? ?? ?? 08 00", "FindPhysicsQuery" );
+    // valid masks...
+    // 0x83001
+    // 0x183001
+    // 0x181003
+    // 0x3011
+	uintptr_t physicsQueryLine = PatternFinder::FindPatternInModule( "libclient.so", "48 8B 05 ?? ?? ?? ?? 48 C7 85 ?? ?? ?? ?? ?? ?? ?? ?? 48 8B 38 E8", "_g_pPhysicsQuery" );
 	if( !physicsQueryLine ){
 		MC_PRINTF_ERROR("FindPhysicsQuery sig is broke!\n");
 		return false;
@@ -419,6 +419,10 @@ static bool FindRenderGameSystem()
 	g_ViewToProjection = reinterpret_cast<VMatrix*>( GetAbsoluteAddress( line, 3, 7 ) );
 	line += 7;
 	GetMatricesForView = reinterpret_cast<GetMatricesForViewFn>( GetAbsoluteAddress( line, 1, 5 ) );
+
+	line = PatternFinder::FindPatternInModule( "libclient.so", "55 48 89 E5 41 57 41 56 41 55 41 54 53 48 89 FB 48 81 EC A8 00 00 00 48 8B 07 89", "setupview" );
+	SetupView = reinterpret_cast<SetupViewFn>( line );
+
 	return true;
 }
 
@@ -434,6 +438,30 @@ static bool FindPanoramaScriptScopes()
 
 	GetPanoramaScriptScopes = reinterpret_cast<GetPanoramaScriptScopesFn>( line );
 	return true;
+}
+
+static bool FindTraceFuncs()
+{
+    // Xref "Pass table - Inputs: start, end, min, max, mask, ignore  -- outputs: pos, fraction, hit, enthit, startsolid" to CVScriptGameSystem::InstallScriptBindings()
+    // Script_Traceline will be loaded into rax shortly below.
+    // look for CGameTrace::Init() at the start of a big chunk
+    uintptr_t line = PatternFinder::FindPatternInModule( "libclient.so", "55 48 89 E5 41 57 41 56 41 55 41 54 53 48 89 FB 48 83 EC 18 4C 8B 25 ?? ?? ?? ?? 4D", "CGameTrace::Init()" );
+    if( !line ){
+        MC_PRINTF_ERROR("CGameTrace::Init() sig is broke!\n");
+        return false;
+    }
+    GameTrace_Init = reinterpret_cast<CGameTraceInitFn>( line );
+
+    // towards the end of that big chunk where u found Init(), look for another function. This function will have `mov dword ptr [rdi+28h], 7` in the first chunk.
+    // This function is CTraceFilterSimple::CTraceFilterSimple(IHandleEntity const*, int, bool (*)(IHandleEntity*, int))
+    line = PatternFinder::FindPatternInModule( "libclient.so", "55 48 8D 05 ?? ?? ?? ?? 48 89 E5 41 56 41 89 D6", "CTraceFilter::CTraceFilter()" );
+    if( !line ){
+        MC_PRINTF_ERROR("CTraceFilter::CTraceFilter sig is broke!\n");
+        return false;
+    }
+
+    CTraceFilter_Constructor = reinterpret_cast<CTraceFilterConstructorFn>( line );
+    return true;
 }
 
 bool Scanner::FindAllSigs( )
@@ -456,6 +484,7 @@ bool Scanner::FindAllSigs( )
 	sigsOK &= FindPhysicsQuery();
 	sigsOK &= FindRenderGameSystem();
 	sigsOK &= FindPanoramaScriptScopes();
+    sigsOK &= FindTraceFuncs();
 
 	return sigsOK;
 }

@@ -34,7 +34,7 @@ public:
 	virtual void Render(vrect_t *);
     // Called to render just a particular setup ( for timerefresh and envmap creation )
 	virtual void RenderView(CViewSetup const&,CViewSetup const&,int clearFlags,int whatToDraw); // 7
-	virtual void GetPlayerViewSetup(int CSplitScreenSlot);
+	virtual const CViewSetup* GetPlayerViewSetup(int CSplitScreenSlot);
 	virtual void CullBox();//VectorAligned const&,VectorAligned const&,CSplitScreenSlot);
 	virtual const CViewSetup* GetViewSetup(void);
 	virtual void RestoreLastViewSetups(void);

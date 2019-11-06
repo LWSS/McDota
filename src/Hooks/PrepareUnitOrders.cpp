@@ -2,7 +2,7 @@
 
 #include "../Settings.h"
 
-typedef void (* PrepareUnitOrdersFn)( CDotaPlayer*, DotaUnitOrder_t, int, Vector, int, PlayerOrderIssuer_t, CDotaBaseNPC*, bool, OrderQueueBehavior_t, bool );
+typedef void (* PrepareUnitOrdersFn)( CDotaPlayer*, DotaUnitOrder_t, int, Vector, int, PlayerOrderIssuer_t, CDotaBaseNPC*, bool, bool );
 
 
 static const char* Order2String( DotaUnitOrder_t order )
@@ -76,7 +76,7 @@ long lastVectorCmd = 0;
 Vector targetPosition;
 
 void Hooks::PrepareUnitOrders( CDotaPlayer *thisptr, DotaUnitOrder_t order, int targetIndex, Vector movePosition, int abilityIndex, PlayerOrderIssuer_t orderIssuer,
-                               CDotaBaseNPC *entity, bool queue, OrderQueueBehavior_t queueBehavior, bool showEffects ) {
+                               CDotaBaseNPC *entity, bool queue, bool showEffects ) {
     //std::raise(SIGINT);
 
     if( mc_retarget_orders->GetBool() && order == DotaUnitOrder_t::DOTA_UNIT_ORDER_CAST_POSITION ){
@@ -101,7 +101,7 @@ void Hooks::PrepareUnitOrders( CDotaPlayer *thisptr, DotaUnitOrder_t order, int 
     }*/
 
     if( mc_log_prepareunitorders->GetBool() ){
-        Util::Log( "Order: %s\nEntity: (%p)[%s]\nTargetIndex: %d\nPosition: (%f,%f,%f)\nAbility Index: %d\nIssuer: %s\nQueue? %s\nQueueBehavior: %s\nShowEffects? %s\n\n",
+        Util::Log( "Order: %s\nEntity: (%p)[%s]\nTargetIndex: %d\nPosition: (%f,%f,%f)\nAbility Index: %d\nIssuer: %s\nQueue? %s\nShowEffects? %s\n\n",
                    Order2String(order),
                    (void*)entity, entity ? entity->Schema_DynamicBinding()->bindingName: "nil",
                    targetIndex,
@@ -109,7 +109,6 @@ void Hooks::PrepareUnitOrders( CDotaPlayer *thisptr, DotaUnitOrder_t order, int 
                    abilityIndex,
                    Issuer2String(orderIssuer),
                    queue? "yes" : "no",
-                   Queue2String(queueBehavior),
                    showEffects? "yes" : "no" );
     }
 
@@ -118,5 +117,5 @@ void Hooks::PrepareUnitOrders( CDotaPlayer *thisptr, DotaUnitOrder_t order, int 
         //Util::Log( "Entity origin @ (%f,%f,%f)\n", origin.x, origin.y, origin.z );
     }
 
-    localPlayerVMT->GetOriginalMethod<PrepareUnitOrdersFn>(442)( thisptr, order, targetIndex, movePosition, abilityIndex, orderIssuer, entity, queue, queueBehavior, showEffects );
+    localPlayerVMT->GetOriginalMethod<PrepareUnitOrdersFn>(442)( thisptr, order, targetIndex, movePosition, abilityIndex, orderIssuer, entity, queue, showEffects );
 }

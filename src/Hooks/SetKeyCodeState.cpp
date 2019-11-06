@@ -9,6 +9,12 @@
 typedef void (* SetKeyCodeStateFn)( IInputInternal*, ButtonCode_t, bool );
 typedef bool (* SendNetMessageFn)( INetChannel *thisptr, NetMessageHandle_t *, google::protobuf::Message*, NetChannelBufType_t );
 
+bool EntHitHandler( void *IHandleEntity, int unk )
+{
+    Util::Log("Ent hit handler REEEE ent(%p) - int(%d)\n", IHandleEntity, unk);
+    std::raise(SIGINT);
+    return true;
+}
 void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pressed)
 {
     Vector attachment;
@@ -22,6 +28,11 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
     CDOTAClientMsg_GuideSelectOption option;
     CDOTAClientMsg_GuideSelected guide;
     std::string meme;
+
+    RnQueryTerrain traceFilter;
+    CGameTrace traceOut;
+    Ray_t ray;
+    Vector temp;
 
     if( !pressed )
         return inputInternalVMT->GetOriginalMethod<SetKeyCodeStateFn>(96)(thisptr, code, pressed);
@@ -79,6 +90,16 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             Util::SpewScriptScopes( GetPanoramaScriptScopes(), true );
             break;
         case ButtonCode_t::PRINTSCREEN:
+            Util::Log("Tracing a ray good luck!\n");
+            //CTraceFilter_Constructor( &traceFilter, nullptr, 0x69696969, EntHitHandler );
+            ray.Init( Vector(100.0f, 200.0f, 300.0f), Vector(100.0f, 200.0f, -1200.0f) );
+            traceFilter.Init( 0, 0xFFFFFFFF, EntHitHandler );
+
+            GameTrace_Init( &traceOut );
+            client->TraceRay( ray, traceFilter, &traceOut );
+
+            Util::Log("Traceout(%p) - filter(%p) - fraction(%f)\n", &traceOut, &traceFilter, traceOut.fraction);
+            std::raise(SIGINT);
             /*
              * CVoiceGamerMgrHelper::CanPlayerHearPlayer()
              - calls CEngineServer::GetClientConvarValue(index, "dota_mute_cobroastcasters") every tick i think
