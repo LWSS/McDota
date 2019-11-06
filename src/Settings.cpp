@@ -34,7 +34,6 @@ bool Settings::RegisterCustomConvars( ) {
 	mc_autoaccept_on = Util::RegisterConVar( "mc_autoaccept_on", "false" );
 
 	mc_airstuck_on = Util::RegisterConVar( "mc_airstuck_on", "false" );
-	mc_command_repeater = Util::RegisterConVar( "mc_command_repeater", "true" );
 
 	mc_log_createmove = Util::RegisterConVar( "mc_log_createmove", "false" );
 	mc_log_clientevents = Util::RegisterConVar( "mc_log_clientevents", "false" );
@@ -49,6 +48,7 @@ bool Settings::RegisterCustomConvars( ) {
 	mc_log_GC_recv = Util::RegisterConVar( "mc_log_GC_recv", "false" );
 	mc_log_GC_send = Util::RegisterConVar( "mc_log_GC_send", "false" );
 
+    mc_mute_creeps = Util::RegisterConVar( "mc_mute_creeps", "false" );
 	mc_end_createmove = Util::RegisterConVar( "mc_end_createmove", "false" );
 	mc_crash_server = Util::RegisterConVar( "mc_crash_server", "false" );
 

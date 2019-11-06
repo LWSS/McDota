@@ -108,29 +108,6 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
         }
     }
 
-    if( mc_command_repeater->GetBool() ){
-        info = networkMessages->GetNetMessageInfo(messageHandle);
-        name = info->pProtobufBinding->GetName();
-
-        if( strstr(name, "CDOTAClientMsg_ExecuteOrders") != nullptr ){
-            CUtlString string;
-            string.m_Memory.m_pMemory = new uint8_t[4096];
-            string.m_Memory.m_nAllocationCount = 4096;
-            string.m_Memory.m_nGrowSize = 4096;
-            info->pProtobufBinding->ToString( msg, &string );
-            //static int seq = 5000;
-            static bool bFlip = false;
-            for( int i = 0; i < mc_send_freq->GetInt(); i++ ){
-                engine->GetNetChannelInfo()->SetMaxRoutablePayloadSize(99999999);
-                engine->GetNetChannelInfo()->SetMaxBufferSize(NetChannelBufType_t::BUF_DEFAULT, 99999999);
-                Util::Protobuf::EditFieldTraverseInt32(msg, "sequence_number", bFlip ? (INT_MAX) : -1);
-                bFlip = !bFlip;
-                netChannelVMT->GetOriginalMethod<SendNetMessageFn>(62)( thisptr, messageHandle, msg, type );
-            }
-            delete[] string.m_Memory.m_pMemory;
-        }
-    }
-
     if( mc_log_sendnetmsg->GetBool() ){
         info = networkMessages->GetNetMessageInfo(messageHandle);
         name = info->pProtobufBinding->GetName();

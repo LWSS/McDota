@@ -89,17 +89,6 @@ void Hooks::PrepareUnitOrders( CDotaPlayer *thisptr, DotaUnitOrder_t order, int 
         movePosition.z = 1000.0f;
     }
 
-    /*
-    if( mc_command_repeater->GetBool() ){
-        MC_PRINTF("Repeating 30x\n");
-        engine->GetNetChannelInfo()->SetMaxRoutablePayloadSize(99999999);
-        engine->GetNetChannelInfo()->SetMaxBufferSize(NetChannelBufType_t::BUF_DEFAULT, 99999999);
-        for( int i = 0; i < 30; i++ ){
-            localPlayerVMT->GetOriginalMethod<PrepareUnitOrdersFn>(442)( thisptr, order, targetIndex, movePosition, abilityIndex, orderIssuer, entity, queue, queueBehavior, showEffects );
-        }
-        MC_PRINTF("done.\n");
-    }*/
-
     if( mc_log_prepareunitorders->GetBool() ){
         Util::Log( "Order: %s\nEntity: (%p)[%s]\nTargetIndex: %d\nPosition: (%f,%f,%f)\nAbility Index: %d\nIssuer: %s\nQueue? %s\nShowEffects? %s\n\n",
                    Order2String(order),

@@ -11,6 +11,7 @@ void Hooks::PostReceivedNetMessage( INetChannel *thisptr, NetMessageHandle_t *me
 
     NetMessageInfo_t *info;
     const char *name;
+    CBaseEntity *entity;
 
     if( mc_log_recvnetmsg->GetBool() ){
         info = networkMessages->GetNetMessageInfo( messageHandle );
@@ -36,8 +37,6 @@ void Hooks::PostReceivedNetMessage( INetChannel *thisptr, NetMessageHandle_t *me
     }
 
 
-    info = networkMessages->GetNetMessageInfo( messageHandle );
-    name = info->pProtobufBinding->GetName();
     /*
     if( strstr( name, "CNETMsg_SignonState" ) ){
         uint32_t signon = Util::Protobuf::GetFieldTraverseUInt32( msg, "signon_state" ).value();
