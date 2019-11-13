@@ -15,6 +15,14 @@ bool EntHitHandler( void *IHandleEntity, int unk )
     std::raise(SIGINT);
     return true;
 }
+
+bool ShouldDrawParticleSystems( void )
+{
+    Util::Log("Should draw particle callback\n");
+    return false;
+}
+
+
 void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pressed)
 {
     Vector attachment;
@@ -33,6 +41,8 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
     CGameTrace traceOut;
     Ray_t ray;
     Vector temp;
+
+    VMT *entityVMT;
 
     if( !pressed )
         return inputInternalVMT->GetOriginalMethod<SetKeyCodeStateFn>(96)(thisptr, code, pressed);
@@ -85,6 +95,16 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             break;
         case ButtonCode_t::SCROLLLOCK:
             //richPresence->SetStatus(mc_custom_str->strValue);
+            MC_PRINTF("Doing cosmetic particle disable sweep.\n");
+            for( int i = 0; i <= entitySystem->GetHighestEntityIndex(); i++ ){
+                entity = entitySystem->GetBaseEntity(i);
+                if( entity && !strcmp( entity->Schema_DynamicBinding()->bindingName, "C_DOTAWearableItem" ) ){
+                    MC_PRINTF("Purging ent %d\n", i);
+                    entityVMT = new VMT(entity);
+                    entityVMT->HookVM( ShouldDrawParticleSystems, 297 );
+                    entityVMT->ApplyVMT();
+                }
+            }
             break;
         case ButtonCode_t::PAUSE:
             Util::SpewScriptScopes( GetPanoramaScriptScopes(), true );

@@ -382,5 +382,5 @@ public:
     virtual void C_BaseFlex__ProcessSequenceSceneEvent();
     virtual void C_BaseFlex__ClearSceneEvent();
     virtual void C_BaseFlex__CheckSceneEventCompletion();
-    virtual void C_BaseFlex__ShouldProcessSceneEvents(); // 286
+    virtual void C_BaseFlex__ShouldProcessSceneEvents();
 };

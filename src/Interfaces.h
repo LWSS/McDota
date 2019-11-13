@@ -47,6 +47,7 @@ inline VMT* gameEventManagerVMT;
 inline VMT* gameEventSystemVMT;
 inline VMT* networkSystemVMT;
 inline VMT* networkGameClientVMT;
+inline VMT* particleSystemVMT;
 
 // HardHook Addresses
 inline uintptr_t DispatchPacketFnAddr;

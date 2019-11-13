@@ -24,8 +24,6 @@ static const char* Stage2String( ClientFrameStage_t stage ){
 }*/
 void Hooks::FrameStageNotify( CSource2Client *thisptr, ClientFrameStage_t stage ) {
     //MC_PRINTF("FSN: %s\n", Stage2String(stage));
-    CDotaPlayer *localPlayer;
-
     Zoom::FrameStageNotify( thisptr, stage );
 
     switch( stage ){
@@ -68,51 +66,8 @@ void Hooks::FrameStageNotify( CSource2Client *thisptr, ClientFrameStage_t stage 
                 }
             }
 
-            if( //engine->IsInGame() &&
-             (!networkGameClientVMT || (networkClientService->GetIGameClient()) != (CNetworkGameClient*)networkGameClientVMT->interface) ){
-                //delete networkGameClientVMT;
-                if( networkClientService->GetIGameClient() ){
-                    MC_PRINTF( "Grabbing new NetworkGameClient VMT - %p\n", (void*)networkClientService->GetIGameClient() );
-                    networkGameClientVMT = new VMT( networkClientService->GetIGameClient() );
-                    networkGameClientVMT->ApplyVMT();
-                } else {
-                    MC_PRINTF_WARN("GetIGameClient() returned null! Aboring NetworkGameClient VMT\n");
-                }
-            }
-
-            if( /*engine->IsInGame()  && */(!netChannelVMT || (engine->GetNetChannelInfo() != (void*)netChannelVMT->interface)) ){
-                //delete netChannelVMT;
-
-                if( engine->GetNetChannelInfo() ) {
-                    MC_PRINTF( "Grabbing new NetChannel VMT - %p\n", (void*)engine->GetNetChannelInfo() );
-                    netChannelVMT = new VMT( engine->GetNetChannelInfo( ) );
-                    netChannelVMT->HookVM( Hooks::SendNetMessage, 62 );
-                    netChannelVMT->HookVM( Hooks::PostReceivedNetMessage, 81 );
-                    netChannelVMT->ApplyVMT( );
-                } else {
-                    MC_PRINTF_WARN("GetNetChannelInfo returned null! Aborting NetChannel VMT!\n");
-                }
-            }
-
             break;
         case ClientFrameStage_t::FRAME_NET_UPDATE_POSTDATAUPDATE_END:
-
-            localPlayer = (CDotaPlayer*)entitySystem->GetBaseEntity(engine->GetLocalPlayer());
-            if( !localPlayer ){
-                delete localPlayerVMT;
-                break;
-            }
-
-            if( engine->IsInGame() && (!localPlayerVMT || (void*)localPlayerVMT->interface != localPlayer) ){
-                delete localPlayerVMT;
-
-                MC_PRINTF("Making new localPlayer VMT\n");
-                localPlayerVMT = new VMT( localPlayer );
-                localPlayerVMT->HookVM( Hooks::PrepareUnitOrders, 442 );
-                localPlayerVMT->ApplyVMT();
-                MC_PRINTF("LocalPlayer @ %p\n", (void*)localPlayer);
-            }
-
             break;
         default:
             break;

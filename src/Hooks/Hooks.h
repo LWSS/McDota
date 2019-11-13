@@ -24,6 +24,8 @@ namespace Hooks
     // NetworkSystem
     //void* SendPacket( CNetworkSystem *thisptr, INetChannel *netchan, int unk, void const *ns_address, unsigned const char *bytes, int unk2, bf_write *write, bool bUnk, unsigned int uUnk );
     void* SendPacket( CNetworkSystem *thisptr, unsigned int unk1, void *unk2, const char* playername, unsigned int unk4, unsigned int unk5 );
+    // ParticleSystemMgr
+    CParticleCollection* CreateParticleCollection( CParticleSystemMgr *thisptr, CWeakHandle_InfoForResourceTypeIParticleSystemDefinition *info, void *unk, IParticleSystemQuery *query, bool bUnk, float fUnk, int iUnk );
     // panel
     void PaintTraverse( IVPanel* thisptr, IVGuiPaintSurface* surface, VPANEL panel, bool force_repaint, bool allow_force );
     // panorama

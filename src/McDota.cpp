@@ -44,7 +44,8 @@ static void SignalHandler( int sigNum, siginfo_t *si, void * uContext )
 
     Util::RestoreLinkMapEntry( mcPrev, mcCurr, mcNext );
 }
-void Main()
+/* Entrypoint to the Library. Called when loading */
+int __attribute__((constructor)) Startup()
 {
     /* Setup new Signal Handler */
     sa.sa_flags = SA_SIGINFO;
@@ -56,27 +57,27 @@ void Main()
 
     if( !Interfaces::FindExportedInterfaces( ) ){
         ConMsg( "[McDota] FindExportedInterfaces() Failed. Stopping...\n" );
-        return;
+        return 1;
     }
     if( !Integrity::CheckInterfaceVMs() ){
         MC_PRINTF_ERROR( "CheckInterfaceVMs() Failed. Stopping...\n");
-        return;
+        return 2;
     }
     if( !Scanner::FindAllSigs() ){
         MC_PRINTF_ERROR("Failed to find one of the Signatures. Stopping...\n");
-        return;
+        return 3;
     }
     if( Integrity::VMTsHaveMisMatch() ){
         MC_PRINTF_ERROR("One of the VMs has had a Mismatch. Stopping...\n");
-        return;
+        return 4;
     }
     if( !Settings::RegisterCustomConvars() ){
         MC_PRINTF_ERROR("Error Registering ConVars, Stopping...\n");
-        return;
+        return 5;
     }
     if( !PaintTraverse::InitFonts() ){
         MC_PRINTF_ERROR("Paint Fonts Failed to Initialize, Stopping...\n");
-        return;
+        return 6;
     }
 
     cvar->ConsoleColorPrintf( ColorRGBA(10, 210, 10), "[McDota] I'm in like Flynn.\n" );
@@ -145,6 +146,10 @@ void Main()
     networkSystemVMT->HookVM(Hooks::SendPacket, 28);
     networkSystemVMT->ApplyVMT();
 
+    particleSystemVMT = new VMT( particleSystemMgr );
+    particleSystemVMT->HookVM(Hooks::CreateParticleCollection, 18);
+    particleSystemVMT->ApplyVMT();
+
     std::random_device dev;
     srand(dev()); // Seed random # Generator so we can call rand() later
 
@@ -152,13 +157,8 @@ void Main()
 
     Netvars::DumpNetvars( "/tmp/dotanetvars.txt" );
     Netvars::CacheNetvars();
-}
-/* Entrypoint to the Library. Called when loading */
-int __attribute__((constructor)) Startup()
-{
-    Main();
 
-	return 0;
+    return 0;
 }
 /* Called when un-injecting the library */
 void __attribute__((destructor)) Shutdown()
