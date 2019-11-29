@@ -38,7 +38,6 @@ static panorama::IUIPanel* GetHudRoot( ){
 
 static inline void EscapeQuotes( ) {
     std::string result;
-    result.reserve(result.length() * 2);
 
     for(char i : mainXML){
         switch( i ){

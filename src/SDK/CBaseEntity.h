@@ -302,6 +302,7 @@ public:
     virtual void* C_BaseEntity__GetSelection(void);
     virtual void C_BaseEntity__GenericSelectionGetClickValidBehaviors(void);
     virtual void sub_2B6C440();
+    virtual void sub_2BAEE50(); // added in outlanders update.
     virtual const Vector* C_BaseEntity__GetRenderOrigin(void);
     virtual const QAngle& C_BaseEntity__GetRenderAngles(void);
     virtual Vector C_BaseEntity__GetObserverCamOrigin(void);

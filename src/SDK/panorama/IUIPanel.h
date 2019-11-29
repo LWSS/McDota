@@ -213,7 +213,7 @@ namespace panorama
         virtual void SetFocusDueToHover(void) = 0;
         virtual void SetInputContextFocus(void) = 0;
         virtual unsigned long long GetStyleFlags(void) = 0;
-        virtual void AddStyleFlag(EStyleFlags) = 0;
+        virtual void AddStyleFlag(EStyleFlags) = 0; // "CUIPanel::AddStyleFlag"
         virtual void RemoveStyleFlag(EStyleFlags) = 0;
         virtual bool IsInspected(void) = 0;
         virtual bool HasHoverStyle(bool) = 0;
@@ -247,7 +247,7 @@ namespace panorama
         virtual bool GetClipAfterTransform(void) = 0;
         virtual const char* GetInputNamespace(void) = 0;
         virtual void SetInputNamespace(const char *) = 0;
-        virtual void MarkStylesDirty(bool state) = 0;
+        virtual void MarkStylesDirty(bool state) = 0; // "CUIPanel::MarkStylesDirty"
         virtual bool StylesDirty(void) = 0;
         virtual bool ChildStylesDirty() = 0;
         virtual bool ParsePanelEvent(CPanoramaSymbol, const char *) = 0;

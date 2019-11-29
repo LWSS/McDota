@@ -38,7 +38,7 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
             int32_t value = 0xADADADAD;//mc_custom_int->GetInt();
             Util::Log("Changing localID from %d to %d\n", *(networkClientService->GetIGameClient()->GetLocalDOTAPlayerID()), value);
             *(networkClientService->GetIGameClient()->GetLocalDOTAPlayerID()) = value;
-            netChannelVMT->GetOriginalMethod<SendNetMessageFn>(62)( thisptr, messageHandle, msg, type );
+            netChannelVMT->GetOriginalMethod<SendNetMessageFn>(66)( thisptr, messageHandle, msg, type );
             return true;
         }
     }*/
@@ -69,7 +69,7 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
             CDOTAClientMsg_TipAlert tip;
             tip.set_tip_text(command);
             static auto msgHandle = networkMessages->GetMessageHandleByName("TipAlert");
-            netChannelVMT->GetOriginalMethod<SendNetMessageFn>(62)( thisptr, msgHandle, &tip, BUF_DEFAULT );
+            netChannelVMT->GetOriginalMethod<SendNetMessageFn>(66)( thisptr, msgHandle, &tip, BUF_DEFAULT );
             return true;
         } else if( command.find("say") == 0 ){
             command.erase(0, 5);
@@ -77,7 +77,7 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
             CDOTAClientMsg_TipAlert tip;
             tip.set_tip_text(command);
             static auto msgHandle = networkMessages->GetMessageHandleByName("TipAlert");
-            netChannelVMT->GetOriginalMethod<SendNetMessageFn>(62)( thisptr, msgHandle, &tip, BUF_DEFAULT );
+            netChannelVMT->GetOriginalMethod<SendNetMessageFn>(66)( thisptr, msgHandle, &tip, BUF_DEFAULT );
             return true;
         }
     }
@@ -90,7 +90,7 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
             for( int i = 0; i < mc_send_freq->GetInt(); i++ ){
                 engine->GetNetChannelInfo()->SetMaxRoutablePayloadSize(99999999);
                 engine->GetNetChannelInfo()->SetMaxBufferSize(NetChannelBufType_t::BUF_DEFAULT, 99999999);
-                netChannelVMT->GetOriginalMethod<SendNetMessageFn>(62)( thisptr, messageHandle, msg, type );
+                netChannelVMT->GetOriginalMethod<SendNetMessageFn>(66)( thisptr, messageHandle, msg, type );
             }
         }
     }
@@ -103,7 +103,7 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
             for( int i = 0; i < mc_send_freq->GetInt(); i++ ){
                 engine->GetNetChannelInfo()->SetMaxRoutablePayloadSize(99999999);
                 engine->GetNetChannelInfo()->SetMaxBufferSize(NetChannelBufType_t::BUF_DEFAULT, 99999999);
-                netChannelVMT->GetOriginalMethod<SendNetMessageFn>(62)( thisptr, messageHandle, msg, type );
+                netChannelVMT->GetOriginalMethod<SendNetMessageFn>(66)( thisptr, messageHandle, msg, type );
             }
         }
     }
@@ -152,5 +152,5 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
     }
 
 end:
-    return netChannelVMT->GetOriginalMethod<SendNetMessageFn>(62)( thisptr, messageHandle, msg, type );
+    return netChannelVMT->GetOriginalMethod<SendNetMessageFn>(66)( thisptr, messageHandle, msg, type );
 }

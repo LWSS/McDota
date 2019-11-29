@@ -43,6 +43,7 @@ namespace panorama
         virtual IUISettings*  UISettings(void) = 0;
         virtual IUILayoutManager* UILayoutManager(void) = 0;
         virtual IUIFileSystem* UIFileSystem(void) = 0;
+        virtual void somePureFunc() = 0;
         virtual void RegisterFrameFunc(void (*)(void)) = 0;
         virtual void ReloadLayoutFile(panorama::CPanoramaSymbol) = 0;
         virtual void ToggleDebugMode(void) = 0;
@@ -108,7 +109,7 @@ namespace panorama
         virtual float UpdateLastInputTime(void) = 0;
         virtual void ClearClipboard(void) = 0;
         virtual void CopyToClipboard(char const*,char const*) = 0;
-        virtual void GetClipboardText(void* CUtlString,void* CUtlString2) = 0;
+        virtual void GetClipboardText(void* CUtlString,void* CUtlString2) = 0; // "#UI_Paste_UnknownSource"
         virtual const char* GetDisplayLanguage(void) = 0;
         virtual void unk2() = 0;
         virtual void unk3() = 0;
@@ -128,6 +129,7 @@ namespace panorama
         virtual void AddDirectoryChangeWatch(char const*) = 0;
         virtual int GetWheelScrollLines(void) = 0; // default 3
         virtual int RunScript(panorama::IUIPanel *panel,char const *entireJSCode,char const *pathToXMLContext,int,int,bool alreadyCompiled) = 0;
+        virtual int RunScript2() = 0; //params are different. New. Added with void spirit/granny b
         virtual void ExposeObjectTypeToJavaScript(char const*,CUtlAbstractDelegate &) = 0;
         virtual bool IsObjectTypeExposedToJavaScript(char const*) = 0;
         virtual void ExposeGlobalObjectToJavaScript(char const*,void *,char const*,bool) = 0;
@@ -187,6 +189,7 @@ namespace panorama
         virtual bool HasAnyWindows(void) = 0;
         virtual void TextEntryFocusChange(panorama::IUIPanel *) = 0;
         virtual void TextEntryInvalid(panorama::IUIPanel *) = 0;
+        virtual void PrintJSStackTrace(); // added with void spirit.
         virtual void SetClipboardText(const char* text) = 0; // wrapper for _SDL_SetClipboardText
         virtual const char* GetClipboardText() = 0; // wrapper for _SDL_GetClipboardText
         virtual void OnFileCacheRemoved(panorama::CPanoramaSymbol) = 0;

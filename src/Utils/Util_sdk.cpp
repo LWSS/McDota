@@ -1,8 +1,10 @@
 #include "Util_sdk.h"
 #include "Util.h"
 
-
 #include "../Interfaces.h"
+
+#include <sys/stat.h>
+
 ButtonCode_t Util::GetButtonCode(const char* buttonName)
 {
 	for (int i = 0; i < ButtonCode_t::LAST_KEY_VALUE; i++)
@@ -218,4 +220,59 @@ void* Util::GetScriptScopeFunction( GameScriptScopesWrapper *scopes, const char 
         }
     }
     return nullptr;
+}
+
+
+bool Util::ReadParticleFiles( const char *blacklistFile, const char *trackedFile ) {
+    struct stat buffer;
+    FILE *fp;
+    char fileline[256];
+    std::string temp;
+
+    if( blacklistFile ){
+        if( stat( blacklistFile, &buffer ) != 0 )
+            return false;
+
+        fp = fopen( blacklistFile, "r" );
+        while( fgets( fileline, sizeof(fileline), fp ) ) {
+            temp = fileline;
+            if( temp.size() > 2 && temp[temp.length() - 1] == '\n' ){
+                temp.erase( temp.length() -1 );
+            }
+            blacklistedParticles.push_back( temp );
+        }
+        fclose( fp );
+
+        if( blacklistedParticles.empty() )
+            return false;
+    }
+
+    if( trackedFile ){
+
+        if( stat( trackedFile, &buffer ) != 0 )
+            return false;
+
+        fp = fopen( trackedFile, "r" );
+        while( fgets( fileline, sizeof(fileline), fp ) ) {
+            temp = fileline;
+            if( temp.size() > 2 && temp[temp.length() - 1] == '\n' ){
+                temp.erase( temp.length() -1 );
+            }
+            trackedParticles.push_back( temp );
+        }
+        fclose( fp );
+
+        if( trackedParticles.empty() )
+            return false;
+    }
+
+    for( size_t i = 0; i < blacklistedParticles.size(); i++ ){
+        Util::Log("Blacklisted particle - (%s)\n", blacklistedParticles[i].c_str());
+    }
+
+    for( size_t i = 0; i < trackedParticles.size(); i++ ){
+        Util::Log("Tracked particle - (%s)\n", trackedParticles[i].c_str());
+    }
+
+    return true;
 }

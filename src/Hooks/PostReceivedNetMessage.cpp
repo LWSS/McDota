@@ -48,5 +48,5 @@ void Hooks::PostReceivedNetMessage( INetChannel *thisptr, NetMessageHandle_t *me
     }*/
 
 end:
-    return netChannelVMT->GetOriginalMethod<PostReceivedNetMessageFn>(81)( thisptr, messageHandle, msg, type );
+    return netChannelVMT->GetOriginalMethod<PostReceivedNetMessageFn>(84)( thisptr, messageHandle, msg, type );
 }

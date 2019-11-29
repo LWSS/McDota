@@ -45,7 +45,6 @@ inline VMT* clientModeVMT;
 inline VMT* soundOpSystemVMT;
 inline VMT* gameEventManagerVMT;
 inline VMT* gameEventSystemVMT;
-inline VMT* networkSystemVMT;
 inline VMT* networkGameClientVMT;
 inline VMT* particleSystemVMT;
 
@@ -87,4 +86,5 @@ namespace Interfaces
 {
 	bool FindExportedInterfaces( );
 	void DumpInterfaces( const char *fileName );
+	void HookDynamicVMTs();
 }

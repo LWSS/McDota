@@ -31,7 +31,8 @@ struct CWeakHandle_InfoForResourceTypeIParticleSystemDefinition
     WeakHandleContents_InfoForResourceTypeIParticleSystemDefinition *contents;
 };
 
-// Xref "CParticleSystemMgr::CreateParticleCollection" (libparticles.so)
+// Xref "New Particle Systems Matching '%s':\n" to DumpParticleList (libparticles.so)
+// OR "CParticleSystemMgr::CreateParticleCollection( Handle )" to CreateParticleCollection2
 class CParticleSystemMgr : IAppSystem
 {
 public:
@@ -41,7 +42,7 @@ public:
     virtual bool IsLowViolence( void ) = 0;
     virtual void* FindParticleSystem( const char *, bool ) = 0;
     virtual void* GetParticleSystemDefinitionBinding( void ) = 0;
-    virtual CParticleCollection* CreateParticleCollection( const char *, void *, IParticleSystemQuery *, bool, float, int ) = 0;
+    virtual CParticleCollection* CreateParticleCollection( const char *, void *, IParticleSystemQuery *, bool, float, int ) = 0; // might be changed.
     virtual CParticleCollection* CreateParticleCollection_Handle( CWeakHandle_InfoForResourceTypeIParticleSystemDefinition *info, void *, IParticleSystemQuery *, bool, float, int ) = 0;
     virtual void DestroyParticleCollection( CParticleCollection * ) = 0;
     virtual void sub_135CC0() = 0;
@@ -54,8 +55,6 @@ public:
     virtual float GetLastSimulationTime( void ) = 0;
     virtual void SetLastSimulationDuration( float duration ) = 0;
     virtual float GetLastSimulationDuration( void ) = 0;
-    virtual void CommitProfileInformation( bool ) = 0;
-    virtual void DumpProfileInformation( void ) = 0;
     virtual void DumpParticleList( const char * ) = 0;
     virtual void CreateParticleSceneObject( const char *, ISceneWorld *, IParticleSystemQuery *, float, int ) = 0;
     virtual void CreateParticleSceneObject2( void *CWeakHandle_InfoForResourceTypeIParticleSystemDefinition, ISceneWorld *, IParticleSystemQuery *, float, int ) = 0;
@@ -69,16 +68,13 @@ public:
     virtual void sub_135AB0() = 0;
     virtual void sub_1183B0() = 0;
     virtual void sub_135B20() = 0;
-    virtual void sub_135B30() = 0;
-    virtual void GetByte() = 0;
-    virtual void SetByte() = 0;
     virtual void sub_135BA0() = 0;
     virtual void sub_135BB0() = 0;
     virtual void sub_135BE0() = 0;
-    virtual void sub_1387B0() = 0;
     virtual IParticleSnapshot CreateParticleSnapshot( void ) = 0;
     virtual void DestroyParticleSnapshot( IParticleSnapshot * ) = 0;
     virtual void sub_135A80() = 0;
     virtual void sub_135A90() = 0;
     virtual void sub_135D60() = 0;
+    virtual void sub_1387B0() = 0;
 };

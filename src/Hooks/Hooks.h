@@ -12,6 +12,7 @@ namespace Hooks
     void FrameStageNotify( CSource2Client* thisptr, ClientFrameStage_t stage );
     // clientMode
     bool CreateMove( IClientMode* thisptr, CUserCmd *cmd, QAngle &angle, Vector &pos );
+    void LevelInit( IClientMode* thisptr, const char *newmap );
     // gameEventManager
     bool FireEventClientSide( CGameEventManager *thisptr, CGameEvent *event );
     // gameEventSystem
@@ -21,9 +22,6 @@ namespace Hooks
     // INetChannel
     void PostReceivedNetMessage( INetChannel *thisptr, NetMessageHandle_t * messageHandle, google::protobuf::Message* msg, NetChannelBufType_t const* type);
     bool SendNetMessage( INetChannel *thisptr, NetMessageHandle_t * messageHandle, google::protobuf::Message* msg, NetChannelBufType_t type );
-    // NetworkSystem
-    //void* SendPacket( CNetworkSystem *thisptr, INetChannel *netchan, int unk, void const *ns_address, unsigned const char *bytes, int unk2, bf_write *write, bool bUnk, unsigned int uUnk );
-    void* SendPacket( CNetworkSystem *thisptr, unsigned int unk1, void *unk2, const char* playername, unsigned int unk4, unsigned int unk5 );
     // ParticleSystemMgr
     CParticleCollection* CreateParticleCollection( CParticleSystemMgr *thisptr, CWeakHandle_InfoForResourceTypeIParticleSystemDefinition *info, void *unk, IParticleSystemQuery *query, bool bUnk, float fUnk, int iUnk );
     // panel
@@ -52,4 +50,9 @@ namespace PaintTraverse
 namespace CreateMove
 {
     inline Vector lastMouse3D;
+}
+
+namespace CreateParticleCollection
+{
+    inline std::vector<CParticleCollection*> particlesTracked;
 }

@@ -74,64 +74,6 @@ bool lineInProgress = false;
 //position is a delta, changes with arrow keys
 bool Hooks::CreateMove( IClientMode *thisptr, CUserCmd* cmd, QAngle &angle, Vector &pos ) {
     bool ret;
-    CDotaPlayer *localPlayer;
-
-    camera = GetCurrentCamera();
-    if( !cameraVMT || ( cameraVMT && cameraVMT->interface != (void*)camera ) ){
-        delete cameraVMT;
-
-        if( camera ){
-            MC_PRINTF("Grabbing new CameraVMT\n");
-            cameraVMT = new VMT( camera );
-            cameraVMT->HookVM( Hooks::GetFogEnd, 19 );
-            cameraVMT->HookVM( Hooks::GetZFar, 20 );
-            cameraVMT->HookVM( Hooks::GetFoWAmount, 26 );
-            cameraVMT->ApplyVMT();
-            MC_PRINTF("Camera @ %p\n", (void*)camera);
-        } else {
-            MC_PRINTF_WARN("GetCurrentCamera() returned null! Aborting CameraVMT.\n");
-        }
-    }
-
-    localPlayer = (CDotaPlayer*)entitySystem->GetBaseEntity(engine->GetLocalPlayer());
-    if( (!localPlayerVMT || (void*)localPlayerVMT->interface != localPlayer) ){
-        delete localPlayerVMT;
-        if( localPlayer ){
-            MC_PRINTF("Making new localPlayer VMT\n");
-            localPlayerVMT = new VMT( localPlayer );
-            localPlayerVMT->HookVM( Hooks::PrepareUnitOrders, 442 );
-            localPlayerVMT->ApplyVMT();
-            MC_PRINTF("LocalPlayer @ %p\n", (void*)localPlayer);
-        } else {
-            MC_PRINTF_WARN("Localplayer is null! Aborting localPlayerVMT.\n");
-        }
-    }
-
-    if( (!networkGameClientVMT || (networkClientService->GetIGameClient()) != (CNetworkGameClient*)networkGameClientVMT->interface) ){
-        delete networkGameClientVMT;
-
-        if( networkClientService->GetIGameClient() ){
-            MC_PRINTF( "Grabbing new NetworkGameClient VMT - %p\n", (void*)networkClientService->GetIGameClient() );
-            networkGameClientVMT = new VMT( networkClientService->GetIGameClient() );
-            networkGameClientVMT->ApplyVMT();
-        } else {
-            MC_PRINTF_WARN("GetIGameClient() returned null! Aborting NetworkGameClient VMT.\n");
-        }
-    }
-
-    if( (!netChannelVMT || (engine->GetNetChannelInfo() != (void*)netChannelVMT->interface)) ){
-        delete netChannelVMT;
-
-        if( engine->GetNetChannelInfo() ) {
-            MC_PRINTF( "Grabbing new NetChannel VMT - %p\n", (void*)engine->GetNetChannelInfo() );
-            netChannelVMT = new VMT( engine->GetNetChannelInfo( ) );
-            netChannelVMT->HookVM( Hooks::SendNetMessage, 62 );
-            netChannelVMT->HookVM( Hooks::PostReceivedNetMessage, 81 );
-            netChannelVMT->ApplyVMT( );
-        } else {
-            MC_PRINTF_WARN("GetNetChannelInfo returned null! Aborting NetChannel VMT!\n");
-        }
-    }
 
     if( mc_send_status->GetBool() ){
         engine->ClientCmd_Unrestricted("status");

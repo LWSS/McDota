@@ -39,10 +39,13 @@ public:
     virtual void ResetLatencyStats(int) = 0;
     virtual void* GetLatencyStats(int) = 0;
     virtual void SetLatencyStats(int, void const * SNetChannelLatencyStats) = 0;
+    virtual void SetInterpolationAmount(float) = 0;
+    virtual void sub_C7980() = 0;
     virtual void DESTROY() = 0;
     virtual void DESTROY2() = 0;
-    virtual void* GetTotalPacketBytes(int,int) = 0;
-    virtual void* GetTotalPacketReliableBytes(int,int) = 0;
+    virtual int GetTotalPacketBytes(int,int) = 0;
+    virtual int GetTotalPacketReliableBytes(int,int) = 0;
+    virtual int GetTotalPacketSomething();
     virtual void Reset(void) = 0;
     virtual void Clear(void) = 0;
     virtual void Shutdown(int ENetworkDisconnectionReason) = 0;
@@ -51,9 +54,10 @@ public:
     virtual const char* GetRemoteAddress(void) = 0;
     virtual void _unk4() = 0;
     virtual void _unk5() = 0;
+    virtual void CanPacket() = 0;
     virtual bool IsOverflowed(void) = 0;
     virtual bool HasPendingReliableData(void) = 0;
-    virtual void SetMaxBufferSize(NetChannelBufType_t type,int) = 0;
+    virtual void SetMaxBufferSize(NetChannelBufType_t type,int) = 0; // "CNetChan::SetMaxBufferSize"
     virtual void SetActiveChannel(INetChannel *) = 0;
     virtual void AttachSplitPlayer(int CSplitScreenSlot,INetChannel *) = 0;
     virtual void DetachSplitPlayer(int CSplitScreenSlot) = 0;
@@ -64,7 +68,7 @@ public:
     virtual void SetCommandRate(int) = 0;
     virtual void SetTimeout(float,bool) = 0;
     virtual bool IsTimedOut(void) = 0;
-    virtual void _unk6point5() = 0;
+    virtual void SomethingTimeOut() = 0;
     virtual void SetRemoteFramerate(float,float,float) = 0;
     virtual bool IsRemoteDisconnected(void) = 0;
     virtual void SetNetMessageDispatcher(void *INetMessageDispatcher) = 0;
@@ -81,7 +85,6 @@ public:
     virtual int GetMaxRoutablePayloadSize(void) = 0;
     virtual void SetDemoRecorder(void *IDemoRecorderBase) = 0;
     virtual void SetInstantReplayIntercept(void *IInstantReplayIntercept) = 0;
-    virtual void SetInterpolationAmount(float) = 0;
     virtual void SetFileTransmissionMode(bool) = 0;
     virtual bool IsNull(void) = 0;
     virtual void ProcessDemoPacket(void *NetPacket_t) = 0;

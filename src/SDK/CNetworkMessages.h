@@ -530,10 +530,11 @@ public:
     virtual NetMessageInfo_t* GetNetMessageInfo(NetMessageHandle_t *) = 0;
     virtual void* FindNetworkMessage(const char*) = 0;
     virtual void FindNetworkMessage2() = 0;
+    virtual void FindNetworkMessage3() = 0;
     virtual int GetNetworkGroupCount(void) = 0;
     virtual const char* GetNetworkGroupName(int groupId) = 0;
     virtual int FindNetworkGroup(const char*, bool) = 0;
-    virtual void AssociateNetMessageGroupIdWithChannelCategory(unsigned int, const char*) = 0;
+    virtual void AssociateNetMessageGroupIdWithChannelCategory(unsigned int, const char*) = 0; // "AssociateNetMessageGroupIdWithChannelCategory: Trying to use"
     virtual void RegisterSchemaAtomicTypeOverride(unsigned int, void *CSchemaType) = 0;
     virtual void SetNextworkSerializationContextData(const char*, int NetworkSerializationMode_t, void*) = 0;
     virtual void sub_1E1570() = 0;

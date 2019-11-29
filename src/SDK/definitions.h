@@ -925,7 +925,7 @@ enum class EClassIds : int
 #define TEXTURE_GROUP_SKYBOX						"SkyBox textures"
 #define TEXTURE_GROUP_CLIENT_EFFECTS				"ClientEffect textures"
 #define TEXTURE_GROUP_OTHER							"Other textures"
-#define TEXTURE_GROUP_PRECACHED						"Precached"				// TODO: assign texture groups to the precached materials
+#define TEXTURE_GROUP_PRECACHED						"Precached"
 #define TEXTURE_GROUP_CUBE_MAP						"CubeMap textures"
 #define TEXTURE_GROUP_RENDER_TARGET					"RenderTargets"
 #define TEXTURE_GROUP_UNACCOUNTED					"Unaccounted textures"	// Textures that weren't assigned a texture group.

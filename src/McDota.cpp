@@ -60,7 +60,7 @@ int __attribute__((constructor)) Startup()
         return 1;
     }
     if( !Integrity::CheckInterfaceVMs() ){
-        MC_PRINTF_ERROR( "CheckInterfaceVMs() Failed. Stopping...\n");
+        MC_PRINTF_ERROR("CheckInterfaceVMs() Failed. Stopping...\n");
         return 2;
     }
     if( !Scanner::FindAllSigs() ){
@@ -113,6 +113,11 @@ int __attribute__((constructor)) Startup()
     clientVMT->HookVM(Hooks::FrameStageNotify, 29);
     clientVMT->ApplyVMT();
 
+    clientModeVMT = new VMT(clientMode);
+    clientModeVMT->HookVM(Hooks::CreateMove, 29);
+    clientModeVMT->HookVM(Hooks::LevelInit, 30);
+    clientModeVMT->ApplyVMT();
+
     gameEventManagerVMT = new VMT(gameEventManager);
     gameEventManagerVMT->HookVM(Hooks::FireEventClientSide, 9);
     gameEventManagerVMT->ApplyVMT();
@@ -121,10 +126,6 @@ int __attribute__((constructor)) Startup()
     soundOpSystemVMT->HookVM(Hooks::StartSoundEvent, 11);
     soundOpSystemVMT->HookVM(Hooks::StartSoundEvent2, 12);
     soundOpSystemVMT->ApplyVMT();
-
-    clientModeVMT = new VMT(clientMode);
-    clientModeVMT->HookVM(Hooks::CreateMove, 29);
-    clientModeVMT->ApplyVMT();
 
     panelVMT = new VMT(panel);
     panelVMT->HookVM(Hooks::PaintTraverse, 55);
@@ -142,10 +143,6 @@ int __attribute__((constructor)) Startup()
     gameEventSystemVMT->HookVM(Hooks::PostEventAbstract, 15);
     gameEventSystemVMT->ApplyVMT();
 
-    networkSystemVMT = new VMT( networkSystem );
-    networkSystemVMT->HookVM(Hooks::SendPacket, 28);
-    networkSystemVMT->ApplyVMT();
-
     particleSystemVMT = new VMT( particleSystemMgr );
     particleSystemVMT->HookVM(Hooks::CreateParticleCollection, 18);
     particleSystemVMT->ApplyVMT();
@@ -153,10 +150,19 @@ int __attribute__((constructor)) Startup()
     std::random_device dev;
     srand(dev()); // Seed random # Generator so we can call rand() later
 
-    Util::RemoveLinkMapEntry("libMcDota.so", &mcPrev, &mcCurr, &mcNext);
-
-    Netvars::DumpNetvars( "/tmp/dotanetvars.txt" );
+    //Netvars::DumpNetvars( "/tmp/dotanetvars.txt" );
     Netvars::CacheNetvars();
+
+    if( engine->IsInGame() ){
+        Interfaces::HookDynamicVMTs();
+    }
+
+    // TODO: prob move this to ~/.config/
+    if( !Util::ReadParticleFiles("/tmp/dotaparticleblacklist.txt", nullptr) ){ //} "/tmp/dotaparticletracker.txt") ){
+        MC_PRINTF_WARN("Specified particle file/s was missing or empty - Particle filters may not be set.\n");
+    }
+
+    Util::RemoveLinkMapEntry("libMcDota.so", &mcPrev, &mcCurr, &mcNext);
 
     return 0;
 }

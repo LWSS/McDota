@@ -213,6 +213,7 @@ public:
     virtual void C_DOTA_BaseNPC__LoadVoiceResources( void const *CEntityPrecacheContext ) = 0;
     virtual void sub_2D15050() = 0;
     virtual bool C_DOTA_BaseNPC__IsValidAbilityToCast( C_DOTABaseAbility *ability ) = 0;
+    virtual void sub_27F8410() = 0;
     virtual void loc_2B523C0() = 0;
     virtual void sub_2E9B4A0() = 0;
     virtual void loc_2E978C0() = 0;
@@ -281,6 +282,7 @@ public:
     virtual bool C_DOTA_BaseNPC__IsOutOfGame(void) = 0;
     virtual bool C_DOTA_BaseNPC__IsFakeAlly(void) = 0;
     virtual void sub_2D3B320() = 0;
+    virtual void sub_2D3B321() = 0;
     virtual void sub_2D3F810() = 0;
     virtual void C_DOTA_BaseNPC__OnStatesAdded(unsigned long long unk) = 0;
     virtual void C_DOTA_BaseNPC__OnStatesRemoved(unsigned long long unk) = 0;

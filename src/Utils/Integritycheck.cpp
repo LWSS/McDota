@@ -1,5 +1,7 @@
 #include "Integritycheck.h"
 
+#include <vector>
+
 static void PrintVMTError( const char *className, uint32_t old, uint32_t now ){
     MC_PRINTF_ERROR("%s VM count does not match! [%d]->[%d]\n", className, old, now);
 }
@@ -9,56 +11,78 @@ struct VMTEntry
     const char *name;
     void **ptrToAddr;
     uint32_t expectedLen;
-} vms[] = {
+    VMTEntry( const char *namer, void **ptr, uint32_t len ){
+        name = namer;
+        ptrToAddr = ptr;
+        expectedLen = len;
+    }
+};
+
+static std::vector<VMTEntry> vms = {
         { "Camera", (void**)&camera, 52 },
         { "Client Mode", (void**)&clientMode, 65 },
         { "Game Event Manager", (void**)&gameEventManager, 17 },
-        { "NetworkMessages", (void**)&networkMessages, 34 },
         { "CPanel2D", (void**)&gDBPlayPanel, 82 },
         { "viewRender", (void**)&viewRender, 35 },
-        { "vScriptSystem", (void**)&vscriptSystem, 58 },
+        { "vScriptSystem", (void**)&vscriptSystem, 59 },
         { "networkClientService", (void**)&networkClientService, 69 },
 };
 
-bool Integrity::VMTsHaveMisMatch( ) {
-    uint32_t dotaPlayerNum = 445;
-    uint32_t panoramaUIPanelNum = 342;
-    uint32_t uiEngineNum = 182;
-    uint32_t networkGameClientNum = 124;
+static const uint32_t dotaPlayerNum = 446;
+static const uint32_t baseNPCNum = 185;
+static const uint32_t panoramaUIPanelNum = 344;
+static const uint32_t uiEngineNum = 185;
+static const uint32_t networkGameClientNum = 124;
+static const uint32_t netChannelNum = 92;
 
+bool Integrity::VMTsHaveMisMatch( ) {
     bool mismatchFound = false;
 
-    /* Custom Checks */
+    /* In-Game Checks */
     if( engine->IsInGame() ){
         int localID = engine->GetLocalPlayer();
         auto *localPlayer = (CDotaPlayer*)entitySystem->GetBaseEntity(localID);
-        if( !localPlayer )
-            MC_PRINTF_ERROR("Couldn't grab localplayer while in-game\n");
-        if( dotaPlayerNum != CountVMs(localPlayer) ){
-            PrintVMTError( "localPlayer", dotaPlayerNum, CountVMs( localPlayer ) );
-            mismatchFound = true;
+        if( !localPlayer ) {
+            MC_PRINTF_ERROR( "Couldn't grab localplayer while in-game\n" );
+        } else {
+            vms.emplace_back( "CDotaPlayer", (void**)&localPlayer, dotaPlayerNum );
+        }
+
+        CDotaBaseNPC *baseNPC = nullptr;
+        int max = entitySystem->GetHighestEntityIndex();
+        for( int i = 1; i <=max; i++ ) {
+            CBaseEntity *entity = entitySystem->GetBaseEntity( i );
+            if( !entity )
+                continue;
+            if( strstr( entity->Schema_DynamicBinding()->bindingName, "DOTA_Unit_Hero" ) ){
+                baseNPC = (CDotaBaseNPC*)entity;
+                break;
+            }
+        }
+
+        if( !baseNPC ){
+            MC_PRINTF_ERROR("Couldn't grab a Base NPC to test.\n");
+        } else if( baseNPCNum != CountVMs( baseNPC ) ){
+            vms.emplace_back( "BaseNPC", (void**)&baseNPC, baseNPCNum );
         }
     }
+
 
     panorama::IUIPanel *exampleUIPanel = panoramaEngine->AccessUIEngine()->GetPanelArray()->slots[0].panel; // 0 = DotaDashboard
-    if( panoramaEngine->AccessUIEngine()->IsValidPanelPointer(exampleUIPanel) ){
-        if( CountVMs(exampleUIPanel) != panoramaUIPanelNum ){
-            PrintVMTError( "UIPanel", panoramaUIPanelNum, CountVMs( exampleUIPanel ) );
-            mismatchFound = true;
-        }
+    if( !exampleUIPanel || !panoramaEngine->AccessUIEngine()->IsValidPanelPointer(exampleUIPanel) ){
+        MC_PRINTF_ERROR("UI Panel[0] was INVALID!\n");
     } else {
-        MC_PRINTF_WARN("UI Panel[0] was INVALID!\n");
+        vms.emplace_back( "UIPanel", (void**)&exampleUIPanel, panoramaUIPanelNum );
     }
 
-    if( CountVMs(networkClientService->GetIGameClient()) != networkGameClientNum ){
-        PrintVMTError( "networkGameClient", networkGameClientNum, CountVMs( networkClientService->GetIGameClient( ) ) );
-        mismatchFound = true;
-    }
+    auto networkGameClient = networkClientService->GetIGameClient();
+    vms.emplace_back( "networkGameClient", (void**)&networkGameClient, networkGameClientNum );
 
-    if( CountVMs(panoramaEngine->AccessUIEngine()) != uiEngineNum ){
-        PrintVMTError( "Panorama UI Engine", uiEngineNum, CountVMs( panoramaEngine->AccessUIEngine( ) ) );
-        mismatchFound = true;
-    }
+    auto uiEngine = panoramaEngine->AccessUIEngine();
+    vms.emplace_back( "Panorama UI Engine", (void**)&uiEngine, uiEngineNum );
+
+    auto netChan = engine->GetNetChannelInfo();
+    vms.emplace_back( "NetChannel", (void**)&netChan, netChannelNum );
 
     /* Static Checks */
     for( const VMTEntry &i : vms ){

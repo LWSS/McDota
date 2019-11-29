@@ -106,5 +106,5 @@ void Hooks::PrepareUnitOrders( CDotaPlayer *thisptr, DotaUnitOrder_t order, int 
         //Util::Log( "Entity origin @ (%f,%f,%f)\n", origin.x, origin.y, origin.z );
     }
 
-    localPlayerVMT->GetOriginalMethod<PrepareUnitOrdersFn>(442)( thisptr, order, targetIndex, movePosition, abilityIndex, orderIssuer, entity, queue, showEffects );
+    localPlayerVMT->GetOriginalMethod<PrepareUnitOrdersFn>(443)( thisptr, order, targetIndex, movePosition, abilityIndex, orderIssuer, entity, queue, showEffects );
 }
