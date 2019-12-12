@@ -15,6 +15,14 @@ bool EntHitHandler( void *IHandleEntity, int unk )
     std::raise(SIGINT);
     return true;
 }
+
+bool ShouldDrawParticleSystems( void )
+{
+    Util::Log("Should draw particle callback\n");
+    return false;
+}
+
+
 void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pressed)
 {
     Vector attachment;
@@ -28,11 +36,15 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
     CDOTAClientMsg_GuideSelectOption option;
     CDOTAClientMsg_GuideSelected guide;
     std::string meme;
+    CDOTAPlayerResource *playerResource;
+    CUtlVector< PlayerResourcePlayerTeamData_t > *teamData;
 
     RnQueryTerrain traceFilter;
     CGameTrace traceOut;
     Ray_t ray;
     Vector temp;
+
+    VMT *entityVMT;
 
     if( !pressed )
         return inputInternalVMT->GetOriginalMethod<SetKeyCodeStateFn>(96)(thisptr, code, pressed);
@@ -43,6 +55,8 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             break;
         case ButtonCode_t::HOME:
             cvar->ConsoleDPrintf("TickCount: %d\n", globalVars->tickcount);
+            cvar->ConsoleDPrintf("Curtime: %f\n", globalVars->curtime);
+            cvar->ConsoleDPrintf("Seconds since start: %f\n", (float(globalVars->tickcount) * globalVars->intervalPerTick) );
             for( int i = 0; i <= entitySystem->GetHighestEntityIndex(); i++ ){
                 entity = entitySystem->GetBaseEntity(i);
                 if( entity ){
@@ -73,6 +87,22 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             }
             break;
         case ButtonCode_t::END:
+            for( int i = 0; i <= entitySystem->GetHighestEntityIndex(); i++ ){
+                entity = entitySystem->GetBaseEntity(i);
+                if( !entity ) continue;
+                if( strstr( entity->Schema_DynamicBinding()->bindingName, "C_DOTA_PlayerResource" ) ){
+                    playerResource = reinterpret_cast<CDOTAPlayerResource*>( entity );
+                    teamData = playerResource->GetPlayerTeamData();
+                    if( teamData ) {
+                        MC_PRINTF( "TeamData @ %p - num(%d)\n", (void*)playerResource->GetPlayerTeamData(), playerResource->GetPlayerTeamData()->Count() );
+                        MC_PRINTF("elements @ %p\n", (void*)teamData->m_pElements);
+                        for( int i = 0; i < teamData->Count(); i++ ){
+                            MC_PRINTF("element %d @ %p\n", i, (void*)&teamData->operator[](i) );
+                            MC_PRINTF( "player %d is level %d - has %d kills - %d deaths\n", i, teamData->operator[](i).heroLevel, teamData->operator[](i).kills, teamData->operator[](i).deaths);
+                        }
+                    }
+                }
+            }
             break;
         case ButtonCode_t::DELETE:
             //networkClientService->GetIGameClient()->ForceFullUpdate("unnamed");
@@ -85,6 +115,16 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             break;
         case ButtonCode_t::SCROLLLOCK:
             //richPresence->SetStatus(mc_custom_str->strValue);
+            MC_PRINTF("Doing cosmetic particle disable sweep.\n");
+            for( int i = 0; i <= entitySystem->GetHighestEntityIndex(); i++ ){
+                entity = entitySystem->GetBaseEntity(i);
+                if( entity && !strcmp( entity->Schema_DynamicBinding()->bindingName, "C_DOTAWearableItem" ) ){
+                    MC_PRINTF("Purging ent %d\n", i);
+                    entityVMT = new VMT(entity);
+                    entityVMT->HookVM( ShouldDrawParticleSystems, 297 );
+                    entityVMT->ApplyVMT();
+                }
+            }
             break;
         case ButtonCode_t::PAUSE:
             Util::SpewScriptScopes( GetPanoramaScriptScopes(), true );

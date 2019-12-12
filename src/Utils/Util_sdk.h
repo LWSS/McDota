@@ -1,17 +1,22 @@
 #pragma once
 
-#include <cstdint>
-#include <vector>
-
-#include "../SDK/Datamap.h"
 #include "../SDK/IInputSystem.h" //ButtonCode
 #include "../SDK/Convar.h"
 #include "../SDK/CPanoramaGameScriptScope.h"
+#include "../SDK/Datamap.h"
 
+#include <cstdint>
+#include <vector>
+#include <string>
 
 namespace Util
 {
     inline std::vector<ConCommandBase*> createdConvars;
+
+	// List of particles that should hid or tracked for performance reasons.
+	// Linear will be faster than a hashmap until about ~400 entries.
+	inline std::vector<std::string> blacklistedParticles;
+	inline std::vector<std::string> trackedParticles;
 
 	ButtonCode_t GetButtonCode(const char* buttonName);
     /* 136 flag is client & archive */
@@ -22,4 +27,6 @@ namespace Util
 	void* GetScriptScopeFunction( GameScriptScopesWrapper *scopes, const char *exactName );
 
 	int FindDataMapElementOffset( Datamap *dMap, const char *element );
+
+	bool ReadParticleFiles( const char *blacklistFile = nullptr, const char *trackedFile = nullptr );
 }

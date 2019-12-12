@@ -562,8 +562,8 @@ public:
 	virtual ButtonCode_t StringToButtonCode( const char *) = 0;
 	virtual AnalogCode_t StringToAnalogCode( const char *) = 0;
 
-	// Sleeps until input happens. Pass a negative number to sleep infinitely TODO: Is it typo? (slee/sleep)
-	virtual void SleeUntilInput( int maxSleepTimeMS = -1 ) = 0;
+	// Sleeps until input happens. Pass a negative number to sleep infinitely
+	virtual void SleepUntilInput( int maxSleepTimeMS = -1 ) = 0;
 
 	virtual void VirtualKeyToButtonCode( int nVirtKey ) = 0;
 	virtual int ButtonCodeToVirtualKey( ButtonCode_t code ) = 0;

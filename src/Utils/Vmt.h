@@ -29,6 +29,7 @@ public:
     size_t method_count = 0;
 	bool hasRTTI = false;
     int32_t rttiPrefix = 0;
+    uintptr_t* applied_vmt = nullptr;
 
     ~VMT( ){
         ReleaseVMT();
@@ -80,13 +81,14 @@ public:
 		} else {
 			*this->interface = vmt;
 		}
+        applied_vmt = *this->interface;
 	}
 
 	void ReleaseVMT()
 	{
-		if( !this->interface )
-			return;
-		if( *this->interface && original_vmt )
-			*this->interface = original_vmt;
+		/* Check if vtable is still set to ours. If it's not, something changed in memory and we should just leave it alone */
+		if( *this->interface == applied_vmt ){
+            *this->interface = original_vmt;
+		}
 	}
 };

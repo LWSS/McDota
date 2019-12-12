@@ -39,14 +39,15 @@ inline VMT* clientVMT;
 inline VMT* inputInternalVMT;
 inline VMT* panelVMT;
 inline VMT* uiEngineVMT;
+inline VMT* networkSystemVMT;
 inline VMT* localPlayerVMT;
 inline VMT* netChannelVMT;
 inline VMT* clientModeVMT;
 inline VMT* soundOpSystemVMT;
 inline VMT* gameEventManagerVMT;
 inline VMT* gameEventSystemVMT;
-inline VMT* networkSystemVMT;
 inline VMT* networkGameClientVMT;
+inline VMT* particleSystemVMT;
 
 // HardHook Addresses
 inline uintptr_t DispatchPacketFnAddr;
@@ -86,4 +87,5 @@ namespace Interfaces
 {
 	bool FindExportedInterfaces( );
 	void DumpInterfaces( const char *fileName );
+	void HookDynamicVMTs();
 }

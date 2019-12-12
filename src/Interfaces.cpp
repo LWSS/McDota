@@ -2,15 +2,17 @@
 
 #include "Utils/Patternfinder.h" //dlinfo_t
 #include "Utils/Util.h"
+#include "Hooks/Hooks.h"
 
 #include <link.h> // dl_iterate_phdr
+#include <sys/stat.h>
 
 
 bool Interfaces::FindExportedInterfaces( )
 {
-    client = GetInterface<CSource2Client>("../../dota/bin/linuxsteamrt64/libclient.so", "Source2Client002", 130 );
+    client = GetInterface<CSource2Client>("../../dota/bin/linuxsteamrt64/libclient.so", "Source2Client002", 132 );
     cvar = GetInterface<ICvar>( "./libvstdlib.so", "VEngineCvar007", 52 );
-    engine = GetInterface<IEngineClient>( "./libengine2.so", "Source2EngineToClient001", 172 );
+    engine = GetInterface<IEngineClient>( "./libengine2.so", "Source2EngineToClient001", 174 );
     inputSystem = GetInterface<IInputSystem>( "./libinputsystem.so", "InputSystemVersion001", 89 );
     inputInternal = GetInterface<IInputInternal>("./libvgui2.so", "VGUI_InputInternal001", 101 );
     networkClientService = GetInterface<INetworkClientService>("./libengine2.so", "NetworkClientService_001", 69 );
@@ -19,8 +21,8 @@ bool Interfaces::FindExportedInterfaces( )
     panoramaEngine = GetInterface<IPanoramaUIEngine>("./libpanorama.so", "PanoramaUIEngine001", 17 );
     fontManager = GetInterface<CFontManager>("./libmaterialsystem2.so", "FontManager_001", 45 );
     engineServiceMgr = GetInterface<CEngineServiceMgr>("./libengine2.so", "EngineServiceMgr001", 51 );
-    particleSystemMgr = GetInterface<CParticleSystemMgr>("./libparticles.so", "ParticleSystemMgr003", 57 );
-    networkMessages = GetInterface<CNetworkMessages>("./libnetworksystem.so", "NetworkMessagesVersion001", 34 );
+    particleSystemMgr = GetInterface<CParticleSystemMgr>("./libparticles.so", "ParticleSystemMgr003", 51 );
+    networkMessages = GetInterface<CNetworkMessages>("./libnetworksystem.so", "NetworkMessagesVersion001", 35 );
     gameEventSystem = GetInterface<CGameEventSystem>("./libengine2.so", "GameEventSystemClientV001", 21 );
     networkStrings = GetInterface<CNetworkStringTableContainer>("./libengine2.so", "Source2EngineToClientStringTable001", 19);
     materialSystem = GetInterface<IMaterialSystem>("./libmaterialsystem2.so", "VMaterialSystem2_001", 37);
@@ -40,6 +42,12 @@ bool Interfaces::FindExportedInterfaces( )
 void Interfaces::DumpInterfaces( const char *fileName )
 {
 	static std::vector<dlinfo_t> modules;
+    struct stat buffer;
+
+    // already exists? skip
+    if( stat( fileName, &buffer ) == 0 ) {
+        return;
+    }
 
 	dl_iterate_phdr([] (struct dl_phdr_info* info, size_t, void*) {
 		dlinfo_t library_info = {};
@@ -117,4 +125,43 @@ void Interfaces::DumpInterfaces( const char *fileName )
         fprintf(logFile, "\n");
     }
 	fclose(logFile);
+}
+
+// Hook VMTs for interfaces that are not static (entities, netchannels, etc.)
+void Interfaces::HookDynamicVMTs( ) {
+    CDotaPlayer *localPlayer;
+
+    camera = GetCurrentCamera();
+
+    if( camera ){
+        delete cameraVMT;
+        MC_PRINTF("Grabbing new Camera VMT - (%p)\n", (void*)camera);
+        cameraVMT = new VMT( camera );
+        cameraVMT->HookVM( Hooks::GetFogEnd, 19 );
+        cameraVMT->HookVM( Hooks::GetZFar, 20 );
+        cameraVMT->HookVM( Hooks::GetFoWAmount, 26 );
+        cameraVMT->ApplyVMT();
+    } else {
+        MC_PRINTF_WARN("GetCurrentCamera() returned null! Aborting CameraVMT.\n");
+    }
+
+    localPlayer = (CDotaPlayer*)entitySystem->GetBaseEntity(engine->GetLocalPlayer());
+    if( localPlayer ){
+        delete localPlayerVMT;
+        MC_PRINTF("Grabbing new localPlayer VMT - (%p)\n", (void*)camera);
+        localPlayerVMT = new VMT( localPlayer );
+        localPlayerVMT->HookVM( Hooks::PrepareUnitOrders, 443 );
+        localPlayerVMT->ApplyVMT();
+    } else {
+        MC_PRINTF_WARN("Localplayer is null! Aborting localPlayerVMT.\n");
+    }
+
+    if( networkClientService->GetIGameClient() ){
+        delete networkGameClientVMT;
+        MC_PRINTF( "Grabbing new NetworkGameClient VMT - %p\n", (void*)networkClientService->GetIGameClient() );
+        networkGameClientVMT = new VMT( networkClientService->GetIGameClient() );
+        networkGameClientVMT->ApplyVMT();
+    } else {
+        MC_PRINTF_WARN("GetIGameClient() returned null! Aborting NetworkGameClient VMT.\n");
+    }
 }

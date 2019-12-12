@@ -36,8 +36,6 @@ void Hooks::PostReceivedNetMessage( INetChannel *thisptr, NetMessageHandle_t *me
     }
 
 
-    info = networkMessages->GetNetMessageInfo( messageHandle );
-    name = info->pProtobufBinding->GetName();
     /*
     if( strstr( name, "CNETMsg_SignonState" ) ){
         uint32_t signon = Util::Protobuf::GetFieldTraverseUInt32( msg, "signon_state" ).value();
@@ -49,5 +47,5 @@ void Hooks::PostReceivedNetMessage( INetChannel *thisptr, NetMessageHandle_t *me
     }*/
 
 end:
-    return netChannelVMT->GetOriginalMethod<PostReceivedNetMessageFn>(81)( thisptr, messageHandle, msg, type );
+    return netChannelVMT->GetOriginalMethod<PostReceivedNetMessageFn>(84)( thisptr, messageHandle, msg, type );
 }

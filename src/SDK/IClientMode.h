@@ -37,7 +37,7 @@ public:
     virtual void OverrideMouseInput(float *, float *) = 0;
     virtual void OverrideJoystickInput(float *, float *) = 0;
     virtual bool CreateMove(CUserCmd *cmd, QAngle &, Vector &) = 0;
-    virtual void LevelInit(const char*) = 0;
+    virtual void LevelInit(const char *newmap) = 0;
     virtual void LevelShutdown(void) = 0;
     virtual bool ShouldDrawViewModel(void) = 0;
     virtual bool ShouldDrawCrosshair(void) = 0;

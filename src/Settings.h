@@ -30,7 +30,6 @@ inline ConVar *mc_fog_disable;
 inline ConVar *mc_fow_disable;
 inline ConVar *mc_autoaccept_on;
 inline ConVar *mc_airstuck_on;
-inline ConVar *mc_command_repeater;
 
 inline ConVar *mc_log_createmove;
 inline ConVar *mc_log_clientevents;
@@ -45,6 +44,7 @@ inline ConVar *mc_log_runscript;
 inline ConVar *mc_log_GC_send;
 inline ConVar *mc_log_GC_recv;
 
+inline ConVar *mc_mute_creeps;
 inline ConVar *mc_end_createmove;
 inline ConVar *mc_crash_server;
 inline ConVar *mc_anti_mute;
@@ -54,9 +54,7 @@ inline ConVar *mc_send_freq;
 inline ConVar *mc_send_status;
 inline ConVar *mc_stall_connect;
 
-inline ConVar *mc_chat_ban_hack;
 inline ConVar *mc_retarget_orders;
-inline ConVar *mc_allow_customnames;
 inline ConVar *mc_custom_str;
 inline ConVar *mc_custom_str_alt;
 inline ConVar *mc_custom_int;

@@ -43,6 +43,16 @@ enum
 #define VALVE_RAND_MAX 0x7fff
 #define VectorExpand(v) (v).x, (v).y, (v).z
 
+inline unsigned long& FloatBits(float& f)
+{
+	return *reinterpret_cast<unsigned long*>(&f);
+}
+
+inline bool IsFinite(float f)
+{
+	return ((FloatBits(f) & 0x7F800000) != 0x7F800000);
+}
+
 struct matrix3x4_t
 {
 	matrix3x4_t() {}
@@ -260,6 +270,11 @@ inline  Vector& Vector::operator/=(const Vector& v)
 	z /= v.z;
 	CHECK_VALID(*this);
 	return *this;
+}
+//===============================================
+inline bool Vector::IsValid() const
+{
+	return IsFinite(x) && IsFinite(y) && IsFinite(z);
 }
 //===============================================
 inline float Vector::Length(void) const
@@ -528,17 +543,6 @@ public:
 #endif
 	float w;	// this space is used anyway
 };
-
-
-inline unsigned long& FloatBits(float& f)
-{
-	return *reinterpret_cast<unsigned long*>(&f);
-}
-
-inline bool IsFinite(float f)
-{
-	return ((FloatBits(f) & 0x7F800000) != 0x7F800000);
-}
 
 //=========================================================
 // 2D Vector2D

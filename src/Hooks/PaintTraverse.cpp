@@ -1,6 +1,7 @@
 #include "Hooks.h"
 
 #include "../Hacks/Esp.h"
+#include "../Utils/Draw.h"
 
 static VPANEL topPanel = 0;
 
@@ -43,6 +44,29 @@ void Hooks::PaintTraverse( IVPanel *thisptr, IVGuiPaintSurface *surface, VPANEL 
 
     ESP::PaintTraverse( thisptr, surface, panel, force_repaint, allow_force );
 
+    surface->DrawSetColor( ColorRGBA( 225, 5, 5 ) );
+
+    {
+        std::lock_guard<std::mutex> lock( CreateParticleCollection::particleRemoveGuard );
+
+        size_t size = CreateParticleCollection::particlesTracked.size();
+        for( size_t i = 0; i < size; i++ ){
+            int minX, minY, maxX, maxY;
+#define particle CreateParticleCollection::particlesTracked[i]
+            if( !particle || !particle->IsBoundsValid() ){
+                continue;
+            }
+            if( Draw::WorldToScreen( *particle->GetMinBounds(), minX, minY, *g_WorldToScreen ) ||
+                Draw::WorldToScreen( *particle->GetMaxBounds(), maxX, maxY, *g_WorldToScreen ) ){
+                continue;
+            }
+            surface->DrawLine( minX, minY, minX, maxY );
+            surface->DrawLine( minX, maxY, maxX, maxY );
+            surface->DrawLine( maxX, maxY, maxX, minY );
+            surface->DrawLine( maxX, minY, minX, minY );
+#undef particle
+        }
+    }
     surface->PopMakeCurrent(panel);
 
     return panelVMT->GetOriginalMethod<PaintTraverseFn>( 55 )( thisptr, surface, panel, force_repaint, allow_force );

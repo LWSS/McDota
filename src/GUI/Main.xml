@@ -14,16 +14,20 @@ R"zz(
 			$( '#McTabAbout' ).visible = false;
 			$( '#McTabVisuals' ).visible = false;
 			$( '#McTabMisc' ).visible = false;
+			$( '#McTabPerf' ).visible = false;
 
 			switch( nTab ){
 				case 0:
 					$( '#McTabGeneral' ).visible = true;
 					break;
 				case 1:
-					$( '#McTabVisuals' ).visible = true ;
+					$( '#McTabVisuals' ).visible = true;
 					break;
 				case 2:
-					$( '#McTabMisc' ).visible = true ;
+					$( '#McTabMisc' ).visible = true;
+					break;
+				case 3:
+					$( '#McTabPerf' ).visible = true;
 					break;
 				case 10:
 					$( '#McTabAbout' ).visible = true;
@@ -104,6 +108,10 @@ R"zz(
 			<RadioButton class='SettingsNavBarButton' group='SettingsTopMenu' onactivate='changeTab( 2 )' >
 				<Label text='Misc' />
 			</RadioButton>
+			<Label class='SettingsTabSeparator'	text='/' />
+			<RadioButton class='SettingsNavBarButton' group='SettingsTopMenu' onactivate='changeTab( 3 )' >
+				<Label text='Perf' />
+			</RadioButton>
 
 			<Panel class='SettingsTabFiller' />
 			<RadioButton class='SettingsNavBarButton' group='SettingsTopMenu' onactivate='changeTab( 10 )' >
@@ -118,12 +126,8 @@ R"zz(
 			<Panel id='BasicOptions' class='SettingsColumnContainer FullHeight'>
 				<Panel id='LeftColumn' class='SettingsColumn' style='width: 50%;'>
 					<Panel class='SettingsSection'>
-						<DOTASettingsCheckbox convar='mc_end_createmove' text='End CreateMove' onactivate='clickSound()' />
-						<DOTASettingsCheckbox convar='mc_command_repeater' text='cmd repeater' onactivate='clickSound()' />
 						<DOTASettingsCheckbox convar='mc_airstuck_on' text='Airstuck' onactivate='clickSound()' />
 						<DOTASettingsCheckbox convar='mc_autoaccept_on' text='AutoAccept' onactivate='clickSound()'/>
-						<DOTASettingsCheckbox convar='mc_fog_disable' text='No Fog' onactivate='clickSound()'/>
-						<DOTASettingsCheckbox convar='mc_fow_disable' text='No FoW' onactivate='clickSound()'/>
 						<DOTASettingsSlider convar='mc_camera_pitch_add' min='-1.0' max='360.0' text='Pitch' />
 						<DOTASettingsSlider convar='mc_camera_yaw_add' min='0.0' max='360.0' text='Yaw Add' />
 						<DOTASettingsSlider convar='mc_camera_distance' min='1134.0' max='4000.0' text='Camera Distance' />
@@ -197,6 +201,22 @@ R"zz(
 						<DOTASettingsCheckbox convar='mc_log_GC_recv' text='Log GC Recv' onactivate='clickSound()' onmouseover='addWarning("GC Logs use Hard Hooks. Hard Hooks are not safe. They are not detected but may be in the future. Restart your game after Enabling.")' onmouseout='removeWarning()'/>
 						<DOTASettingsCheckbox convar='mc_log_GC_send' text='Log GC Send' onactivate='clickSound()' onmouseover='addWarning("GC Logs use Hard Hooks. Hard Hooks are not safe. They are not detected but may be in the future. Restart your game after Enabling.")' onmouseout='removeWarning()'/>
 					</Panel>
+				</Panel>
+			</Panel>
+		</Panel>
+		<!-- Performance -->
+		<Panel id='McTabPerf' style='width: 640px; height: 430px; horizontal-align: center; vertical-align: bottom;'>
+			<Panel id='BasicOptions' class='SettingsColumnContainer FullHeight'>
+				<Panel id='LeftColumn' class='SettingsColumn' style='width: 50%;'>
+					<Panel class='SettingsSection'>
+						<DOTASettingsCheckbox convar='mc_mute_creeps' text='Mute Creep Sfx' onactivate='clickSound()' />
+						<DOTASettingsCheckbox convar='mc_end_createmove' text='End CreateMove' onactivate='clickSound()' />
+						<DOTASettingsCheckbox convar='mc_fog_disable' text='No Fog' onactivate='clickSound()'/>
+						<DOTASettingsCheckbox convar='mc_fow_disable' text='No FoW' onactivate='clickSound()'/>
+					</Panel>
+				</Panel>
+				<Panel id='RightColumn' class='SettingsColumn' style='width: 50%;'>
+
 				</Panel>
 			</Panel>
 		</Panel>

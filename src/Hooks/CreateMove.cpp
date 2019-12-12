@@ -74,20 +74,6 @@ bool lineInProgress = false;
 //position is a delta, changes with arrow keys
 bool Hooks::CreateMove( IClientMode *thisptr, CUserCmd* cmd, QAngle &angle, Vector &pos ) {
     bool ret;
-    /* I'm gonna grab Camera here since this gets called in-game */
-    camera = GetCurrentCamera();
-    if( camera ){
-        if( !cameraVMT || ( cameraVMT && cameraVMT->interface != (void*)camera ) ){
-          delete cameraVMT;
-
-            MC_PRINTF("Grabbing new CameraVMT\n");
-            cameraVMT = new VMT( camera );
-            cameraVMT->HookVM( Hooks::GetFogEnd, 19 );
-            cameraVMT->HookVM( Hooks::GetZFar, 20 );
-            cameraVMT->HookVM( Hooks::GetFoWAmount, 26 );
-            cameraVMT->ApplyVMT();
-        }
-    }
 
     if( mc_send_status->GetBool() ){
         engine->ClientCmd_Unrestricted("status");
