@@ -28,7 +28,7 @@ public:
     virtual void SetDefaultBroadcastPort(int) = 0;
     virtual void sub_1E8990() = 0;
     virtual void FlushP2PChannels(int) = 0;
-    virtual void SendPacket(INetChannel *, int, void const *ns_address, unsigned const char *, int, void *bf_write, bool, unsigned int) = 0;
+    virtual INetChannel* CreateNetChannel(int, void *ns_address, const char *, unsigned int, unsigned int) = 0; // "netchan_t::reliabledata" xref all the way back
     virtual void sub_1F0D40() = 0;
     virtual void ProcessSocket(int, IConnectionlessPacketHandler *) = 0;
     virtual void loc_1F1CB0() = 0;

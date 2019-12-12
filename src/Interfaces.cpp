@@ -5,6 +5,7 @@
 #include "Hooks/Hooks.h"
 
 #include <link.h> // dl_iterate_phdr
+#include <sys/stat.h>
 
 
 bool Interfaces::FindExportedInterfaces( )
@@ -41,6 +42,12 @@ bool Interfaces::FindExportedInterfaces( )
 void Interfaces::DumpInterfaces( const char *fileName )
 {
 	static std::vector<dlinfo_t> modules;
+    struct stat buffer;
+
+    // already exists? skip
+    if( stat( fileName, &buffer ) == 0 ) {
+        return;
+    }
 
 	dl_iterate_phdr([] (struct dl_phdr_info* info, size_t, void*) {
 		dlinfo_t library_info = {};
@@ -156,19 +163,5 @@ void Interfaces::HookDynamicVMTs( ) {
         networkGameClientVMT->ApplyVMT();
     } else {
         MC_PRINTF_WARN("GetIGameClient() returned null! Aborting NetworkGameClient VMT.\n");
-    }
-
-    if( (!netChannelVMT || (engine->GetNetChannelInfo() != (void*)netChannelVMT->interface)) ){
-        delete netChannelVMT;
-
-        if( engine->GetNetChannelInfo() ) {
-            MC_PRINTF( "Grabbing new NetChannel VMT - %p\n", (void*)engine->GetNetChannelInfo() );
-            netChannelVMT = new VMT( engine->GetNetChannelInfo( ) );
-            netChannelVMT->HookVM( Hooks::SendNetMessage, 66 );
-            netChannelVMT->HookVM( Hooks::PostReceivedNetMessage, 84 );
-            netChannelVMT->ApplyVMT( );
-        } else {
-            MC_PRINTF_WARN("GetNetChannelInfo returned null! Aborting NetChannel VMT!\n");
-        }
     }
 }

@@ -44,3 +44,4 @@
 #include "Valve/tier0/memalloc.h"
 #include "CRenderGameSystem.h"
 #include "CPanoramaGameScriptScope.h"
+#include "CDOTAPlayerResource.h"

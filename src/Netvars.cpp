@@ -2,9 +2,17 @@
 #include "Interfaces.h"
 
 #include <cstdio>
+#include <sys/stat.h>
 
 void Netvars::DumpNetvars( const char *fileName ) {
     FILE *logFile;
+    struct stat buffer;
+
+    // already exists? skip
+    if( stat( fileName, &buffer ) == 0 ) {
+        return;
+    }
+
     logFile = fopen(fileName, "a");
     setbuf( logFile, nullptr ); // turn off buffered I/O so it writes even if a crash occurs soon after.
     fprintf(logFile, "\n\n***************** Start of Log *****************\n");

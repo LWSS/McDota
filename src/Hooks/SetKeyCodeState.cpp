@@ -36,6 +36,8 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
     CDOTAClientMsg_GuideSelectOption option;
     CDOTAClientMsg_GuideSelected guide;
     std::string meme;
+    CDOTAPlayerResource *playerResource;
+    CUtlVector< PlayerResourcePlayerTeamData_t > *teamData;
 
     RnQueryTerrain traceFilter;
     CGameTrace traceOut;
@@ -53,6 +55,8 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             break;
         case ButtonCode_t::HOME:
             cvar->ConsoleDPrintf("TickCount: %d\n", globalVars->tickcount);
+            cvar->ConsoleDPrintf("Curtime: %f\n", globalVars->curtime);
+            cvar->ConsoleDPrintf("Seconds since start: %f\n", (float(globalVars->tickcount) * globalVars->intervalPerTick) );
             for( int i = 0; i <= entitySystem->GetHighestEntityIndex(); i++ ){
                 entity = entitySystem->GetBaseEntity(i);
                 if( entity ){
@@ -83,6 +87,22 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             }
             break;
         case ButtonCode_t::END:
+            for( int i = 0; i <= entitySystem->GetHighestEntityIndex(); i++ ){
+                entity = entitySystem->GetBaseEntity(i);
+                if( !entity ) continue;
+                if( strstr( entity->Schema_DynamicBinding()->bindingName, "C_DOTA_PlayerResource" ) ){
+                    playerResource = reinterpret_cast<CDOTAPlayerResource*>( entity );
+                    teamData = playerResource->GetPlayerTeamData();
+                    if( teamData ) {
+                        MC_PRINTF( "TeamData @ %p - num(%d)\n", (void*)playerResource->GetPlayerTeamData(), playerResource->GetPlayerTeamData()->Count() );
+                        MC_PRINTF("elements @ %p\n", (void*)teamData->m_pElements);
+                        for( int i = 0; i < teamData->Count(); i++ ){
+                            MC_PRINTF("element %d @ %p\n", i, (void*)&teamData->operator[](i) );
+                            MC_PRINTF( "player %d is level %d - has %d kills - %d deaths\n", i, teamData->operator[](i).heroLevel, teamData->operator[](i).kills, teamData->operator[](i).deaths);
+                        }
+                    }
+                }
+            }
             break;
         case ButtonCode_t::DELETE:
             //networkClientService->GetIGameClient()->ForceFullUpdate("unnamed");

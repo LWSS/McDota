@@ -29,6 +29,7 @@ CParticleCollection* Hooks::CreateParticleCollection( CParticleSystemMgr *thispt
 
     for ( size_t i = 0; i < Util::trackedParticles.size(); i++ ){
         if( !strcmp( Util::trackedParticles[i].c_str(), info->contents->info->name ) ){
+            std::lock_guard<std::mutex> lock( CreateParticleCollection::particleRemoveGuard );
             CreateParticleCollection::particlesTracked.push_back( ret );
         }
     }

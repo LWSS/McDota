@@ -145,20 +145,39 @@ int __attribute__((constructor)) Startup()
 
     particleSystemVMT = new VMT( particleSystemMgr );
     particleSystemVMT->HookVM(Hooks::CreateParticleCollection, 18);
+    particleSystemVMT->HookVM(Hooks::DeleteParticleCollection, 19);
     particleSystemVMT->ApplyVMT();
+
+    networkSystemVMT = new VMT( networkSystem );
+    networkSystemVMT->HookVM(Hooks::CreateNetChannel, 28);
+    networkSystemVMT->ApplyVMT();
 
     std::random_device dev;
     srand(dev()); // Seed random # Generator so we can call rand() later
 
-    //Netvars::DumpNetvars( "/tmp/dotanetvars.txt" );
+    Netvars::DumpNetvars( "/tmp/dotanetvars.txt" );
     Netvars::CacheNetvars();
 
     if( engine->IsInGame() ){
         Interfaces::HookDynamicVMTs();
+
+        if( (!netChannelVMT || (engine->GetNetChannelInfo() != (void*)netChannelVMT->interface)) ){
+            delete netChannelVMT;
+
+            if( engine->GetNetChannelInfo() ) {
+                MC_PRINTF( "Grabbing new NetChannel VMT - %p\n", (void*)engine->GetNetChannelInfo() );
+                netChannelVMT = new VMT( engine->GetNetChannelInfo( ) );
+                netChannelVMT->HookVM( Hooks::SendNetMessage, 66 );
+                netChannelVMT->HookVM( Hooks::PostReceivedNetMessage, 84 );
+                netChannelVMT->ApplyVMT( );
+            } else {
+                MC_PRINTF_WARN("GetNetChannelInfo returned null! Aborting NetChannel VMT!\n");
+            }
+        }
     }
 
     // TODO: prob move this to ~/.config/
-    if( !Util::ReadParticleFiles("/tmp/dotaparticleblacklist.txt", nullptr) ){ //} "/tmp/dotaparticletracker.txt") ){
+    if( !Util::ReadParticleFiles("/tmp/dotaparticleblacklist.txt", "/tmp/dotaparticletracker.txt" ) ){
         MC_PRINTF_WARN("Specified particle file/s was missing or empty - Particle filters may not be set.\n");
     }
 

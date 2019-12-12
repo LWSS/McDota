@@ -229,10 +229,7 @@ bool Util::ReadParticleFiles( const char *blacklistFile, const char *trackedFile
     char fileline[256];
     std::string temp;
 
-    if( blacklistFile ){
-        if( stat( blacklistFile, &buffer ) != 0 )
-            return false;
-
+    if( blacklistFile && ( stat( blacklistFile, &buffer ) == 0 ) ){
         fp = fopen( blacklistFile, "r" );
         while( fgets( fileline, sizeof(fileline), fp ) ) {
             temp = fileline;
@@ -242,16 +239,9 @@ bool Util::ReadParticleFiles( const char *blacklistFile, const char *trackedFile
             blacklistedParticles.push_back( temp );
         }
         fclose( fp );
-
-        if( blacklistedParticles.empty() )
-            return false;
     }
 
-    if( trackedFile ){
-
-        if( stat( trackedFile, &buffer ) != 0 )
-            return false;
-
+    if( trackedFile && ( stat( trackedFile, &buffer ) == 0 ) ){
         fp = fopen( trackedFile, "r" );
         while( fgets( fileline, sizeof(fileline), fp ) ) {
             temp = fileline;
@@ -261,9 +251,6 @@ bool Util::ReadParticleFiles( const char *blacklistFile, const char *trackedFile
             trackedParticles.push_back( temp );
         }
         fclose( fp );
-
-        if( trackedParticles.empty() )
-            return false;
     }
 
     for( size_t i = 0; i < blacklistedParticles.size(); i++ ){

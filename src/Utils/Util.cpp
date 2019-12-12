@@ -15,6 +15,10 @@ void Util::Log(char const * format, ...)
 	static bool bFirst = true;
 	FILE *logFile;
 
+    if( !Util::logFileName ) {
+        return;
+    }
+
 	if ( bFirst ) {
 		logFile = fopen(Util::logFileName, "w"); // create new log
 		fprintf(logFile, "--Start of log--\n");

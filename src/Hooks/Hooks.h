@@ -2,6 +2,8 @@
 #include "../SDK/SDK.h"
 #include "../Interfaces.h" // all hooks can use interfaces
 
+#include <mutex>
+
 namespace Hooks
 {
     // CDotaCamera
@@ -13,6 +15,8 @@ namespace Hooks
     // clientMode
     bool CreateMove( IClientMode* thisptr, CUserCmd *cmd, QAngle &angle, Vector &pos );
     void LevelInit( IClientMode* thisptr, const char *newmap );
+    // cnetworksystem
+    INetChannel* CreateNetChannel( CNetworkSystem * thisptr, int, void *, const char *, unsigned int, unsigned int );
     // gameEventManager
     bool FireEventClientSide( CGameEventManager *thisptr, CGameEvent *event );
     // gameEventSystem
@@ -24,6 +28,7 @@ namespace Hooks
     bool SendNetMessage( INetChannel *thisptr, NetMessageHandle_t * messageHandle, google::protobuf::Message* msg, NetChannelBufType_t type );
     // ParticleSystemMgr
     CParticleCollection* CreateParticleCollection( CParticleSystemMgr *thisptr, CWeakHandle_InfoForResourceTypeIParticleSystemDefinition *info, void *unk, IParticleSystemQuery *query, bool bUnk, float fUnk, int iUnk );
+    void DeleteParticleCollection( CParticleSystemMgr *thisptr, CParticleCollection *collectionToDelete );
     // panel
     void PaintTraverse( IVPanel* thisptr, IVGuiPaintSurface* surface, VPANEL panel, bool force_repaint, bool allow_force );
     // panorama
@@ -55,4 +60,5 @@ namespace CreateMove
 namespace CreateParticleCollection
 {
     inline std::vector<CParticleCollection*> particlesTracked;
+    inline std::mutex particleRemoveGuard;
 }

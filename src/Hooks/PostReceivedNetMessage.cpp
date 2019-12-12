@@ -11,7 +11,6 @@ void Hooks::PostReceivedNetMessage( INetChannel *thisptr, NetMessageHandle_t *me
 
     NetMessageInfo_t *info;
     const char *name;
-    CBaseEntity *entity;
 
     if( mc_log_recvnetmsg->GetBool() ){
         info = networkMessages->GetNetMessageInfo( messageHandle );
