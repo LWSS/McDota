@@ -3,6 +3,48 @@
 #include "IAppSystem.h"
 #include "IVGuiPaintSurface.h"
 
+
+enum RenderMode_t : unsigned char
+{
+	kRenderNormal = 0,
+	kRenderTransColor,
+	kRenderTransTexture,
+	kRenderGlow,
+	kRenderTransAlpha,
+	kRenderTransAdd,
+	kRenderEnvironmental,
+	kRenderTransAddFrameBlend,
+	kRenderTransAlphaAdd,
+	kRenderWorldGlow,
+	kRenderNone,
+	kRenderDevVisualizer,
+	kRenderModeCount
+};
+
+enum RenderFx_t : unsigned char
+{
+	kRenderFxNone = 0,
+	kRenderFxPulseSlow,
+	kRenderFxPulseFast,
+	kRenderFxPulseSlowWide,
+	kRenderFxPulseFastWide,
+	kRenderFxFadeSlow,
+	kRenderFxFadeFast,
+	kRenderFxSolidSlow,
+	kRenderFxSolidFast,
+	kRenderFxStrobeSlow,
+	kRenderFxStrobeFast,
+	kRenderFxStrobeFaster,
+	kRenderFxFlickerSlow,
+	kRenderFxFlickerFast,
+	kRenderFxNoDissipation,
+	kRenderFxFadeOut,
+	kRenderFxFadeIn,
+	kRenderFxPulseFastWider,
+	kRenderFxGlowShell,
+	kRenderFxMax,
+};
+
 class IVPanel : IAppSystem
 {
 public:

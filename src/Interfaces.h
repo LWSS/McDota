@@ -40,7 +40,6 @@ inline VMT* inputInternalVMT;
 inline VMT* panelVMT;
 inline VMT* uiEngineVMT;
 inline VMT* networkSystemVMT;
-inline VMT* localPlayerVMT;
 inline VMT* netChannelVMT;
 inline VMT* clientModeVMT;
 inline VMT* soundOpSystemVMT;

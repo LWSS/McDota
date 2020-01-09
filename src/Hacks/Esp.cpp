@@ -76,7 +76,7 @@ void ESP::PaintTraverse( IVPanel *thisptr, IVGuiPaintSurface *surface, VPANEL pa
             goodToGo = true;
 
         if( entity->C_BaseEntity__InLocalTeam() ){
-            if( strstr(entity->Schema_DynamicBinding()->bindingName, "DOTA_Unit_Hero") != nullptr ){
+            if( strstr(entity->Schema_DynamicBinding()->binaryName, "DOTA_Unit_Hero") != nullptr ){
                 if( mc_esp_filter_heroes_friend->GetBool() ) {
                     goodToGo = true;
                 }
@@ -85,12 +85,12 @@ void ESP::PaintTraverse( IVPanel *thisptr, IVGuiPaintSurface *surface, VPANEL pa
                     if( entity->C_BaseModelEntity__CanBeSeenByTeam( enemyTeam ) )
                         goodToGo = true;
                 }
-            } else if( strstr(entity->Schema_DynamicBinding()->bindingName, "C_DOTA_BaseNPC_Creep") != nullptr ){
+            } else if( strstr(entity->Schema_DynamicBinding()->binaryName, "C_DOTA_BaseNPC_Creep") != nullptr ){
                 if( mc_esp_filter_creeps_friend->GetBool() )
                     goodToGo = true;
             }
         } else {
-            if( strstr(entity->Schema_DynamicBinding()->bindingName, "DOTA_Unit_Hero") != nullptr ){
+            if( strstr(entity->Schema_DynamicBinding()->binaryName, "DOTA_Unit_Hero") != nullptr ){
                 if( mc_esp_filter_heroes_enemy->GetBool() ){
                     goodToGo = true;
                 }
@@ -101,7 +101,7 @@ void ESP::PaintTraverse( IVPanel *thisptr, IVGuiPaintSurface *surface, VPANEL pa
                     }
                 }
             }
-            if( mc_esp_filter_creeps_enemy->GetBool() && strstr(entity->Schema_DynamicBinding()->bindingName, "C_DOTA_BaseNPC_Creep") != nullptr )
+            if( mc_esp_filter_creeps_enemy->GetBool() && strstr(entity->Schema_DynamicBinding()->binaryName, "C_DOTA_BaseNPC_Creep") != nullptr )
                 goodToGo = true;
         }
 
@@ -109,7 +109,7 @@ void ESP::PaintTraverse( IVPanel *thisptr, IVGuiPaintSurface *surface, VPANEL pa
             continue;
 
         if( mc_esp_type_infotext->GetBool() ){
-            if( !entity->Schema_DynamicBinding() || !entity->Schema_DynamicBinding()->bindingName )
+            if( !entity->Schema_DynamicBinding() || !entity->Schema_DynamicBinding()->binaryName )
                 continue;
 
             int x, y, w, h;
@@ -122,16 +122,16 @@ void ESP::PaintTraverse( IVPanel *thisptr, IVGuiPaintSurface *surface, VPANEL pa
             wchar_t buffer[bufferLen];
             int strLen = 0;
 
-            strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L"(%d)%s", i, entity->Schema_DynamicBinding()->bindingName );
+            strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L"(%d)%s", i, entity->Schema_DynamicBinding()->binaryName );
 
 
-            if( strstr( entity->Schema_DynamicBinding()->bindingName, "C_DOTAPlayer" ) != nullptr ){
+            if( strstr( entity->Schema_DynamicBinding()->binaryName, "C_DOTAPlayer" ) != nullptr ){
                 auto *player = (CDotaPlayer*)entity;
                 strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" - %s", player->C_DOTAPlayer__GetPlayerName() );
                 strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" - (%p)", (void*)player );
             }
 
-            if( strstr( entity->Schema_DynamicBinding()->bindingName, "DOTA_Unit_Hero" ) ){
+            if( strstr( entity->Schema_DynamicBinding()->binaryName, "DOTA_Unit_Hero" ) ){
                 auto *npc = (CDotaBaseNPC*)entity;
                 strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" -Mana: (%g/%g)", npc->C_DOTA_BaseNPC__GetMana(), npc->C_DOTA_BaseNPC__GetMaxMana() );
                 strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" -Dmg Min(%d)/Max(%d)", npc->C_DOTA_BaseNPC__GetDamageMin(), npc->C_DOTA_BaseNPC__GetDamageMax() );

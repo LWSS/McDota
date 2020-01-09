@@ -6,7 +6,6 @@
 #include "CCollisionProperty.h"
 #include "Datamap.h"
 #include "../Utils/Util.h"
-#include "CSource2Client.h"
 
 
 enum OverlayFlags_t : unsigned long long
@@ -49,6 +48,7 @@ struct RenderableInstance_t{
 };
 
 
+class ClientClass;
 class CBaseEntity
 {
 public:

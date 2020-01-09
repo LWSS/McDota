@@ -53,7 +53,7 @@ enum OrderQueueBehavior_t : int {
     DOTA_ORDER_QUEUE_ALWAYS = 2,
 };
 
-// find PrepareUnitOrders with "particles/ui_mouseactions/waypoint_flag.vpcf"
+// find SetPlayerUnderwater with "Player.AmbientUnderWater"
 class CDotaPlayer : public CBaseCombatCharacter
 {
 public:
@@ -187,7 +187,8 @@ public:
     virtual void C_BasePlayer__FindEntityInheritingFromForward(void* CSchemaClassBindingBase);
     virtual void C_DOTAPlayer__FindPickerEntityInheritingFrom(void* CSchemaClassBindingBase);
     virtual void C_DOTAPlayer__ProcessMouseclick(ButtonCode_t button, bool unk, bool unk2);
-    virtual void C_DotaPlayer__PrepareUnitOrders(DotaUnitOrder_t order, int entHandle, Vector movePosition, int abilityIndex,PlayerOrderIssuer_t orderIssuer, CDotaBaseNPC* entity, OrderQueueBehavior_t queueBehavior, bool showEffects);
+    /* Valve made this non-virtual jan 2020 :^) */
+    //virtual void C_DotaPlayer__PrepareUnitOrders(DotaUnitOrder_t order, int entHandle, Vector movePosition, int abilityIndex,PlayerOrderIssuer_t orderIssuer, CDotaBaseNPC* entity, OrderQueueBehavior_t queueBehavior, bool showEffects);
     virtual void* C_DOTAPlayer__GetValidCursor(void);
     virtual bool C_DOTAPlayer__ShouldRegenerateOriginFromCellBits(void);
 };

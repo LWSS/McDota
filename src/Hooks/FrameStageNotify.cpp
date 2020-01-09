@@ -7,7 +7,7 @@
 typedef void (* FrameStageNotifyFn)( CSource2Client*, ClientFrameStage_t );
 
 //looks like they added stages 7 and 9
-/*
+
 static const char* Stage2String( ClientFrameStage_t stage ){
     switch( stage ){
         CASE_STRING( FRAME_UNDEFINED );
@@ -21,7 +21,7 @@ static const char* Stage2String( ClientFrameStage_t stage ){
         default:
             return std::to_string((int)stage).c_str();
     }
-}*/
+}
 void Hooks::FrameStageNotify( CSource2Client *thisptr, ClientFrameStage_t stage ) {
     //MC_PRINTF("FSN: %s\n", Stage2String(stage));
     Zoom::FrameStageNotify( thisptr, stage );

@@ -80,3 +80,257 @@ message CCLCMsg_ClientMessage {
 	optional int32 msg_type = 1;
 	optional bytes data = 2;
 }
+
+message CDOTAClientMsg_MatchMetadata {
+	optional uint64 match_id = 1;
+	optional bytes metadata = 2;
+}
+
+message CSOEconItemAttribute {
+	optional uint32 def_index = 1;
+	optional uint32 value = 2;
+	optional bytes value_bytes = 3;
+}
+
+message CSOEconItemEquipped {
+	optional uint32 new_class = 1;
+	optional uint32 new_slot = 2;
+}
+message CSOEconItem {
+	optional uint64 id = 1;
+	optional uint32 account_id = 2;
+	optional uint32 inventory = 3;
+	optional uint32 def_index = 4;
+	optional uint32 quantity = 5 [default = 1];
+	optional uint32 level = 6 [default = 1];
+	optional uint32 quality = 7 [default = 4];
+	optional uint32 flags = 8 [default = 0];
+	optional uint32 origin = 9 [default = 0];
+	repeated .CSOEconItemAttribute attribute = 12;
+	optional .CSOEconItem interior_item = 13;
+	optional uint32 style = 15 [default = 0];
+	optional uint64 original_id = 16 [default = 0];
+	repeated .CSOEconItemEquipped equipped_state = 18;
+}
+
+enum EDOTAMMRBoostType {
+	k_EDOTAMMRBoostType_None = 0;
+	k_EDOTAMMRBoostType_Leader = 1;
+	k_EDOTAMMRBoostType_Follower = 2;
+}
+
+message CLobbyTimedRewardDetails {
+	optional uint32 item_def_index = 2;
+	optional bool is_supply_crate = 3;
+	optional bool is_timed_drop = 4;
+	optional uint32 account_id = 5;
+	optional uint32 origin = 6;
+}
+
+enum EEvent {
+	EVENT_ID_NONE = 0;
+	EVENT_ID_DIRETIDE = 1;
+	EVENT_ID_SPRING_FESTIVAL = 2;
+	EVENT_ID_FROSTIVUS_2013 = 3;
+	EVENT_ID_COMPENDIUM_2014 = 4;
+	EVENT_ID_NEXON_PC_BANG = 5;
+	EVENT_ID_PWRD_DAC_2015 = 6;
+	EVENT_ID_NEW_BLOOM_2015 = 7;
+	EVENT_ID_INTERNATIONAL_2015 = 8;
+	EVENT_ID_FALL_MAJOR_2015 = 9;
+	EVENT_ID_ORACLE_PA = 10;
+	EVENT_ID_NEW_BLOOM_2015_PREBEAST = 11;
+	EVENT_ID_FROSTIVUS = 12;
+	EVENT_ID_WINTER_MAJOR_2016 = 13;
+	EVENT_ID_INTERNATIONAL_2016 = 14;
+	EVENT_ID_FALL_MAJOR_2016 = 15;
+	EVENT_ID_WINTER_MAJOR_2017 = 16;
+	EVENT_ID_NEW_BLOOM_2017 = 17;
+	EVENT_ID_INTERNATIONAL_2017 = 18;
+	EVENT_ID_PLUS_SUBSCRIPTION = 19;
+	EVENT_ID_SINGLES_DAY_2017 = 20;
+	EVENT_ID_FROSTIVUS_2017 = 21;
+	EVENT_ID_INTERNATIONAL_2018 = 22;
+	EVENT_ID_FROSTIVUS_2018 = 23;
+	EVENT_ID_NEW_BLOOM_2019 = 24;
+	EVENT_ID_INTERNATIONAL_2019 = 25;
+	EVENT_ID_NEW_PLAYER_EXPERIENCE = 26;
+	EVENT_ID_FROSTIVUS_2019 = 27;
+	EVENT_ID_COUNT = 28;
+}
+
+message CMsgMatchTips {
+	message SingleTip {
+		optional uint32 source_account_id = 1;
+		optional uint32 target_account_id = 2;
+		optional uint32 tip_amount = 3;
+		optional .EEvent event_id = 4 [default = EVENT_ID_NONE];
+	}
+
+	repeated .CMsgMatchTips.SingleTip tips = 2;
+}
+
+enum EMatchBehaviorScoreVariance {
+	k_EMatchBehaviorScoreVariance_Invalid = 0;
+	k_EMatchBehaviorScoreVariance_Low = 1;
+	k_EMatchBehaviorScoreVariance_Medium = 2;
+	k_EMatchBehaviorScoreVariance_High = 3;
+}
+message CMsgMatchMatchmakingStats {
+	optional uint32 average_queue_time = 1;
+	optional uint32 maximum_queue_time = 2;
+	optional .EMatchBehaviorScoreVariance behavior_score_variance = 3 [default = k_EMatchBehaviorScoreVariance_Invalid];
+}
+
+
+message CDOTAMatchMetadata {
+	message Team {
+		message PlayerKill {
+			optional uint32 victim_slot = 1;
+			optional uint32 count = 2;
+		}
+
+		message ItemPurchase {
+			optional uint32 item_id = 1;
+			optional int32 purchase_time = 2;
+		}
+
+		message InventorySnapshot {
+			repeated uint32 item_id = 1;
+			optional int32 game_time = 2;
+			optional uint32 kills = 3;
+			optional uint32 deaths = 4;
+			optional uint32 assists = 5;
+			optional uint32 level = 6;
+		}
+
+		message AutoStyleCriteria {
+			optional uint32 name_token = 1;
+			optional float value = 2;
+		}
+
+		message StrangeGemProgress {
+			optional uint32 kill_eater_type = 1;
+			optional uint32 gem_item_def_index = 2;
+			optional uint32 required_hero_id = 3;
+			optional uint32 starting_value = 4;
+			optional uint32 ending_value = 5;
+			optional uint32 owner_item_def_index = 6;
+			optional uint64 owner_item_id = 7;
+		}
+
+		message VictoryPrediction {
+			optional uint64 item_id = 1;
+			optional uint32 item_def_index = 2;
+			optional uint32 starting_value = 3;
+			optional bool is_victory = 4;
+		}
+
+		message SubChallenge {
+			optional uint32 slot_id = 1;
+			optional uint32 start_value = 2;
+			optional uint32 end_value = 3;
+			optional bool completed = 4;
+		}
+
+		message CavernChallengeResult {
+			optional uint32 completed_path_id = 1;
+			optional uint32 claimed_room_id = 2;
+		}
+
+		message ActionGrant {
+			optional uint32 action_id = 1;
+			optional uint32 quantity = 2;
+			optional uint32 audit = 3;
+		}
+
+		message EventData {
+			optional uint32 event_id = 1;
+			optional uint32 event_points = 2;
+			optional uint32 challenge_instance_id = 3;
+			optional uint32 challenge_quest_id = 4;
+			optional uint32 challenge_quest_challenge_id = 5;
+			optional bool challenge_completed = 6;
+			optional uint32 challenge_rank_completed = 7;
+			optional uint32 challenge_rank_previously_completed = 8;
+			optional bool event_owned = 9;
+			repeated .CDOTAMatchMetadata.Team.SubChallenge sub_challenges_with_progress = 10;
+			optional uint32 wager_winnings = 11;
+			optional bool cavern_challenge_active = 12;
+			optional uint32 cavern_challenge_winnings = 13;
+			optional uint32 amount_wagered = 14;
+			optional uint32 team_wager_amount = 15;
+			optional uint32 periodic_point_adjustments = 16;
+			repeated .CDOTAMatchMetadata.Team.CavernChallengeResult cavern_challenge_map_results = 17;
+			optional uint32 cavern_challenge_plus_shard_winnings = 18;
+			repeated .CDOTAMatchMetadata.Team.ActionGrant actions_granted = 19;
+		}
+
+		message Player {
+			optional uint32 account_id = 1;
+			repeated uint32 ability_upgrades = 2;
+			optional uint32 player_slot = 3;
+			repeated .CSOEconItem equipped_econ_items = 4;
+			repeated .CDOTAMatchMetadata.Team.PlayerKill kills = 5;
+			repeated .CDOTAMatchMetadata.Team.ItemPurchase items = 6;
+			optional uint32 avg_kills_x16 = 7;
+			optional uint32 avg_deaths_x16 = 8;
+			optional uint32 avg_assists_x16 = 9;
+			optional uint32 avg_gpm_x16 = 10;
+			optional uint32 avg_xpm_x16 = 11;
+			optional uint32 best_kills_x16 = 12;
+			optional uint32 best_assists_x16 = 13;
+			optional uint32 best_gpm_x16 = 14;
+			optional uint32 best_xpm_x16 = 15;
+			optional uint32 win_streak = 16;
+			optional uint32 best_win_streak = 17;
+			optional float fight_score = 18;
+			optional float farm_score = 19;
+			optional float support_score = 20;
+			optional float push_score = 21;
+			repeated uint32 level_up_times = 22;
+			repeated float graph_net_worth = 23;
+			repeated .CDOTAMatchMetadata.Team.InventorySnapshot inventory_snapshot = 24;
+			optional bool avg_stats_calibrated = 25;
+			repeated .CDOTAMatchMetadata.Team.AutoStyleCriteria auto_style_criteria = 26;
+			repeated .CDOTAMatchMetadata.Team.EventData event_data = 29;
+			repeated .CDOTAMatchMetadata.Team.StrangeGemProgress strange_gem_progress = 30;
+			optional uint32 hero_xp = 31;
+			optional uint32 camps_stacked = 32;
+			repeated .CDOTAMatchMetadata.Team.VictoryPrediction victory_prediction = 33;
+			optional uint32 lane_selection_flags = 34;
+			optional uint32 rampages = 35;
+			optional uint32 triple_kills = 36;
+			optional uint32 aegis_snatched = 37;
+			optional uint32 rapiers_purchased = 38;
+			optional uint32 couriers_killed = 39;
+			optional uint32 net_worth_rank = 40;
+			optional uint32 support_gold_spent = 41;
+			optional uint32 observer_wards_placed = 42;
+			optional uint32 sentry_wards_placed = 43;
+			optional uint32 wards_dewarded = 44;
+			optional float stun_duration = 45;
+			optional .EDOTAMMRBoostType rank_mmr_boost_type = 46 [default = k_EDOTAMMRBoostType_None];
+		}
+
+		optional uint32 dota_team = 1;
+		repeated .CDOTAMatchMetadata.Team.Player players = 2;
+		repeated float graph_experience = 3;
+		repeated float graph_gold_earned = 4;
+		repeated float graph_net_worth = 5;
+		optional bool cm_first_pick = 6;
+		optional uint32 cm_captain_player_id = 7;
+		repeated uint32 cm_bans = 8;
+		repeated uint32 cm_picks = 9;
+		optional uint32 cm_penalty = 10;
+	}
+
+	repeated .CDOTAMatchMetadata.Team teams = 1;
+	repeated .CLobbyTimedRewardDetails item_rewards = 2;
+	optional fixed64 lobby_id = 3;
+	optional fixed64 report_until_time = 4;
+	optional bytes event_game_custom_table = 5;
+	optional uint32 primary_event_id = 6;
+	repeated .CMsgMatchTips match_tips = 7;
+	optional .CMsgMatchMatchmakingStats matchmaking_stats = 8;
+}

@@ -35,6 +35,10 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
     CNETMsg_StringCmd stringCmd;
     CDOTAClientMsg_GuideSelectOption option;
     CDOTAClientMsg_GuideSelected guide;
+    static CDOTAClientMsg_MatchMetadata metadataMsg;
+    static bool cacheMetaData = false;
+    static int cachedSize = -1;
+    CDOTAMatchMetadata metadata;
     std::string meme;
     CDOTAPlayerResource *playerResource;
     CUtlVector< PlayerResourcePlayerTeamData_t > *teamData;
@@ -60,7 +64,7 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             for( int i = 0; i <= entitySystem->GetHighestEntityIndex(); i++ ){
                 entity = entitySystem->GetBaseEntity(i);
                 if( entity ){
-                    cvar->ConsoleDPrintf("Entity#%d(%p) - Name:(%s)", i, (void*)entity, entity->Schema_DynamicBinding()->bindingName );
+                    cvar->ConsoleDPrintf("Entity#%d(%p) - Name:(%s)", i, (void*)entity, entity->Schema_DynamicBinding()->binaryName );
                     if( entity->GetOwnerID() >= 0 ){
                         cvar->ConsoleDPrintf(" - Owner:(%d)", entity->GetOwnerID());
                     }
@@ -90,7 +94,7 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             for( int i = 0; i <= entitySystem->GetHighestEntityIndex(); i++ ){
                 entity = entitySystem->GetBaseEntity(i);
                 if( !entity ) continue;
-                if( strstr( entity->Schema_DynamicBinding()->bindingName, "C_DOTA_PlayerResource" ) ){
+                if( strstr( entity->Schema_DynamicBinding()->binaryName, "C_DOTA_PlayerResource" ) ){
                     playerResource = reinterpret_cast<CDOTAPlayerResource*>( entity );
                     teamData = playerResource->GetPlayerTeamData();
                     if( teamData ) {
@@ -118,7 +122,7 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             MC_PRINTF("Doing cosmetic particle disable sweep.\n");
             for( int i = 0; i <= entitySystem->GetHighestEntityIndex(); i++ ){
                 entity = entitySystem->GetBaseEntity(i);
-                if( entity && !strcmp( entity->Schema_DynamicBinding()->bindingName, "C_DOTAWearableItem" ) ){
+                if( entity && !strcmp( entity->Schema_DynamicBinding()->binaryName, "C_DOTAWearableItem" ) ){
                     MC_PRINTF("Purging ent %d\n", i);
                     entityVMT = new VMT(entity);
                     entityVMT->HookVM( ShouldDrawParticleSystems, 297 );

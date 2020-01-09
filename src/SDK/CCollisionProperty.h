@@ -3,10 +3,23 @@
 #include "Schema.h"
 #include "Datamap.h"
 #include "../Utils/Util_sdk.h"
-struct SolidType_t;
-struct RnCollisionAttr_t;
-struct ChangeAccessorFieldPathIndex_t;
 
+struct RnCollisionAttr_t
+{
+    int64_t nInteractAs;
+    int64_t nInteractsWith;
+    int64_t nInteractsExclude;
+    int nEntityId;
+    short nHierarchyId;
+    unsigned char nCollisionGroup;
+    unsigned char nCollisionFunctionMask;
+};
+
+struct SolidType_t;
+struct ChangeAccessorFieldPathIndex_t
+{
+    short value;
+};
 
 class CCollisionProperty
 {

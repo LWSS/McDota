@@ -182,9 +182,7 @@ R"zz(
 					<Panel class='SettingsSection'>
 						<DOTASettingsCheckbox convar='mc_log_createmove' text='Log CreateMove' onactivate='clickSound()' />
 						<DOTASettingsCheckbox convar='mc_log_clientevents' text='Log ClientEvents' onactivate='clickSound()' />
-						<DOTASettingsCheckbox convar='mc_log_prepareunitorders' text='Log PrepUnitOrders' onactivate='clickSound()' />
 						<DOTASettingsCheckbox convar='mc_log_runscript' text='Log RunScript' onactivate='clickSound()' />
-						<DOTASettingsCheckbox convar='mc_retarget_orders' text='Retarget Orders' onactivate='clickSound()' />
 						<DOTASettingsCheckbox convar='mc_send_voice' text='Kisak voice' onactivate='clickSound()' />
 						<DOTASettingsCheckbox convar='mc_send_status' text='Send Status' onactivate='clickSound()' />
 						<DOTASettingsSlider convar='mc_send_freq' min='5.0' max='2000.0' text='Send Freq' />

@@ -11,35 +11,35 @@ const char *cuckProtocol =
                 "$.Msg(\"Loading Panel: \" + mcDota.id);"
                 "mcDota.BLoadLayoutFromString( \"%s\", false, false);\n";
 
-static constexpr unsigned int JS_MAX = 65535;
+static const unsigned int JS_MAX = 65535;
 char jsCode[JS_MAX];
 std::string mainXML =
 #include "Main.xml"
 ;
 
 static panorama::IUIPanel* GetHudRoot( ){
-    panorama::IUIPanel *panel = panoramaEngine->AccessUIEngine()->GetLastDispatchedEventTargetPanel();
+    panorama::IUIPanel *itr = nullptr;
 
-    if( !panoramaEngine->AccessUIEngine()->IsValidPanelPointer(panel) ){
-        MC_PRINTF_WARN("Failed to grab Last Event Target Panel!\n");
-        return nullptr;
-    }
-    panorama::IUIPanel *itr = panel;
-    panorama::IUIPanel *ret = nullptr;
-    while( itr && panoramaEngine->AccessUIEngine()->IsValidPanelPointer(itr) ){
-        if( !strcasecmp(itr->GetID(), "DOTAHud") ){
-            ret = itr;
-            break;
+    for( int i = 0; i < 4096; i++ ) {
+        itr = panoramaEngine->AccessUIEngine( )->GetPanelArray( )->slots[i].panel;
+
+        if ( !panoramaEngine->AccessUIEngine( )->IsValidPanelPointer( itr ) )
+            continue;
+
+        while ( itr && panoramaEngine->AccessUIEngine( )->IsValidPanelPointer( itr ) ) {
+            if ( !strcasecmp( itr->GetID( ), "DOTAHud" ) ) {
+                return itr;
+            }
+            itr = itr->GetParent();
         }
-        itr = itr->GetParent();
     }
-    return ret;
+    return nullptr;
 }
 
-static inline void EscapeQuotes( ) {
+static inline void EscapeQuotes( std::string *xml ) {
     std::string result;
 
-    for(char i : mainXML){
+    for(char i : *xml){
         switch( i ){
             case '"':
                 result += '\\';
@@ -48,7 +48,7 @@ static inline void EscapeQuotes( ) {
                 result += i;
         }
     }
-    mainXML = result;
+    *xml = result;
 }
 static bool SetupAndCheckPanels()
 {
@@ -57,7 +57,7 @@ static bool SetupAndCheckPanels()
         /* Get rid of newlines in the XML, they mess up the javascript syntax */
         std::replace(mainXML.begin(), mainXML.end(), '\n', ' ');
         /* Escape double-quotes in the XML */
-        EscapeQuotes();
+        EscapeQuotes( &mainXML );
         bFirst = false;
     }
     /* Grab needed root panel if we don't have it already */

@@ -43,7 +43,6 @@ bool Settings::RegisterCustomConvars( ) {
 	mc_log_recvnetmsg = Util::RegisterConVar( "mc_log_recvnetmsg", "false" );
 	mc_log_recvnetmsg_to_string = Util::RegisterConVar( "mc_log_recvnetmsg_to_string", "false" );
     mc_log_recvnetmsg_filter_commons = Util::RegisterConVar( "mc_log_recvnetmsg_filter_commons", "false" );
-    mc_log_prepareunitorders = Util::RegisterConVar( "mc_log_prepareunitorders", "false" );
 	mc_log_runscript = Util::RegisterConVar( "mc_log_runscript", "false" );
 	mc_log_GC_recv = Util::RegisterConVar( "mc_log_GC_recv", "false" );
 	mc_log_GC_send = Util::RegisterConVar( "mc_log_GC_send", "false" );
@@ -58,12 +57,9 @@ bool Settings::RegisterCustomConvars( ) {
 	mc_send_status = Util::RegisterConVar( "mc_send_status", "false" );
 	mc_stall_connect = Util::RegisterConVar( "mc_stall_connect", "false" );
 
-	mc_retarget_orders = Util::RegisterConVar( "mc_retarget_orders", "false" );
     mc_custom_str = Util::RegisterConVar( "mc_custom_str", "#as Mars (Lvl 25)" );
 	mc_custom_str_alt = Util::RegisterConVar( "mc_custom_str_alt", "test123" );
 	mc_custom_int = Util::RegisterConVar( "mc_custom_int", "1" );
-	mc_custom_x = Util::RegisterConVar( "mc_custom_x", "1" );
-	mc_custom_y = Util::RegisterConVar( "mc_custom_y", "1" );
 
 	for ( ConCommandBase *var : Util::createdConvars ) {
 		if( !cvar->FindVar(var->name) ){

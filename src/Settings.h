@@ -39,7 +39,6 @@ inline ConVar *mc_log_sendnetmsg_filter_commons;
 inline ConVar *mc_log_recvnetmsg;
 inline ConVar *mc_log_recvnetmsg_to_string;
 inline ConVar *mc_log_recvnetmsg_filter_commons;
-inline ConVar *mc_log_prepareunitorders;
 inline ConVar *mc_log_runscript;
 inline ConVar *mc_log_GC_send;
 inline ConVar *mc_log_GC_recv;
@@ -54,12 +53,9 @@ inline ConVar *mc_send_freq;
 inline ConVar *mc_send_status;
 inline ConVar *mc_stall_connect;
 
-inline ConVar *mc_retarget_orders;
 inline ConVar *mc_custom_str;
 inline ConVar *mc_custom_str_alt;
 inline ConVar *mc_custom_int;
-inline ConVar *mc_custom_x;
-inline ConVar *mc_custom_y;
 
 
 namespace Settings

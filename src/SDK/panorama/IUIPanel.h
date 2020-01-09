@@ -19,7 +19,7 @@ namespace panorama
         uint32_t unk;
         //TODO: This array is not fixed-size! Something like: CUtlVector
         //Make sure to check panel pointer when using this!
-        std::array<PanelArraySlot, 1024> slots;
+        std::array<PanelArraySlot, 4096> slots;
     };
     // "CUIPanel::RemoveAndDeleteChildren" XREF to Function
     class IUIPanel

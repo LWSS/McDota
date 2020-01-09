@@ -29,6 +29,7 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 #define PROTOBUF_INTERNAL_EXPORT_protobuf_mcdota_2eproto 
@@ -38,7 +39,7 @@ namespace protobuf_mcdota_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[17];
+  static const ::google::protobuf::internal::ParseTable schema[38];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -72,18 +73,72 @@ extern CDOTAClientMsg_GuideSelectOptionDefaultTypeInternal _CDOTAClientMsg_Guide
 class CDOTAClientMsg_GuideSelected;
 class CDOTAClientMsg_GuideSelectedDefaultTypeInternal;
 extern CDOTAClientMsg_GuideSelectedDefaultTypeInternal _CDOTAClientMsg_GuideSelected_default_instance_;
+class CDOTAClientMsg_MatchMetadata;
+class CDOTAClientMsg_MatchMetadataDefaultTypeInternal;
+extern CDOTAClientMsg_MatchMetadataDefaultTypeInternal _CDOTAClientMsg_MatchMetadata_default_instance_;
 class CDOTAClientMsg_RankWager;
 class CDOTAClientMsg_RankWagerDefaultTypeInternal;
 extern CDOTAClientMsg_RankWagerDefaultTypeInternal _CDOTAClientMsg_RankWager_default_instance_;
 class CDOTAClientMsg_TipAlert;
 class CDOTAClientMsg_TipAlertDefaultTypeInternal;
 extern CDOTAClientMsg_TipAlertDefaultTypeInternal _CDOTAClientMsg_TipAlert_default_instance_;
+class CDOTAMatchMetadata;
+class CDOTAMatchMetadataDefaultTypeInternal;
+extern CDOTAMatchMetadataDefaultTypeInternal _CDOTAMatchMetadata_default_instance_;
+class CDOTAMatchMetadata_Team;
+class CDOTAMatchMetadata_TeamDefaultTypeInternal;
+extern CDOTAMatchMetadata_TeamDefaultTypeInternal _CDOTAMatchMetadata_Team_default_instance_;
+class CDOTAMatchMetadata_Team_ActionGrant;
+class CDOTAMatchMetadata_Team_ActionGrantDefaultTypeInternal;
+extern CDOTAMatchMetadata_Team_ActionGrantDefaultTypeInternal _CDOTAMatchMetadata_Team_ActionGrant_default_instance_;
+class CDOTAMatchMetadata_Team_AutoStyleCriteria;
+class CDOTAMatchMetadata_Team_AutoStyleCriteriaDefaultTypeInternal;
+extern CDOTAMatchMetadata_Team_AutoStyleCriteriaDefaultTypeInternal _CDOTAMatchMetadata_Team_AutoStyleCriteria_default_instance_;
+class CDOTAMatchMetadata_Team_CavernChallengeResult;
+class CDOTAMatchMetadata_Team_CavernChallengeResultDefaultTypeInternal;
+extern CDOTAMatchMetadata_Team_CavernChallengeResultDefaultTypeInternal _CDOTAMatchMetadata_Team_CavernChallengeResult_default_instance_;
+class CDOTAMatchMetadata_Team_EventData;
+class CDOTAMatchMetadata_Team_EventDataDefaultTypeInternal;
+extern CDOTAMatchMetadata_Team_EventDataDefaultTypeInternal _CDOTAMatchMetadata_Team_EventData_default_instance_;
+class CDOTAMatchMetadata_Team_InventorySnapshot;
+class CDOTAMatchMetadata_Team_InventorySnapshotDefaultTypeInternal;
+extern CDOTAMatchMetadata_Team_InventorySnapshotDefaultTypeInternal _CDOTAMatchMetadata_Team_InventorySnapshot_default_instance_;
+class CDOTAMatchMetadata_Team_ItemPurchase;
+class CDOTAMatchMetadata_Team_ItemPurchaseDefaultTypeInternal;
+extern CDOTAMatchMetadata_Team_ItemPurchaseDefaultTypeInternal _CDOTAMatchMetadata_Team_ItemPurchase_default_instance_;
+class CDOTAMatchMetadata_Team_Player;
+class CDOTAMatchMetadata_Team_PlayerDefaultTypeInternal;
+extern CDOTAMatchMetadata_Team_PlayerDefaultTypeInternal _CDOTAMatchMetadata_Team_Player_default_instance_;
+class CDOTAMatchMetadata_Team_PlayerKill;
+class CDOTAMatchMetadata_Team_PlayerKillDefaultTypeInternal;
+extern CDOTAMatchMetadata_Team_PlayerKillDefaultTypeInternal _CDOTAMatchMetadata_Team_PlayerKill_default_instance_;
+class CDOTAMatchMetadata_Team_StrangeGemProgress;
+class CDOTAMatchMetadata_Team_StrangeGemProgressDefaultTypeInternal;
+extern CDOTAMatchMetadata_Team_StrangeGemProgressDefaultTypeInternal _CDOTAMatchMetadata_Team_StrangeGemProgress_default_instance_;
+class CDOTAMatchMetadata_Team_SubChallenge;
+class CDOTAMatchMetadata_Team_SubChallengeDefaultTypeInternal;
+extern CDOTAMatchMetadata_Team_SubChallengeDefaultTypeInternal _CDOTAMatchMetadata_Team_SubChallenge_default_instance_;
+class CDOTAMatchMetadata_Team_VictoryPrediction;
+class CDOTAMatchMetadata_Team_VictoryPredictionDefaultTypeInternal;
+extern CDOTAMatchMetadata_Team_VictoryPredictionDefaultTypeInternal _CDOTAMatchMetadata_Team_VictoryPrediction_default_instance_;
 class CDOTAMsg_CoachHUDPing;
 class CDOTAMsg_CoachHUDPingDefaultTypeInternal;
 extern CDOTAMsg_CoachHUDPingDefaultTypeInternal _CDOTAMsg_CoachHUDPing_default_instance_;
 class CDOTAUserMsg_CoachHUDPing;
 class CDOTAUserMsg_CoachHUDPingDefaultTypeInternal;
 extern CDOTAUserMsg_CoachHUDPingDefaultTypeInternal _CDOTAUserMsg_CoachHUDPing_default_instance_;
+class CLobbyTimedRewardDetails;
+class CLobbyTimedRewardDetailsDefaultTypeInternal;
+extern CLobbyTimedRewardDetailsDefaultTypeInternal _CLobbyTimedRewardDetails_default_instance_;
+class CMsgMatchMatchmakingStats;
+class CMsgMatchMatchmakingStatsDefaultTypeInternal;
+extern CMsgMatchMatchmakingStatsDefaultTypeInternal _CMsgMatchMatchmakingStats_default_instance_;
+class CMsgMatchTips;
+class CMsgMatchTipsDefaultTypeInternal;
+extern CMsgMatchTipsDefaultTypeInternal _CMsgMatchTips_default_instance_;
+class CMsgMatchTips_SingleTip;
+class CMsgMatchTips_SingleTipDefaultTypeInternal;
+extern CMsgMatchTips_SingleTipDefaultTypeInternal _CMsgMatchTips_SingleTip_default_instance_;
 class CMsg_CVars;
 class CMsg_CVarsDefaultTypeInternal;
 extern CMsg_CVarsDefaultTypeInternal _CMsg_CVars_default_instance_;
@@ -96,6 +151,15 @@ extern CNETMsg_SetConVarDefaultTypeInternal _CNETMsg_SetConVar_default_instance_
 class CNETMsg_StringCmd;
 class CNETMsg_StringCmdDefaultTypeInternal;
 extern CNETMsg_StringCmdDefaultTypeInternal _CNETMsg_StringCmd_default_instance_;
+class CSOEconItem;
+class CSOEconItemDefaultTypeInternal;
+extern CSOEconItemDefaultTypeInternal _CSOEconItem_default_instance_;
+class CSOEconItemAttribute;
+class CSOEconItemAttributeDefaultTypeInternal;
+extern CSOEconItemAttributeDefaultTypeInternal _CSOEconItemAttribute_default_instance_;
+class CSOEconItemEquipped;
+class CSOEconItemEquippedDefaultTypeInternal;
+extern CSOEconItemEquippedDefaultTypeInternal _CSOEconItemEquipped_default_instance_;
 namespace google {
 namespace protobuf {
 template<> ::CCLCMsg_ClientMessage* Arena::CreateMaybeMessage<::CCLCMsg_ClientMessage>(Arena*);
@@ -107,17 +171,125 @@ template<> ::CDOTAClientMsg_EventCNY2015Cmd* Arena::CreateMaybeMessage<::CDOTACl
 template<> ::CDOTAClientMsg_EventPointsTip* Arena::CreateMaybeMessage<::CDOTAClientMsg_EventPointsTip>(Arena*);
 template<> ::CDOTAClientMsg_GuideSelectOption* Arena::CreateMaybeMessage<::CDOTAClientMsg_GuideSelectOption>(Arena*);
 template<> ::CDOTAClientMsg_GuideSelected* Arena::CreateMaybeMessage<::CDOTAClientMsg_GuideSelected>(Arena*);
+template<> ::CDOTAClientMsg_MatchMetadata* Arena::CreateMaybeMessage<::CDOTAClientMsg_MatchMetadata>(Arena*);
 template<> ::CDOTAClientMsg_RankWager* Arena::CreateMaybeMessage<::CDOTAClientMsg_RankWager>(Arena*);
 template<> ::CDOTAClientMsg_TipAlert* Arena::CreateMaybeMessage<::CDOTAClientMsg_TipAlert>(Arena*);
+template<> ::CDOTAMatchMetadata* Arena::CreateMaybeMessage<::CDOTAMatchMetadata>(Arena*);
+template<> ::CDOTAMatchMetadata_Team* Arena::CreateMaybeMessage<::CDOTAMatchMetadata_Team>(Arena*);
+template<> ::CDOTAMatchMetadata_Team_ActionGrant* Arena::CreateMaybeMessage<::CDOTAMatchMetadata_Team_ActionGrant>(Arena*);
+template<> ::CDOTAMatchMetadata_Team_AutoStyleCriteria* Arena::CreateMaybeMessage<::CDOTAMatchMetadata_Team_AutoStyleCriteria>(Arena*);
+template<> ::CDOTAMatchMetadata_Team_CavernChallengeResult* Arena::CreateMaybeMessage<::CDOTAMatchMetadata_Team_CavernChallengeResult>(Arena*);
+template<> ::CDOTAMatchMetadata_Team_EventData* Arena::CreateMaybeMessage<::CDOTAMatchMetadata_Team_EventData>(Arena*);
+template<> ::CDOTAMatchMetadata_Team_InventorySnapshot* Arena::CreateMaybeMessage<::CDOTAMatchMetadata_Team_InventorySnapshot>(Arena*);
+template<> ::CDOTAMatchMetadata_Team_ItemPurchase* Arena::CreateMaybeMessage<::CDOTAMatchMetadata_Team_ItemPurchase>(Arena*);
+template<> ::CDOTAMatchMetadata_Team_Player* Arena::CreateMaybeMessage<::CDOTAMatchMetadata_Team_Player>(Arena*);
+template<> ::CDOTAMatchMetadata_Team_PlayerKill* Arena::CreateMaybeMessage<::CDOTAMatchMetadata_Team_PlayerKill>(Arena*);
+template<> ::CDOTAMatchMetadata_Team_StrangeGemProgress* Arena::CreateMaybeMessage<::CDOTAMatchMetadata_Team_StrangeGemProgress>(Arena*);
+template<> ::CDOTAMatchMetadata_Team_SubChallenge* Arena::CreateMaybeMessage<::CDOTAMatchMetadata_Team_SubChallenge>(Arena*);
+template<> ::CDOTAMatchMetadata_Team_VictoryPrediction* Arena::CreateMaybeMessage<::CDOTAMatchMetadata_Team_VictoryPrediction>(Arena*);
 template<> ::CDOTAMsg_CoachHUDPing* Arena::CreateMaybeMessage<::CDOTAMsg_CoachHUDPing>(Arena*);
 template<> ::CDOTAUserMsg_CoachHUDPing* Arena::CreateMaybeMessage<::CDOTAUserMsg_CoachHUDPing>(Arena*);
+template<> ::CLobbyTimedRewardDetails* Arena::CreateMaybeMessage<::CLobbyTimedRewardDetails>(Arena*);
+template<> ::CMsgMatchMatchmakingStats* Arena::CreateMaybeMessage<::CMsgMatchMatchmakingStats>(Arena*);
+template<> ::CMsgMatchTips* Arena::CreateMaybeMessage<::CMsgMatchTips>(Arena*);
+template<> ::CMsgMatchTips_SingleTip* Arena::CreateMaybeMessage<::CMsgMatchTips_SingleTip>(Arena*);
 template<> ::CMsg_CVars* Arena::CreateMaybeMessage<::CMsg_CVars>(Arena*);
 template<> ::CMsg_CVars_CVar* Arena::CreateMaybeMessage<::CMsg_CVars_CVar>(Arena*);
 template<> ::CNETMsg_SetConVar* Arena::CreateMaybeMessage<::CNETMsg_SetConVar>(Arena*);
 template<> ::CNETMsg_StringCmd* Arena::CreateMaybeMessage<::CNETMsg_StringCmd>(Arena*);
+template<> ::CSOEconItem* Arena::CreateMaybeMessage<::CSOEconItem>(Arena*);
+template<> ::CSOEconItemAttribute* Arena::CreateMaybeMessage<::CSOEconItemAttribute>(Arena*);
+template<> ::CSOEconItemEquipped* Arena::CreateMaybeMessage<::CSOEconItemEquipped>(Arena*);
 }  // namespace protobuf
 }  // namespace google
 
+enum EDOTAMMRBoostType {
+  k_EDOTAMMRBoostType_None = 0,
+  k_EDOTAMMRBoostType_Leader = 1,
+  k_EDOTAMMRBoostType_Follower = 2
+};
+bool EDOTAMMRBoostType_IsValid(int value);
+const EDOTAMMRBoostType EDOTAMMRBoostType_MIN = k_EDOTAMMRBoostType_None;
+const EDOTAMMRBoostType EDOTAMMRBoostType_MAX = k_EDOTAMMRBoostType_Follower;
+const int EDOTAMMRBoostType_ARRAYSIZE = EDOTAMMRBoostType_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* EDOTAMMRBoostType_descriptor();
+inline const ::std::string& EDOTAMMRBoostType_Name(EDOTAMMRBoostType value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    EDOTAMMRBoostType_descriptor(), value);
+}
+inline bool EDOTAMMRBoostType_Parse(
+    const ::std::string& name, EDOTAMMRBoostType* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<EDOTAMMRBoostType>(
+    EDOTAMMRBoostType_descriptor(), name, value);
+}
+enum EEvent {
+  EVENT_ID_NONE = 0,
+  EVENT_ID_DIRETIDE = 1,
+  EVENT_ID_SPRING_FESTIVAL = 2,
+  EVENT_ID_FROSTIVUS_2013 = 3,
+  EVENT_ID_COMPENDIUM_2014 = 4,
+  EVENT_ID_NEXON_PC_BANG = 5,
+  EVENT_ID_PWRD_DAC_2015 = 6,
+  EVENT_ID_NEW_BLOOM_2015 = 7,
+  EVENT_ID_INTERNATIONAL_2015 = 8,
+  EVENT_ID_FALL_MAJOR_2015 = 9,
+  EVENT_ID_ORACLE_PA = 10,
+  EVENT_ID_NEW_BLOOM_2015_PREBEAST = 11,
+  EVENT_ID_FROSTIVUS = 12,
+  EVENT_ID_WINTER_MAJOR_2016 = 13,
+  EVENT_ID_INTERNATIONAL_2016 = 14,
+  EVENT_ID_FALL_MAJOR_2016 = 15,
+  EVENT_ID_WINTER_MAJOR_2017 = 16,
+  EVENT_ID_NEW_BLOOM_2017 = 17,
+  EVENT_ID_INTERNATIONAL_2017 = 18,
+  EVENT_ID_PLUS_SUBSCRIPTION = 19,
+  EVENT_ID_SINGLES_DAY_2017 = 20,
+  EVENT_ID_FROSTIVUS_2017 = 21,
+  EVENT_ID_INTERNATIONAL_2018 = 22,
+  EVENT_ID_FROSTIVUS_2018 = 23,
+  EVENT_ID_NEW_BLOOM_2019 = 24,
+  EVENT_ID_INTERNATIONAL_2019 = 25,
+  EVENT_ID_NEW_PLAYER_EXPERIENCE = 26,
+  EVENT_ID_FROSTIVUS_2019 = 27,
+  EVENT_ID_COUNT = 28
+};
+bool EEvent_IsValid(int value);
+const EEvent EEvent_MIN = EVENT_ID_NONE;
+const EEvent EEvent_MAX = EVENT_ID_COUNT;
+const int EEvent_ARRAYSIZE = EEvent_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* EEvent_descriptor();
+inline const ::std::string& EEvent_Name(EEvent value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    EEvent_descriptor(), value);
+}
+inline bool EEvent_Parse(
+    const ::std::string& name, EEvent* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<EEvent>(
+    EEvent_descriptor(), name, value);
+}
+enum EMatchBehaviorScoreVariance {
+  k_EMatchBehaviorScoreVariance_Invalid = 0,
+  k_EMatchBehaviorScoreVariance_Low = 1,
+  k_EMatchBehaviorScoreVariance_Medium = 2,
+  k_EMatchBehaviorScoreVariance_High = 3
+};
+bool EMatchBehaviorScoreVariance_IsValid(int value);
+const EMatchBehaviorScoreVariance EMatchBehaviorScoreVariance_MIN = k_EMatchBehaviorScoreVariance_Invalid;
+const EMatchBehaviorScoreVariance EMatchBehaviorScoreVariance_MAX = k_EMatchBehaviorScoreVariance_High;
+const int EMatchBehaviorScoreVariance_ARRAYSIZE = EMatchBehaviorScoreVariance_MAX + 1;
+
+const ::google::protobuf::EnumDescriptor* EMatchBehaviorScoreVariance_descriptor();
+inline const ::std::string& EMatchBehaviorScoreVariance_Name(EMatchBehaviorScoreVariance value) {
+  return ::google::protobuf::internal::NameOfEnum(
+    EMatchBehaviorScoreVariance_descriptor(), value);
+}
+inline bool EMatchBehaviorScoreVariance_Parse(
+    const ::std::string& name, EMatchBehaviorScoreVariance* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<EMatchBehaviorScoreVariance>(
+    EMatchBehaviorScoreVariance_descriptor(), name, value);
+}
 // ===================================================================
 
 class CDOTAClientMsg_TipAlert : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CDOTAClientMsg_TipAlert) */ {
@@ -2269,6 +2441,3791 @@ class CCLCMsg_ClientMessage : public ::google::protobuf::Message /* @@protoc_ins
   ::google::protobuf::int32 msg_type_;
   friend struct ::protobuf_mcdota_2eproto::TableStruct;
 };
+// -------------------------------------------------------------------
+
+class CDOTAClientMsg_MatchMetadata : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CDOTAClientMsg_MatchMetadata) */ {
+ public:
+  CDOTAClientMsg_MatchMetadata();
+  virtual ~CDOTAClientMsg_MatchMetadata();
+
+  CDOTAClientMsg_MatchMetadata(const CDOTAClientMsg_MatchMetadata& from);
+
+  inline CDOTAClientMsg_MatchMetadata& operator=(const CDOTAClientMsg_MatchMetadata& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  CDOTAClientMsg_MatchMetadata(CDOTAClientMsg_MatchMetadata&& from) noexcept
+    : CDOTAClientMsg_MatchMetadata() {
+    *this = ::std::move(from);
+  }
+
+  inline CDOTAClientMsg_MatchMetadata& operator=(CDOTAClientMsg_MatchMetadata&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CDOTAClientMsg_MatchMetadata& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const CDOTAClientMsg_MatchMetadata* internal_default_instance() {
+    return reinterpret_cast<const CDOTAClientMsg_MatchMetadata*>(
+               &_CDOTAClientMsg_MatchMetadata_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    17;
+
+  void Swap(CDOTAClientMsg_MatchMetadata* other);
+  friend void swap(CDOTAClientMsg_MatchMetadata& a, CDOTAClientMsg_MatchMetadata& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CDOTAClientMsg_MatchMetadata* New() const final {
+    return CreateMaybeMessage<CDOTAClientMsg_MatchMetadata>(NULL);
+  }
+
+  CDOTAClientMsg_MatchMetadata* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<CDOTAClientMsg_MatchMetadata>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const CDOTAClientMsg_MatchMetadata& from);
+  void MergeFrom(const CDOTAClientMsg_MatchMetadata& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CDOTAClientMsg_MatchMetadata* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional bytes metadata = 2;
+  bool has_metadata() const;
+  void clear_metadata();
+  static const int kMetadataFieldNumber = 2;
+  const ::std::string& metadata() const;
+  void set_metadata(const ::std::string& value);
+  #if LANG_CXX11
+  void set_metadata(::std::string&& value);
+  #endif
+  void set_metadata(const char* value);
+  void set_metadata(const void* value, size_t size);
+  ::std::string* mutable_metadata();
+  ::std::string* release_metadata();
+  void set_allocated_metadata(::std::string* metadata);
+
+  // optional uint64 match_id = 1;
+  bool has_match_id() const;
+  void clear_match_id();
+  static const int kMatchIdFieldNumber = 1;
+  ::google::protobuf::uint64 match_id() const;
+  void set_match_id(::google::protobuf::uint64 value);
+
+  // @@protoc_insertion_point(class_scope:CDOTAClientMsg_MatchMetadata)
+ private:
+  void set_has_match_id();
+  void clear_has_match_id();
+  void set_has_metadata();
+  void clear_has_metadata();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  ::google::protobuf::internal::ArenaStringPtr metadata_;
+  ::google::protobuf::uint64 match_id_;
+  friend struct ::protobuf_mcdota_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class CSOEconItemAttribute : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CSOEconItemAttribute) */ {
+ public:
+  CSOEconItemAttribute();
+  virtual ~CSOEconItemAttribute();
+
+  CSOEconItemAttribute(const CSOEconItemAttribute& from);
+
+  inline CSOEconItemAttribute& operator=(const CSOEconItemAttribute& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  CSOEconItemAttribute(CSOEconItemAttribute&& from) noexcept
+    : CSOEconItemAttribute() {
+    *this = ::std::move(from);
+  }
+
+  inline CSOEconItemAttribute& operator=(CSOEconItemAttribute&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CSOEconItemAttribute& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const CSOEconItemAttribute* internal_default_instance() {
+    return reinterpret_cast<const CSOEconItemAttribute*>(
+               &_CSOEconItemAttribute_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    18;
+
+  void Swap(CSOEconItemAttribute* other);
+  friend void swap(CSOEconItemAttribute& a, CSOEconItemAttribute& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CSOEconItemAttribute* New() const final {
+    return CreateMaybeMessage<CSOEconItemAttribute>(NULL);
+  }
+
+  CSOEconItemAttribute* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<CSOEconItemAttribute>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const CSOEconItemAttribute& from);
+  void MergeFrom(const CSOEconItemAttribute& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CSOEconItemAttribute* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional bytes value_bytes = 3;
+  bool has_value_bytes() const;
+  void clear_value_bytes();
+  static const int kValueBytesFieldNumber = 3;
+  const ::std::string& value_bytes() const;
+  void set_value_bytes(const ::std::string& value);
+  #if LANG_CXX11
+  void set_value_bytes(::std::string&& value);
+  #endif
+  void set_value_bytes(const char* value);
+  void set_value_bytes(const void* value, size_t size);
+  ::std::string* mutable_value_bytes();
+  ::std::string* release_value_bytes();
+  void set_allocated_value_bytes(::std::string* value_bytes);
+
+  // optional uint32 def_index = 1;
+  bool has_def_index() const;
+  void clear_def_index();
+  static const int kDefIndexFieldNumber = 1;
+  ::google::protobuf::uint32 def_index() const;
+  void set_def_index(::google::protobuf::uint32 value);
+
+  // optional uint32 value = 2;
+  bool has_value() const;
+  void clear_value();
+  static const int kValueFieldNumber = 2;
+  ::google::protobuf::uint32 value() const;
+  void set_value(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:CSOEconItemAttribute)
+ private:
+  void set_has_def_index();
+  void clear_has_def_index();
+  void set_has_value();
+  void clear_has_value();
+  void set_has_value_bytes();
+  void clear_has_value_bytes();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  ::google::protobuf::internal::ArenaStringPtr value_bytes_;
+  ::google::protobuf::uint32 def_index_;
+  ::google::protobuf::uint32 value_;
+  friend struct ::protobuf_mcdota_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class CSOEconItemEquipped : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CSOEconItemEquipped) */ {
+ public:
+  CSOEconItemEquipped();
+  virtual ~CSOEconItemEquipped();
+
+  CSOEconItemEquipped(const CSOEconItemEquipped& from);
+
+  inline CSOEconItemEquipped& operator=(const CSOEconItemEquipped& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  CSOEconItemEquipped(CSOEconItemEquipped&& from) noexcept
+    : CSOEconItemEquipped() {
+    *this = ::std::move(from);
+  }
+
+  inline CSOEconItemEquipped& operator=(CSOEconItemEquipped&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CSOEconItemEquipped& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const CSOEconItemEquipped* internal_default_instance() {
+    return reinterpret_cast<const CSOEconItemEquipped*>(
+               &_CSOEconItemEquipped_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    19;
+
+  void Swap(CSOEconItemEquipped* other);
+  friend void swap(CSOEconItemEquipped& a, CSOEconItemEquipped& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CSOEconItemEquipped* New() const final {
+    return CreateMaybeMessage<CSOEconItemEquipped>(NULL);
+  }
+
+  CSOEconItemEquipped* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<CSOEconItemEquipped>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const CSOEconItemEquipped& from);
+  void MergeFrom(const CSOEconItemEquipped& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CSOEconItemEquipped* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional uint32 new_class = 1;
+  bool has_new_class() const;
+  void clear_new_class();
+  static const int kNewClassFieldNumber = 1;
+  ::google::protobuf::uint32 new_class() const;
+  void set_new_class(::google::protobuf::uint32 value);
+
+  // optional uint32 new_slot = 2;
+  bool has_new_slot() const;
+  void clear_new_slot();
+  static const int kNewSlotFieldNumber = 2;
+  ::google::protobuf::uint32 new_slot() const;
+  void set_new_slot(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:CSOEconItemEquipped)
+ private:
+  void set_has_new_class();
+  void clear_has_new_class();
+  void set_has_new_slot();
+  void clear_has_new_slot();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  ::google::protobuf::uint32 new_class_;
+  ::google::protobuf::uint32 new_slot_;
+  friend struct ::protobuf_mcdota_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class CSOEconItem : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CSOEconItem) */ {
+ public:
+  CSOEconItem();
+  virtual ~CSOEconItem();
+
+  CSOEconItem(const CSOEconItem& from);
+
+  inline CSOEconItem& operator=(const CSOEconItem& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  CSOEconItem(CSOEconItem&& from) noexcept
+    : CSOEconItem() {
+    *this = ::std::move(from);
+  }
+
+  inline CSOEconItem& operator=(CSOEconItem&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CSOEconItem& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const CSOEconItem* internal_default_instance() {
+    return reinterpret_cast<const CSOEconItem*>(
+               &_CSOEconItem_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    20;
+
+  void Swap(CSOEconItem* other);
+  friend void swap(CSOEconItem& a, CSOEconItem& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CSOEconItem* New() const final {
+    return CreateMaybeMessage<CSOEconItem>(NULL);
+  }
+
+  CSOEconItem* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<CSOEconItem>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const CSOEconItem& from);
+  void MergeFrom(const CSOEconItem& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CSOEconItem* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .CSOEconItemAttribute attribute = 12;
+  int attribute_size() const;
+  void clear_attribute();
+  static const int kAttributeFieldNumber = 12;
+  ::CSOEconItemAttribute* mutable_attribute(int index);
+  ::google::protobuf::RepeatedPtrField< ::CSOEconItemAttribute >*
+      mutable_attribute();
+  const ::CSOEconItemAttribute& attribute(int index) const;
+  ::CSOEconItemAttribute* add_attribute();
+  const ::google::protobuf::RepeatedPtrField< ::CSOEconItemAttribute >&
+      attribute() const;
+
+  // repeated .CSOEconItemEquipped equipped_state = 18;
+  int equipped_state_size() const;
+  void clear_equipped_state();
+  static const int kEquippedStateFieldNumber = 18;
+  ::CSOEconItemEquipped* mutable_equipped_state(int index);
+  ::google::protobuf::RepeatedPtrField< ::CSOEconItemEquipped >*
+      mutable_equipped_state();
+  const ::CSOEconItemEquipped& equipped_state(int index) const;
+  ::CSOEconItemEquipped* add_equipped_state();
+  const ::google::protobuf::RepeatedPtrField< ::CSOEconItemEquipped >&
+      equipped_state() const;
+
+  // optional .CSOEconItem interior_item = 13;
+  bool has_interior_item() const;
+  void clear_interior_item();
+  static const int kInteriorItemFieldNumber = 13;
+  private:
+  const ::CSOEconItem& _internal_interior_item() const;
+  public:
+  const ::CSOEconItem& interior_item() const;
+  ::CSOEconItem* release_interior_item();
+  ::CSOEconItem* mutable_interior_item();
+  void set_allocated_interior_item(::CSOEconItem* interior_item);
+
+  // optional uint64 id = 1;
+  bool has_id() const;
+  void clear_id();
+  static const int kIdFieldNumber = 1;
+  ::google::protobuf::uint64 id() const;
+  void set_id(::google::protobuf::uint64 value);
+
+  // optional uint32 account_id = 2;
+  bool has_account_id() const;
+  void clear_account_id();
+  static const int kAccountIdFieldNumber = 2;
+  ::google::protobuf::uint32 account_id() const;
+  void set_account_id(::google::protobuf::uint32 value);
+
+  // optional uint32 inventory = 3;
+  bool has_inventory() const;
+  void clear_inventory();
+  static const int kInventoryFieldNumber = 3;
+  ::google::protobuf::uint32 inventory() const;
+  void set_inventory(::google::protobuf::uint32 value);
+
+  // optional uint32 def_index = 4;
+  bool has_def_index() const;
+  void clear_def_index();
+  static const int kDefIndexFieldNumber = 4;
+  ::google::protobuf::uint32 def_index() const;
+  void set_def_index(::google::protobuf::uint32 value);
+
+  // optional uint32 flags = 8 [default = 0];
+  bool has_flags() const;
+  void clear_flags();
+  static const int kFlagsFieldNumber = 8;
+  ::google::protobuf::uint32 flags() const;
+  void set_flags(::google::protobuf::uint32 value);
+
+  // optional uint32 origin = 9 [default = 0];
+  bool has_origin() const;
+  void clear_origin();
+  static const int kOriginFieldNumber = 9;
+  ::google::protobuf::uint32 origin() const;
+  void set_origin(::google::protobuf::uint32 value);
+
+  // optional uint32 style = 15 [default = 0];
+  bool has_style() const;
+  void clear_style();
+  static const int kStyleFieldNumber = 15;
+  ::google::protobuf::uint32 style() const;
+  void set_style(::google::protobuf::uint32 value);
+
+  // optional uint64 original_id = 16 [default = 0];
+  bool has_original_id() const;
+  void clear_original_id();
+  static const int kOriginalIdFieldNumber = 16;
+  ::google::protobuf::uint64 original_id() const;
+  void set_original_id(::google::protobuf::uint64 value);
+
+  // optional uint32 quality = 7 [default = 4];
+  bool has_quality() const;
+  void clear_quality();
+  static const int kQualityFieldNumber = 7;
+  ::google::protobuf::uint32 quality() const;
+  void set_quality(::google::protobuf::uint32 value);
+
+  // optional uint32 quantity = 5 [default = 1];
+  bool has_quantity() const;
+  void clear_quantity();
+  static const int kQuantityFieldNumber = 5;
+  ::google::protobuf::uint32 quantity() const;
+  void set_quantity(::google::protobuf::uint32 value);
+
+  // optional uint32 level = 6 [default = 1];
+  bool has_level() const;
+  void clear_level();
+  static const int kLevelFieldNumber = 6;
+  ::google::protobuf::uint32 level() const;
+  void set_level(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:CSOEconItem)
+ private:
+  void set_has_id();
+  void clear_has_id();
+  void set_has_account_id();
+  void clear_has_account_id();
+  void set_has_inventory();
+  void clear_has_inventory();
+  void set_has_def_index();
+  void clear_has_def_index();
+  void set_has_quantity();
+  void clear_has_quantity();
+  void set_has_level();
+  void clear_has_level();
+  void set_has_quality();
+  void clear_has_quality();
+  void set_has_flags();
+  void clear_has_flags();
+  void set_has_origin();
+  void clear_has_origin();
+  void set_has_interior_item();
+  void clear_has_interior_item();
+  void set_has_style();
+  void clear_has_style();
+  void set_has_original_id();
+  void clear_has_original_id();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  ::google::protobuf::RepeatedPtrField< ::CSOEconItemAttribute > attribute_;
+  ::google::protobuf::RepeatedPtrField< ::CSOEconItemEquipped > equipped_state_;
+  ::CSOEconItem* interior_item_;
+  ::google::protobuf::uint64 id_;
+  ::google::protobuf::uint32 account_id_;
+  ::google::protobuf::uint32 inventory_;
+  ::google::protobuf::uint32 def_index_;
+  ::google::protobuf::uint32 flags_;
+  ::google::protobuf::uint32 origin_;
+  ::google::protobuf::uint32 style_;
+  ::google::protobuf::uint64 original_id_;
+  ::google::protobuf::uint32 quality_;
+  ::google::protobuf::uint32 quantity_;
+  ::google::protobuf::uint32 level_;
+  friend struct ::protobuf_mcdota_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class CLobbyTimedRewardDetails : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CLobbyTimedRewardDetails) */ {
+ public:
+  CLobbyTimedRewardDetails();
+  virtual ~CLobbyTimedRewardDetails();
+
+  CLobbyTimedRewardDetails(const CLobbyTimedRewardDetails& from);
+
+  inline CLobbyTimedRewardDetails& operator=(const CLobbyTimedRewardDetails& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  CLobbyTimedRewardDetails(CLobbyTimedRewardDetails&& from) noexcept
+    : CLobbyTimedRewardDetails() {
+    *this = ::std::move(from);
+  }
+
+  inline CLobbyTimedRewardDetails& operator=(CLobbyTimedRewardDetails&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CLobbyTimedRewardDetails& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const CLobbyTimedRewardDetails* internal_default_instance() {
+    return reinterpret_cast<const CLobbyTimedRewardDetails*>(
+               &_CLobbyTimedRewardDetails_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    21;
+
+  void Swap(CLobbyTimedRewardDetails* other);
+  friend void swap(CLobbyTimedRewardDetails& a, CLobbyTimedRewardDetails& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CLobbyTimedRewardDetails* New() const final {
+    return CreateMaybeMessage<CLobbyTimedRewardDetails>(NULL);
+  }
+
+  CLobbyTimedRewardDetails* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<CLobbyTimedRewardDetails>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const CLobbyTimedRewardDetails& from);
+  void MergeFrom(const CLobbyTimedRewardDetails& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CLobbyTimedRewardDetails* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional uint32 item_def_index = 2;
+  bool has_item_def_index() const;
+  void clear_item_def_index();
+  static const int kItemDefIndexFieldNumber = 2;
+  ::google::protobuf::uint32 item_def_index() const;
+  void set_item_def_index(::google::protobuf::uint32 value);
+
+  // optional bool is_supply_crate = 3;
+  bool has_is_supply_crate() const;
+  void clear_is_supply_crate();
+  static const int kIsSupplyCrateFieldNumber = 3;
+  bool is_supply_crate() const;
+  void set_is_supply_crate(bool value);
+
+  // optional bool is_timed_drop = 4;
+  bool has_is_timed_drop() const;
+  void clear_is_timed_drop();
+  static const int kIsTimedDropFieldNumber = 4;
+  bool is_timed_drop() const;
+  void set_is_timed_drop(bool value);
+
+  // optional uint32 account_id = 5;
+  bool has_account_id() const;
+  void clear_account_id();
+  static const int kAccountIdFieldNumber = 5;
+  ::google::protobuf::uint32 account_id() const;
+  void set_account_id(::google::protobuf::uint32 value);
+
+  // optional uint32 origin = 6;
+  bool has_origin() const;
+  void clear_origin();
+  static const int kOriginFieldNumber = 6;
+  ::google::protobuf::uint32 origin() const;
+  void set_origin(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:CLobbyTimedRewardDetails)
+ private:
+  void set_has_item_def_index();
+  void clear_has_item_def_index();
+  void set_has_is_supply_crate();
+  void clear_has_is_supply_crate();
+  void set_has_is_timed_drop();
+  void clear_has_is_timed_drop();
+  void set_has_account_id();
+  void clear_has_account_id();
+  void set_has_origin();
+  void clear_has_origin();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  ::google::protobuf::uint32 item_def_index_;
+  bool is_supply_crate_;
+  bool is_timed_drop_;
+  ::google::protobuf::uint32 account_id_;
+  ::google::protobuf::uint32 origin_;
+  friend struct ::protobuf_mcdota_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class CMsgMatchTips_SingleTip : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CMsgMatchTips.SingleTip) */ {
+ public:
+  CMsgMatchTips_SingleTip();
+  virtual ~CMsgMatchTips_SingleTip();
+
+  CMsgMatchTips_SingleTip(const CMsgMatchTips_SingleTip& from);
+
+  inline CMsgMatchTips_SingleTip& operator=(const CMsgMatchTips_SingleTip& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  CMsgMatchTips_SingleTip(CMsgMatchTips_SingleTip&& from) noexcept
+    : CMsgMatchTips_SingleTip() {
+    *this = ::std::move(from);
+  }
+
+  inline CMsgMatchTips_SingleTip& operator=(CMsgMatchTips_SingleTip&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CMsgMatchTips_SingleTip& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const CMsgMatchTips_SingleTip* internal_default_instance() {
+    return reinterpret_cast<const CMsgMatchTips_SingleTip*>(
+               &_CMsgMatchTips_SingleTip_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    22;
+
+  void Swap(CMsgMatchTips_SingleTip* other);
+  friend void swap(CMsgMatchTips_SingleTip& a, CMsgMatchTips_SingleTip& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CMsgMatchTips_SingleTip* New() const final {
+    return CreateMaybeMessage<CMsgMatchTips_SingleTip>(NULL);
+  }
+
+  CMsgMatchTips_SingleTip* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<CMsgMatchTips_SingleTip>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const CMsgMatchTips_SingleTip& from);
+  void MergeFrom(const CMsgMatchTips_SingleTip& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CMsgMatchTips_SingleTip* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional uint32 source_account_id = 1;
+  bool has_source_account_id() const;
+  void clear_source_account_id();
+  static const int kSourceAccountIdFieldNumber = 1;
+  ::google::protobuf::uint32 source_account_id() const;
+  void set_source_account_id(::google::protobuf::uint32 value);
+
+  // optional uint32 target_account_id = 2;
+  bool has_target_account_id() const;
+  void clear_target_account_id();
+  static const int kTargetAccountIdFieldNumber = 2;
+  ::google::protobuf::uint32 target_account_id() const;
+  void set_target_account_id(::google::protobuf::uint32 value);
+
+  // optional uint32 tip_amount = 3;
+  bool has_tip_amount() const;
+  void clear_tip_amount();
+  static const int kTipAmountFieldNumber = 3;
+  ::google::protobuf::uint32 tip_amount() const;
+  void set_tip_amount(::google::protobuf::uint32 value);
+
+  // optional .EEvent event_id = 4 [default = EVENT_ID_NONE];
+  bool has_event_id() const;
+  void clear_event_id();
+  static const int kEventIdFieldNumber = 4;
+  ::EEvent event_id() const;
+  void set_event_id(::EEvent value);
+
+  // @@protoc_insertion_point(class_scope:CMsgMatchTips.SingleTip)
+ private:
+  void set_has_source_account_id();
+  void clear_has_source_account_id();
+  void set_has_target_account_id();
+  void clear_has_target_account_id();
+  void set_has_tip_amount();
+  void clear_has_tip_amount();
+  void set_has_event_id();
+  void clear_has_event_id();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  ::google::protobuf::uint32 source_account_id_;
+  ::google::protobuf::uint32 target_account_id_;
+  ::google::protobuf::uint32 tip_amount_;
+  int event_id_;
+  friend struct ::protobuf_mcdota_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class CMsgMatchTips : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CMsgMatchTips) */ {
+ public:
+  CMsgMatchTips();
+  virtual ~CMsgMatchTips();
+
+  CMsgMatchTips(const CMsgMatchTips& from);
+
+  inline CMsgMatchTips& operator=(const CMsgMatchTips& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  CMsgMatchTips(CMsgMatchTips&& from) noexcept
+    : CMsgMatchTips() {
+    *this = ::std::move(from);
+  }
+
+  inline CMsgMatchTips& operator=(CMsgMatchTips&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CMsgMatchTips& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const CMsgMatchTips* internal_default_instance() {
+    return reinterpret_cast<const CMsgMatchTips*>(
+               &_CMsgMatchTips_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    23;
+
+  void Swap(CMsgMatchTips* other);
+  friend void swap(CMsgMatchTips& a, CMsgMatchTips& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CMsgMatchTips* New() const final {
+    return CreateMaybeMessage<CMsgMatchTips>(NULL);
+  }
+
+  CMsgMatchTips* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<CMsgMatchTips>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const CMsgMatchTips& from);
+  void MergeFrom(const CMsgMatchTips& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CMsgMatchTips* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  typedef CMsgMatchTips_SingleTip SingleTip;
+
+  // accessors -------------------------------------------------------
+
+  // repeated .CMsgMatchTips.SingleTip tips = 2;
+  int tips_size() const;
+  void clear_tips();
+  static const int kTipsFieldNumber = 2;
+  ::CMsgMatchTips_SingleTip* mutable_tips(int index);
+  ::google::protobuf::RepeatedPtrField< ::CMsgMatchTips_SingleTip >*
+      mutable_tips();
+  const ::CMsgMatchTips_SingleTip& tips(int index) const;
+  ::CMsgMatchTips_SingleTip* add_tips();
+  const ::google::protobuf::RepeatedPtrField< ::CMsgMatchTips_SingleTip >&
+      tips() const;
+
+  // @@protoc_insertion_point(class_scope:CMsgMatchTips)
+ private:
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  ::google::protobuf::RepeatedPtrField< ::CMsgMatchTips_SingleTip > tips_;
+  friend struct ::protobuf_mcdota_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class CMsgMatchMatchmakingStats : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CMsgMatchMatchmakingStats) */ {
+ public:
+  CMsgMatchMatchmakingStats();
+  virtual ~CMsgMatchMatchmakingStats();
+
+  CMsgMatchMatchmakingStats(const CMsgMatchMatchmakingStats& from);
+
+  inline CMsgMatchMatchmakingStats& operator=(const CMsgMatchMatchmakingStats& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  CMsgMatchMatchmakingStats(CMsgMatchMatchmakingStats&& from) noexcept
+    : CMsgMatchMatchmakingStats() {
+    *this = ::std::move(from);
+  }
+
+  inline CMsgMatchMatchmakingStats& operator=(CMsgMatchMatchmakingStats&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CMsgMatchMatchmakingStats& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const CMsgMatchMatchmakingStats* internal_default_instance() {
+    return reinterpret_cast<const CMsgMatchMatchmakingStats*>(
+               &_CMsgMatchMatchmakingStats_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    24;
+
+  void Swap(CMsgMatchMatchmakingStats* other);
+  friend void swap(CMsgMatchMatchmakingStats& a, CMsgMatchMatchmakingStats& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CMsgMatchMatchmakingStats* New() const final {
+    return CreateMaybeMessage<CMsgMatchMatchmakingStats>(NULL);
+  }
+
+  CMsgMatchMatchmakingStats* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<CMsgMatchMatchmakingStats>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const CMsgMatchMatchmakingStats& from);
+  void MergeFrom(const CMsgMatchMatchmakingStats& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CMsgMatchMatchmakingStats* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional uint32 average_queue_time = 1;
+  bool has_average_queue_time() const;
+  void clear_average_queue_time();
+  static const int kAverageQueueTimeFieldNumber = 1;
+  ::google::protobuf::uint32 average_queue_time() const;
+  void set_average_queue_time(::google::protobuf::uint32 value);
+
+  // optional uint32 maximum_queue_time = 2;
+  bool has_maximum_queue_time() const;
+  void clear_maximum_queue_time();
+  static const int kMaximumQueueTimeFieldNumber = 2;
+  ::google::protobuf::uint32 maximum_queue_time() const;
+  void set_maximum_queue_time(::google::protobuf::uint32 value);
+
+  // optional .EMatchBehaviorScoreVariance behavior_score_variance = 3 [default = k_EMatchBehaviorScoreVariance_Invalid];
+  bool has_behavior_score_variance() const;
+  void clear_behavior_score_variance();
+  static const int kBehaviorScoreVarianceFieldNumber = 3;
+  ::EMatchBehaviorScoreVariance behavior_score_variance() const;
+  void set_behavior_score_variance(::EMatchBehaviorScoreVariance value);
+
+  // @@protoc_insertion_point(class_scope:CMsgMatchMatchmakingStats)
+ private:
+  void set_has_average_queue_time();
+  void clear_has_average_queue_time();
+  void set_has_maximum_queue_time();
+  void clear_has_maximum_queue_time();
+  void set_has_behavior_score_variance();
+  void clear_has_behavior_score_variance();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  ::google::protobuf::uint32 average_queue_time_;
+  ::google::protobuf::uint32 maximum_queue_time_;
+  int behavior_score_variance_;
+  friend struct ::protobuf_mcdota_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class CDOTAMatchMetadata_Team_PlayerKill : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CDOTAMatchMetadata.Team.PlayerKill) */ {
+ public:
+  CDOTAMatchMetadata_Team_PlayerKill();
+  virtual ~CDOTAMatchMetadata_Team_PlayerKill();
+
+  CDOTAMatchMetadata_Team_PlayerKill(const CDOTAMatchMetadata_Team_PlayerKill& from);
+
+  inline CDOTAMatchMetadata_Team_PlayerKill& operator=(const CDOTAMatchMetadata_Team_PlayerKill& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  CDOTAMatchMetadata_Team_PlayerKill(CDOTAMatchMetadata_Team_PlayerKill&& from) noexcept
+    : CDOTAMatchMetadata_Team_PlayerKill() {
+    *this = ::std::move(from);
+  }
+
+  inline CDOTAMatchMetadata_Team_PlayerKill& operator=(CDOTAMatchMetadata_Team_PlayerKill&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CDOTAMatchMetadata_Team_PlayerKill& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const CDOTAMatchMetadata_Team_PlayerKill* internal_default_instance() {
+    return reinterpret_cast<const CDOTAMatchMetadata_Team_PlayerKill*>(
+               &_CDOTAMatchMetadata_Team_PlayerKill_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    25;
+
+  void Swap(CDOTAMatchMetadata_Team_PlayerKill* other);
+  friend void swap(CDOTAMatchMetadata_Team_PlayerKill& a, CDOTAMatchMetadata_Team_PlayerKill& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CDOTAMatchMetadata_Team_PlayerKill* New() const final {
+    return CreateMaybeMessage<CDOTAMatchMetadata_Team_PlayerKill>(NULL);
+  }
+
+  CDOTAMatchMetadata_Team_PlayerKill* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<CDOTAMatchMetadata_Team_PlayerKill>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const CDOTAMatchMetadata_Team_PlayerKill& from);
+  void MergeFrom(const CDOTAMatchMetadata_Team_PlayerKill& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CDOTAMatchMetadata_Team_PlayerKill* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional uint32 victim_slot = 1;
+  bool has_victim_slot() const;
+  void clear_victim_slot();
+  static const int kVictimSlotFieldNumber = 1;
+  ::google::protobuf::uint32 victim_slot() const;
+  void set_victim_slot(::google::protobuf::uint32 value);
+
+  // optional uint32 count = 2;
+  bool has_count() const;
+  void clear_count();
+  static const int kCountFieldNumber = 2;
+  ::google::protobuf::uint32 count() const;
+  void set_count(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:CDOTAMatchMetadata.Team.PlayerKill)
+ private:
+  void set_has_victim_slot();
+  void clear_has_victim_slot();
+  void set_has_count();
+  void clear_has_count();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  ::google::protobuf::uint32 victim_slot_;
+  ::google::protobuf::uint32 count_;
+  friend struct ::protobuf_mcdota_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class CDOTAMatchMetadata_Team_ItemPurchase : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CDOTAMatchMetadata.Team.ItemPurchase) */ {
+ public:
+  CDOTAMatchMetadata_Team_ItemPurchase();
+  virtual ~CDOTAMatchMetadata_Team_ItemPurchase();
+
+  CDOTAMatchMetadata_Team_ItemPurchase(const CDOTAMatchMetadata_Team_ItemPurchase& from);
+
+  inline CDOTAMatchMetadata_Team_ItemPurchase& operator=(const CDOTAMatchMetadata_Team_ItemPurchase& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  CDOTAMatchMetadata_Team_ItemPurchase(CDOTAMatchMetadata_Team_ItemPurchase&& from) noexcept
+    : CDOTAMatchMetadata_Team_ItemPurchase() {
+    *this = ::std::move(from);
+  }
+
+  inline CDOTAMatchMetadata_Team_ItemPurchase& operator=(CDOTAMatchMetadata_Team_ItemPurchase&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CDOTAMatchMetadata_Team_ItemPurchase& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const CDOTAMatchMetadata_Team_ItemPurchase* internal_default_instance() {
+    return reinterpret_cast<const CDOTAMatchMetadata_Team_ItemPurchase*>(
+               &_CDOTAMatchMetadata_Team_ItemPurchase_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    26;
+
+  void Swap(CDOTAMatchMetadata_Team_ItemPurchase* other);
+  friend void swap(CDOTAMatchMetadata_Team_ItemPurchase& a, CDOTAMatchMetadata_Team_ItemPurchase& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CDOTAMatchMetadata_Team_ItemPurchase* New() const final {
+    return CreateMaybeMessage<CDOTAMatchMetadata_Team_ItemPurchase>(NULL);
+  }
+
+  CDOTAMatchMetadata_Team_ItemPurchase* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<CDOTAMatchMetadata_Team_ItemPurchase>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const CDOTAMatchMetadata_Team_ItemPurchase& from);
+  void MergeFrom(const CDOTAMatchMetadata_Team_ItemPurchase& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CDOTAMatchMetadata_Team_ItemPurchase* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional uint32 item_id = 1;
+  bool has_item_id() const;
+  void clear_item_id();
+  static const int kItemIdFieldNumber = 1;
+  ::google::protobuf::uint32 item_id() const;
+  void set_item_id(::google::protobuf::uint32 value);
+
+  // optional int32 purchase_time = 2;
+  bool has_purchase_time() const;
+  void clear_purchase_time();
+  static const int kPurchaseTimeFieldNumber = 2;
+  ::google::protobuf::int32 purchase_time() const;
+  void set_purchase_time(::google::protobuf::int32 value);
+
+  // @@protoc_insertion_point(class_scope:CDOTAMatchMetadata.Team.ItemPurchase)
+ private:
+  void set_has_item_id();
+  void clear_has_item_id();
+  void set_has_purchase_time();
+  void clear_has_purchase_time();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  ::google::protobuf::uint32 item_id_;
+  ::google::protobuf::int32 purchase_time_;
+  friend struct ::protobuf_mcdota_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class CDOTAMatchMetadata_Team_InventorySnapshot : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CDOTAMatchMetadata.Team.InventorySnapshot) */ {
+ public:
+  CDOTAMatchMetadata_Team_InventorySnapshot();
+  virtual ~CDOTAMatchMetadata_Team_InventorySnapshot();
+
+  CDOTAMatchMetadata_Team_InventorySnapshot(const CDOTAMatchMetadata_Team_InventorySnapshot& from);
+
+  inline CDOTAMatchMetadata_Team_InventorySnapshot& operator=(const CDOTAMatchMetadata_Team_InventorySnapshot& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  CDOTAMatchMetadata_Team_InventorySnapshot(CDOTAMatchMetadata_Team_InventorySnapshot&& from) noexcept
+    : CDOTAMatchMetadata_Team_InventorySnapshot() {
+    *this = ::std::move(from);
+  }
+
+  inline CDOTAMatchMetadata_Team_InventorySnapshot& operator=(CDOTAMatchMetadata_Team_InventorySnapshot&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CDOTAMatchMetadata_Team_InventorySnapshot& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const CDOTAMatchMetadata_Team_InventorySnapshot* internal_default_instance() {
+    return reinterpret_cast<const CDOTAMatchMetadata_Team_InventorySnapshot*>(
+               &_CDOTAMatchMetadata_Team_InventorySnapshot_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    27;
+
+  void Swap(CDOTAMatchMetadata_Team_InventorySnapshot* other);
+  friend void swap(CDOTAMatchMetadata_Team_InventorySnapshot& a, CDOTAMatchMetadata_Team_InventorySnapshot& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CDOTAMatchMetadata_Team_InventorySnapshot* New() const final {
+    return CreateMaybeMessage<CDOTAMatchMetadata_Team_InventorySnapshot>(NULL);
+  }
+
+  CDOTAMatchMetadata_Team_InventorySnapshot* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<CDOTAMatchMetadata_Team_InventorySnapshot>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const CDOTAMatchMetadata_Team_InventorySnapshot& from);
+  void MergeFrom(const CDOTAMatchMetadata_Team_InventorySnapshot& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CDOTAMatchMetadata_Team_InventorySnapshot* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated uint32 item_id = 1;
+  int item_id_size() const;
+  void clear_item_id();
+  static const int kItemIdFieldNumber = 1;
+  ::google::protobuf::uint32 item_id(int index) const;
+  void set_item_id(int index, ::google::protobuf::uint32 value);
+  void add_item_id(::google::protobuf::uint32 value);
+  const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+      item_id() const;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+      mutable_item_id();
+
+  // optional int32 game_time = 2;
+  bool has_game_time() const;
+  void clear_game_time();
+  static const int kGameTimeFieldNumber = 2;
+  ::google::protobuf::int32 game_time() const;
+  void set_game_time(::google::protobuf::int32 value);
+
+  // optional uint32 kills = 3;
+  bool has_kills() const;
+  void clear_kills();
+  static const int kKillsFieldNumber = 3;
+  ::google::protobuf::uint32 kills() const;
+  void set_kills(::google::protobuf::uint32 value);
+
+  // optional uint32 deaths = 4;
+  bool has_deaths() const;
+  void clear_deaths();
+  static const int kDeathsFieldNumber = 4;
+  ::google::protobuf::uint32 deaths() const;
+  void set_deaths(::google::protobuf::uint32 value);
+
+  // optional uint32 assists = 5;
+  bool has_assists() const;
+  void clear_assists();
+  static const int kAssistsFieldNumber = 5;
+  ::google::protobuf::uint32 assists() const;
+  void set_assists(::google::protobuf::uint32 value);
+
+  // optional uint32 level = 6;
+  bool has_level() const;
+  void clear_level();
+  static const int kLevelFieldNumber = 6;
+  ::google::protobuf::uint32 level() const;
+  void set_level(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:CDOTAMatchMetadata.Team.InventorySnapshot)
+ private:
+  void set_has_game_time();
+  void clear_has_game_time();
+  void set_has_kills();
+  void clear_has_kills();
+  void set_has_deaths();
+  void clear_has_deaths();
+  void set_has_assists();
+  void clear_has_assists();
+  void set_has_level();
+  void clear_has_level();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > item_id_;
+  ::google::protobuf::int32 game_time_;
+  ::google::protobuf::uint32 kills_;
+  ::google::protobuf::uint32 deaths_;
+  ::google::protobuf::uint32 assists_;
+  ::google::protobuf::uint32 level_;
+  friend struct ::protobuf_mcdota_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class CDOTAMatchMetadata_Team_AutoStyleCriteria : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CDOTAMatchMetadata.Team.AutoStyleCriteria) */ {
+ public:
+  CDOTAMatchMetadata_Team_AutoStyleCriteria();
+  virtual ~CDOTAMatchMetadata_Team_AutoStyleCriteria();
+
+  CDOTAMatchMetadata_Team_AutoStyleCriteria(const CDOTAMatchMetadata_Team_AutoStyleCriteria& from);
+
+  inline CDOTAMatchMetadata_Team_AutoStyleCriteria& operator=(const CDOTAMatchMetadata_Team_AutoStyleCriteria& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  CDOTAMatchMetadata_Team_AutoStyleCriteria(CDOTAMatchMetadata_Team_AutoStyleCriteria&& from) noexcept
+    : CDOTAMatchMetadata_Team_AutoStyleCriteria() {
+    *this = ::std::move(from);
+  }
+
+  inline CDOTAMatchMetadata_Team_AutoStyleCriteria& operator=(CDOTAMatchMetadata_Team_AutoStyleCriteria&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CDOTAMatchMetadata_Team_AutoStyleCriteria& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const CDOTAMatchMetadata_Team_AutoStyleCriteria* internal_default_instance() {
+    return reinterpret_cast<const CDOTAMatchMetadata_Team_AutoStyleCriteria*>(
+               &_CDOTAMatchMetadata_Team_AutoStyleCriteria_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    28;
+
+  void Swap(CDOTAMatchMetadata_Team_AutoStyleCriteria* other);
+  friend void swap(CDOTAMatchMetadata_Team_AutoStyleCriteria& a, CDOTAMatchMetadata_Team_AutoStyleCriteria& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CDOTAMatchMetadata_Team_AutoStyleCriteria* New() const final {
+    return CreateMaybeMessage<CDOTAMatchMetadata_Team_AutoStyleCriteria>(NULL);
+  }
+
+  CDOTAMatchMetadata_Team_AutoStyleCriteria* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<CDOTAMatchMetadata_Team_AutoStyleCriteria>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const CDOTAMatchMetadata_Team_AutoStyleCriteria& from);
+  void MergeFrom(const CDOTAMatchMetadata_Team_AutoStyleCriteria& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CDOTAMatchMetadata_Team_AutoStyleCriteria* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional uint32 name_token = 1;
+  bool has_name_token() const;
+  void clear_name_token();
+  static const int kNameTokenFieldNumber = 1;
+  ::google::protobuf::uint32 name_token() const;
+  void set_name_token(::google::protobuf::uint32 value);
+
+  // optional float value = 2;
+  bool has_value() const;
+  void clear_value();
+  static const int kValueFieldNumber = 2;
+  float value() const;
+  void set_value(float value);
+
+  // @@protoc_insertion_point(class_scope:CDOTAMatchMetadata.Team.AutoStyleCriteria)
+ private:
+  void set_has_name_token();
+  void clear_has_name_token();
+  void set_has_value();
+  void clear_has_value();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  ::google::protobuf::uint32 name_token_;
+  float value_;
+  friend struct ::protobuf_mcdota_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class CDOTAMatchMetadata_Team_StrangeGemProgress : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CDOTAMatchMetadata.Team.StrangeGemProgress) */ {
+ public:
+  CDOTAMatchMetadata_Team_StrangeGemProgress();
+  virtual ~CDOTAMatchMetadata_Team_StrangeGemProgress();
+
+  CDOTAMatchMetadata_Team_StrangeGemProgress(const CDOTAMatchMetadata_Team_StrangeGemProgress& from);
+
+  inline CDOTAMatchMetadata_Team_StrangeGemProgress& operator=(const CDOTAMatchMetadata_Team_StrangeGemProgress& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  CDOTAMatchMetadata_Team_StrangeGemProgress(CDOTAMatchMetadata_Team_StrangeGemProgress&& from) noexcept
+    : CDOTAMatchMetadata_Team_StrangeGemProgress() {
+    *this = ::std::move(from);
+  }
+
+  inline CDOTAMatchMetadata_Team_StrangeGemProgress& operator=(CDOTAMatchMetadata_Team_StrangeGemProgress&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CDOTAMatchMetadata_Team_StrangeGemProgress& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const CDOTAMatchMetadata_Team_StrangeGemProgress* internal_default_instance() {
+    return reinterpret_cast<const CDOTAMatchMetadata_Team_StrangeGemProgress*>(
+               &_CDOTAMatchMetadata_Team_StrangeGemProgress_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    29;
+
+  void Swap(CDOTAMatchMetadata_Team_StrangeGemProgress* other);
+  friend void swap(CDOTAMatchMetadata_Team_StrangeGemProgress& a, CDOTAMatchMetadata_Team_StrangeGemProgress& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CDOTAMatchMetadata_Team_StrangeGemProgress* New() const final {
+    return CreateMaybeMessage<CDOTAMatchMetadata_Team_StrangeGemProgress>(NULL);
+  }
+
+  CDOTAMatchMetadata_Team_StrangeGemProgress* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<CDOTAMatchMetadata_Team_StrangeGemProgress>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const CDOTAMatchMetadata_Team_StrangeGemProgress& from);
+  void MergeFrom(const CDOTAMatchMetadata_Team_StrangeGemProgress& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CDOTAMatchMetadata_Team_StrangeGemProgress* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional uint32 kill_eater_type = 1;
+  bool has_kill_eater_type() const;
+  void clear_kill_eater_type();
+  static const int kKillEaterTypeFieldNumber = 1;
+  ::google::protobuf::uint32 kill_eater_type() const;
+  void set_kill_eater_type(::google::protobuf::uint32 value);
+
+  // optional uint32 gem_item_def_index = 2;
+  bool has_gem_item_def_index() const;
+  void clear_gem_item_def_index();
+  static const int kGemItemDefIndexFieldNumber = 2;
+  ::google::protobuf::uint32 gem_item_def_index() const;
+  void set_gem_item_def_index(::google::protobuf::uint32 value);
+
+  // optional uint32 required_hero_id = 3;
+  bool has_required_hero_id() const;
+  void clear_required_hero_id();
+  static const int kRequiredHeroIdFieldNumber = 3;
+  ::google::protobuf::uint32 required_hero_id() const;
+  void set_required_hero_id(::google::protobuf::uint32 value);
+
+  // optional uint32 starting_value = 4;
+  bool has_starting_value() const;
+  void clear_starting_value();
+  static const int kStartingValueFieldNumber = 4;
+  ::google::protobuf::uint32 starting_value() const;
+  void set_starting_value(::google::protobuf::uint32 value);
+
+  // optional uint32 ending_value = 5;
+  bool has_ending_value() const;
+  void clear_ending_value();
+  static const int kEndingValueFieldNumber = 5;
+  ::google::protobuf::uint32 ending_value() const;
+  void set_ending_value(::google::protobuf::uint32 value);
+
+  // optional uint32 owner_item_def_index = 6;
+  bool has_owner_item_def_index() const;
+  void clear_owner_item_def_index();
+  static const int kOwnerItemDefIndexFieldNumber = 6;
+  ::google::protobuf::uint32 owner_item_def_index() const;
+  void set_owner_item_def_index(::google::protobuf::uint32 value);
+
+  // optional uint64 owner_item_id = 7;
+  bool has_owner_item_id() const;
+  void clear_owner_item_id();
+  static const int kOwnerItemIdFieldNumber = 7;
+  ::google::protobuf::uint64 owner_item_id() const;
+  void set_owner_item_id(::google::protobuf::uint64 value);
+
+  // @@protoc_insertion_point(class_scope:CDOTAMatchMetadata.Team.StrangeGemProgress)
+ private:
+  void set_has_kill_eater_type();
+  void clear_has_kill_eater_type();
+  void set_has_gem_item_def_index();
+  void clear_has_gem_item_def_index();
+  void set_has_required_hero_id();
+  void clear_has_required_hero_id();
+  void set_has_starting_value();
+  void clear_has_starting_value();
+  void set_has_ending_value();
+  void clear_has_ending_value();
+  void set_has_owner_item_def_index();
+  void clear_has_owner_item_def_index();
+  void set_has_owner_item_id();
+  void clear_has_owner_item_id();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  ::google::protobuf::uint32 kill_eater_type_;
+  ::google::protobuf::uint32 gem_item_def_index_;
+  ::google::protobuf::uint32 required_hero_id_;
+  ::google::protobuf::uint32 starting_value_;
+  ::google::protobuf::uint32 ending_value_;
+  ::google::protobuf::uint32 owner_item_def_index_;
+  ::google::protobuf::uint64 owner_item_id_;
+  friend struct ::protobuf_mcdota_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class CDOTAMatchMetadata_Team_VictoryPrediction : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CDOTAMatchMetadata.Team.VictoryPrediction) */ {
+ public:
+  CDOTAMatchMetadata_Team_VictoryPrediction();
+  virtual ~CDOTAMatchMetadata_Team_VictoryPrediction();
+
+  CDOTAMatchMetadata_Team_VictoryPrediction(const CDOTAMatchMetadata_Team_VictoryPrediction& from);
+
+  inline CDOTAMatchMetadata_Team_VictoryPrediction& operator=(const CDOTAMatchMetadata_Team_VictoryPrediction& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  CDOTAMatchMetadata_Team_VictoryPrediction(CDOTAMatchMetadata_Team_VictoryPrediction&& from) noexcept
+    : CDOTAMatchMetadata_Team_VictoryPrediction() {
+    *this = ::std::move(from);
+  }
+
+  inline CDOTAMatchMetadata_Team_VictoryPrediction& operator=(CDOTAMatchMetadata_Team_VictoryPrediction&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CDOTAMatchMetadata_Team_VictoryPrediction& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const CDOTAMatchMetadata_Team_VictoryPrediction* internal_default_instance() {
+    return reinterpret_cast<const CDOTAMatchMetadata_Team_VictoryPrediction*>(
+               &_CDOTAMatchMetadata_Team_VictoryPrediction_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    30;
+
+  void Swap(CDOTAMatchMetadata_Team_VictoryPrediction* other);
+  friend void swap(CDOTAMatchMetadata_Team_VictoryPrediction& a, CDOTAMatchMetadata_Team_VictoryPrediction& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CDOTAMatchMetadata_Team_VictoryPrediction* New() const final {
+    return CreateMaybeMessage<CDOTAMatchMetadata_Team_VictoryPrediction>(NULL);
+  }
+
+  CDOTAMatchMetadata_Team_VictoryPrediction* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<CDOTAMatchMetadata_Team_VictoryPrediction>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const CDOTAMatchMetadata_Team_VictoryPrediction& from);
+  void MergeFrom(const CDOTAMatchMetadata_Team_VictoryPrediction& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CDOTAMatchMetadata_Team_VictoryPrediction* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional uint64 item_id = 1;
+  bool has_item_id() const;
+  void clear_item_id();
+  static const int kItemIdFieldNumber = 1;
+  ::google::protobuf::uint64 item_id() const;
+  void set_item_id(::google::protobuf::uint64 value);
+
+  // optional uint32 item_def_index = 2;
+  bool has_item_def_index() const;
+  void clear_item_def_index();
+  static const int kItemDefIndexFieldNumber = 2;
+  ::google::protobuf::uint32 item_def_index() const;
+  void set_item_def_index(::google::protobuf::uint32 value);
+
+  // optional uint32 starting_value = 3;
+  bool has_starting_value() const;
+  void clear_starting_value();
+  static const int kStartingValueFieldNumber = 3;
+  ::google::protobuf::uint32 starting_value() const;
+  void set_starting_value(::google::protobuf::uint32 value);
+
+  // optional bool is_victory = 4;
+  bool has_is_victory() const;
+  void clear_is_victory();
+  static const int kIsVictoryFieldNumber = 4;
+  bool is_victory() const;
+  void set_is_victory(bool value);
+
+  // @@protoc_insertion_point(class_scope:CDOTAMatchMetadata.Team.VictoryPrediction)
+ private:
+  void set_has_item_id();
+  void clear_has_item_id();
+  void set_has_item_def_index();
+  void clear_has_item_def_index();
+  void set_has_starting_value();
+  void clear_has_starting_value();
+  void set_has_is_victory();
+  void clear_has_is_victory();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  ::google::protobuf::uint64 item_id_;
+  ::google::protobuf::uint32 item_def_index_;
+  ::google::protobuf::uint32 starting_value_;
+  bool is_victory_;
+  friend struct ::protobuf_mcdota_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class CDOTAMatchMetadata_Team_SubChallenge : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CDOTAMatchMetadata.Team.SubChallenge) */ {
+ public:
+  CDOTAMatchMetadata_Team_SubChallenge();
+  virtual ~CDOTAMatchMetadata_Team_SubChallenge();
+
+  CDOTAMatchMetadata_Team_SubChallenge(const CDOTAMatchMetadata_Team_SubChallenge& from);
+
+  inline CDOTAMatchMetadata_Team_SubChallenge& operator=(const CDOTAMatchMetadata_Team_SubChallenge& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  CDOTAMatchMetadata_Team_SubChallenge(CDOTAMatchMetadata_Team_SubChallenge&& from) noexcept
+    : CDOTAMatchMetadata_Team_SubChallenge() {
+    *this = ::std::move(from);
+  }
+
+  inline CDOTAMatchMetadata_Team_SubChallenge& operator=(CDOTAMatchMetadata_Team_SubChallenge&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CDOTAMatchMetadata_Team_SubChallenge& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const CDOTAMatchMetadata_Team_SubChallenge* internal_default_instance() {
+    return reinterpret_cast<const CDOTAMatchMetadata_Team_SubChallenge*>(
+               &_CDOTAMatchMetadata_Team_SubChallenge_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    31;
+
+  void Swap(CDOTAMatchMetadata_Team_SubChallenge* other);
+  friend void swap(CDOTAMatchMetadata_Team_SubChallenge& a, CDOTAMatchMetadata_Team_SubChallenge& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CDOTAMatchMetadata_Team_SubChallenge* New() const final {
+    return CreateMaybeMessage<CDOTAMatchMetadata_Team_SubChallenge>(NULL);
+  }
+
+  CDOTAMatchMetadata_Team_SubChallenge* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<CDOTAMatchMetadata_Team_SubChallenge>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const CDOTAMatchMetadata_Team_SubChallenge& from);
+  void MergeFrom(const CDOTAMatchMetadata_Team_SubChallenge& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CDOTAMatchMetadata_Team_SubChallenge* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional uint32 slot_id = 1;
+  bool has_slot_id() const;
+  void clear_slot_id();
+  static const int kSlotIdFieldNumber = 1;
+  ::google::protobuf::uint32 slot_id() const;
+  void set_slot_id(::google::protobuf::uint32 value);
+
+  // optional uint32 start_value = 2;
+  bool has_start_value() const;
+  void clear_start_value();
+  static const int kStartValueFieldNumber = 2;
+  ::google::protobuf::uint32 start_value() const;
+  void set_start_value(::google::protobuf::uint32 value);
+
+  // optional uint32 end_value = 3;
+  bool has_end_value() const;
+  void clear_end_value();
+  static const int kEndValueFieldNumber = 3;
+  ::google::protobuf::uint32 end_value() const;
+  void set_end_value(::google::protobuf::uint32 value);
+
+  // optional bool completed = 4;
+  bool has_completed() const;
+  void clear_completed();
+  static const int kCompletedFieldNumber = 4;
+  bool completed() const;
+  void set_completed(bool value);
+
+  // @@protoc_insertion_point(class_scope:CDOTAMatchMetadata.Team.SubChallenge)
+ private:
+  void set_has_slot_id();
+  void clear_has_slot_id();
+  void set_has_start_value();
+  void clear_has_start_value();
+  void set_has_end_value();
+  void clear_has_end_value();
+  void set_has_completed();
+  void clear_has_completed();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  ::google::protobuf::uint32 slot_id_;
+  ::google::protobuf::uint32 start_value_;
+  ::google::protobuf::uint32 end_value_;
+  bool completed_;
+  friend struct ::protobuf_mcdota_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class CDOTAMatchMetadata_Team_CavernChallengeResult : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CDOTAMatchMetadata.Team.CavernChallengeResult) */ {
+ public:
+  CDOTAMatchMetadata_Team_CavernChallengeResult();
+  virtual ~CDOTAMatchMetadata_Team_CavernChallengeResult();
+
+  CDOTAMatchMetadata_Team_CavernChallengeResult(const CDOTAMatchMetadata_Team_CavernChallengeResult& from);
+
+  inline CDOTAMatchMetadata_Team_CavernChallengeResult& operator=(const CDOTAMatchMetadata_Team_CavernChallengeResult& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  CDOTAMatchMetadata_Team_CavernChallengeResult(CDOTAMatchMetadata_Team_CavernChallengeResult&& from) noexcept
+    : CDOTAMatchMetadata_Team_CavernChallengeResult() {
+    *this = ::std::move(from);
+  }
+
+  inline CDOTAMatchMetadata_Team_CavernChallengeResult& operator=(CDOTAMatchMetadata_Team_CavernChallengeResult&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CDOTAMatchMetadata_Team_CavernChallengeResult& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const CDOTAMatchMetadata_Team_CavernChallengeResult* internal_default_instance() {
+    return reinterpret_cast<const CDOTAMatchMetadata_Team_CavernChallengeResult*>(
+               &_CDOTAMatchMetadata_Team_CavernChallengeResult_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    32;
+
+  void Swap(CDOTAMatchMetadata_Team_CavernChallengeResult* other);
+  friend void swap(CDOTAMatchMetadata_Team_CavernChallengeResult& a, CDOTAMatchMetadata_Team_CavernChallengeResult& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CDOTAMatchMetadata_Team_CavernChallengeResult* New() const final {
+    return CreateMaybeMessage<CDOTAMatchMetadata_Team_CavernChallengeResult>(NULL);
+  }
+
+  CDOTAMatchMetadata_Team_CavernChallengeResult* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<CDOTAMatchMetadata_Team_CavernChallengeResult>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const CDOTAMatchMetadata_Team_CavernChallengeResult& from);
+  void MergeFrom(const CDOTAMatchMetadata_Team_CavernChallengeResult& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CDOTAMatchMetadata_Team_CavernChallengeResult* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional uint32 completed_path_id = 1;
+  bool has_completed_path_id() const;
+  void clear_completed_path_id();
+  static const int kCompletedPathIdFieldNumber = 1;
+  ::google::protobuf::uint32 completed_path_id() const;
+  void set_completed_path_id(::google::protobuf::uint32 value);
+
+  // optional uint32 claimed_room_id = 2;
+  bool has_claimed_room_id() const;
+  void clear_claimed_room_id();
+  static const int kClaimedRoomIdFieldNumber = 2;
+  ::google::protobuf::uint32 claimed_room_id() const;
+  void set_claimed_room_id(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:CDOTAMatchMetadata.Team.CavernChallengeResult)
+ private:
+  void set_has_completed_path_id();
+  void clear_has_completed_path_id();
+  void set_has_claimed_room_id();
+  void clear_has_claimed_room_id();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  ::google::protobuf::uint32 completed_path_id_;
+  ::google::protobuf::uint32 claimed_room_id_;
+  friend struct ::protobuf_mcdota_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class CDOTAMatchMetadata_Team_ActionGrant : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CDOTAMatchMetadata.Team.ActionGrant) */ {
+ public:
+  CDOTAMatchMetadata_Team_ActionGrant();
+  virtual ~CDOTAMatchMetadata_Team_ActionGrant();
+
+  CDOTAMatchMetadata_Team_ActionGrant(const CDOTAMatchMetadata_Team_ActionGrant& from);
+
+  inline CDOTAMatchMetadata_Team_ActionGrant& operator=(const CDOTAMatchMetadata_Team_ActionGrant& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  CDOTAMatchMetadata_Team_ActionGrant(CDOTAMatchMetadata_Team_ActionGrant&& from) noexcept
+    : CDOTAMatchMetadata_Team_ActionGrant() {
+    *this = ::std::move(from);
+  }
+
+  inline CDOTAMatchMetadata_Team_ActionGrant& operator=(CDOTAMatchMetadata_Team_ActionGrant&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CDOTAMatchMetadata_Team_ActionGrant& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const CDOTAMatchMetadata_Team_ActionGrant* internal_default_instance() {
+    return reinterpret_cast<const CDOTAMatchMetadata_Team_ActionGrant*>(
+               &_CDOTAMatchMetadata_Team_ActionGrant_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    33;
+
+  void Swap(CDOTAMatchMetadata_Team_ActionGrant* other);
+  friend void swap(CDOTAMatchMetadata_Team_ActionGrant& a, CDOTAMatchMetadata_Team_ActionGrant& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CDOTAMatchMetadata_Team_ActionGrant* New() const final {
+    return CreateMaybeMessage<CDOTAMatchMetadata_Team_ActionGrant>(NULL);
+  }
+
+  CDOTAMatchMetadata_Team_ActionGrant* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<CDOTAMatchMetadata_Team_ActionGrant>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const CDOTAMatchMetadata_Team_ActionGrant& from);
+  void MergeFrom(const CDOTAMatchMetadata_Team_ActionGrant& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CDOTAMatchMetadata_Team_ActionGrant* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional uint32 action_id = 1;
+  bool has_action_id() const;
+  void clear_action_id();
+  static const int kActionIdFieldNumber = 1;
+  ::google::protobuf::uint32 action_id() const;
+  void set_action_id(::google::protobuf::uint32 value);
+
+  // optional uint32 quantity = 2;
+  bool has_quantity() const;
+  void clear_quantity();
+  static const int kQuantityFieldNumber = 2;
+  ::google::protobuf::uint32 quantity() const;
+  void set_quantity(::google::protobuf::uint32 value);
+
+  // optional uint32 audit = 3;
+  bool has_audit() const;
+  void clear_audit();
+  static const int kAuditFieldNumber = 3;
+  ::google::protobuf::uint32 audit() const;
+  void set_audit(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:CDOTAMatchMetadata.Team.ActionGrant)
+ private:
+  void set_has_action_id();
+  void clear_has_action_id();
+  void set_has_quantity();
+  void clear_has_quantity();
+  void set_has_audit();
+  void clear_has_audit();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  ::google::protobuf::uint32 action_id_;
+  ::google::protobuf::uint32 quantity_;
+  ::google::protobuf::uint32 audit_;
+  friend struct ::protobuf_mcdota_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class CDOTAMatchMetadata_Team_EventData : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CDOTAMatchMetadata.Team.EventData) */ {
+ public:
+  CDOTAMatchMetadata_Team_EventData();
+  virtual ~CDOTAMatchMetadata_Team_EventData();
+
+  CDOTAMatchMetadata_Team_EventData(const CDOTAMatchMetadata_Team_EventData& from);
+
+  inline CDOTAMatchMetadata_Team_EventData& operator=(const CDOTAMatchMetadata_Team_EventData& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  CDOTAMatchMetadata_Team_EventData(CDOTAMatchMetadata_Team_EventData&& from) noexcept
+    : CDOTAMatchMetadata_Team_EventData() {
+    *this = ::std::move(from);
+  }
+
+  inline CDOTAMatchMetadata_Team_EventData& operator=(CDOTAMatchMetadata_Team_EventData&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CDOTAMatchMetadata_Team_EventData& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const CDOTAMatchMetadata_Team_EventData* internal_default_instance() {
+    return reinterpret_cast<const CDOTAMatchMetadata_Team_EventData*>(
+               &_CDOTAMatchMetadata_Team_EventData_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    34;
+
+  void Swap(CDOTAMatchMetadata_Team_EventData* other);
+  friend void swap(CDOTAMatchMetadata_Team_EventData& a, CDOTAMatchMetadata_Team_EventData& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CDOTAMatchMetadata_Team_EventData* New() const final {
+    return CreateMaybeMessage<CDOTAMatchMetadata_Team_EventData>(NULL);
+  }
+
+  CDOTAMatchMetadata_Team_EventData* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<CDOTAMatchMetadata_Team_EventData>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const CDOTAMatchMetadata_Team_EventData& from);
+  void MergeFrom(const CDOTAMatchMetadata_Team_EventData& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CDOTAMatchMetadata_Team_EventData* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated .CDOTAMatchMetadata.Team.SubChallenge sub_challenges_with_progress = 10;
+  int sub_challenges_with_progress_size() const;
+  void clear_sub_challenges_with_progress();
+  static const int kSubChallengesWithProgressFieldNumber = 10;
+  ::CDOTAMatchMetadata_Team_SubChallenge* mutable_sub_challenges_with_progress(int index);
+  ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_SubChallenge >*
+      mutable_sub_challenges_with_progress();
+  const ::CDOTAMatchMetadata_Team_SubChallenge& sub_challenges_with_progress(int index) const;
+  ::CDOTAMatchMetadata_Team_SubChallenge* add_sub_challenges_with_progress();
+  const ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_SubChallenge >&
+      sub_challenges_with_progress() const;
+
+  // repeated .CDOTAMatchMetadata.Team.CavernChallengeResult cavern_challenge_map_results = 17;
+  int cavern_challenge_map_results_size() const;
+  void clear_cavern_challenge_map_results();
+  static const int kCavernChallengeMapResultsFieldNumber = 17;
+  ::CDOTAMatchMetadata_Team_CavernChallengeResult* mutable_cavern_challenge_map_results(int index);
+  ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_CavernChallengeResult >*
+      mutable_cavern_challenge_map_results();
+  const ::CDOTAMatchMetadata_Team_CavernChallengeResult& cavern_challenge_map_results(int index) const;
+  ::CDOTAMatchMetadata_Team_CavernChallengeResult* add_cavern_challenge_map_results();
+  const ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_CavernChallengeResult >&
+      cavern_challenge_map_results() const;
+
+  // repeated .CDOTAMatchMetadata.Team.ActionGrant actions_granted = 19;
+  int actions_granted_size() const;
+  void clear_actions_granted();
+  static const int kActionsGrantedFieldNumber = 19;
+  ::CDOTAMatchMetadata_Team_ActionGrant* mutable_actions_granted(int index);
+  ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_ActionGrant >*
+      mutable_actions_granted();
+  const ::CDOTAMatchMetadata_Team_ActionGrant& actions_granted(int index) const;
+  ::CDOTAMatchMetadata_Team_ActionGrant* add_actions_granted();
+  const ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_ActionGrant >&
+      actions_granted() const;
+
+  // optional uint32 event_id = 1;
+  bool has_event_id() const;
+  void clear_event_id();
+  static const int kEventIdFieldNumber = 1;
+  ::google::protobuf::uint32 event_id() const;
+  void set_event_id(::google::protobuf::uint32 value);
+
+  // optional uint32 event_points = 2;
+  bool has_event_points() const;
+  void clear_event_points();
+  static const int kEventPointsFieldNumber = 2;
+  ::google::protobuf::uint32 event_points() const;
+  void set_event_points(::google::protobuf::uint32 value);
+
+  // optional uint32 challenge_instance_id = 3;
+  bool has_challenge_instance_id() const;
+  void clear_challenge_instance_id();
+  static const int kChallengeInstanceIdFieldNumber = 3;
+  ::google::protobuf::uint32 challenge_instance_id() const;
+  void set_challenge_instance_id(::google::protobuf::uint32 value);
+
+  // optional uint32 challenge_quest_id = 4;
+  bool has_challenge_quest_id() const;
+  void clear_challenge_quest_id();
+  static const int kChallengeQuestIdFieldNumber = 4;
+  ::google::protobuf::uint32 challenge_quest_id() const;
+  void set_challenge_quest_id(::google::protobuf::uint32 value);
+
+  // optional uint32 challenge_quest_challenge_id = 5;
+  bool has_challenge_quest_challenge_id() const;
+  void clear_challenge_quest_challenge_id();
+  static const int kChallengeQuestChallengeIdFieldNumber = 5;
+  ::google::protobuf::uint32 challenge_quest_challenge_id() const;
+  void set_challenge_quest_challenge_id(::google::protobuf::uint32 value);
+
+  // optional uint32 challenge_rank_completed = 7;
+  bool has_challenge_rank_completed() const;
+  void clear_challenge_rank_completed();
+  static const int kChallengeRankCompletedFieldNumber = 7;
+  ::google::protobuf::uint32 challenge_rank_completed() const;
+  void set_challenge_rank_completed(::google::protobuf::uint32 value);
+
+  // optional uint32 challenge_rank_previously_completed = 8;
+  bool has_challenge_rank_previously_completed() const;
+  void clear_challenge_rank_previously_completed();
+  static const int kChallengeRankPreviouslyCompletedFieldNumber = 8;
+  ::google::protobuf::uint32 challenge_rank_previously_completed() const;
+  void set_challenge_rank_previously_completed(::google::protobuf::uint32 value);
+
+  // optional bool challenge_completed = 6;
+  bool has_challenge_completed() const;
+  void clear_challenge_completed();
+  static const int kChallengeCompletedFieldNumber = 6;
+  bool challenge_completed() const;
+  void set_challenge_completed(bool value);
+
+  // optional bool event_owned = 9;
+  bool has_event_owned() const;
+  void clear_event_owned();
+  static const int kEventOwnedFieldNumber = 9;
+  bool event_owned() const;
+  void set_event_owned(bool value);
+
+  // optional bool cavern_challenge_active = 12;
+  bool has_cavern_challenge_active() const;
+  void clear_cavern_challenge_active();
+  static const int kCavernChallengeActiveFieldNumber = 12;
+  bool cavern_challenge_active() const;
+  void set_cavern_challenge_active(bool value);
+
+  // optional uint32 wager_winnings = 11;
+  bool has_wager_winnings() const;
+  void clear_wager_winnings();
+  static const int kWagerWinningsFieldNumber = 11;
+  ::google::protobuf::uint32 wager_winnings() const;
+  void set_wager_winnings(::google::protobuf::uint32 value);
+
+  // optional uint32 cavern_challenge_winnings = 13;
+  bool has_cavern_challenge_winnings() const;
+  void clear_cavern_challenge_winnings();
+  static const int kCavernChallengeWinningsFieldNumber = 13;
+  ::google::protobuf::uint32 cavern_challenge_winnings() const;
+  void set_cavern_challenge_winnings(::google::protobuf::uint32 value);
+
+  // optional uint32 amount_wagered = 14;
+  bool has_amount_wagered() const;
+  void clear_amount_wagered();
+  static const int kAmountWageredFieldNumber = 14;
+  ::google::protobuf::uint32 amount_wagered() const;
+  void set_amount_wagered(::google::protobuf::uint32 value);
+
+  // optional uint32 team_wager_amount = 15;
+  bool has_team_wager_amount() const;
+  void clear_team_wager_amount();
+  static const int kTeamWagerAmountFieldNumber = 15;
+  ::google::protobuf::uint32 team_wager_amount() const;
+  void set_team_wager_amount(::google::protobuf::uint32 value);
+
+  // optional uint32 periodic_point_adjustments = 16;
+  bool has_periodic_point_adjustments() const;
+  void clear_periodic_point_adjustments();
+  static const int kPeriodicPointAdjustmentsFieldNumber = 16;
+  ::google::protobuf::uint32 periodic_point_adjustments() const;
+  void set_periodic_point_adjustments(::google::protobuf::uint32 value);
+
+  // optional uint32 cavern_challenge_plus_shard_winnings = 18;
+  bool has_cavern_challenge_plus_shard_winnings() const;
+  void clear_cavern_challenge_plus_shard_winnings();
+  static const int kCavernChallengePlusShardWinningsFieldNumber = 18;
+  ::google::protobuf::uint32 cavern_challenge_plus_shard_winnings() const;
+  void set_cavern_challenge_plus_shard_winnings(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:CDOTAMatchMetadata.Team.EventData)
+ private:
+  void set_has_event_id();
+  void clear_has_event_id();
+  void set_has_event_points();
+  void clear_has_event_points();
+  void set_has_challenge_instance_id();
+  void clear_has_challenge_instance_id();
+  void set_has_challenge_quest_id();
+  void clear_has_challenge_quest_id();
+  void set_has_challenge_quest_challenge_id();
+  void clear_has_challenge_quest_challenge_id();
+  void set_has_challenge_completed();
+  void clear_has_challenge_completed();
+  void set_has_challenge_rank_completed();
+  void clear_has_challenge_rank_completed();
+  void set_has_challenge_rank_previously_completed();
+  void clear_has_challenge_rank_previously_completed();
+  void set_has_event_owned();
+  void clear_has_event_owned();
+  void set_has_wager_winnings();
+  void clear_has_wager_winnings();
+  void set_has_cavern_challenge_active();
+  void clear_has_cavern_challenge_active();
+  void set_has_cavern_challenge_winnings();
+  void clear_has_cavern_challenge_winnings();
+  void set_has_amount_wagered();
+  void clear_has_amount_wagered();
+  void set_has_team_wager_amount();
+  void clear_has_team_wager_amount();
+  void set_has_periodic_point_adjustments();
+  void clear_has_periodic_point_adjustments();
+  void set_has_cavern_challenge_plus_shard_winnings();
+  void clear_has_cavern_challenge_plus_shard_winnings();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_SubChallenge > sub_challenges_with_progress_;
+  ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_CavernChallengeResult > cavern_challenge_map_results_;
+  ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_ActionGrant > actions_granted_;
+  ::google::protobuf::uint32 event_id_;
+  ::google::protobuf::uint32 event_points_;
+  ::google::protobuf::uint32 challenge_instance_id_;
+  ::google::protobuf::uint32 challenge_quest_id_;
+  ::google::protobuf::uint32 challenge_quest_challenge_id_;
+  ::google::protobuf::uint32 challenge_rank_completed_;
+  ::google::protobuf::uint32 challenge_rank_previously_completed_;
+  bool challenge_completed_;
+  bool event_owned_;
+  bool cavern_challenge_active_;
+  ::google::protobuf::uint32 wager_winnings_;
+  ::google::protobuf::uint32 cavern_challenge_winnings_;
+  ::google::protobuf::uint32 amount_wagered_;
+  ::google::protobuf::uint32 team_wager_amount_;
+  ::google::protobuf::uint32 periodic_point_adjustments_;
+  ::google::protobuf::uint32 cavern_challenge_plus_shard_winnings_;
+  friend struct ::protobuf_mcdota_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class CDOTAMatchMetadata_Team_Player : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CDOTAMatchMetadata.Team.Player) */ {
+ public:
+  CDOTAMatchMetadata_Team_Player();
+  virtual ~CDOTAMatchMetadata_Team_Player();
+
+  CDOTAMatchMetadata_Team_Player(const CDOTAMatchMetadata_Team_Player& from);
+
+  inline CDOTAMatchMetadata_Team_Player& operator=(const CDOTAMatchMetadata_Team_Player& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  CDOTAMatchMetadata_Team_Player(CDOTAMatchMetadata_Team_Player&& from) noexcept
+    : CDOTAMatchMetadata_Team_Player() {
+    *this = ::std::move(from);
+  }
+
+  inline CDOTAMatchMetadata_Team_Player& operator=(CDOTAMatchMetadata_Team_Player&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CDOTAMatchMetadata_Team_Player& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const CDOTAMatchMetadata_Team_Player* internal_default_instance() {
+    return reinterpret_cast<const CDOTAMatchMetadata_Team_Player*>(
+               &_CDOTAMatchMetadata_Team_Player_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    35;
+
+  void Swap(CDOTAMatchMetadata_Team_Player* other);
+  friend void swap(CDOTAMatchMetadata_Team_Player& a, CDOTAMatchMetadata_Team_Player& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CDOTAMatchMetadata_Team_Player* New() const final {
+    return CreateMaybeMessage<CDOTAMatchMetadata_Team_Player>(NULL);
+  }
+
+  CDOTAMatchMetadata_Team_Player* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<CDOTAMatchMetadata_Team_Player>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const CDOTAMatchMetadata_Team_Player& from);
+  void MergeFrom(const CDOTAMatchMetadata_Team_Player& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CDOTAMatchMetadata_Team_Player* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // repeated uint32 ability_upgrades = 2;
+  int ability_upgrades_size() const;
+  void clear_ability_upgrades();
+  static const int kAbilityUpgradesFieldNumber = 2;
+  ::google::protobuf::uint32 ability_upgrades(int index) const;
+  void set_ability_upgrades(int index, ::google::protobuf::uint32 value);
+  void add_ability_upgrades(::google::protobuf::uint32 value);
+  const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+      ability_upgrades() const;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+      mutable_ability_upgrades();
+
+  // repeated .CSOEconItem equipped_econ_items = 4;
+  int equipped_econ_items_size() const;
+  void clear_equipped_econ_items();
+  static const int kEquippedEconItemsFieldNumber = 4;
+  ::CSOEconItem* mutable_equipped_econ_items(int index);
+  ::google::protobuf::RepeatedPtrField< ::CSOEconItem >*
+      mutable_equipped_econ_items();
+  const ::CSOEconItem& equipped_econ_items(int index) const;
+  ::CSOEconItem* add_equipped_econ_items();
+  const ::google::protobuf::RepeatedPtrField< ::CSOEconItem >&
+      equipped_econ_items() const;
+
+  // repeated .CDOTAMatchMetadata.Team.PlayerKill kills = 5;
+  int kills_size() const;
+  void clear_kills();
+  static const int kKillsFieldNumber = 5;
+  ::CDOTAMatchMetadata_Team_PlayerKill* mutable_kills(int index);
+  ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_PlayerKill >*
+      mutable_kills();
+  const ::CDOTAMatchMetadata_Team_PlayerKill& kills(int index) const;
+  ::CDOTAMatchMetadata_Team_PlayerKill* add_kills();
+  const ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_PlayerKill >&
+      kills() const;
+
+  // repeated .CDOTAMatchMetadata.Team.ItemPurchase items = 6;
+  int items_size() const;
+  void clear_items();
+  static const int kItemsFieldNumber = 6;
+  ::CDOTAMatchMetadata_Team_ItemPurchase* mutable_items(int index);
+  ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_ItemPurchase >*
+      mutable_items();
+  const ::CDOTAMatchMetadata_Team_ItemPurchase& items(int index) const;
+  ::CDOTAMatchMetadata_Team_ItemPurchase* add_items();
+  const ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_ItemPurchase >&
+      items() const;
+
+  // repeated uint32 level_up_times = 22;
+  int level_up_times_size() const;
+  void clear_level_up_times();
+  static const int kLevelUpTimesFieldNumber = 22;
+  ::google::protobuf::uint32 level_up_times(int index) const;
+  void set_level_up_times(int index, ::google::protobuf::uint32 value);
+  void add_level_up_times(::google::protobuf::uint32 value);
+  const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+      level_up_times() const;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+      mutable_level_up_times();
+
+  // repeated float graph_net_worth = 23;
+  int graph_net_worth_size() const;
+  void clear_graph_net_worth();
+  static const int kGraphNetWorthFieldNumber = 23;
+  float graph_net_worth(int index) const;
+  void set_graph_net_worth(int index, float value);
+  void add_graph_net_worth(float value);
+  const ::google::protobuf::RepeatedField< float >&
+      graph_net_worth() const;
+  ::google::protobuf::RepeatedField< float >*
+      mutable_graph_net_worth();
+
+  // repeated .CDOTAMatchMetadata.Team.InventorySnapshot inventory_snapshot = 24;
+  int inventory_snapshot_size() const;
+  void clear_inventory_snapshot();
+  static const int kInventorySnapshotFieldNumber = 24;
+  ::CDOTAMatchMetadata_Team_InventorySnapshot* mutable_inventory_snapshot(int index);
+  ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_InventorySnapshot >*
+      mutable_inventory_snapshot();
+  const ::CDOTAMatchMetadata_Team_InventorySnapshot& inventory_snapshot(int index) const;
+  ::CDOTAMatchMetadata_Team_InventorySnapshot* add_inventory_snapshot();
+  const ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_InventorySnapshot >&
+      inventory_snapshot() const;
+
+  // repeated .CDOTAMatchMetadata.Team.AutoStyleCriteria auto_style_criteria = 26;
+  int auto_style_criteria_size() const;
+  void clear_auto_style_criteria();
+  static const int kAutoStyleCriteriaFieldNumber = 26;
+  ::CDOTAMatchMetadata_Team_AutoStyleCriteria* mutable_auto_style_criteria(int index);
+  ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_AutoStyleCriteria >*
+      mutable_auto_style_criteria();
+  const ::CDOTAMatchMetadata_Team_AutoStyleCriteria& auto_style_criteria(int index) const;
+  ::CDOTAMatchMetadata_Team_AutoStyleCriteria* add_auto_style_criteria();
+  const ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_AutoStyleCriteria >&
+      auto_style_criteria() const;
+
+  // repeated .CDOTAMatchMetadata.Team.EventData event_data = 29;
+  int event_data_size() const;
+  void clear_event_data();
+  static const int kEventDataFieldNumber = 29;
+  ::CDOTAMatchMetadata_Team_EventData* mutable_event_data(int index);
+  ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_EventData >*
+      mutable_event_data();
+  const ::CDOTAMatchMetadata_Team_EventData& event_data(int index) const;
+  ::CDOTAMatchMetadata_Team_EventData* add_event_data();
+  const ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_EventData >&
+      event_data() const;
+
+  // repeated .CDOTAMatchMetadata.Team.StrangeGemProgress strange_gem_progress = 30;
+  int strange_gem_progress_size() const;
+  void clear_strange_gem_progress();
+  static const int kStrangeGemProgressFieldNumber = 30;
+  ::CDOTAMatchMetadata_Team_StrangeGemProgress* mutable_strange_gem_progress(int index);
+  ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_StrangeGemProgress >*
+      mutable_strange_gem_progress();
+  const ::CDOTAMatchMetadata_Team_StrangeGemProgress& strange_gem_progress(int index) const;
+  ::CDOTAMatchMetadata_Team_StrangeGemProgress* add_strange_gem_progress();
+  const ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_StrangeGemProgress >&
+      strange_gem_progress() const;
+
+  // repeated .CDOTAMatchMetadata.Team.VictoryPrediction victory_prediction = 33;
+  int victory_prediction_size() const;
+  void clear_victory_prediction();
+  static const int kVictoryPredictionFieldNumber = 33;
+  ::CDOTAMatchMetadata_Team_VictoryPrediction* mutable_victory_prediction(int index);
+  ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_VictoryPrediction >*
+      mutable_victory_prediction();
+  const ::CDOTAMatchMetadata_Team_VictoryPrediction& victory_prediction(int index) const;
+  ::CDOTAMatchMetadata_Team_VictoryPrediction* add_victory_prediction();
+  const ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_VictoryPrediction >&
+      victory_prediction() const;
+
+  // optional uint32 account_id = 1;
+  bool has_account_id() const;
+  void clear_account_id();
+  static const int kAccountIdFieldNumber = 1;
+  ::google::protobuf::uint32 account_id() const;
+  void set_account_id(::google::protobuf::uint32 value);
+
+  // optional uint32 player_slot = 3;
+  bool has_player_slot() const;
+  void clear_player_slot();
+  static const int kPlayerSlotFieldNumber = 3;
+  ::google::protobuf::uint32 player_slot() const;
+  void set_player_slot(::google::protobuf::uint32 value);
+
+  // optional uint32 avg_kills_x16 = 7;
+  bool has_avg_kills_x16() const;
+  void clear_avg_kills_x16();
+  static const int kAvgKillsX16FieldNumber = 7;
+  ::google::protobuf::uint32 avg_kills_x16() const;
+  void set_avg_kills_x16(::google::protobuf::uint32 value);
+
+  // optional uint32 avg_deaths_x16 = 8;
+  bool has_avg_deaths_x16() const;
+  void clear_avg_deaths_x16();
+  static const int kAvgDeathsX16FieldNumber = 8;
+  ::google::protobuf::uint32 avg_deaths_x16() const;
+  void set_avg_deaths_x16(::google::protobuf::uint32 value);
+
+  // optional uint32 avg_assists_x16 = 9;
+  bool has_avg_assists_x16() const;
+  void clear_avg_assists_x16();
+  static const int kAvgAssistsX16FieldNumber = 9;
+  ::google::protobuf::uint32 avg_assists_x16() const;
+  void set_avg_assists_x16(::google::protobuf::uint32 value);
+
+  // optional uint32 avg_gpm_x16 = 10;
+  bool has_avg_gpm_x16() const;
+  void clear_avg_gpm_x16();
+  static const int kAvgGpmX16FieldNumber = 10;
+  ::google::protobuf::uint32 avg_gpm_x16() const;
+  void set_avg_gpm_x16(::google::protobuf::uint32 value);
+
+  // optional uint32 avg_xpm_x16 = 11;
+  bool has_avg_xpm_x16() const;
+  void clear_avg_xpm_x16();
+  static const int kAvgXpmX16FieldNumber = 11;
+  ::google::protobuf::uint32 avg_xpm_x16() const;
+  void set_avg_xpm_x16(::google::protobuf::uint32 value);
+
+  // optional uint32 best_kills_x16 = 12;
+  bool has_best_kills_x16() const;
+  void clear_best_kills_x16();
+  static const int kBestKillsX16FieldNumber = 12;
+  ::google::protobuf::uint32 best_kills_x16() const;
+  void set_best_kills_x16(::google::protobuf::uint32 value);
+
+  // optional uint32 best_assists_x16 = 13;
+  bool has_best_assists_x16() const;
+  void clear_best_assists_x16();
+  static const int kBestAssistsX16FieldNumber = 13;
+  ::google::protobuf::uint32 best_assists_x16() const;
+  void set_best_assists_x16(::google::protobuf::uint32 value);
+
+  // optional uint32 best_gpm_x16 = 14;
+  bool has_best_gpm_x16() const;
+  void clear_best_gpm_x16();
+  static const int kBestGpmX16FieldNumber = 14;
+  ::google::protobuf::uint32 best_gpm_x16() const;
+  void set_best_gpm_x16(::google::protobuf::uint32 value);
+
+  // optional uint32 best_xpm_x16 = 15;
+  bool has_best_xpm_x16() const;
+  void clear_best_xpm_x16();
+  static const int kBestXpmX16FieldNumber = 15;
+  ::google::protobuf::uint32 best_xpm_x16() const;
+  void set_best_xpm_x16(::google::protobuf::uint32 value);
+
+  // optional uint32 win_streak = 16;
+  bool has_win_streak() const;
+  void clear_win_streak();
+  static const int kWinStreakFieldNumber = 16;
+  ::google::protobuf::uint32 win_streak() const;
+  void set_win_streak(::google::protobuf::uint32 value);
+
+  // optional uint32 best_win_streak = 17;
+  bool has_best_win_streak() const;
+  void clear_best_win_streak();
+  static const int kBestWinStreakFieldNumber = 17;
+  ::google::protobuf::uint32 best_win_streak() const;
+  void set_best_win_streak(::google::protobuf::uint32 value);
+
+  // optional float fight_score = 18;
+  bool has_fight_score() const;
+  void clear_fight_score();
+  static const int kFightScoreFieldNumber = 18;
+  float fight_score() const;
+  void set_fight_score(float value);
+
+  // optional float farm_score = 19;
+  bool has_farm_score() const;
+  void clear_farm_score();
+  static const int kFarmScoreFieldNumber = 19;
+  float farm_score() const;
+  void set_farm_score(float value);
+
+  // optional float support_score = 20;
+  bool has_support_score() const;
+  void clear_support_score();
+  static const int kSupportScoreFieldNumber = 20;
+  float support_score() const;
+  void set_support_score(float value);
+
+  // optional float push_score = 21;
+  bool has_push_score() const;
+  void clear_push_score();
+  static const int kPushScoreFieldNumber = 21;
+  float push_score() const;
+  void set_push_score(float value);
+
+  // optional bool avg_stats_calibrated = 25;
+  bool has_avg_stats_calibrated() const;
+  void clear_avg_stats_calibrated();
+  static const int kAvgStatsCalibratedFieldNumber = 25;
+  bool avg_stats_calibrated() const;
+  void set_avg_stats_calibrated(bool value);
+
+  // optional uint32 hero_xp = 31;
+  bool has_hero_xp() const;
+  void clear_hero_xp();
+  static const int kHeroXpFieldNumber = 31;
+  ::google::protobuf::uint32 hero_xp() const;
+  void set_hero_xp(::google::protobuf::uint32 value);
+
+  // optional uint32 camps_stacked = 32;
+  bool has_camps_stacked() const;
+  void clear_camps_stacked();
+  static const int kCampsStackedFieldNumber = 32;
+  ::google::protobuf::uint32 camps_stacked() const;
+  void set_camps_stacked(::google::protobuf::uint32 value);
+
+  // optional uint32 lane_selection_flags = 34;
+  bool has_lane_selection_flags() const;
+  void clear_lane_selection_flags();
+  static const int kLaneSelectionFlagsFieldNumber = 34;
+  ::google::protobuf::uint32 lane_selection_flags() const;
+  void set_lane_selection_flags(::google::protobuf::uint32 value);
+
+  // optional uint32 rampages = 35;
+  bool has_rampages() const;
+  void clear_rampages();
+  static const int kRampagesFieldNumber = 35;
+  ::google::protobuf::uint32 rampages() const;
+  void set_rampages(::google::protobuf::uint32 value);
+
+  // optional uint32 triple_kills = 36;
+  bool has_triple_kills() const;
+  void clear_triple_kills();
+  static const int kTripleKillsFieldNumber = 36;
+  ::google::protobuf::uint32 triple_kills() const;
+  void set_triple_kills(::google::protobuf::uint32 value);
+
+  // optional uint32 aegis_snatched = 37;
+  bool has_aegis_snatched() const;
+  void clear_aegis_snatched();
+  static const int kAegisSnatchedFieldNumber = 37;
+  ::google::protobuf::uint32 aegis_snatched() const;
+  void set_aegis_snatched(::google::protobuf::uint32 value);
+
+  // optional uint32 rapiers_purchased = 38;
+  bool has_rapiers_purchased() const;
+  void clear_rapiers_purchased();
+  static const int kRapiersPurchasedFieldNumber = 38;
+  ::google::protobuf::uint32 rapiers_purchased() const;
+  void set_rapiers_purchased(::google::protobuf::uint32 value);
+
+  // optional uint32 couriers_killed = 39;
+  bool has_couriers_killed() const;
+  void clear_couriers_killed();
+  static const int kCouriersKilledFieldNumber = 39;
+  ::google::protobuf::uint32 couriers_killed() const;
+  void set_couriers_killed(::google::protobuf::uint32 value);
+
+  // optional uint32 net_worth_rank = 40;
+  bool has_net_worth_rank() const;
+  void clear_net_worth_rank();
+  static const int kNetWorthRankFieldNumber = 40;
+  ::google::protobuf::uint32 net_worth_rank() const;
+  void set_net_worth_rank(::google::protobuf::uint32 value);
+
+  // optional uint32 support_gold_spent = 41;
+  bool has_support_gold_spent() const;
+  void clear_support_gold_spent();
+  static const int kSupportGoldSpentFieldNumber = 41;
+  ::google::protobuf::uint32 support_gold_spent() const;
+  void set_support_gold_spent(::google::protobuf::uint32 value);
+
+  // optional uint32 observer_wards_placed = 42;
+  bool has_observer_wards_placed() const;
+  void clear_observer_wards_placed();
+  static const int kObserverWardsPlacedFieldNumber = 42;
+  ::google::protobuf::uint32 observer_wards_placed() const;
+  void set_observer_wards_placed(::google::protobuf::uint32 value);
+
+  // optional uint32 sentry_wards_placed = 43;
+  bool has_sentry_wards_placed() const;
+  void clear_sentry_wards_placed();
+  static const int kSentryWardsPlacedFieldNumber = 43;
+  ::google::protobuf::uint32 sentry_wards_placed() const;
+  void set_sentry_wards_placed(::google::protobuf::uint32 value);
+
+  // optional uint32 wards_dewarded = 44;
+  bool has_wards_dewarded() const;
+  void clear_wards_dewarded();
+  static const int kWardsDewardedFieldNumber = 44;
+  ::google::protobuf::uint32 wards_dewarded() const;
+  void set_wards_dewarded(::google::protobuf::uint32 value);
+
+  // optional float stun_duration = 45;
+  bool has_stun_duration() const;
+  void clear_stun_duration();
+  static const int kStunDurationFieldNumber = 45;
+  float stun_duration() const;
+  void set_stun_duration(float value);
+
+  // optional .EDOTAMMRBoostType rank_mmr_boost_type = 46 [default = k_EDOTAMMRBoostType_None];
+  bool has_rank_mmr_boost_type() const;
+  void clear_rank_mmr_boost_type();
+  static const int kRankMmrBoostTypeFieldNumber = 46;
+  ::EDOTAMMRBoostType rank_mmr_boost_type() const;
+  void set_rank_mmr_boost_type(::EDOTAMMRBoostType value);
+
+  // @@protoc_insertion_point(class_scope:CDOTAMatchMetadata.Team.Player)
+ private:
+  void set_has_account_id();
+  void clear_has_account_id();
+  void set_has_player_slot();
+  void clear_has_player_slot();
+  void set_has_avg_kills_x16();
+  void clear_has_avg_kills_x16();
+  void set_has_avg_deaths_x16();
+  void clear_has_avg_deaths_x16();
+  void set_has_avg_assists_x16();
+  void clear_has_avg_assists_x16();
+  void set_has_avg_gpm_x16();
+  void clear_has_avg_gpm_x16();
+  void set_has_avg_xpm_x16();
+  void clear_has_avg_xpm_x16();
+  void set_has_best_kills_x16();
+  void clear_has_best_kills_x16();
+  void set_has_best_assists_x16();
+  void clear_has_best_assists_x16();
+  void set_has_best_gpm_x16();
+  void clear_has_best_gpm_x16();
+  void set_has_best_xpm_x16();
+  void clear_has_best_xpm_x16();
+  void set_has_win_streak();
+  void clear_has_win_streak();
+  void set_has_best_win_streak();
+  void clear_has_best_win_streak();
+  void set_has_fight_score();
+  void clear_has_fight_score();
+  void set_has_farm_score();
+  void clear_has_farm_score();
+  void set_has_support_score();
+  void clear_has_support_score();
+  void set_has_push_score();
+  void clear_has_push_score();
+  void set_has_avg_stats_calibrated();
+  void clear_has_avg_stats_calibrated();
+  void set_has_hero_xp();
+  void clear_has_hero_xp();
+  void set_has_camps_stacked();
+  void clear_has_camps_stacked();
+  void set_has_lane_selection_flags();
+  void clear_has_lane_selection_flags();
+  void set_has_rampages();
+  void clear_has_rampages();
+  void set_has_triple_kills();
+  void clear_has_triple_kills();
+  void set_has_aegis_snatched();
+  void clear_has_aegis_snatched();
+  void set_has_rapiers_purchased();
+  void clear_has_rapiers_purchased();
+  void set_has_couriers_killed();
+  void clear_has_couriers_killed();
+  void set_has_net_worth_rank();
+  void clear_has_net_worth_rank();
+  void set_has_support_gold_spent();
+  void clear_has_support_gold_spent();
+  void set_has_observer_wards_placed();
+  void clear_has_observer_wards_placed();
+  void set_has_sentry_wards_placed();
+  void clear_has_sentry_wards_placed();
+  void set_has_wards_dewarded();
+  void clear_has_wards_dewarded();
+  void set_has_stun_duration();
+  void clear_has_stun_duration();
+  void set_has_rank_mmr_boost_type();
+  void clear_has_rank_mmr_boost_type();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<2> _has_bits_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > ability_upgrades_;
+  ::google::protobuf::RepeatedPtrField< ::CSOEconItem > equipped_econ_items_;
+  ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_PlayerKill > kills_;
+  ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_ItemPurchase > items_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > level_up_times_;
+  ::google::protobuf::RepeatedField< float > graph_net_worth_;
+  ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_InventorySnapshot > inventory_snapshot_;
+  ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_AutoStyleCriteria > auto_style_criteria_;
+  ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_EventData > event_data_;
+  ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_StrangeGemProgress > strange_gem_progress_;
+  ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_VictoryPrediction > victory_prediction_;
+  ::google::protobuf::uint32 account_id_;
+  ::google::protobuf::uint32 player_slot_;
+  ::google::protobuf::uint32 avg_kills_x16_;
+  ::google::protobuf::uint32 avg_deaths_x16_;
+  ::google::protobuf::uint32 avg_assists_x16_;
+  ::google::protobuf::uint32 avg_gpm_x16_;
+  ::google::protobuf::uint32 avg_xpm_x16_;
+  ::google::protobuf::uint32 best_kills_x16_;
+  ::google::protobuf::uint32 best_assists_x16_;
+  ::google::protobuf::uint32 best_gpm_x16_;
+  ::google::protobuf::uint32 best_xpm_x16_;
+  ::google::protobuf::uint32 win_streak_;
+  ::google::protobuf::uint32 best_win_streak_;
+  float fight_score_;
+  float farm_score_;
+  float support_score_;
+  float push_score_;
+  bool avg_stats_calibrated_;
+  ::google::protobuf::uint32 hero_xp_;
+  ::google::protobuf::uint32 camps_stacked_;
+  ::google::protobuf::uint32 lane_selection_flags_;
+  ::google::protobuf::uint32 rampages_;
+  ::google::protobuf::uint32 triple_kills_;
+  ::google::protobuf::uint32 aegis_snatched_;
+  ::google::protobuf::uint32 rapiers_purchased_;
+  ::google::protobuf::uint32 couriers_killed_;
+  ::google::protobuf::uint32 net_worth_rank_;
+  ::google::protobuf::uint32 support_gold_spent_;
+  ::google::protobuf::uint32 observer_wards_placed_;
+  ::google::protobuf::uint32 sentry_wards_placed_;
+  ::google::protobuf::uint32 wards_dewarded_;
+  float stun_duration_;
+  int rank_mmr_boost_type_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  friend struct ::protobuf_mcdota_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class CDOTAMatchMetadata_Team : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CDOTAMatchMetadata.Team) */ {
+ public:
+  CDOTAMatchMetadata_Team();
+  virtual ~CDOTAMatchMetadata_Team();
+
+  CDOTAMatchMetadata_Team(const CDOTAMatchMetadata_Team& from);
+
+  inline CDOTAMatchMetadata_Team& operator=(const CDOTAMatchMetadata_Team& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  CDOTAMatchMetadata_Team(CDOTAMatchMetadata_Team&& from) noexcept
+    : CDOTAMatchMetadata_Team() {
+    *this = ::std::move(from);
+  }
+
+  inline CDOTAMatchMetadata_Team& operator=(CDOTAMatchMetadata_Team&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CDOTAMatchMetadata_Team& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const CDOTAMatchMetadata_Team* internal_default_instance() {
+    return reinterpret_cast<const CDOTAMatchMetadata_Team*>(
+               &_CDOTAMatchMetadata_Team_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    36;
+
+  void Swap(CDOTAMatchMetadata_Team* other);
+  friend void swap(CDOTAMatchMetadata_Team& a, CDOTAMatchMetadata_Team& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CDOTAMatchMetadata_Team* New() const final {
+    return CreateMaybeMessage<CDOTAMatchMetadata_Team>(NULL);
+  }
+
+  CDOTAMatchMetadata_Team* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<CDOTAMatchMetadata_Team>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const CDOTAMatchMetadata_Team& from);
+  void MergeFrom(const CDOTAMatchMetadata_Team& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CDOTAMatchMetadata_Team* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  typedef CDOTAMatchMetadata_Team_PlayerKill PlayerKill;
+  typedef CDOTAMatchMetadata_Team_ItemPurchase ItemPurchase;
+  typedef CDOTAMatchMetadata_Team_InventorySnapshot InventorySnapshot;
+  typedef CDOTAMatchMetadata_Team_AutoStyleCriteria AutoStyleCriteria;
+  typedef CDOTAMatchMetadata_Team_StrangeGemProgress StrangeGemProgress;
+  typedef CDOTAMatchMetadata_Team_VictoryPrediction VictoryPrediction;
+  typedef CDOTAMatchMetadata_Team_SubChallenge SubChallenge;
+  typedef CDOTAMatchMetadata_Team_CavernChallengeResult CavernChallengeResult;
+  typedef CDOTAMatchMetadata_Team_ActionGrant ActionGrant;
+  typedef CDOTAMatchMetadata_Team_EventData EventData;
+  typedef CDOTAMatchMetadata_Team_Player Player;
+
+  // accessors -------------------------------------------------------
+
+  // repeated .CDOTAMatchMetadata.Team.Player players = 2;
+  int players_size() const;
+  void clear_players();
+  static const int kPlayersFieldNumber = 2;
+  ::CDOTAMatchMetadata_Team_Player* mutable_players(int index);
+  ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_Player >*
+      mutable_players();
+  const ::CDOTAMatchMetadata_Team_Player& players(int index) const;
+  ::CDOTAMatchMetadata_Team_Player* add_players();
+  const ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_Player >&
+      players() const;
+
+  // repeated float graph_experience = 3;
+  int graph_experience_size() const;
+  void clear_graph_experience();
+  static const int kGraphExperienceFieldNumber = 3;
+  float graph_experience(int index) const;
+  void set_graph_experience(int index, float value);
+  void add_graph_experience(float value);
+  const ::google::protobuf::RepeatedField< float >&
+      graph_experience() const;
+  ::google::protobuf::RepeatedField< float >*
+      mutable_graph_experience();
+
+  // repeated float graph_gold_earned = 4;
+  int graph_gold_earned_size() const;
+  void clear_graph_gold_earned();
+  static const int kGraphGoldEarnedFieldNumber = 4;
+  float graph_gold_earned(int index) const;
+  void set_graph_gold_earned(int index, float value);
+  void add_graph_gold_earned(float value);
+  const ::google::protobuf::RepeatedField< float >&
+      graph_gold_earned() const;
+  ::google::protobuf::RepeatedField< float >*
+      mutable_graph_gold_earned();
+
+  // repeated float graph_net_worth = 5;
+  int graph_net_worth_size() const;
+  void clear_graph_net_worth();
+  static const int kGraphNetWorthFieldNumber = 5;
+  float graph_net_worth(int index) const;
+  void set_graph_net_worth(int index, float value);
+  void add_graph_net_worth(float value);
+  const ::google::protobuf::RepeatedField< float >&
+      graph_net_worth() const;
+  ::google::protobuf::RepeatedField< float >*
+      mutable_graph_net_worth();
+
+  // repeated uint32 cm_bans = 8;
+  int cm_bans_size() const;
+  void clear_cm_bans();
+  static const int kCmBansFieldNumber = 8;
+  ::google::protobuf::uint32 cm_bans(int index) const;
+  void set_cm_bans(int index, ::google::protobuf::uint32 value);
+  void add_cm_bans(::google::protobuf::uint32 value);
+  const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+      cm_bans() const;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+      mutable_cm_bans();
+
+  // repeated uint32 cm_picks = 9;
+  int cm_picks_size() const;
+  void clear_cm_picks();
+  static const int kCmPicksFieldNumber = 9;
+  ::google::protobuf::uint32 cm_picks(int index) const;
+  void set_cm_picks(int index, ::google::protobuf::uint32 value);
+  void add_cm_picks(::google::protobuf::uint32 value);
+  const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+      cm_picks() const;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+      mutable_cm_picks();
+
+  // optional uint32 dota_team = 1;
+  bool has_dota_team() const;
+  void clear_dota_team();
+  static const int kDotaTeamFieldNumber = 1;
+  ::google::protobuf::uint32 dota_team() const;
+  void set_dota_team(::google::protobuf::uint32 value);
+
+  // optional bool cm_first_pick = 6;
+  bool has_cm_first_pick() const;
+  void clear_cm_first_pick();
+  static const int kCmFirstPickFieldNumber = 6;
+  bool cm_first_pick() const;
+  void set_cm_first_pick(bool value);
+
+  // optional uint32 cm_captain_player_id = 7;
+  bool has_cm_captain_player_id() const;
+  void clear_cm_captain_player_id();
+  static const int kCmCaptainPlayerIdFieldNumber = 7;
+  ::google::protobuf::uint32 cm_captain_player_id() const;
+  void set_cm_captain_player_id(::google::protobuf::uint32 value);
+
+  // optional uint32 cm_penalty = 10;
+  bool has_cm_penalty() const;
+  void clear_cm_penalty();
+  static const int kCmPenaltyFieldNumber = 10;
+  ::google::protobuf::uint32 cm_penalty() const;
+  void set_cm_penalty(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:CDOTAMatchMetadata.Team)
+ private:
+  void set_has_dota_team();
+  void clear_has_dota_team();
+  void set_has_cm_first_pick();
+  void clear_has_cm_first_pick();
+  void set_has_cm_captain_player_id();
+  void clear_has_cm_captain_player_id();
+  void set_has_cm_penalty();
+  void clear_has_cm_penalty();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_Player > players_;
+  ::google::protobuf::RepeatedField< float > graph_experience_;
+  ::google::protobuf::RepeatedField< float > graph_gold_earned_;
+  ::google::protobuf::RepeatedField< float > graph_net_worth_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > cm_bans_;
+  ::google::protobuf::RepeatedField< ::google::protobuf::uint32 > cm_picks_;
+  ::google::protobuf::uint32 dota_team_;
+  bool cm_first_pick_;
+  ::google::protobuf::uint32 cm_captain_player_id_;
+  ::google::protobuf::uint32 cm_penalty_;
+  friend struct ::protobuf_mcdota_2eproto::TableStruct;
+};
+// -------------------------------------------------------------------
+
+class CDOTAMatchMetadata : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CDOTAMatchMetadata) */ {
+ public:
+  CDOTAMatchMetadata();
+  virtual ~CDOTAMatchMetadata();
+
+  CDOTAMatchMetadata(const CDOTAMatchMetadata& from);
+
+  inline CDOTAMatchMetadata& operator=(const CDOTAMatchMetadata& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  CDOTAMatchMetadata(CDOTAMatchMetadata&& from) noexcept
+    : CDOTAMatchMetadata() {
+    *this = ::std::move(from);
+  }
+
+  inline CDOTAMatchMetadata& operator=(CDOTAMatchMetadata&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CDOTAMatchMetadata& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const CDOTAMatchMetadata* internal_default_instance() {
+    return reinterpret_cast<const CDOTAMatchMetadata*>(
+               &_CDOTAMatchMetadata_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    37;
+
+  void Swap(CDOTAMatchMetadata* other);
+  friend void swap(CDOTAMatchMetadata& a, CDOTAMatchMetadata& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CDOTAMatchMetadata* New() const final {
+    return CreateMaybeMessage<CDOTAMatchMetadata>(NULL);
+  }
+
+  CDOTAMatchMetadata* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<CDOTAMatchMetadata>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const CDOTAMatchMetadata& from);
+  void MergeFrom(const CDOTAMatchMetadata& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CDOTAMatchMetadata* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  typedef CDOTAMatchMetadata_Team Team;
+
+  // accessors -------------------------------------------------------
+
+  // repeated .CDOTAMatchMetadata.Team teams = 1;
+  int teams_size() const;
+  void clear_teams();
+  static const int kTeamsFieldNumber = 1;
+  ::CDOTAMatchMetadata_Team* mutable_teams(int index);
+  ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team >*
+      mutable_teams();
+  const ::CDOTAMatchMetadata_Team& teams(int index) const;
+  ::CDOTAMatchMetadata_Team* add_teams();
+  const ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team >&
+      teams() const;
+
+  // repeated .CLobbyTimedRewardDetails item_rewards = 2;
+  int item_rewards_size() const;
+  void clear_item_rewards();
+  static const int kItemRewardsFieldNumber = 2;
+  ::CLobbyTimedRewardDetails* mutable_item_rewards(int index);
+  ::google::protobuf::RepeatedPtrField< ::CLobbyTimedRewardDetails >*
+      mutable_item_rewards();
+  const ::CLobbyTimedRewardDetails& item_rewards(int index) const;
+  ::CLobbyTimedRewardDetails* add_item_rewards();
+  const ::google::protobuf::RepeatedPtrField< ::CLobbyTimedRewardDetails >&
+      item_rewards() const;
+
+  // repeated .CMsgMatchTips match_tips = 7;
+  int match_tips_size() const;
+  void clear_match_tips();
+  static const int kMatchTipsFieldNumber = 7;
+  ::CMsgMatchTips* mutable_match_tips(int index);
+  ::google::protobuf::RepeatedPtrField< ::CMsgMatchTips >*
+      mutable_match_tips();
+  const ::CMsgMatchTips& match_tips(int index) const;
+  ::CMsgMatchTips* add_match_tips();
+  const ::google::protobuf::RepeatedPtrField< ::CMsgMatchTips >&
+      match_tips() const;
+
+  // optional bytes event_game_custom_table = 5;
+  bool has_event_game_custom_table() const;
+  void clear_event_game_custom_table();
+  static const int kEventGameCustomTableFieldNumber = 5;
+  const ::std::string& event_game_custom_table() const;
+  void set_event_game_custom_table(const ::std::string& value);
+  #if LANG_CXX11
+  void set_event_game_custom_table(::std::string&& value);
+  #endif
+  void set_event_game_custom_table(const char* value);
+  void set_event_game_custom_table(const void* value, size_t size);
+  ::std::string* mutable_event_game_custom_table();
+  ::std::string* release_event_game_custom_table();
+  void set_allocated_event_game_custom_table(::std::string* event_game_custom_table);
+
+  // optional .CMsgMatchMatchmakingStats matchmaking_stats = 8;
+  bool has_matchmaking_stats() const;
+  void clear_matchmaking_stats();
+  static const int kMatchmakingStatsFieldNumber = 8;
+  private:
+  const ::CMsgMatchMatchmakingStats& _internal_matchmaking_stats() const;
+  public:
+  const ::CMsgMatchMatchmakingStats& matchmaking_stats() const;
+  ::CMsgMatchMatchmakingStats* release_matchmaking_stats();
+  ::CMsgMatchMatchmakingStats* mutable_matchmaking_stats();
+  void set_allocated_matchmaking_stats(::CMsgMatchMatchmakingStats* matchmaking_stats);
+
+  // optional fixed64 lobby_id = 3;
+  bool has_lobby_id() const;
+  void clear_lobby_id();
+  static const int kLobbyIdFieldNumber = 3;
+  ::google::protobuf::uint64 lobby_id() const;
+  void set_lobby_id(::google::protobuf::uint64 value);
+
+  // optional fixed64 report_until_time = 4;
+  bool has_report_until_time() const;
+  void clear_report_until_time();
+  static const int kReportUntilTimeFieldNumber = 4;
+  ::google::protobuf::uint64 report_until_time() const;
+  void set_report_until_time(::google::protobuf::uint64 value);
+
+  // optional uint32 primary_event_id = 6;
+  bool has_primary_event_id() const;
+  void clear_primary_event_id();
+  static const int kPrimaryEventIdFieldNumber = 6;
+  ::google::protobuf::uint32 primary_event_id() const;
+  void set_primary_event_id(::google::protobuf::uint32 value);
+
+  // @@protoc_insertion_point(class_scope:CDOTAMatchMetadata)
+ private:
+  void set_has_lobby_id();
+  void clear_has_lobby_id();
+  void set_has_report_until_time();
+  void clear_has_report_until_time();
+  void set_has_event_game_custom_table();
+  void clear_has_event_game_custom_table();
+  void set_has_primary_event_id();
+  void clear_has_primary_event_id();
+  void set_has_matchmaking_stats();
+  void clear_has_matchmaking_stats();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team > teams_;
+  ::google::protobuf::RepeatedPtrField< ::CLobbyTimedRewardDetails > item_rewards_;
+  ::google::protobuf::RepeatedPtrField< ::CMsgMatchTips > match_tips_;
+  ::google::protobuf::internal::ArenaStringPtr event_game_custom_table_;
+  ::CMsgMatchMatchmakingStats* matchmaking_stats_;
+  ::google::protobuf::uint64 lobby_id_;
+  ::google::protobuf::uint64 report_until_time_;
+  ::google::protobuf::uint32 primary_event_id_;
+  friend struct ::protobuf_mcdota_2eproto::TableStruct;
+};
 // ===================================================================
 
 
@@ -3552,6 +7509,3977 @@ inline void CCLCMsg_ClientMessage::set_allocated_data(::std::string* data) {
   // @@protoc_insertion_point(field_set_allocated:CCLCMsg_ClientMessage.data)
 }
 
+// -------------------------------------------------------------------
+
+// CDOTAClientMsg_MatchMetadata
+
+// optional uint64 match_id = 1;
+inline bool CDOTAClientMsg_MatchMetadata::has_match_id() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void CDOTAClientMsg_MatchMetadata::set_has_match_id() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void CDOTAClientMsg_MatchMetadata::clear_has_match_id() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void CDOTAClientMsg_MatchMetadata::clear_match_id() {
+  match_id_ = GOOGLE_ULONGLONG(0);
+  clear_has_match_id();
+}
+inline ::google::protobuf::uint64 CDOTAClientMsg_MatchMetadata::match_id() const {
+  // @@protoc_insertion_point(field_get:CDOTAClientMsg_MatchMetadata.match_id)
+  return match_id_;
+}
+inline void CDOTAClientMsg_MatchMetadata::set_match_id(::google::protobuf::uint64 value) {
+  set_has_match_id();
+  match_id_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAClientMsg_MatchMetadata.match_id)
+}
+
+// optional bytes metadata = 2;
+inline bool CDOTAClientMsg_MatchMetadata::has_metadata() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CDOTAClientMsg_MatchMetadata::set_has_metadata() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CDOTAClientMsg_MatchMetadata::clear_has_metadata() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CDOTAClientMsg_MatchMetadata::clear_metadata() {
+  metadata_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_metadata();
+}
+inline const ::std::string& CDOTAClientMsg_MatchMetadata::metadata() const {
+  // @@protoc_insertion_point(field_get:CDOTAClientMsg_MatchMetadata.metadata)
+  return metadata_.GetNoArena();
+}
+inline void CDOTAClientMsg_MatchMetadata::set_metadata(const ::std::string& value) {
+  set_has_metadata();
+  metadata_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:CDOTAClientMsg_MatchMetadata.metadata)
+}
+#if LANG_CXX11
+inline void CDOTAClientMsg_MatchMetadata::set_metadata(::std::string&& value) {
+  set_has_metadata();
+  metadata_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:CDOTAClientMsg_MatchMetadata.metadata)
+}
+#endif
+inline void CDOTAClientMsg_MatchMetadata::set_metadata(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  set_has_metadata();
+  metadata_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:CDOTAClientMsg_MatchMetadata.metadata)
+}
+inline void CDOTAClientMsg_MatchMetadata::set_metadata(const void* value, size_t size) {
+  set_has_metadata();
+  metadata_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:CDOTAClientMsg_MatchMetadata.metadata)
+}
+inline ::std::string* CDOTAClientMsg_MatchMetadata::mutable_metadata() {
+  set_has_metadata();
+  // @@protoc_insertion_point(field_mutable:CDOTAClientMsg_MatchMetadata.metadata)
+  return metadata_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* CDOTAClientMsg_MatchMetadata::release_metadata() {
+  // @@protoc_insertion_point(field_release:CDOTAClientMsg_MatchMetadata.metadata)
+  if (!has_metadata()) {
+    return NULL;
+  }
+  clear_has_metadata();
+  return metadata_.ReleaseNonDefaultNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void CDOTAClientMsg_MatchMetadata::set_allocated_metadata(::std::string* metadata) {
+  if (metadata != NULL) {
+    set_has_metadata();
+  } else {
+    clear_has_metadata();
+  }
+  metadata_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), metadata);
+  // @@protoc_insertion_point(field_set_allocated:CDOTAClientMsg_MatchMetadata.metadata)
+}
+
+// -------------------------------------------------------------------
+
+// CSOEconItemAttribute
+
+// optional uint32 def_index = 1;
+inline bool CSOEconItemAttribute::has_def_index() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void CSOEconItemAttribute::set_has_def_index() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void CSOEconItemAttribute::clear_has_def_index() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void CSOEconItemAttribute::clear_def_index() {
+  def_index_ = 0u;
+  clear_has_def_index();
+}
+inline ::google::protobuf::uint32 CSOEconItemAttribute::def_index() const {
+  // @@protoc_insertion_point(field_get:CSOEconItemAttribute.def_index)
+  return def_index_;
+}
+inline void CSOEconItemAttribute::set_def_index(::google::protobuf::uint32 value) {
+  set_has_def_index();
+  def_index_ = value;
+  // @@protoc_insertion_point(field_set:CSOEconItemAttribute.def_index)
+}
+
+// optional uint32 value = 2;
+inline bool CSOEconItemAttribute::has_value() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void CSOEconItemAttribute::set_has_value() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void CSOEconItemAttribute::clear_has_value() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void CSOEconItemAttribute::clear_value() {
+  value_ = 0u;
+  clear_has_value();
+}
+inline ::google::protobuf::uint32 CSOEconItemAttribute::value() const {
+  // @@protoc_insertion_point(field_get:CSOEconItemAttribute.value)
+  return value_;
+}
+inline void CSOEconItemAttribute::set_value(::google::protobuf::uint32 value) {
+  set_has_value();
+  value_ = value;
+  // @@protoc_insertion_point(field_set:CSOEconItemAttribute.value)
+}
+
+// optional bytes value_bytes = 3;
+inline bool CSOEconItemAttribute::has_value_bytes() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CSOEconItemAttribute::set_has_value_bytes() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CSOEconItemAttribute::clear_has_value_bytes() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CSOEconItemAttribute::clear_value_bytes() {
+  value_bytes_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_value_bytes();
+}
+inline const ::std::string& CSOEconItemAttribute::value_bytes() const {
+  // @@protoc_insertion_point(field_get:CSOEconItemAttribute.value_bytes)
+  return value_bytes_.GetNoArena();
+}
+inline void CSOEconItemAttribute::set_value_bytes(const ::std::string& value) {
+  set_has_value_bytes();
+  value_bytes_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:CSOEconItemAttribute.value_bytes)
+}
+#if LANG_CXX11
+inline void CSOEconItemAttribute::set_value_bytes(::std::string&& value) {
+  set_has_value_bytes();
+  value_bytes_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:CSOEconItemAttribute.value_bytes)
+}
+#endif
+inline void CSOEconItemAttribute::set_value_bytes(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  set_has_value_bytes();
+  value_bytes_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:CSOEconItemAttribute.value_bytes)
+}
+inline void CSOEconItemAttribute::set_value_bytes(const void* value, size_t size) {
+  set_has_value_bytes();
+  value_bytes_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:CSOEconItemAttribute.value_bytes)
+}
+inline ::std::string* CSOEconItemAttribute::mutable_value_bytes() {
+  set_has_value_bytes();
+  // @@protoc_insertion_point(field_mutable:CSOEconItemAttribute.value_bytes)
+  return value_bytes_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* CSOEconItemAttribute::release_value_bytes() {
+  // @@protoc_insertion_point(field_release:CSOEconItemAttribute.value_bytes)
+  if (!has_value_bytes()) {
+    return NULL;
+  }
+  clear_has_value_bytes();
+  return value_bytes_.ReleaseNonDefaultNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void CSOEconItemAttribute::set_allocated_value_bytes(::std::string* value_bytes) {
+  if (value_bytes != NULL) {
+    set_has_value_bytes();
+  } else {
+    clear_has_value_bytes();
+  }
+  value_bytes_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value_bytes);
+  // @@protoc_insertion_point(field_set_allocated:CSOEconItemAttribute.value_bytes)
+}
+
+// -------------------------------------------------------------------
+
+// CSOEconItemEquipped
+
+// optional uint32 new_class = 1;
+inline bool CSOEconItemEquipped::has_new_class() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CSOEconItemEquipped::set_has_new_class() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CSOEconItemEquipped::clear_has_new_class() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CSOEconItemEquipped::clear_new_class() {
+  new_class_ = 0u;
+  clear_has_new_class();
+}
+inline ::google::protobuf::uint32 CSOEconItemEquipped::new_class() const {
+  // @@protoc_insertion_point(field_get:CSOEconItemEquipped.new_class)
+  return new_class_;
+}
+inline void CSOEconItemEquipped::set_new_class(::google::protobuf::uint32 value) {
+  set_has_new_class();
+  new_class_ = value;
+  // @@protoc_insertion_point(field_set:CSOEconItemEquipped.new_class)
+}
+
+// optional uint32 new_slot = 2;
+inline bool CSOEconItemEquipped::has_new_slot() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void CSOEconItemEquipped::set_has_new_slot() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void CSOEconItemEquipped::clear_has_new_slot() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void CSOEconItemEquipped::clear_new_slot() {
+  new_slot_ = 0u;
+  clear_has_new_slot();
+}
+inline ::google::protobuf::uint32 CSOEconItemEquipped::new_slot() const {
+  // @@protoc_insertion_point(field_get:CSOEconItemEquipped.new_slot)
+  return new_slot_;
+}
+inline void CSOEconItemEquipped::set_new_slot(::google::protobuf::uint32 value) {
+  set_has_new_slot();
+  new_slot_ = value;
+  // @@protoc_insertion_point(field_set:CSOEconItemEquipped.new_slot)
+}
+
+// -------------------------------------------------------------------
+
+// CSOEconItem
+
+// optional uint64 id = 1;
+inline bool CSOEconItem::has_id() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void CSOEconItem::set_has_id() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void CSOEconItem::clear_has_id() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void CSOEconItem::clear_id() {
+  id_ = GOOGLE_ULONGLONG(0);
+  clear_has_id();
+}
+inline ::google::protobuf::uint64 CSOEconItem::id() const {
+  // @@protoc_insertion_point(field_get:CSOEconItem.id)
+  return id_;
+}
+inline void CSOEconItem::set_id(::google::protobuf::uint64 value) {
+  set_has_id();
+  id_ = value;
+  // @@protoc_insertion_point(field_set:CSOEconItem.id)
+}
+
+// optional uint32 account_id = 2;
+inline bool CSOEconItem::has_account_id() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void CSOEconItem::set_has_account_id() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void CSOEconItem::clear_has_account_id() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void CSOEconItem::clear_account_id() {
+  account_id_ = 0u;
+  clear_has_account_id();
+}
+inline ::google::protobuf::uint32 CSOEconItem::account_id() const {
+  // @@protoc_insertion_point(field_get:CSOEconItem.account_id)
+  return account_id_;
+}
+inline void CSOEconItem::set_account_id(::google::protobuf::uint32 value) {
+  set_has_account_id();
+  account_id_ = value;
+  // @@protoc_insertion_point(field_set:CSOEconItem.account_id)
+}
+
+// optional uint32 inventory = 3;
+inline bool CSOEconItem::has_inventory() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void CSOEconItem::set_has_inventory() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void CSOEconItem::clear_has_inventory() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void CSOEconItem::clear_inventory() {
+  inventory_ = 0u;
+  clear_has_inventory();
+}
+inline ::google::protobuf::uint32 CSOEconItem::inventory() const {
+  // @@protoc_insertion_point(field_get:CSOEconItem.inventory)
+  return inventory_;
+}
+inline void CSOEconItem::set_inventory(::google::protobuf::uint32 value) {
+  set_has_inventory();
+  inventory_ = value;
+  // @@protoc_insertion_point(field_set:CSOEconItem.inventory)
+}
+
+// optional uint32 def_index = 4;
+inline bool CSOEconItem::has_def_index() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void CSOEconItem::set_has_def_index() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void CSOEconItem::clear_has_def_index() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void CSOEconItem::clear_def_index() {
+  def_index_ = 0u;
+  clear_has_def_index();
+}
+inline ::google::protobuf::uint32 CSOEconItem::def_index() const {
+  // @@protoc_insertion_point(field_get:CSOEconItem.def_index)
+  return def_index_;
+}
+inline void CSOEconItem::set_def_index(::google::protobuf::uint32 value) {
+  set_has_def_index();
+  def_index_ = value;
+  // @@protoc_insertion_point(field_set:CSOEconItem.def_index)
+}
+
+// optional uint32 quantity = 5 [default = 1];
+inline bool CSOEconItem::has_quantity() const {
+  return (_has_bits_[0] & 0x00000400u) != 0;
+}
+inline void CSOEconItem::set_has_quantity() {
+  _has_bits_[0] |= 0x00000400u;
+}
+inline void CSOEconItem::clear_has_quantity() {
+  _has_bits_[0] &= ~0x00000400u;
+}
+inline void CSOEconItem::clear_quantity() {
+  quantity_ = 1u;
+  clear_has_quantity();
+}
+inline ::google::protobuf::uint32 CSOEconItem::quantity() const {
+  // @@protoc_insertion_point(field_get:CSOEconItem.quantity)
+  return quantity_;
+}
+inline void CSOEconItem::set_quantity(::google::protobuf::uint32 value) {
+  set_has_quantity();
+  quantity_ = value;
+  // @@protoc_insertion_point(field_set:CSOEconItem.quantity)
+}
+
+// optional uint32 level = 6 [default = 1];
+inline bool CSOEconItem::has_level() const {
+  return (_has_bits_[0] & 0x00000800u) != 0;
+}
+inline void CSOEconItem::set_has_level() {
+  _has_bits_[0] |= 0x00000800u;
+}
+inline void CSOEconItem::clear_has_level() {
+  _has_bits_[0] &= ~0x00000800u;
+}
+inline void CSOEconItem::clear_level() {
+  level_ = 1u;
+  clear_has_level();
+}
+inline ::google::protobuf::uint32 CSOEconItem::level() const {
+  // @@protoc_insertion_point(field_get:CSOEconItem.level)
+  return level_;
+}
+inline void CSOEconItem::set_level(::google::protobuf::uint32 value) {
+  set_has_level();
+  level_ = value;
+  // @@protoc_insertion_point(field_set:CSOEconItem.level)
+}
+
+// optional uint32 quality = 7 [default = 4];
+inline bool CSOEconItem::has_quality() const {
+  return (_has_bits_[0] & 0x00000200u) != 0;
+}
+inline void CSOEconItem::set_has_quality() {
+  _has_bits_[0] |= 0x00000200u;
+}
+inline void CSOEconItem::clear_has_quality() {
+  _has_bits_[0] &= ~0x00000200u;
+}
+inline void CSOEconItem::clear_quality() {
+  quality_ = 4u;
+  clear_has_quality();
+}
+inline ::google::protobuf::uint32 CSOEconItem::quality() const {
+  // @@protoc_insertion_point(field_get:CSOEconItem.quality)
+  return quality_;
+}
+inline void CSOEconItem::set_quality(::google::protobuf::uint32 value) {
+  set_has_quality();
+  quality_ = value;
+  // @@protoc_insertion_point(field_set:CSOEconItem.quality)
+}
+
+// optional uint32 flags = 8 [default = 0];
+inline bool CSOEconItem::has_flags() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+inline void CSOEconItem::set_has_flags() {
+  _has_bits_[0] |= 0x00000020u;
+}
+inline void CSOEconItem::clear_has_flags() {
+  _has_bits_[0] &= ~0x00000020u;
+}
+inline void CSOEconItem::clear_flags() {
+  flags_ = 0u;
+  clear_has_flags();
+}
+inline ::google::protobuf::uint32 CSOEconItem::flags() const {
+  // @@protoc_insertion_point(field_get:CSOEconItem.flags)
+  return flags_;
+}
+inline void CSOEconItem::set_flags(::google::protobuf::uint32 value) {
+  set_has_flags();
+  flags_ = value;
+  // @@protoc_insertion_point(field_set:CSOEconItem.flags)
+}
+
+// optional uint32 origin = 9 [default = 0];
+inline bool CSOEconItem::has_origin() const {
+  return (_has_bits_[0] & 0x00000040u) != 0;
+}
+inline void CSOEconItem::set_has_origin() {
+  _has_bits_[0] |= 0x00000040u;
+}
+inline void CSOEconItem::clear_has_origin() {
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline void CSOEconItem::clear_origin() {
+  origin_ = 0u;
+  clear_has_origin();
+}
+inline ::google::protobuf::uint32 CSOEconItem::origin() const {
+  // @@protoc_insertion_point(field_get:CSOEconItem.origin)
+  return origin_;
+}
+inline void CSOEconItem::set_origin(::google::protobuf::uint32 value) {
+  set_has_origin();
+  origin_ = value;
+  // @@protoc_insertion_point(field_set:CSOEconItem.origin)
+}
+
+// repeated .CSOEconItemAttribute attribute = 12;
+inline int CSOEconItem::attribute_size() const {
+  return attribute_.size();
+}
+inline void CSOEconItem::clear_attribute() {
+  attribute_.Clear();
+}
+inline ::CSOEconItemAttribute* CSOEconItem::mutable_attribute(int index) {
+  // @@protoc_insertion_point(field_mutable:CSOEconItem.attribute)
+  return attribute_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::CSOEconItemAttribute >*
+CSOEconItem::mutable_attribute() {
+  // @@protoc_insertion_point(field_mutable_list:CSOEconItem.attribute)
+  return &attribute_;
+}
+inline const ::CSOEconItemAttribute& CSOEconItem::attribute(int index) const {
+  // @@protoc_insertion_point(field_get:CSOEconItem.attribute)
+  return attribute_.Get(index);
+}
+inline ::CSOEconItemAttribute* CSOEconItem::add_attribute() {
+  // @@protoc_insertion_point(field_add:CSOEconItem.attribute)
+  return attribute_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::CSOEconItemAttribute >&
+CSOEconItem::attribute() const {
+  // @@protoc_insertion_point(field_list:CSOEconItem.attribute)
+  return attribute_;
+}
+
+// optional .CSOEconItem interior_item = 13;
+inline bool CSOEconItem::has_interior_item() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CSOEconItem::set_has_interior_item() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CSOEconItem::clear_has_interior_item() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CSOEconItem::clear_interior_item() {
+  if (interior_item_ != NULL) interior_item_->Clear();
+  clear_has_interior_item();
+}
+inline const ::CSOEconItem& CSOEconItem::_internal_interior_item() const {
+  return *interior_item_;
+}
+inline const ::CSOEconItem& CSOEconItem::interior_item() const {
+  const ::CSOEconItem* p = interior_item_;
+  // @@protoc_insertion_point(field_get:CSOEconItem.interior_item)
+  return p != NULL ? *p : *reinterpret_cast<const ::CSOEconItem*>(
+      &::_CSOEconItem_default_instance_);
+}
+inline ::CSOEconItem* CSOEconItem::release_interior_item() {
+  // @@protoc_insertion_point(field_release:CSOEconItem.interior_item)
+  clear_has_interior_item();
+  ::CSOEconItem* temp = interior_item_;
+  interior_item_ = NULL;
+  return temp;
+}
+inline ::CSOEconItem* CSOEconItem::mutable_interior_item() {
+  set_has_interior_item();
+  if (interior_item_ == NULL) {
+    auto* p = CreateMaybeMessage<::CSOEconItem>(GetArenaNoVirtual());
+    interior_item_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:CSOEconItem.interior_item)
+  return interior_item_;
+}
+inline void CSOEconItem::set_allocated_interior_item(::CSOEconItem* interior_item) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete interior_item_;
+  }
+  if (interior_item) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      interior_item = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, interior_item, submessage_arena);
+    }
+    set_has_interior_item();
+  } else {
+    clear_has_interior_item();
+  }
+  interior_item_ = interior_item;
+  // @@protoc_insertion_point(field_set_allocated:CSOEconItem.interior_item)
+}
+
+// optional uint32 style = 15 [default = 0];
+inline bool CSOEconItem::has_style() const {
+  return (_has_bits_[0] & 0x00000080u) != 0;
+}
+inline void CSOEconItem::set_has_style() {
+  _has_bits_[0] |= 0x00000080u;
+}
+inline void CSOEconItem::clear_has_style() {
+  _has_bits_[0] &= ~0x00000080u;
+}
+inline void CSOEconItem::clear_style() {
+  style_ = 0u;
+  clear_has_style();
+}
+inline ::google::protobuf::uint32 CSOEconItem::style() const {
+  // @@protoc_insertion_point(field_get:CSOEconItem.style)
+  return style_;
+}
+inline void CSOEconItem::set_style(::google::protobuf::uint32 value) {
+  set_has_style();
+  style_ = value;
+  // @@protoc_insertion_point(field_set:CSOEconItem.style)
+}
+
+// optional uint64 original_id = 16 [default = 0];
+inline bool CSOEconItem::has_original_id() const {
+  return (_has_bits_[0] & 0x00000100u) != 0;
+}
+inline void CSOEconItem::set_has_original_id() {
+  _has_bits_[0] |= 0x00000100u;
+}
+inline void CSOEconItem::clear_has_original_id() {
+  _has_bits_[0] &= ~0x00000100u;
+}
+inline void CSOEconItem::clear_original_id() {
+  original_id_ = GOOGLE_ULONGLONG(0);
+  clear_has_original_id();
+}
+inline ::google::protobuf::uint64 CSOEconItem::original_id() const {
+  // @@protoc_insertion_point(field_get:CSOEconItem.original_id)
+  return original_id_;
+}
+inline void CSOEconItem::set_original_id(::google::protobuf::uint64 value) {
+  set_has_original_id();
+  original_id_ = value;
+  // @@protoc_insertion_point(field_set:CSOEconItem.original_id)
+}
+
+// repeated .CSOEconItemEquipped equipped_state = 18;
+inline int CSOEconItem::equipped_state_size() const {
+  return equipped_state_.size();
+}
+inline void CSOEconItem::clear_equipped_state() {
+  equipped_state_.Clear();
+}
+inline ::CSOEconItemEquipped* CSOEconItem::mutable_equipped_state(int index) {
+  // @@protoc_insertion_point(field_mutable:CSOEconItem.equipped_state)
+  return equipped_state_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::CSOEconItemEquipped >*
+CSOEconItem::mutable_equipped_state() {
+  // @@protoc_insertion_point(field_mutable_list:CSOEconItem.equipped_state)
+  return &equipped_state_;
+}
+inline const ::CSOEconItemEquipped& CSOEconItem::equipped_state(int index) const {
+  // @@protoc_insertion_point(field_get:CSOEconItem.equipped_state)
+  return equipped_state_.Get(index);
+}
+inline ::CSOEconItemEquipped* CSOEconItem::add_equipped_state() {
+  // @@protoc_insertion_point(field_add:CSOEconItem.equipped_state)
+  return equipped_state_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::CSOEconItemEquipped >&
+CSOEconItem::equipped_state() const {
+  // @@protoc_insertion_point(field_list:CSOEconItem.equipped_state)
+  return equipped_state_;
+}
+
+// -------------------------------------------------------------------
+
+// CLobbyTimedRewardDetails
+
+// optional uint32 item_def_index = 2;
+inline bool CLobbyTimedRewardDetails::has_item_def_index() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CLobbyTimedRewardDetails::set_has_item_def_index() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CLobbyTimedRewardDetails::clear_has_item_def_index() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CLobbyTimedRewardDetails::clear_item_def_index() {
+  item_def_index_ = 0u;
+  clear_has_item_def_index();
+}
+inline ::google::protobuf::uint32 CLobbyTimedRewardDetails::item_def_index() const {
+  // @@protoc_insertion_point(field_get:CLobbyTimedRewardDetails.item_def_index)
+  return item_def_index_;
+}
+inline void CLobbyTimedRewardDetails::set_item_def_index(::google::protobuf::uint32 value) {
+  set_has_item_def_index();
+  item_def_index_ = value;
+  // @@protoc_insertion_point(field_set:CLobbyTimedRewardDetails.item_def_index)
+}
+
+// optional bool is_supply_crate = 3;
+inline bool CLobbyTimedRewardDetails::has_is_supply_crate() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void CLobbyTimedRewardDetails::set_has_is_supply_crate() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void CLobbyTimedRewardDetails::clear_has_is_supply_crate() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void CLobbyTimedRewardDetails::clear_is_supply_crate() {
+  is_supply_crate_ = false;
+  clear_has_is_supply_crate();
+}
+inline bool CLobbyTimedRewardDetails::is_supply_crate() const {
+  // @@protoc_insertion_point(field_get:CLobbyTimedRewardDetails.is_supply_crate)
+  return is_supply_crate_;
+}
+inline void CLobbyTimedRewardDetails::set_is_supply_crate(bool value) {
+  set_has_is_supply_crate();
+  is_supply_crate_ = value;
+  // @@protoc_insertion_point(field_set:CLobbyTimedRewardDetails.is_supply_crate)
+}
+
+// optional bool is_timed_drop = 4;
+inline bool CLobbyTimedRewardDetails::has_is_timed_drop() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void CLobbyTimedRewardDetails::set_has_is_timed_drop() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void CLobbyTimedRewardDetails::clear_has_is_timed_drop() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void CLobbyTimedRewardDetails::clear_is_timed_drop() {
+  is_timed_drop_ = false;
+  clear_has_is_timed_drop();
+}
+inline bool CLobbyTimedRewardDetails::is_timed_drop() const {
+  // @@protoc_insertion_point(field_get:CLobbyTimedRewardDetails.is_timed_drop)
+  return is_timed_drop_;
+}
+inline void CLobbyTimedRewardDetails::set_is_timed_drop(bool value) {
+  set_has_is_timed_drop();
+  is_timed_drop_ = value;
+  // @@protoc_insertion_point(field_set:CLobbyTimedRewardDetails.is_timed_drop)
+}
+
+// optional uint32 account_id = 5;
+inline bool CLobbyTimedRewardDetails::has_account_id() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void CLobbyTimedRewardDetails::set_has_account_id() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void CLobbyTimedRewardDetails::clear_has_account_id() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void CLobbyTimedRewardDetails::clear_account_id() {
+  account_id_ = 0u;
+  clear_has_account_id();
+}
+inline ::google::protobuf::uint32 CLobbyTimedRewardDetails::account_id() const {
+  // @@protoc_insertion_point(field_get:CLobbyTimedRewardDetails.account_id)
+  return account_id_;
+}
+inline void CLobbyTimedRewardDetails::set_account_id(::google::protobuf::uint32 value) {
+  set_has_account_id();
+  account_id_ = value;
+  // @@protoc_insertion_point(field_set:CLobbyTimedRewardDetails.account_id)
+}
+
+// optional uint32 origin = 6;
+inline bool CLobbyTimedRewardDetails::has_origin() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void CLobbyTimedRewardDetails::set_has_origin() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void CLobbyTimedRewardDetails::clear_has_origin() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void CLobbyTimedRewardDetails::clear_origin() {
+  origin_ = 0u;
+  clear_has_origin();
+}
+inline ::google::protobuf::uint32 CLobbyTimedRewardDetails::origin() const {
+  // @@protoc_insertion_point(field_get:CLobbyTimedRewardDetails.origin)
+  return origin_;
+}
+inline void CLobbyTimedRewardDetails::set_origin(::google::protobuf::uint32 value) {
+  set_has_origin();
+  origin_ = value;
+  // @@protoc_insertion_point(field_set:CLobbyTimedRewardDetails.origin)
+}
+
+// -------------------------------------------------------------------
+
+// CMsgMatchTips_SingleTip
+
+// optional uint32 source_account_id = 1;
+inline bool CMsgMatchTips_SingleTip::has_source_account_id() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CMsgMatchTips_SingleTip::set_has_source_account_id() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CMsgMatchTips_SingleTip::clear_has_source_account_id() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CMsgMatchTips_SingleTip::clear_source_account_id() {
+  source_account_id_ = 0u;
+  clear_has_source_account_id();
+}
+inline ::google::protobuf::uint32 CMsgMatchTips_SingleTip::source_account_id() const {
+  // @@protoc_insertion_point(field_get:CMsgMatchTips.SingleTip.source_account_id)
+  return source_account_id_;
+}
+inline void CMsgMatchTips_SingleTip::set_source_account_id(::google::protobuf::uint32 value) {
+  set_has_source_account_id();
+  source_account_id_ = value;
+  // @@protoc_insertion_point(field_set:CMsgMatchTips.SingleTip.source_account_id)
+}
+
+// optional uint32 target_account_id = 2;
+inline bool CMsgMatchTips_SingleTip::has_target_account_id() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void CMsgMatchTips_SingleTip::set_has_target_account_id() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void CMsgMatchTips_SingleTip::clear_has_target_account_id() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void CMsgMatchTips_SingleTip::clear_target_account_id() {
+  target_account_id_ = 0u;
+  clear_has_target_account_id();
+}
+inline ::google::protobuf::uint32 CMsgMatchTips_SingleTip::target_account_id() const {
+  // @@protoc_insertion_point(field_get:CMsgMatchTips.SingleTip.target_account_id)
+  return target_account_id_;
+}
+inline void CMsgMatchTips_SingleTip::set_target_account_id(::google::protobuf::uint32 value) {
+  set_has_target_account_id();
+  target_account_id_ = value;
+  // @@protoc_insertion_point(field_set:CMsgMatchTips.SingleTip.target_account_id)
+}
+
+// optional uint32 tip_amount = 3;
+inline bool CMsgMatchTips_SingleTip::has_tip_amount() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void CMsgMatchTips_SingleTip::set_has_tip_amount() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void CMsgMatchTips_SingleTip::clear_has_tip_amount() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void CMsgMatchTips_SingleTip::clear_tip_amount() {
+  tip_amount_ = 0u;
+  clear_has_tip_amount();
+}
+inline ::google::protobuf::uint32 CMsgMatchTips_SingleTip::tip_amount() const {
+  // @@protoc_insertion_point(field_get:CMsgMatchTips.SingleTip.tip_amount)
+  return tip_amount_;
+}
+inline void CMsgMatchTips_SingleTip::set_tip_amount(::google::protobuf::uint32 value) {
+  set_has_tip_amount();
+  tip_amount_ = value;
+  // @@protoc_insertion_point(field_set:CMsgMatchTips.SingleTip.tip_amount)
+}
+
+// optional .EEvent event_id = 4 [default = EVENT_ID_NONE];
+inline bool CMsgMatchTips_SingleTip::has_event_id() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void CMsgMatchTips_SingleTip::set_has_event_id() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void CMsgMatchTips_SingleTip::clear_has_event_id() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void CMsgMatchTips_SingleTip::clear_event_id() {
+  event_id_ = 0;
+  clear_has_event_id();
+}
+inline ::EEvent CMsgMatchTips_SingleTip::event_id() const {
+  // @@protoc_insertion_point(field_get:CMsgMatchTips.SingleTip.event_id)
+  return static_cast< ::EEvent >(event_id_);
+}
+inline void CMsgMatchTips_SingleTip::set_event_id(::EEvent value) {
+  assert(::EEvent_IsValid(value));
+  set_has_event_id();
+  event_id_ = value;
+  // @@protoc_insertion_point(field_set:CMsgMatchTips.SingleTip.event_id)
+}
+
+// -------------------------------------------------------------------
+
+// CMsgMatchTips
+
+// repeated .CMsgMatchTips.SingleTip tips = 2;
+inline int CMsgMatchTips::tips_size() const {
+  return tips_.size();
+}
+inline void CMsgMatchTips::clear_tips() {
+  tips_.Clear();
+}
+inline ::CMsgMatchTips_SingleTip* CMsgMatchTips::mutable_tips(int index) {
+  // @@protoc_insertion_point(field_mutable:CMsgMatchTips.tips)
+  return tips_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::CMsgMatchTips_SingleTip >*
+CMsgMatchTips::mutable_tips() {
+  // @@protoc_insertion_point(field_mutable_list:CMsgMatchTips.tips)
+  return &tips_;
+}
+inline const ::CMsgMatchTips_SingleTip& CMsgMatchTips::tips(int index) const {
+  // @@protoc_insertion_point(field_get:CMsgMatchTips.tips)
+  return tips_.Get(index);
+}
+inline ::CMsgMatchTips_SingleTip* CMsgMatchTips::add_tips() {
+  // @@protoc_insertion_point(field_add:CMsgMatchTips.tips)
+  return tips_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::CMsgMatchTips_SingleTip >&
+CMsgMatchTips::tips() const {
+  // @@protoc_insertion_point(field_list:CMsgMatchTips.tips)
+  return tips_;
+}
+
+// -------------------------------------------------------------------
+
+// CMsgMatchMatchmakingStats
+
+// optional uint32 average_queue_time = 1;
+inline bool CMsgMatchMatchmakingStats::has_average_queue_time() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CMsgMatchMatchmakingStats::set_has_average_queue_time() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CMsgMatchMatchmakingStats::clear_has_average_queue_time() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CMsgMatchMatchmakingStats::clear_average_queue_time() {
+  average_queue_time_ = 0u;
+  clear_has_average_queue_time();
+}
+inline ::google::protobuf::uint32 CMsgMatchMatchmakingStats::average_queue_time() const {
+  // @@protoc_insertion_point(field_get:CMsgMatchMatchmakingStats.average_queue_time)
+  return average_queue_time_;
+}
+inline void CMsgMatchMatchmakingStats::set_average_queue_time(::google::protobuf::uint32 value) {
+  set_has_average_queue_time();
+  average_queue_time_ = value;
+  // @@protoc_insertion_point(field_set:CMsgMatchMatchmakingStats.average_queue_time)
+}
+
+// optional uint32 maximum_queue_time = 2;
+inline bool CMsgMatchMatchmakingStats::has_maximum_queue_time() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void CMsgMatchMatchmakingStats::set_has_maximum_queue_time() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void CMsgMatchMatchmakingStats::clear_has_maximum_queue_time() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void CMsgMatchMatchmakingStats::clear_maximum_queue_time() {
+  maximum_queue_time_ = 0u;
+  clear_has_maximum_queue_time();
+}
+inline ::google::protobuf::uint32 CMsgMatchMatchmakingStats::maximum_queue_time() const {
+  // @@protoc_insertion_point(field_get:CMsgMatchMatchmakingStats.maximum_queue_time)
+  return maximum_queue_time_;
+}
+inline void CMsgMatchMatchmakingStats::set_maximum_queue_time(::google::protobuf::uint32 value) {
+  set_has_maximum_queue_time();
+  maximum_queue_time_ = value;
+  // @@protoc_insertion_point(field_set:CMsgMatchMatchmakingStats.maximum_queue_time)
+}
+
+// optional .EMatchBehaviorScoreVariance behavior_score_variance = 3 [default = k_EMatchBehaviorScoreVariance_Invalid];
+inline bool CMsgMatchMatchmakingStats::has_behavior_score_variance() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void CMsgMatchMatchmakingStats::set_has_behavior_score_variance() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void CMsgMatchMatchmakingStats::clear_has_behavior_score_variance() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void CMsgMatchMatchmakingStats::clear_behavior_score_variance() {
+  behavior_score_variance_ = 0;
+  clear_has_behavior_score_variance();
+}
+inline ::EMatchBehaviorScoreVariance CMsgMatchMatchmakingStats::behavior_score_variance() const {
+  // @@protoc_insertion_point(field_get:CMsgMatchMatchmakingStats.behavior_score_variance)
+  return static_cast< ::EMatchBehaviorScoreVariance >(behavior_score_variance_);
+}
+inline void CMsgMatchMatchmakingStats::set_behavior_score_variance(::EMatchBehaviorScoreVariance value) {
+  assert(::EMatchBehaviorScoreVariance_IsValid(value));
+  set_has_behavior_score_variance();
+  behavior_score_variance_ = value;
+  // @@protoc_insertion_point(field_set:CMsgMatchMatchmakingStats.behavior_score_variance)
+}
+
+// -------------------------------------------------------------------
+
+// CDOTAMatchMetadata_Team_PlayerKill
+
+// optional uint32 victim_slot = 1;
+inline bool CDOTAMatchMetadata_Team_PlayerKill::has_victim_slot() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_PlayerKill::set_has_victim_slot() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CDOTAMatchMetadata_Team_PlayerKill::clear_has_victim_slot() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CDOTAMatchMetadata_Team_PlayerKill::clear_victim_slot() {
+  victim_slot_ = 0u;
+  clear_has_victim_slot();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_PlayerKill::victim_slot() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.PlayerKill.victim_slot)
+  return victim_slot_;
+}
+inline void CDOTAMatchMetadata_Team_PlayerKill::set_victim_slot(::google::protobuf::uint32 value) {
+  set_has_victim_slot();
+  victim_slot_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.PlayerKill.victim_slot)
+}
+
+// optional uint32 count = 2;
+inline bool CDOTAMatchMetadata_Team_PlayerKill::has_count() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_PlayerKill::set_has_count() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void CDOTAMatchMetadata_Team_PlayerKill::clear_has_count() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void CDOTAMatchMetadata_Team_PlayerKill::clear_count() {
+  count_ = 0u;
+  clear_has_count();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_PlayerKill::count() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.PlayerKill.count)
+  return count_;
+}
+inline void CDOTAMatchMetadata_Team_PlayerKill::set_count(::google::protobuf::uint32 value) {
+  set_has_count();
+  count_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.PlayerKill.count)
+}
+
+// -------------------------------------------------------------------
+
+// CDOTAMatchMetadata_Team_ItemPurchase
+
+// optional uint32 item_id = 1;
+inline bool CDOTAMatchMetadata_Team_ItemPurchase::has_item_id() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_ItemPurchase::set_has_item_id() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CDOTAMatchMetadata_Team_ItemPurchase::clear_has_item_id() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CDOTAMatchMetadata_Team_ItemPurchase::clear_item_id() {
+  item_id_ = 0u;
+  clear_has_item_id();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_ItemPurchase::item_id() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.ItemPurchase.item_id)
+  return item_id_;
+}
+inline void CDOTAMatchMetadata_Team_ItemPurchase::set_item_id(::google::protobuf::uint32 value) {
+  set_has_item_id();
+  item_id_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.ItemPurchase.item_id)
+}
+
+// optional int32 purchase_time = 2;
+inline bool CDOTAMatchMetadata_Team_ItemPurchase::has_purchase_time() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_ItemPurchase::set_has_purchase_time() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void CDOTAMatchMetadata_Team_ItemPurchase::clear_has_purchase_time() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void CDOTAMatchMetadata_Team_ItemPurchase::clear_purchase_time() {
+  purchase_time_ = 0;
+  clear_has_purchase_time();
+}
+inline ::google::protobuf::int32 CDOTAMatchMetadata_Team_ItemPurchase::purchase_time() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.ItemPurchase.purchase_time)
+  return purchase_time_;
+}
+inline void CDOTAMatchMetadata_Team_ItemPurchase::set_purchase_time(::google::protobuf::int32 value) {
+  set_has_purchase_time();
+  purchase_time_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.ItemPurchase.purchase_time)
+}
+
+// -------------------------------------------------------------------
+
+// CDOTAMatchMetadata_Team_InventorySnapshot
+
+// repeated uint32 item_id = 1;
+inline int CDOTAMatchMetadata_Team_InventorySnapshot::item_id_size() const {
+  return item_id_.size();
+}
+inline void CDOTAMatchMetadata_Team_InventorySnapshot::clear_item_id() {
+  item_id_.Clear();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_InventorySnapshot::item_id(int index) const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.InventorySnapshot.item_id)
+  return item_id_.Get(index);
+}
+inline void CDOTAMatchMetadata_Team_InventorySnapshot::set_item_id(int index, ::google::protobuf::uint32 value) {
+  item_id_.Set(index, value);
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.InventorySnapshot.item_id)
+}
+inline void CDOTAMatchMetadata_Team_InventorySnapshot::add_item_id(::google::protobuf::uint32 value) {
+  item_id_.Add(value);
+  // @@protoc_insertion_point(field_add:CDOTAMatchMetadata.Team.InventorySnapshot.item_id)
+}
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+CDOTAMatchMetadata_Team_InventorySnapshot::item_id() const {
+  // @@protoc_insertion_point(field_list:CDOTAMatchMetadata.Team.InventorySnapshot.item_id)
+  return item_id_;
+}
+inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+CDOTAMatchMetadata_Team_InventorySnapshot::mutable_item_id() {
+  // @@protoc_insertion_point(field_mutable_list:CDOTAMatchMetadata.Team.InventorySnapshot.item_id)
+  return &item_id_;
+}
+
+// optional int32 game_time = 2;
+inline bool CDOTAMatchMetadata_Team_InventorySnapshot::has_game_time() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_InventorySnapshot::set_has_game_time() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CDOTAMatchMetadata_Team_InventorySnapshot::clear_has_game_time() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CDOTAMatchMetadata_Team_InventorySnapshot::clear_game_time() {
+  game_time_ = 0;
+  clear_has_game_time();
+}
+inline ::google::protobuf::int32 CDOTAMatchMetadata_Team_InventorySnapshot::game_time() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.InventorySnapshot.game_time)
+  return game_time_;
+}
+inline void CDOTAMatchMetadata_Team_InventorySnapshot::set_game_time(::google::protobuf::int32 value) {
+  set_has_game_time();
+  game_time_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.InventorySnapshot.game_time)
+}
+
+// optional uint32 kills = 3;
+inline bool CDOTAMatchMetadata_Team_InventorySnapshot::has_kills() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_InventorySnapshot::set_has_kills() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void CDOTAMatchMetadata_Team_InventorySnapshot::clear_has_kills() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void CDOTAMatchMetadata_Team_InventorySnapshot::clear_kills() {
+  kills_ = 0u;
+  clear_has_kills();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_InventorySnapshot::kills() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.InventorySnapshot.kills)
+  return kills_;
+}
+inline void CDOTAMatchMetadata_Team_InventorySnapshot::set_kills(::google::protobuf::uint32 value) {
+  set_has_kills();
+  kills_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.InventorySnapshot.kills)
+}
+
+// optional uint32 deaths = 4;
+inline bool CDOTAMatchMetadata_Team_InventorySnapshot::has_deaths() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_InventorySnapshot::set_has_deaths() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void CDOTAMatchMetadata_Team_InventorySnapshot::clear_has_deaths() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void CDOTAMatchMetadata_Team_InventorySnapshot::clear_deaths() {
+  deaths_ = 0u;
+  clear_has_deaths();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_InventorySnapshot::deaths() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.InventorySnapshot.deaths)
+  return deaths_;
+}
+inline void CDOTAMatchMetadata_Team_InventorySnapshot::set_deaths(::google::protobuf::uint32 value) {
+  set_has_deaths();
+  deaths_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.InventorySnapshot.deaths)
+}
+
+// optional uint32 assists = 5;
+inline bool CDOTAMatchMetadata_Team_InventorySnapshot::has_assists() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_InventorySnapshot::set_has_assists() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void CDOTAMatchMetadata_Team_InventorySnapshot::clear_has_assists() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void CDOTAMatchMetadata_Team_InventorySnapshot::clear_assists() {
+  assists_ = 0u;
+  clear_has_assists();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_InventorySnapshot::assists() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.InventorySnapshot.assists)
+  return assists_;
+}
+inline void CDOTAMatchMetadata_Team_InventorySnapshot::set_assists(::google::protobuf::uint32 value) {
+  set_has_assists();
+  assists_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.InventorySnapshot.assists)
+}
+
+// optional uint32 level = 6;
+inline bool CDOTAMatchMetadata_Team_InventorySnapshot::has_level() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_InventorySnapshot::set_has_level() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void CDOTAMatchMetadata_Team_InventorySnapshot::clear_has_level() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void CDOTAMatchMetadata_Team_InventorySnapshot::clear_level() {
+  level_ = 0u;
+  clear_has_level();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_InventorySnapshot::level() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.InventorySnapshot.level)
+  return level_;
+}
+inline void CDOTAMatchMetadata_Team_InventorySnapshot::set_level(::google::protobuf::uint32 value) {
+  set_has_level();
+  level_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.InventorySnapshot.level)
+}
+
+// -------------------------------------------------------------------
+
+// CDOTAMatchMetadata_Team_AutoStyleCriteria
+
+// optional uint32 name_token = 1;
+inline bool CDOTAMatchMetadata_Team_AutoStyleCriteria::has_name_token() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_AutoStyleCriteria::set_has_name_token() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CDOTAMatchMetadata_Team_AutoStyleCriteria::clear_has_name_token() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CDOTAMatchMetadata_Team_AutoStyleCriteria::clear_name_token() {
+  name_token_ = 0u;
+  clear_has_name_token();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_AutoStyleCriteria::name_token() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.AutoStyleCriteria.name_token)
+  return name_token_;
+}
+inline void CDOTAMatchMetadata_Team_AutoStyleCriteria::set_name_token(::google::protobuf::uint32 value) {
+  set_has_name_token();
+  name_token_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.AutoStyleCriteria.name_token)
+}
+
+// optional float value = 2;
+inline bool CDOTAMatchMetadata_Team_AutoStyleCriteria::has_value() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_AutoStyleCriteria::set_has_value() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void CDOTAMatchMetadata_Team_AutoStyleCriteria::clear_has_value() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void CDOTAMatchMetadata_Team_AutoStyleCriteria::clear_value() {
+  value_ = 0;
+  clear_has_value();
+}
+inline float CDOTAMatchMetadata_Team_AutoStyleCriteria::value() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.AutoStyleCriteria.value)
+  return value_;
+}
+inline void CDOTAMatchMetadata_Team_AutoStyleCriteria::set_value(float value) {
+  set_has_value();
+  value_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.AutoStyleCriteria.value)
+}
+
+// -------------------------------------------------------------------
+
+// CDOTAMatchMetadata_Team_StrangeGemProgress
+
+// optional uint32 kill_eater_type = 1;
+inline bool CDOTAMatchMetadata_Team_StrangeGemProgress::has_kill_eater_type() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::set_has_kill_eater_type() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::clear_has_kill_eater_type() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::clear_kill_eater_type() {
+  kill_eater_type_ = 0u;
+  clear_has_kill_eater_type();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_StrangeGemProgress::kill_eater_type() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.StrangeGemProgress.kill_eater_type)
+  return kill_eater_type_;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::set_kill_eater_type(::google::protobuf::uint32 value) {
+  set_has_kill_eater_type();
+  kill_eater_type_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.StrangeGemProgress.kill_eater_type)
+}
+
+// optional uint32 gem_item_def_index = 2;
+inline bool CDOTAMatchMetadata_Team_StrangeGemProgress::has_gem_item_def_index() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::set_has_gem_item_def_index() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::clear_has_gem_item_def_index() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::clear_gem_item_def_index() {
+  gem_item_def_index_ = 0u;
+  clear_has_gem_item_def_index();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_StrangeGemProgress::gem_item_def_index() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.StrangeGemProgress.gem_item_def_index)
+  return gem_item_def_index_;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::set_gem_item_def_index(::google::protobuf::uint32 value) {
+  set_has_gem_item_def_index();
+  gem_item_def_index_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.StrangeGemProgress.gem_item_def_index)
+}
+
+// optional uint32 required_hero_id = 3;
+inline bool CDOTAMatchMetadata_Team_StrangeGemProgress::has_required_hero_id() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::set_has_required_hero_id() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::clear_has_required_hero_id() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::clear_required_hero_id() {
+  required_hero_id_ = 0u;
+  clear_has_required_hero_id();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_StrangeGemProgress::required_hero_id() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.StrangeGemProgress.required_hero_id)
+  return required_hero_id_;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::set_required_hero_id(::google::protobuf::uint32 value) {
+  set_has_required_hero_id();
+  required_hero_id_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.StrangeGemProgress.required_hero_id)
+}
+
+// optional uint32 starting_value = 4;
+inline bool CDOTAMatchMetadata_Team_StrangeGemProgress::has_starting_value() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::set_has_starting_value() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::clear_has_starting_value() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::clear_starting_value() {
+  starting_value_ = 0u;
+  clear_has_starting_value();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_StrangeGemProgress::starting_value() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.StrangeGemProgress.starting_value)
+  return starting_value_;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::set_starting_value(::google::protobuf::uint32 value) {
+  set_has_starting_value();
+  starting_value_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.StrangeGemProgress.starting_value)
+}
+
+// optional uint32 ending_value = 5;
+inline bool CDOTAMatchMetadata_Team_StrangeGemProgress::has_ending_value() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::set_has_ending_value() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::clear_has_ending_value() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::clear_ending_value() {
+  ending_value_ = 0u;
+  clear_has_ending_value();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_StrangeGemProgress::ending_value() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.StrangeGemProgress.ending_value)
+  return ending_value_;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::set_ending_value(::google::protobuf::uint32 value) {
+  set_has_ending_value();
+  ending_value_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.StrangeGemProgress.ending_value)
+}
+
+// optional uint32 owner_item_def_index = 6;
+inline bool CDOTAMatchMetadata_Team_StrangeGemProgress::has_owner_item_def_index() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::set_has_owner_item_def_index() {
+  _has_bits_[0] |= 0x00000020u;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::clear_has_owner_item_def_index() {
+  _has_bits_[0] &= ~0x00000020u;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::clear_owner_item_def_index() {
+  owner_item_def_index_ = 0u;
+  clear_has_owner_item_def_index();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_StrangeGemProgress::owner_item_def_index() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.StrangeGemProgress.owner_item_def_index)
+  return owner_item_def_index_;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::set_owner_item_def_index(::google::protobuf::uint32 value) {
+  set_has_owner_item_def_index();
+  owner_item_def_index_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.StrangeGemProgress.owner_item_def_index)
+}
+
+// optional uint64 owner_item_id = 7;
+inline bool CDOTAMatchMetadata_Team_StrangeGemProgress::has_owner_item_id() const {
+  return (_has_bits_[0] & 0x00000040u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::set_has_owner_item_id() {
+  _has_bits_[0] |= 0x00000040u;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::clear_has_owner_item_id() {
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::clear_owner_item_id() {
+  owner_item_id_ = GOOGLE_ULONGLONG(0);
+  clear_has_owner_item_id();
+}
+inline ::google::protobuf::uint64 CDOTAMatchMetadata_Team_StrangeGemProgress::owner_item_id() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.StrangeGemProgress.owner_item_id)
+  return owner_item_id_;
+}
+inline void CDOTAMatchMetadata_Team_StrangeGemProgress::set_owner_item_id(::google::protobuf::uint64 value) {
+  set_has_owner_item_id();
+  owner_item_id_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.StrangeGemProgress.owner_item_id)
+}
+
+// -------------------------------------------------------------------
+
+// CDOTAMatchMetadata_Team_VictoryPrediction
+
+// optional uint64 item_id = 1;
+inline bool CDOTAMatchMetadata_Team_VictoryPrediction::has_item_id() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_VictoryPrediction::set_has_item_id() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CDOTAMatchMetadata_Team_VictoryPrediction::clear_has_item_id() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CDOTAMatchMetadata_Team_VictoryPrediction::clear_item_id() {
+  item_id_ = GOOGLE_ULONGLONG(0);
+  clear_has_item_id();
+}
+inline ::google::protobuf::uint64 CDOTAMatchMetadata_Team_VictoryPrediction::item_id() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.VictoryPrediction.item_id)
+  return item_id_;
+}
+inline void CDOTAMatchMetadata_Team_VictoryPrediction::set_item_id(::google::protobuf::uint64 value) {
+  set_has_item_id();
+  item_id_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.VictoryPrediction.item_id)
+}
+
+// optional uint32 item_def_index = 2;
+inline bool CDOTAMatchMetadata_Team_VictoryPrediction::has_item_def_index() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_VictoryPrediction::set_has_item_def_index() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void CDOTAMatchMetadata_Team_VictoryPrediction::clear_has_item_def_index() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void CDOTAMatchMetadata_Team_VictoryPrediction::clear_item_def_index() {
+  item_def_index_ = 0u;
+  clear_has_item_def_index();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_VictoryPrediction::item_def_index() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.VictoryPrediction.item_def_index)
+  return item_def_index_;
+}
+inline void CDOTAMatchMetadata_Team_VictoryPrediction::set_item_def_index(::google::protobuf::uint32 value) {
+  set_has_item_def_index();
+  item_def_index_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.VictoryPrediction.item_def_index)
+}
+
+// optional uint32 starting_value = 3;
+inline bool CDOTAMatchMetadata_Team_VictoryPrediction::has_starting_value() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_VictoryPrediction::set_has_starting_value() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void CDOTAMatchMetadata_Team_VictoryPrediction::clear_has_starting_value() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void CDOTAMatchMetadata_Team_VictoryPrediction::clear_starting_value() {
+  starting_value_ = 0u;
+  clear_has_starting_value();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_VictoryPrediction::starting_value() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.VictoryPrediction.starting_value)
+  return starting_value_;
+}
+inline void CDOTAMatchMetadata_Team_VictoryPrediction::set_starting_value(::google::protobuf::uint32 value) {
+  set_has_starting_value();
+  starting_value_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.VictoryPrediction.starting_value)
+}
+
+// optional bool is_victory = 4;
+inline bool CDOTAMatchMetadata_Team_VictoryPrediction::has_is_victory() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_VictoryPrediction::set_has_is_victory() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void CDOTAMatchMetadata_Team_VictoryPrediction::clear_has_is_victory() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void CDOTAMatchMetadata_Team_VictoryPrediction::clear_is_victory() {
+  is_victory_ = false;
+  clear_has_is_victory();
+}
+inline bool CDOTAMatchMetadata_Team_VictoryPrediction::is_victory() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.VictoryPrediction.is_victory)
+  return is_victory_;
+}
+inline void CDOTAMatchMetadata_Team_VictoryPrediction::set_is_victory(bool value) {
+  set_has_is_victory();
+  is_victory_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.VictoryPrediction.is_victory)
+}
+
+// -------------------------------------------------------------------
+
+// CDOTAMatchMetadata_Team_SubChallenge
+
+// optional uint32 slot_id = 1;
+inline bool CDOTAMatchMetadata_Team_SubChallenge::has_slot_id() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_SubChallenge::set_has_slot_id() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CDOTAMatchMetadata_Team_SubChallenge::clear_has_slot_id() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CDOTAMatchMetadata_Team_SubChallenge::clear_slot_id() {
+  slot_id_ = 0u;
+  clear_has_slot_id();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_SubChallenge::slot_id() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.SubChallenge.slot_id)
+  return slot_id_;
+}
+inline void CDOTAMatchMetadata_Team_SubChallenge::set_slot_id(::google::protobuf::uint32 value) {
+  set_has_slot_id();
+  slot_id_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.SubChallenge.slot_id)
+}
+
+// optional uint32 start_value = 2;
+inline bool CDOTAMatchMetadata_Team_SubChallenge::has_start_value() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_SubChallenge::set_has_start_value() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void CDOTAMatchMetadata_Team_SubChallenge::clear_has_start_value() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void CDOTAMatchMetadata_Team_SubChallenge::clear_start_value() {
+  start_value_ = 0u;
+  clear_has_start_value();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_SubChallenge::start_value() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.SubChallenge.start_value)
+  return start_value_;
+}
+inline void CDOTAMatchMetadata_Team_SubChallenge::set_start_value(::google::protobuf::uint32 value) {
+  set_has_start_value();
+  start_value_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.SubChallenge.start_value)
+}
+
+// optional uint32 end_value = 3;
+inline bool CDOTAMatchMetadata_Team_SubChallenge::has_end_value() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_SubChallenge::set_has_end_value() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void CDOTAMatchMetadata_Team_SubChallenge::clear_has_end_value() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void CDOTAMatchMetadata_Team_SubChallenge::clear_end_value() {
+  end_value_ = 0u;
+  clear_has_end_value();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_SubChallenge::end_value() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.SubChallenge.end_value)
+  return end_value_;
+}
+inline void CDOTAMatchMetadata_Team_SubChallenge::set_end_value(::google::protobuf::uint32 value) {
+  set_has_end_value();
+  end_value_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.SubChallenge.end_value)
+}
+
+// optional bool completed = 4;
+inline bool CDOTAMatchMetadata_Team_SubChallenge::has_completed() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_SubChallenge::set_has_completed() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void CDOTAMatchMetadata_Team_SubChallenge::clear_has_completed() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void CDOTAMatchMetadata_Team_SubChallenge::clear_completed() {
+  completed_ = false;
+  clear_has_completed();
+}
+inline bool CDOTAMatchMetadata_Team_SubChallenge::completed() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.SubChallenge.completed)
+  return completed_;
+}
+inline void CDOTAMatchMetadata_Team_SubChallenge::set_completed(bool value) {
+  set_has_completed();
+  completed_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.SubChallenge.completed)
+}
+
+// -------------------------------------------------------------------
+
+// CDOTAMatchMetadata_Team_CavernChallengeResult
+
+// optional uint32 completed_path_id = 1;
+inline bool CDOTAMatchMetadata_Team_CavernChallengeResult::has_completed_path_id() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_CavernChallengeResult::set_has_completed_path_id() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CDOTAMatchMetadata_Team_CavernChallengeResult::clear_has_completed_path_id() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CDOTAMatchMetadata_Team_CavernChallengeResult::clear_completed_path_id() {
+  completed_path_id_ = 0u;
+  clear_has_completed_path_id();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_CavernChallengeResult::completed_path_id() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.CavernChallengeResult.completed_path_id)
+  return completed_path_id_;
+}
+inline void CDOTAMatchMetadata_Team_CavernChallengeResult::set_completed_path_id(::google::protobuf::uint32 value) {
+  set_has_completed_path_id();
+  completed_path_id_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.CavernChallengeResult.completed_path_id)
+}
+
+// optional uint32 claimed_room_id = 2;
+inline bool CDOTAMatchMetadata_Team_CavernChallengeResult::has_claimed_room_id() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_CavernChallengeResult::set_has_claimed_room_id() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void CDOTAMatchMetadata_Team_CavernChallengeResult::clear_has_claimed_room_id() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void CDOTAMatchMetadata_Team_CavernChallengeResult::clear_claimed_room_id() {
+  claimed_room_id_ = 0u;
+  clear_has_claimed_room_id();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_CavernChallengeResult::claimed_room_id() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.CavernChallengeResult.claimed_room_id)
+  return claimed_room_id_;
+}
+inline void CDOTAMatchMetadata_Team_CavernChallengeResult::set_claimed_room_id(::google::protobuf::uint32 value) {
+  set_has_claimed_room_id();
+  claimed_room_id_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.CavernChallengeResult.claimed_room_id)
+}
+
+// -------------------------------------------------------------------
+
+// CDOTAMatchMetadata_Team_ActionGrant
+
+// optional uint32 action_id = 1;
+inline bool CDOTAMatchMetadata_Team_ActionGrant::has_action_id() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_ActionGrant::set_has_action_id() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CDOTAMatchMetadata_Team_ActionGrant::clear_has_action_id() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CDOTAMatchMetadata_Team_ActionGrant::clear_action_id() {
+  action_id_ = 0u;
+  clear_has_action_id();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_ActionGrant::action_id() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.ActionGrant.action_id)
+  return action_id_;
+}
+inline void CDOTAMatchMetadata_Team_ActionGrant::set_action_id(::google::protobuf::uint32 value) {
+  set_has_action_id();
+  action_id_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.ActionGrant.action_id)
+}
+
+// optional uint32 quantity = 2;
+inline bool CDOTAMatchMetadata_Team_ActionGrant::has_quantity() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_ActionGrant::set_has_quantity() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void CDOTAMatchMetadata_Team_ActionGrant::clear_has_quantity() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void CDOTAMatchMetadata_Team_ActionGrant::clear_quantity() {
+  quantity_ = 0u;
+  clear_has_quantity();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_ActionGrant::quantity() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.ActionGrant.quantity)
+  return quantity_;
+}
+inline void CDOTAMatchMetadata_Team_ActionGrant::set_quantity(::google::protobuf::uint32 value) {
+  set_has_quantity();
+  quantity_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.ActionGrant.quantity)
+}
+
+// optional uint32 audit = 3;
+inline bool CDOTAMatchMetadata_Team_ActionGrant::has_audit() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_ActionGrant::set_has_audit() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void CDOTAMatchMetadata_Team_ActionGrant::clear_has_audit() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void CDOTAMatchMetadata_Team_ActionGrant::clear_audit() {
+  audit_ = 0u;
+  clear_has_audit();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_ActionGrant::audit() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.ActionGrant.audit)
+  return audit_;
+}
+inline void CDOTAMatchMetadata_Team_ActionGrant::set_audit(::google::protobuf::uint32 value) {
+  set_has_audit();
+  audit_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.ActionGrant.audit)
+}
+
+// -------------------------------------------------------------------
+
+// CDOTAMatchMetadata_Team_EventData
+
+// optional uint32 event_id = 1;
+inline bool CDOTAMatchMetadata_Team_EventData::has_event_id() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_has_event_id() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_has_event_id() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_event_id() {
+  event_id_ = 0u;
+  clear_has_event_id();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_EventData::event_id() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.EventData.event_id)
+  return event_id_;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_event_id(::google::protobuf::uint32 value) {
+  set_has_event_id();
+  event_id_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.EventData.event_id)
+}
+
+// optional uint32 event_points = 2;
+inline bool CDOTAMatchMetadata_Team_EventData::has_event_points() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_has_event_points() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_has_event_points() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_event_points() {
+  event_points_ = 0u;
+  clear_has_event_points();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_EventData::event_points() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.EventData.event_points)
+  return event_points_;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_event_points(::google::protobuf::uint32 value) {
+  set_has_event_points();
+  event_points_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.EventData.event_points)
+}
+
+// optional uint32 challenge_instance_id = 3;
+inline bool CDOTAMatchMetadata_Team_EventData::has_challenge_instance_id() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_has_challenge_instance_id() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_has_challenge_instance_id() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_challenge_instance_id() {
+  challenge_instance_id_ = 0u;
+  clear_has_challenge_instance_id();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_EventData::challenge_instance_id() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.EventData.challenge_instance_id)
+  return challenge_instance_id_;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_challenge_instance_id(::google::protobuf::uint32 value) {
+  set_has_challenge_instance_id();
+  challenge_instance_id_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.EventData.challenge_instance_id)
+}
+
+// optional uint32 challenge_quest_id = 4;
+inline bool CDOTAMatchMetadata_Team_EventData::has_challenge_quest_id() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_has_challenge_quest_id() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_has_challenge_quest_id() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_challenge_quest_id() {
+  challenge_quest_id_ = 0u;
+  clear_has_challenge_quest_id();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_EventData::challenge_quest_id() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.EventData.challenge_quest_id)
+  return challenge_quest_id_;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_challenge_quest_id(::google::protobuf::uint32 value) {
+  set_has_challenge_quest_id();
+  challenge_quest_id_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.EventData.challenge_quest_id)
+}
+
+// optional uint32 challenge_quest_challenge_id = 5;
+inline bool CDOTAMatchMetadata_Team_EventData::has_challenge_quest_challenge_id() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_has_challenge_quest_challenge_id() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_has_challenge_quest_challenge_id() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_challenge_quest_challenge_id() {
+  challenge_quest_challenge_id_ = 0u;
+  clear_has_challenge_quest_challenge_id();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_EventData::challenge_quest_challenge_id() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.EventData.challenge_quest_challenge_id)
+  return challenge_quest_challenge_id_;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_challenge_quest_challenge_id(::google::protobuf::uint32 value) {
+  set_has_challenge_quest_challenge_id();
+  challenge_quest_challenge_id_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.EventData.challenge_quest_challenge_id)
+}
+
+// optional bool challenge_completed = 6;
+inline bool CDOTAMatchMetadata_Team_EventData::has_challenge_completed() const {
+  return (_has_bits_[0] & 0x00000080u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_has_challenge_completed() {
+  _has_bits_[0] |= 0x00000080u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_has_challenge_completed() {
+  _has_bits_[0] &= ~0x00000080u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_challenge_completed() {
+  challenge_completed_ = false;
+  clear_has_challenge_completed();
+}
+inline bool CDOTAMatchMetadata_Team_EventData::challenge_completed() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.EventData.challenge_completed)
+  return challenge_completed_;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_challenge_completed(bool value) {
+  set_has_challenge_completed();
+  challenge_completed_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.EventData.challenge_completed)
+}
+
+// optional uint32 challenge_rank_completed = 7;
+inline bool CDOTAMatchMetadata_Team_EventData::has_challenge_rank_completed() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_has_challenge_rank_completed() {
+  _has_bits_[0] |= 0x00000020u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_has_challenge_rank_completed() {
+  _has_bits_[0] &= ~0x00000020u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_challenge_rank_completed() {
+  challenge_rank_completed_ = 0u;
+  clear_has_challenge_rank_completed();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_EventData::challenge_rank_completed() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.EventData.challenge_rank_completed)
+  return challenge_rank_completed_;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_challenge_rank_completed(::google::protobuf::uint32 value) {
+  set_has_challenge_rank_completed();
+  challenge_rank_completed_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.EventData.challenge_rank_completed)
+}
+
+// optional uint32 challenge_rank_previously_completed = 8;
+inline bool CDOTAMatchMetadata_Team_EventData::has_challenge_rank_previously_completed() const {
+  return (_has_bits_[0] & 0x00000040u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_has_challenge_rank_previously_completed() {
+  _has_bits_[0] |= 0x00000040u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_has_challenge_rank_previously_completed() {
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_challenge_rank_previously_completed() {
+  challenge_rank_previously_completed_ = 0u;
+  clear_has_challenge_rank_previously_completed();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_EventData::challenge_rank_previously_completed() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.EventData.challenge_rank_previously_completed)
+  return challenge_rank_previously_completed_;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_challenge_rank_previously_completed(::google::protobuf::uint32 value) {
+  set_has_challenge_rank_previously_completed();
+  challenge_rank_previously_completed_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.EventData.challenge_rank_previously_completed)
+}
+
+// optional bool event_owned = 9;
+inline bool CDOTAMatchMetadata_Team_EventData::has_event_owned() const {
+  return (_has_bits_[0] & 0x00000100u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_has_event_owned() {
+  _has_bits_[0] |= 0x00000100u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_has_event_owned() {
+  _has_bits_[0] &= ~0x00000100u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_event_owned() {
+  event_owned_ = false;
+  clear_has_event_owned();
+}
+inline bool CDOTAMatchMetadata_Team_EventData::event_owned() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.EventData.event_owned)
+  return event_owned_;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_event_owned(bool value) {
+  set_has_event_owned();
+  event_owned_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.EventData.event_owned)
+}
+
+// repeated .CDOTAMatchMetadata.Team.SubChallenge sub_challenges_with_progress = 10;
+inline int CDOTAMatchMetadata_Team_EventData::sub_challenges_with_progress_size() const {
+  return sub_challenges_with_progress_.size();
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_sub_challenges_with_progress() {
+  sub_challenges_with_progress_.Clear();
+}
+inline ::CDOTAMatchMetadata_Team_SubChallenge* CDOTAMatchMetadata_Team_EventData::mutable_sub_challenges_with_progress(int index) {
+  // @@protoc_insertion_point(field_mutable:CDOTAMatchMetadata.Team.EventData.sub_challenges_with_progress)
+  return sub_challenges_with_progress_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_SubChallenge >*
+CDOTAMatchMetadata_Team_EventData::mutable_sub_challenges_with_progress() {
+  // @@protoc_insertion_point(field_mutable_list:CDOTAMatchMetadata.Team.EventData.sub_challenges_with_progress)
+  return &sub_challenges_with_progress_;
+}
+inline const ::CDOTAMatchMetadata_Team_SubChallenge& CDOTAMatchMetadata_Team_EventData::sub_challenges_with_progress(int index) const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.EventData.sub_challenges_with_progress)
+  return sub_challenges_with_progress_.Get(index);
+}
+inline ::CDOTAMatchMetadata_Team_SubChallenge* CDOTAMatchMetadata_Team_EventData::add_sub_challenges_with_progress() {
+  // @@protoc_insertion_point(field_add:CDOTAMatchMetadata.Team.EventData.sub_challenges_with_progress)
+  return sub_challenges_with_progress_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_SubChallenge >&
+CDOTAMatchMetadata_Team_EventData::sub_challenges_with_progress() const {
+  // @@protoc_insertion_point(field_list:CDOTAMatchMetadata.Team.EventData.sub_challenges_with_progress)
+  return sub_challenges_with_progress_;
+}
+
+// optional uint32 wager_winnings = 11;
+inline bool CDOTAMatchMetadata_Team_EventData::has_wager_winnings() const {
+  return (_has_bits_[0] & 0x00000400u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_has_wager_winnings() {
+  _has_bits_[0] |= 0x00000400u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_has_wager_winnings() {
+  _has_bits_[0] &= ~0x00000400u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_wager_winnings() {
+  wager_winnings_ = 0u;
+  clear_has_wager_winnings();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_EventData::wager_winnings() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.EventData.wager_winnings)
+  return wager_winnings_;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_wager_winnings(::google::protobuf::uint32 value) {
+  set_has_wager_winnings();
+  wager_winnings_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.EventData.wager_winnings)
+}
+
+// optional bool cavern_challenge_active = 12;
+inline bool CDOTAMatchMetadata_Team_EventData::has_cavern_challenge_active() const {
+  return (_has_bits_[0] & 0x00000200u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_has_cavern_challenge_active() {
+  _has_bits_[0] |= 0x00000200u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_has_cavern_challenge_active() {
+  _has_bits_[0] &= ~0x00000200u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_cavern_challenge_active() {
+  cavern_challenge_active_ = false;
+  clear_has_cavern_challenge_active();
+}
+inline bool CDOTAMatchMetadata_Team_EventData::cavern_challenge_active() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.EventData.cavern_challenge_active)
+  return cavern_challenge_active_;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_cavern_challenge_active(bool value) {
+  set_has_cavern_challenge_active();
+  cavern_challenge_active_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.EventData.cavern_challenge_active)
+}
+
+// optional uint32 cavern_challenge_winnings = 13;
+inline bool CDOTAMatchMetadata_Team_EventData::has_cavern_challenge_winnings() const {
+  return (_has_bits_[0] & 0x00000800u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_has_cavern_challenge_winnings() {
+  _has_bits_[0] |= 0x00000800u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_has_cavern_challenge_winnings() {
+  _has_bits_[0] &= ~0x00000800u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_cavern_challenge_winnings() {
+  cavern_challenge_winnings_ = 0u;
+  clear_has_cavern_challenge_winnings();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_EventData::cavern_challenge_winnings() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.EventData.cavern_challenge_winnings)
+  return cavern_challenge_winnings_;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_cavern_challenge_winnings(::google::protobuf::uint32 value) {
+  set_has_cavern_challenge_winnings();
+  cavern_challenge_winnings_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.EventData.cavern_challenge_winnings)
+}
+
+// optional uint32 amount_wagered = 14;
+inline bool CDOTAMatchMetadata_Team_EventData::has_amount_wagered() const {
+  return (_has_bits_[0] & 0x00001000u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_has_amount_wagered() {
+  _has_bits_[0] |= 0x00001000u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_has_amount_wagered() {
+  _has_bits_[0] &= ~0x00001000u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_amount_wagered() {
+  amount_wagered_ = 0u;
+  clear_has_amount_wagered();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_EventData::amount_wagered() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.EventData.amount_wagered)
+  return amount_wagered_;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_amount_wagered(::google::protobuf::uint32 value) {
+  set_has_amount_wagered();
+  amount_wagered_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.EventData.amount_wagered)
+}
+
+// optional uint32 team_wager_amount = 15;
+inline bool CDOTAMatchMetadata_Team_EventData::has_team_wager_amount() const {
+  return (_has_bits_[0] & 0x00002000u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_has_team_wager_amount() {
+  _has_bits_[0] |= 0x00002000u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_has_team_wager_amount() {
+  _has_bits_[0] &= ~0x00002000u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_team_wager_amount() {
+  team_wager_amount_ = 0u;
+  clear_has_team_wager_amount();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_EventData::team_wager_amount() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.EventData.team_wager_amount)
+  return team_wager_amount_;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_team_wager_amount(::google::protobuf::uint32 value) {
+  set_has_team_wager_amount();
+  team_wager_amount_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.EventData.team_wager_amount)
+}
+
+// optional uint32 periodic_point_adjustments = 16;
+inline bool CDOTAMatchMetadata_Team_EventData::has_periodic_point_adjustments() const {
+  return (_has_bits_[0] & 0x00004000u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_has_periodic_point_adjustments() {
+  _has_bits_[0] |= 0x00004000u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_has_periodic_point_adjustments() {
+  _has_bits_[0] &= ~0x00004000u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_periodic_point_adjustments() {
+  periodic_point_adjustments_ = 0u;
+  clear_has_periodic_point_adjustments();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_EventData::periodic_point_adjustments() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.EventData.periodic_point_adjustments)
+  return periodic_point_adjustments_;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_periodic_point_adjustments(::google::protobuf::uint32 value) {
+  set_has_periodic_point_adjustments();
+  periodic_point_adjustments_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.EventData.periodic_point_adjustments)
+}
+
+// repeated .CDOTAMatchMetadata.Team.CavernChallengeResult cavern_challenge_map_results = 17;
+inline int CDOTAMatchMetadata_Team_EventData::cavern_challenge_map_results_size() const {
+  return cavern_challenge_map_results_.size();
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_cavern_challenge_map_results() {
+  cavern_challenge_map_results_.Clear();
+}
+inline ::CDOTAMatchMetadata_Team_CavernChallengeResult* CDOTAMatchMetadata_Team_EventData::mutable_cavern_challenge_map_results(int index) {
+  // @@protoc_insertion_point(field_mutable:CDOTAMatchMetadata.Team.EventData.cavern_challenge_map_results)
+  return cavern_challenge_map_results_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_CavernChallengeResult >*
+CDOTAMatchMetadata_Team_EventData::mutable_cavern_challenge_map_results() {
+  // @@protoc_insertion_point(field_mutable_list:CDOTAMatchMetadata.Team.EventData.cavern_challenge_map_results)
+  return &cavern_challenge_map_results_;
+}
+inline const ::CDOTAMatchMetadata_Team_CavernChallengeResult& CDOTAMatchMetadata_Team_EventData::cavern_challenge_map_results(int index) const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.EventData.cavern_challenge_map_results)
+  return cavern_challenge_map_results_.Get(index);
+}
+inline ::CDOTAMatchMetadata_Team_CavernChallengeResult* CDOTAMatchMetadata_Team_EventData::add_cavern_challenge_map_results() {
+  // @@protoc_insertion_point(field_add:CDOTAMatchMetadata.Team.EventData.cavern_challenge_map_results)
+  return cavern_challenge_map_results_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_CavernChallengeResult >&
+CDOTAMatchMetadata_Team_EventData::cavern_challenge_map_results() const {
+  // @@protoc_insertion_point(field_list:CDOTAMatchMetadata.Team.EventData.cavern_challenge_map_results)
+  return cavern_challenge_map_results_;
+}
+
+// optional uint32 cavern_challenge_plus_shard_winnings = 18;
+inline bool CDOTAMatchMetadata_Team_EventData::has_cavern_challenge_plus_shard_winnings() const {
+  return (_has_bits_[0] & 0x00008000u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_has_cavern_challenge_plus_shard_winnings() {
+  _has_bits_[0] |= 0x00008000u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_has_cavern_challenge_plus_shard_winnings() {
+  _has_bits_[0] &= ~0x00008000u;
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_cavern_challenge_plus_shard_winnings() {
+  cavern_challenge_plus_shard_winnings_ = 0u;
+  clear_has_cavern_challenge_plus_shard_winnings();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_EventData::cavern_challenge_plus_shard_winnings() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.EventData.cavern_challenge_plus_shard_winnings)
+  return cavern_challenge_plus_shard_winnings_;
+}
+inline void CDOTAMatchMetadata_Team_EventData::set_cavern_challenge_plus_shard_winnings(::google::protobuf::uint32 value) {
+  set_has_cavern_challenge_plus_shard_winnings();
+  cavern_challenge_plus_shard_winnings_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.EventData.cavern_challenge_plus_shard_winnings)
+}
+
+// repeated .CDOTAMatchMetadata.Team.ActionGrant actions_granted = 19;
+inline int CDOTAMatchMetadata_Team_EventData::actions_granted_size() const {
+  return actions_granted_.size();
+}
+inline void CDOTAMatchMetadata_Team_EventData::clear_actions_granted() {
+  actions_granted_.Clear();
+}
+inline ::CDOTAMatchMetadata_Team_ActionGrant* CDOTAMatchMetadata_Team_EventData::mutable_actions_granted(int index) {
+  // @@protoc_insertion_point(field_mutable:CDOTAMatchMetadata.Team.EventData.actions_granted)
+  return actions_granted_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_ActionGrant >*
+CDOTAMatchMetadata_Team_EventData::mutable_actions_granted() {
+  // @@protoc_insertion_point(field_mutable_list:CDOTAMatchMetadata.Team.EventData.actions_granted)
+  return &actions_granted_;
+}
+inline const ::CDOTAMatchMetadata_Team_ActionGrant& CDOTAMatchMetadata_Team_EventData::actions_granted(int index) const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.EventData.actions_granted)
+  return actions_granted_.Get(index);
+}
+inline ::CDOTAMatchMetadata_Team_ActionGrant* CDOTAMatchMetadata_Team_EventData::add_actions_granted() {
+  // @@protoc_insertion_point(field_add:CDOTAMatchMetadata.Team.EventData.actions_granted)
+  return actions_granted_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_ActionGrant >&
+CDOTAMatchMetadata_Team_EventData::actions_granted() const {
+  // @@protoc_insertion_point(field_list:CDOTAMatchMetadata.Team.EventData.actions_granted)
+  return actions_granted_;
+}
+
+// -------------------------------------------------------------------
+
+// CDOTAMatchMetadata_Team_Player
+
+// optional uint32 account_id = 1;
+inline bool CDOTAMatchMetadata_Team_Player::has_account_id() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_account_id() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_account_id() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_account_id() {
+  account_id_ = 0u;
+  clear_has_account_id();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::account_id() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.account_id)
+  return account_id_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_account_id(::google::protobuf::uint32 value) {
+  set_has_account_id();
+  account_id_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.account_id)
+}
+
+// repeated uint32 ability_upgrades = 2;
+inline int CDOTAMatchMetadata_Team_Player::ability_upgrades_size() const {
+  return ability_upgrades_.size();
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_ability_upgrades() {
+  ability_upgrades_.Clear();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::ability_upgrades(int index) const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.ability_upgrades)
+  return ability_upgrades_.Get(index);
+}
+inline void CDOTAMatchMetadata_Team_Player::set_ability_upgrades(int index, ::google::protobuf::uint32 value) {
+  ability_upgrades_.Set(index, value);
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.ability_upgrades)
+}
+inline void CDOTAMatchMetadata_Team_Player::add_ability_upgrades(::google::protobuf::uint32 value) {
+  ability_upgrades_.Add(value);
+  // @@protoc_insertion_point(field_add:CDOTAMatchMetadata.Team.Player.ability_upgrades)
+}
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+CDOTAMatchMetadata_Team_Player::ability_upgrades() const {
+  // @@protoc_insertion_point(field_list:CDOTAMatchMetadata.Team.Player.ability_upgrades)
+  return ability_upgrades_;
+}
+inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+CDOTAMatchMetadata_Team_Player::mutable_ability_upgrades() {
+  // @@protoc_insertion_point(field_mutable_list:CDOTAMatchMetadata.Team.Player.ability_upgrades)
+  return &ability_upgrades_;
+}
+
+// optional uint32 player_slot = 3;
+inline bool CDOTAMatchMetadata_Team_Player::has_player_slot() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_player_slot() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_player_slot() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_player_slot() {
+  player_slot_ = 0u;
+  clear_has_player_slot();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::player_slot() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.player_slot)
+  return player_slot_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_player_slot(::google::protobuf::uint32 value) {
+  set_has_player_slot();
+  player_slot_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.player_slot)
+}
+
+// repeated .CSOEconItem equipped_econ_items = 4;
+inline int CDOTAMatchMetadata_Team_Player::equipped_econ_items_size() const {
+  return equipped_econ_items_.size();
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_equipped_econ_items() {
+  equipped_econ_items_.Clear();
+}
+inline ::CSOEconItem* CDOTAMatchMetadata_Team_Player::mutable_equipped_econ_items(int index) {
+  // @@protoc_insertion_point(field_mutable:CDOTAMatchMetadata.Team.Player.equipped_econ_items)
+  return equipped_econ_items_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::CSOEconItem >*
+CDOTAMatchMetadata_Team_Player::mutable_equipped_econ_items() {
+  // @@protoc_insertion_point(field_mutable_list:CDOTAMatchMetadata.Team.Player.equipped_econ_items)
+  return &equipped_econ_items_;
+}
+inline const ::CSOEconItem& CDOTAMatchMetadata_Team_Player::equipped_econ_items(int index) const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.equipped_econ_items)
+  return equipped_econ_items_.Get(index);
+}
+inline ::CSOEconItem* CDOTAMatchMetadata_Team_Player::add_equipped_econ_items() {
+  // @@protoc_insertion_point(field_add:CDOTAMatchMetadata.Team.Player.equipped_econ_items)
+  return equipped_econ_items_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::CSOEconItem >&
+CDOTAMatchMetadata_Team_Player::equipped_econ_items() const {
+  // @@protoc_insertion_point(field_list:CDOTAMatchMetadata.Team.Player.equipped_econ_items)
+  return equipped_econ_items_;
+}
+
+// repeated .CDOTAMatchMetadata.Team.PlayerKill kills = 5;
+inline int CDOTAMatchMetadata_Team_Player::kills_size() const {
+  return kills_.size();
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_kills() {
+  kills_.Clear();
+}
+inline ::CDOTAMatchMetadata_Team_PlayerKill* CDOTAMatchMetadata_Team_Player::mutable_kills(int index) {
+  // @@protoc_insertion_point(field_mutable:CDOTAMatchMetadata.Team.Player.kills)
+  return kills_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_PlayerKill >*
+CDOTAMatchMetadata_Team_Player::mutable_kills() {
+  // @@protoc_insertion_point(field_mutable_list:CDOTAMatchMetadata.Team.Player.kills)
+  return &kills_;
+}
+inline const ::CDOTAMatchMetadata_Team_PlayerKill& CDOTAMatchMetadata_Team_Player::kills(int index) const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.kills)
+  return kills_.Get(index);
+}
+inline ::CDOTAMatchMetadata_Team_PlayerKill* CDOTAMatchMetadata_Team_Player::add_kills() {
+  // @@protoc_insertion_point(field_add:CDOTAMatchMetadata.Team.Player.kills)
+  return kills_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_PlayerKill >&
+CDOTAMatchMetadata_Team_Player::kills() const {
+  // @@protoc_insertion_point(field_list:CDOTAMatchMetadata.Team.Player.kills)
+  return kills_;
+}
+
+// repeated .CDOTAMatchMetadata.Team.ItemPurchase items = 6;
+inline int CDOTAMatchMetadata_Team_Player::items_size() const {
+  return items_.size();
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_items() {
+  items_.Clear();
+}
+inline ::CDOTAMatchMetadata_Team_ItemPurchase* CDOTAMatchMetadata_Team_Player::mutable_items(int index) {
+  // @@protoc_insertion_point(field_mutable:CDOTAMatchMetadata.Team.Player.items)
+  return items_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_ItemPurchase >*
+CDOTAMatchMetadata_Team_Player::mutable_items() {
+  // @@protoc_insertion_point(field_mutable_list:CDOTAMatchMetadata.Team.Player.items)
+  return &items_;
+}
+inline const ::CDOTAMatchMetadata_Team_ItemPurchase& CDOTAMatchMetadata_Team_Player::items(int index) const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.items)
+  return items_.Get(index);
+}
+inline ::CDOTAMatchMetadata_Team_ItemPurchase* CDOTAMatchMetadata_Team_Player::add_items() {
+  // @@protoc_insertion_point(field_add:CDOTAMatchMetadata.Team.Player.items)
+  return items_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_ItemPurchase >&
+CDOTAMatchMetadata_Team_Player::items() const {
+  // @@protoc_insertion_point(field_list:CDOTAMatchMetadata.Team.Player.items)
+  return items_;
+}
+
+// optional uint32 avg_kills_x16 = 7;
+inline bool CDOTAMatchMetadata_Team_Player::has_avg_kills_x16() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_avg_kills_x16() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_avg_kills_x16() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_avg_kills_x16() {
+  avg_kills_x16_ = 0u;
+  clear_has_avg_kills_x16();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::avg_kills_x16() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.avg_kills_x16)
+  return avg_kills_x16_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_avg_kills_x16(::google::protobuf::uint32 value) {
+  set_has_avg_kills_x16();
+  avg_kills_x16_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.avg_kills_x16)
+}
+
+// optional uint32 avg_deaths_x16 = 8;
+inline bool CDOTAMatchMetadata_Team_Player::has_avg_deaths_x16() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_avg_deaths_x16() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_avg_deaths_x16() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_avg_deaths_x16() {
+  avg_deaths_x16_ = 0u;
+  clear_has_avg_deaths_x16();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::avg_deaths_x16() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.avg_deaths_x16)
+  return avg_deaths_x16_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_avg_deaths_x16(::google::protobuf::uint32 value) {
+  set_has_avg_deaths_x16();
+  avg_deaths_x16_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.avg_deaths_x16)
+}
+
+// optional uint32 avg_assists_x16 = 9;
+inline bool CDOTAMatchMetadata_Team_Player::has_avg_assists_x16() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_avg_assists_x16() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_avg_assists_x16() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_avg_assists_x16() {
+  avg_assists_x16_ = 0u;
+  clear_has_avg_assists_x16();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::avg_assists_x16() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.avg_assists_x16)
+  return avg_assists_x16_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_avg_assists_x16(::google::protobuf::uint32 value) {
+  set_has_avg_assists_x16();
+  avg_assists_x16_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.avg_assists_x16)
+}
+
+// optional uint32 avg_gpm_x16 = 10;
+inline bool CDOTAMatchMetadata_Team_Player::has_avg_gpm_x16() const {
+  return (_has_bits_[0] & 0x00000020u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_avg_gpm_x16() {
+  _has_bits_[0] |= 0x00000020u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_avg_gpm_x16() {
+  _has_bits_[0] &= ~0x00000020u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_avg_gpm_x16() {
+  avg_gpm_x16_ = 0u;
+  clear_has_avg_gpm_x16();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::avg_gpm_x16() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.avg_gpm_x16)
+  return avg_gpm_x16_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_avg_gpm_x16(::google::protobuf::uint32 value) {
+  set_has_avg_gpm_x16();
+  avg_gpm_x16_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.avg_gpm_x16)
+}
+
+// optional uint32 avg_xpm_x16 = 11;
+inline bool CDOTAMatchMetadata_Team_Player::has_avg_xpm_x16() const {
+  return (_has_bits_[0] & 0x00000040u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_avg_xpm_x16() {
+  _has_bits_[0] |= 0x00000040u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_avg_xpm_x16() {
+  _has_bits_[0] &= ~0x00000040u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_avg_xpm_x16() {
+  avg_xpm_x16_ = 0u;
+  clear_has_avg_xpm_x16();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::avg_xpm_x16() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.avg_xpm_x16)
+  return avg_xpm_x16_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_avg_xpm_x16(::google::protobuf::uint32 value) {
+  set_has_avg_xpm_x16();
+  avg_xpm_x16_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.avg_xpm_x16)
+}
+
+// optional uint32 best_kills_x16 = 12;
+inline bool CDOTAMatchMetadata_Team_Player::has_best_kills_x16() const {
+  return (_has_bits_[0] & 0x00000080u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_best_kills_x16() {
+  _has_bits_[0] |= 0x00000080u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_best_kills_x16() {
+  _has_bits_[0] &= ~0x00000080u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_best_kills_x16() {
+  best_kills_x16_ = 0u;
+  clear_has_best_kills_x16();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::best_kills_x16() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.best_kills_x16)
+  return best_kills_x16_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_best_kills_x16(::google::protobuf::uint32 value) {
+  set_has_best_kills_x16();
+  best_kills_x16_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.best_kills_x16)
+}
+
+// optional uint32 best_assists_x16 = 13;
+inline bool CDOTAMatchMetadata_Team_Player::has_best_assists_x16() const {
+  return (_has_bits_[0] & 0x00000100u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_best_assists_x16() {
+  _has_bits_[0] |= 0x00000100u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_best_assists_x16() {
+  _has_bits_[0] &= ~0x00000100u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_best_assists_x16() {
+  best_assists_x16_ = 0u;
+  clear_has_best_assists_x16();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::best_assists_x16() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.best_assists_x16)
+  return best_assists_x16_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_best_assists_x16(::google::protobuf::uint32 value) {
+  set_has_best_assists_x16();
+  best_assists_x16_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.best_assists_x16)
+}
+
+// optional uint32 best_gpm_x16 = 14;
+inline bool CDOTAMatchMetadata_Team_Player::has_best_gpm_x16() const {
+  return (_has_bits_[0] & 0x00000200u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_best_gpm_x16() {
+  _has_bits_[0] |= 0x00000200u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_best_gpm_x16() {
+  _has_bits_[0] &= ~0x00000200u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_best_gpm_x16() {
+  best_gpm_x16_ = 0u;
+  clear_has_best_gpm_x16();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::best_gpm_x16() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.best_gpm_x16)
+  return best_gpm_x16_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_best_gpm_x16(::google::protobuf::uint32 value) {
+  set_has_best_gpm_x16();
+  best_gpm_x16_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.best_gpm_x16)
+}
+
+// optional uint32 best_xpm_x16 = 15;
+inline bool CDOTAMatchMetadata_Team_Player::has_best_xpm_x16() const {
+  return (_has_bits_[0] & 0x00000400u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_best_xpm_x16() {
+  _has_bits_[0] |= 0x00000400u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_best_xpm_x16() {
+  _has_bits_[0] &= ~0x00000400u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_best_xpm_x16() {
+  best_xpm_x16_ = 0u;
+  clear_has_best_xpm_x16();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::best_xpm_x16() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.best_xpm_x16)
+  return best_xpm_x16_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_best_xpm_x16(::google::protobuf::uint32 value) {
+  set_has_best_xpm_x16();
+  best_xpm_x16_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.best_xpm_x16)
+}
+
+// optional uint32 win_streak = 16;
+inline bool CDOTAMatchMetadata_Team_Player::has_win_streak() const {
+  return (_has_bits_[0] & 0x00000800u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_win_streak() {
+  _has_bits_[0] |= 0x00000800u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_win_streak() {
+  _has_bits_[0] &= ~0x00000800u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_win_streak() {
+  win_streak_ = 0u;
+  clear_has_win_streak();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::win_streak() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.win_streak)
+  return win_streak_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_win_streak(::google::protobuf::uint32 value) {
+  set_has_win_streak();
+  win_streak_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.win_streak)
+}
+
+// optional uint32 best_win_streak = 17;
+inline bool CDOTAMatchMetadata_Team_Player::has_best_win_streak() const {
+  return (_has_bits_[0] & 0x00001000u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_best_win_streak() {
+  _has_bits_[0] |= 0x00001000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_best_win_streak() {
+  _has_bits_[0] &= ~0x00001000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_best_win_streak() {
+  best_win_streak_ = 0u;
+  clear_has_best_win_streak();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::best_win_streak() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.best_win_streak)
+  return best_win_streak_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_best_win_streak(::google::protobuf::uint32 value) {
+  set_has_best_win_streak();
+  best_win_streak_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.best_win_streak)
+}
+
+// optional float fight_score = 18;
+inline bool CDOTAMatchMetadata_Team_Player::has_fight_score() const {
+  return (_has_bits_[0] & 0x00002000u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_fight_score() {
+  _has_bits_[0] |= 0x00002000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_fight_score() {
+  _has_bits_[0] &= ~0x00002000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_fight_score() {
+  fight_score_ = 0;
+  clear_has_fight_score();
+}
+inline float CDOTAMatchMetadata_Team_Player::fight_score() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.fight_score)
+  return fight_score_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_fight_score(float value) {
+  set_has_fight_score();
+  fight_score_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.fight_score)
+}
+
+// optional float farm_score = 19;
+inline bool CDOTAMatchMetadata_Team_Player::has_farm_score() const {
+  return (_has_bits_[0] & 0x00004000u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_farm_score() {
+  _has_bits_[0] |= 0x00004000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_farm_score() {
+  _has_bits_[0] &= ~0x00004000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_farm_score() {
+  farm_score_ = 0;
+  clear_has_farm_score();
+}
+inline float CDOTAMatchMetadata_Team_Player::farm_score() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.farm_score)
+  return farm_score_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_farm_score(float value) {
+  set_has_farm_score();
+  farm_score_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.farm_score)
+}
+
+// optional float support_score = 20;
+inline bool CDOTAMatchMetadata_Team_Player::has_support_score() const {
+  return (_has_bits_[0] & 0x00008000u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_support_score() {
+  _has_bits_[0] |= 0x00008000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_support_score() {
+  _has_bits_[0] &= ~0x00008000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_support_score() {
+  support_score_ = 0;
+  clear_has_support_score();
+}
+inline float CDOTAMatchMetadata_Team_Player::support_score() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.support_score)
+  return support_score_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_support_score(float value) {
+  set_has_support_score();
+  support_score_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.support_score)
+}
+
+// optional float push_score = 21;
+inline bool CDOTAMatchMetadata_Team_Player::has_push_score() const {
+  return (_has_bits_[0] & 0x00010000u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_push_score() {
+  _has_bits_[0] |= 0x00010000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_push_score() {
+  _has_bits_[0] &= ~0x00010000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_push_score() {
+  push_score_ = 0;
+  clear_has_push_score();
+}
+inline float CDOTAMatchMetadata_Team_Player::push_score() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.push_score)
+  return push_score_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_push_score(float value) {
+  set_has_push_score();
+  push_score_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.push_score)
+}
+
+// repeated uint32 level_up_times = 22;
+inline int CDOTAMatchMetadata_Team_Player::level_up_times_size() const {
+  return level_up_times_.size();
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_level_up_times() {
+  level_up_times_.Clear();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::level_up_times(int index) const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.level_up_times)
+  return level_up_times_.Get(index);
+}
+inline void CDOTAMatchMetadata_Team_Player::set_level_up_times(int index, ::google::protobuf::uint32 value) {
+  level_up_times_.Set(index, value);
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.level_up_times)
+}
+inline void CDOTAMatchMetadata_Team_Player::add_level_up_times(::google::protobuf::uint32 value) {
+  level_up_times_.Add(value);
+  // @@protoc_insertion_point(field_add:CDOTAMatchMetadata.Team.Player.level_up_times)
+}
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+CDOTAMatchMetadata_Team_Player::level_up_times() const {
+  // @@protoc_insertion_point(field_list:CDOTAMatchMetadata.Team.Player.level_up_times)
+  return level_up_times_;
+}
+inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+CDOTAMatchMetadata_Team_Player::mutable_level_up_times() {
+  // @@protoc_insertion_point(field_mutable_list:CDOTAMatchMetadata.Team.Player.level_up_times)
+  return &level_up_times_;
+}
+
+// repeated float graph_net_worth = 23;
+inline int CDOTAMatchMetadata_Team_Player::graph_net_worth_size() const {
+  return graph_net_worth_.size();
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_graph_net_worth() {
+  graph_net_worth_.Clear();
+}
+inline float CDOTAMatchMetadata_Team_Player::graph_net_worth(int index) const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.graph_net_worth)
+  return graph_net_worth_.Get(index);
+}
+inline void CDOTAMatchMetadata_Team_Player::set_graph_net_worth(int index, float value) {
+  graph_net_worth_.Set(index, value);
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.graph_net_worth)
+}
+inline void CDOTAMatchMetadata_Team_Player::add_graph_net_worth(float value) {
+  graph_net_worth_.Add(value);
+  // @@protoc_insertion_point(field_add:CDOTAMatchMetadata.Team.Player.graph_net_worth)
+}
+inline const ::google::protobuf::RepeatedField< float >&
+CDOTAMatchMetadata_Team_Player::graph_net_worth() const {
+  // @@protoc_insertion_point(field_list:CDOTAMatchMetadata.Team.Player.graph_net_worth)
+  return graph_net_worth_;
+}
+inline ::google::protobuf::RepeatedField< float >*
+CDOTAMatchMetadata_Team_Player::mutable_graph_net_worth() {
+  // @@protoc_insertion_point(field_mutable_list:CDOTAMatchMetadata.Team.Player.graph_net_worth)
+  return &graph_net_worth_;
+}
+
+// repeated .CDOTAMatchMetadata.Team.InventorySnapshot inventory_snapshot = 24;
+inline int CDOTAMatchMetadata_Team_Player::inventory_snapshot_size() const {
+  return inventory_snapshot_.size();
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_inventory_snapshot() {
+  inventory_snapshot_.Clear();
+}
+inline ::CDOTAMatchMetadata_Team_InventorySnapshot* CDOTAMatchMetadata_Team_Player::mutable_inventory_snapshot(int index) {
+  // @@protoc_insertion_point(field_mutable:CDOTAMatchMetadata.Team.Player.inventory_snapshot)
+  return inventory_snapshot_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_InventorySnapshot >*
+CDOTAMatchMetadata_Team_Player::mutable_inventory_snapshot() {
+  // @@protoc_insertion_point(field_mutable_list:CDOTAMatchMetadata.Team.Player.inventory_snapshot)
+  return &inventory_snapshot_;
+}
+inline const ::CDOTAMatchMetadata_Team_InventorySnapshot& CDOTAMatchMetadata_Team_Player::inventory_snapshot(int index) const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.inventory_snapshot)
+  return inventory_snapshot_.Get(index);
+}
+inline ::CDOTAMatchMetadata_Team_InventorySnapshot* CDOTAMatchMetadata_Team_Player::add_inventory_snapshot() {
+  // @@protoc_insertion_point(field_add:CDOTAMatchMetadata.Team.Player.inventory_snapshot)
+  return inventory_snapshot_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_InventorySnapshot >&
+CDOTAMatchMetadata_Team_Player::inventory_snapshot() const {
+  // @@protoc_insertion_point(field_list:CDOTAMatchMetadata.Team.Player.inventory_snapshot)
+  return inventory_snapshot_;
+}
+
+// optional bool avg_stats_calibrated = 25;
+inline bool CDOTAMatchMetadata_Team_Player::has_avg_stats_calibrated() const {
+  return (_has_bits_[0] & 0x00020000u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_avg_stats_calibrated() {
+  _has_bits_[0] |= 0x00020000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_avg_stats_calibrated() {
+  _has_bits_[0] &= ~0x00020000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_avg_stats_calibrated() {
+  avg_stats_calibrated_ = false;
+  clear_has_avg_stats_calibrated();
+}
+inline bool CDOTAMatchMetadata_Team_Player::avg_stats_calibrated() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.avg_stats_calibrated)
+  return avg_stats_calibrated_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_avg_stats_calibrated(bool value) {
+  set_has_avg_stats_calibrated();
+  avg_stats_calibrated_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.avg_stats_calibrated)
+}
+
+// repeated .CDOTAMatchMetadata.Team.AutoStyleCriteria auto_style_criteria = 26;
+inline int CDOTAMatchMetadata_Team_Player::auto_style_criteria_size() const {
+  return auto_style_criteria_.size();
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_auto_style_criteria() {
+  auto_style_criteria_.Clear();
+}
+inline ::CDOTAMatchMetadata_Team_AutoStyleCriteria* CDOTAMatchMetadata_Team_Player::mutable_auto_style_criteria(int index) {
+  // @@protoc_insertion_point(field_mutable:CDOTAMatchMetadata.Team.Player.auto_style_criteria)
+  return auto_style_criteria_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_AutoStyleCriteria >*
+CDOTAMatchMetadata_Team_Player::mutable_auto_style_criteria() {
+  // @@protoc_insertion_point(field_mutable_list:CDOTAMatchMetadata.Team.Player.auto_style_criteria)
+  return &auto_style_criteria_;
+}
+inline const ::CDOTAMatchMetadata_Team_AutoStyleCriteria& CDOTAMatchMetadata_Team_Player::auto_style_criteria(int index) const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.auto_style_criteria)
+  return auto_style_criteria_.Get(index);
+}
+inline ::CDOTAMatchMetadata_Team_AutoStyleCriteria* CDOTAMatchMetadata_Team_Player::add_auto_style_criteria() {
+  // @@protoc_insertion_point(field_add:CDOTAMatchMetadata.Team.Player.auto_style_criteria)
+  return auto_style_criteria_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_AutoStyleCriteria >&
+CDOTAMatchMetadata_Team_Player::auto_style_criteria() const {
+  // @@protoc_insertion_point(field_list:CDOTAMatchMetadata.Team.Player.auto_style_criteria)
+  return auto_style_criteria_;
+}
+
+// repeated .CDOTAMatchMetadata.Team.EventData event_data = 29;
+inline int CDOTAMatchMetadata_Team_Player::event_data_size() const {
+  return event_data_.size();
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_event_data() {
+  event_data_.Clear();
+}
+inline ::CDOTAMatchMetadata_Team_EventData* CDOTAMatchMetadata_Team_Player::mutable_event_data(int index) {
+  // @@protoc_insertion_point(field_mutable:CDOTAMatchMetadata.Team.Player.event_data)
+  return event_data_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_EventData >*
+CDOTAMatchMetadata_Team_Player::mutable_event_data() {
+  // @@protoc_insertion_point(field_mutable_list:CDOTAMatchMetadata.Team.Player.event_data)
+  return &event_data_;
+}
+inline const ::CDOTAMatchMetadata_Team_EventData& CDOTAMatchMetadata_Team_Player::event_data(int index) const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.event_data)
+  return event_data_.Get(index);
+}
+inline ::CDOTAMatchMetadata_Team_EventData* CDOTAMatchMetadata_Team_Player::add_event_data() {
+  // @@protoc_insertion_point(field_add:CDOTAMatchMetadata.Team.Player.event_data)
+  return event_data_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_EventData >&
+CDOTAMatchMetadata_Team_Player::event_data() const {
+  // @@protoc_insertion_point(field_list:CDOTAMatchMetadata.Team.Player.event_data)
+  return event_data_;
+}
+
+// repeated .CDOTAMatchMetadata.Team.StrangeGemProgress strange_gem_progress = 30;
+inline int CDOTAMatchMetadata_Team_Player::strange_gem_progress_size() const {
+  return strange_gem_progress_.size();
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_strange_gem_progress() {
+  strange_gem_progress_.Clear();
+}
+inline ::CDOTAMatchMetadata_Team_StrangeGemProgress* CDOTAMatchMetadata_Team_Player::mutable_strange_gem_progress(int index) {
+  // @@protoc_insertion_point(field_mutable:CDOTAMatchMetadata.Team.Player.strange_gem_progress)
+  return strange_gem_progress_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_StrangeGemProgress >*
+CDOTAMatchMetadata_Team_Player::mutable_strange_gem_progress() {
+  // @@protoc_insertion_point(field_mutable_list:CDOTAMatchMetadata.Team.Player.strange_gem_progress)
+  return &strange_gem_progress_;
+}
+inline const ::CDOTAMatchMetadata_Team_StrangeGemProgress& CDOTAMatchMetadata_Team_Player::strange_gem_progress(int index) const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.strange_gem_progress)
+  return strange_gem_progress_.Get(index);
+}
+inline ::CDOTAMatchMetadata_Team_StrangeGemProgress* CDOTAMatchMetadata_Team_Player::add_strange_gem_progress() {
+  // @@protoc_insertion_point(field_add:CDOTAMatchMetadata.Team.Player.strange_gem_progress)
+  return strange_gem_progress_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_StrangeGemProgress >&
+CDOTAMatchMetadata_Team_Player::strange_gem_progress() const {
+  // @@protoc_insertion_point(field_list:CDOTAMatchMetadata.Team.Player.strange_gem_progress)
+  return strange_gem_progress_;
+}
+
+// optional uint32 hero_xp = 31;
+inline bool CDOTAMatchMetadata_Team_Player::has_hero_xp() const {
+  return (_has_bits_[0] & 0x00040000u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_hero_xp() {
+  _has_bits_[0] |= 0x00040000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_hero_xp() {
+  _has_bits_[0] &= ~0x00040000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_hero_xp() {
+  hero_xp_ = 0u;
+  clear_has_hero_xp();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::hero_xp() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.hero_xp)
+  return hero_xp_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_hero_xp(::google::protobuf::uint32 value) {
+  set_has_hero_xp();
+  hero_xp_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.hero_xp)
+}
+
+// optional uint32 camps_stacked = 32;
+inline bool CDOTAMatchMetadata_Team_Player::has_camps_stacked() const {
+  return (_has_bits_[0] & 0x00080000u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_camps_stacked() {
+  _has_bits_[0] |= 0x00080000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_camps_stacked() {
+  _has_bits_[0] &= ~0x00080000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_camps_stacked() {
+  camps_stacked_ = 0u;
+  clear_has_camps_stacked();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::camps_stacked() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.camps_stacked)
+  return camps_stacked_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_camps_stacked(::google::protobuf::uint32 value) {
+  set_has_camps_stacked();
+  camps_stacked_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.camps_stacked)
+}
+
+// repeated .CDOTAMatchMetadata.Team.VictoryPrediction victory_prediction = 33;
+inline int CDOTAMatchMetadata_Team_Player::victory_prediction_size() const {
+  return victory_prediction_.size();
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_victory_prediction() {
+  victory_prediction_.Clear();
+}
+inline ::CDOTAMatchMetadata_Team_VictoryPrediction* CDOTAMatchMetadata_Team_Player::mutable_victory_prediction(int index) {
+  // @@protoc_insertion_point(field_mutable:CDOTAMatchMetadata.Team.Player.victory_prediction)
+  return victory_prediction_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_VictoryPrediction >*
+CDOTAMatchMetadata_Team_Player::mutable_victory_prediction() {
+  // @@protoc_insertion_point(field_mutable_list:CDOTAMatchMetadata.Team.Player.victory_prediction)
+  return &victory_prediction_;
+}
+inline const ::CDOTAMatchMetadata_Team_VictoryPrediction& CDOTAMatchMetadata_Team_Player::victory_prediction(int index) const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.victory_prediction)
+  return victory_prediction_.Get(index);
+}
+inline ::CDOTAMatchMetadata_Team_VictoryPrediction* CDOTAMatchMetadata_Team_Player::add_victory_prediction() {
+  // @@protoc_insertion_point(field_add:CDOTAMatchMetadata.Team.Player.victory_prediction)
+  return victory_prediction_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_VictoryPrediction >&
+CDOTAMatchMetadata_Team_Player::victory_prediction() const {
+  // @@protoc_insertion_point(field_list:CDOTAMatchMetadata.Team.Player.victory_prediction)
+  return victory_prediction_;
+}
+
+// optional uint32 lane_selection_flags = 34;
+inline bool CDOTAMatchMetadata_Team_Player::has_lane_selection_flags() const {
+  return (_has_bits_[0] & 0x00100000u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_lane_selection_flags() {
+  _has_bits_[0] |= 0x00100000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_lane_selection_flags() {
+  _has_bits_[0] &= ~0x00100000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_lane_selection_flags() {
+  lane_selection_flags_ = 0u;
+  clear_has_lane_selection_flags();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::lane_selection_flags() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.lane_selection_flags)
+  return lane_selection_flags_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_lane_selection_flags(::google::protobuf::uint32 value) {
+  set_has_lane_selection_flags();
+  lane_selection_flags_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.lane_selection_flags)
+}
+
+// optional uint32 rampages = 35;
+inline bool CDOTAMatchMetadata_Team_Player::has_rampages() const {
+  return (_has_bits_[0] & 0x00200000u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_rampages() {
+  _has_bits_[0] |= 0x00200000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_rampages() {
+  _has_bits_[0] &= ~0x00200000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_rampages() {
+  rampages_ = 0u;
+  clear_has_rampages();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::rampages() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.rampages)
+  return rampages_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_rampages(::google::protobuf::uint32 value) {
+  set_has_rampages();
+  rampages_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.rampages)
+}
+
+// optional uint32 triple_kills = 36;
+inline bool CDOTAMatchMetadata_Team_Player::has_triple_kills() const {
+  return (_has_bits_[0] & 0x00400000u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_triple_kills() {
+  _has_bits_[0] |= 0x00400000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_triple_kills() {
+  _has_bits_[0] &= ~0x00400000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_triple_kills() {
+  triple_kills_ = 0u;
+  clear_has_triple_kills();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::triple_kills() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.triple_kills)
+  return triple_kills_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_triple_kills(::google::protobuf::uint32 value) {
+  set_has_triple_kills();
+  triple_kills_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.triple_kills)
+}
+
+// optional uint32 aegis_snatched = 37;
+inline bool CDOTAMatchMetadata_Team_Player::has_aegis_snatched() const {
+  return (_has_bits_[0] & 0x00800000u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_aegis_snatched() {
+  _has_bits_[0] |= 0x00800000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_aegis_snatched() {
+  _has_bits_[0] &= ~0x00800000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_aegis_snatched() {
+  aegis_snatched_ = 0u;
+  clear_has_aegis_snatched();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::aegis_snatched() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.aegis_snatched)
+  return aegis_snatched_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_aegis_snatched(::google::protobuf::uint32 value) {
+  set_has_aegis_snatched();
+  aegis_snatched_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.aegis_snatched)
+}
+
+// optional uint32 rapiers_purchased = 38;
+inline bool CDOTAMatchMetadata_Team_Player::has_rapiers_purchased() const {
+  return (_has_bits_[0] & 0x01000000u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_rapiers_purchased() {
+  _has_bits_[0] |= 0x01000000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_rapiers_purchased() {
+  _has_bits_[0] &= ~0x01000000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_rapiers_purchased() {
+  rapiers_purchased_ = 0u;
+  clear_has_rapiers_purchased();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::rapiers_purchased() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.rapiers_purchased)
+  return rapiers_purchased_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_rapiers_purchased(::google::protobuf::uint32 value) {
+  set_has_rapiers_purchased();
+  rapiers_purchased_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.rapiers_purchased)
+}
+
+// optional uint32 couriers_killed = 39;
+inline bool CDOTAMatchMetadata_Team_Player::has_couriers_killed() const {
+  return (_has_bits_[0] & 0x02000000u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_couriers_killed() {
+  _has_bits_[0] |= 0x02000000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_couriers_killed() {
+  _has_bits_[0] &= ~0x02000000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_couriers_killed() {
+  couriers_killed_ = 0u;
+  clear_has_couriers_killed();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::couriers_killed() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.couriers_killed)
+  return couriers_killed_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_couriers_killed(::google::protobuf::uint32 value) {
+  set_has_couriers_killed();
+  couriers_killed_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.couriers_killed)
+}
+
+// optional uint32 net_worth_rank = 40;
+inline bool CDOTAMatchMetadata_Team_Player::has_net_worth_rank() const {
+  return (_has_bits_[0] & 0x04000000u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_net_worth_rank() {
+  _has_bits_[0] |= 0x04000000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_net_worth_rank() {
+  _has_bits_[0] &= ~0x04000000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_net_worth_rank() {
+  net_worth_rank_ = 0u;
+  clear_has_net_worth_rank();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::net_worth_rank() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.net_worth_rank)
+  return net_worth_rank_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_net_worth_rank(::google::protobuf::uint32 value) {
+  set_has_net_worth_rank();
+  net_worth_rank_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.net_worth_rank)
+}
+
+// optional uint32 support_gold_spent = 41;
+inline bool CDOTAMatchMetadata_Team_Player::has_support_gold_spent() const {
+  return (_has_bits_[0] & 0x08000000u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_support_gold_spent() {
+  _has_bits_[0] |= 0x08000000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_support_gold_spent() {
+  _has_bits_[0] &= ~0x08000000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_support_gold_spent() {
+  support_gold_spent_ = 0u;
+  clear_has_support_gold_spent();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::support_gold_spent() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.support_gold_spent)
+  return support_gold_spent_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_support_gold_spent(::google::protobuf::uint32 value) {
+  set_has_support_gold_spent();
+  support_gold_spent_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.support_gold_spent)
+}
+
+// optional uint32 observer_wards_placed = 42;
+inline bool CDOTAMatchMetadata_Team_Player::has_observer_wards_placed() const {
+  return (_has_bits_[0] & 0x10000000u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_observer_wards_placed() {
+  _has_bits_[0] |= 0x10000000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_observer_wards_placed() {
+  _has_bits_[0] &= ~0x10000000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_observer_wards_placed() {
+  observer_wards_placed_ = 0u;
+  clear_has_observer_wards_placed();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::observer_wards_placed() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.observer_wards_placed)
+  return observer_wards_placed_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_observer_wards_placed(::google::protobuf::uint32 value) {
+  set_has_observer_wards_placed();
+  observer_wards_placed_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.observer_wards_placed)
+}
+
+// optional uint32 sentry_wards_placed = 43;
+inline bool CDOTAMatchMetadata_Team_Player::has_sentry_wards_placed() const {
+  return (_has_bits_[0] & 0x20000000u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_sentry_wards_placed() {
+  _has_bits_[0] |= 0x20000000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_sentry_wards_placed() {
+  _has_bits_[0] &= ~0x20000000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_sentry_wards_placed() {
+  sentry_wards_placed_ = 0u;
+  clear_has_sentry_wards_placed();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::sentry_wards_placed() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.sentry_wards_placed)
+  return sentry_wards_placed_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_sentry_wards_placed(::google::protobuf::uint32 value) {
+  set_has_sentry_wards_placed();
+  sentry_wards_placed_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.sentry_wards_placed)
+}
+
+// optional uint32 wards_dewarded = 44;
+inline bool CDOTAMatchMetadata_Team_Player::has_wards_dewarded() const {
+  return (_has_bits_[0] & 0x40000000u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_wards_dewarded() {
+  _has_bits_[0] |= 0x40000000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_wards_dewarded() {
+  _has_bits_[0] &= ~0x40000000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_wards_dewarded() {
+  wards_dewarded_ = 0u;
+  clear_has_wards_dewarded();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team_Player::wards_dewarded() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.wards_dewarded)
+  return wards_dewarded_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_wards_dewarded(::google::protobuf::uint32 value) {
+  set_has_wards_dewarded();
+  wards_dewarded_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.wards_dewarded)
+}
+
+// optional float stun_duration = 45;
+inline bool CDOTAMatchMetadata_Team_Player::has_stun_duration() const {
+  return (_has_bits_[0] & 0x80000000u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_stun_duration() {
+  _has_bits_[0] |= 0x80000000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_stun_duration() {
+  _has_bits_[0] &= ~0x80000000u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_stun_duration() {
+  stun_duration_ = 0;
+  clear_has_stun_duration();
+}
+inline float CDOTAMatchMetadata_Team_Player::stun_duration() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.stun_duration)
+  return stun_duration_;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_stun_duration(float value) {
+  set_has_stun_duration();
+  stun_duration_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.stun_duration)
+}
+
+// optional .EDOTAMMRBoostType rank_mmr_boost_type = 46 [default = k_EDOTAMMRBoostType_None];
+inline bool CDOTAMatchMetadata_Team_Player::has_rank_mmr_boost_type() const {
+  return (_has_bits_[1] & 0x00000001u) != 0;
+}
+inline void CDOTAMatchMetadata_Team_Player::set_has_rank_mmr_boost_type() {
+  _has_bits_[1] |= 0x00000001u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_has_rank_mmr_boost_type() {
+  _has_bits_[1] &= ~0x00000001u;
+}
+inline void CDOTAMatchMetadata_Team_Player::clear_rank_mmr_boost_type() {
+  rank_mmr_boost_type_ = 0;
+  clear_has_rank_mmr_boost_type();
+}
+inline ::EDOTAMMRBoostType CDOTAMatchMetadata_Team_Player::rank_mmr_boost_type() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.Player.rank_mmr_boost_type)
+  return static_cast< ::EDOTAMMRBoostType >(rank_mmr_boost_type_);
+}
+inline void CDOTAMatchMetadata_Team_Player::set_rank_mmr_boost_type(::EDOTAMMRBoostType value) {
+  assert(::EDOTAMMRBoostType_IsValid(value));
+  set_has_rank_mmr_boost_type();
+  rank_mmr_boost_type_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.Player.rank_mmr_boost_type)
+}
+
+// -------------------------------------------------------------------
+
+// CDOTAMatchMetadata_Team
+
+// optional uint32 dota_team = 1;
+inline bool CDOTAMatchMetadata_Team::has_dota_team() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CDOTAMatchMetadata_Team::set_has_dota_team() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CDOTAMatchMetadata_Team::clear_has_dota_team() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CDOTAMatchMetadata_Team::clear_dota_team() {
+  dota_team_ = 0u;
+  clear_has_dota_team();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team::dota_team() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.dota_team)
+  return dota_team_;
+}
+inline void CDOTAMatchMetadata_Team::set_dota_team(::google::protobuf::uint32 value) {
+  set_has_dota_team();
+  dota_team_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.dota_team)
+}
+
+// repeated .CDOTAMatchMetadata.Team.Player players = 2;
+inline int CDOTAMatchMetadata_Team::players_size() const {
+  return players_.size();
+}
+inline void CDOTAMatchMetadata_Team::clear_players() {
+  players_.Clear();
+}
+inline ::CDOTAMatchMetadata_Team_Player* CDOTAMatchMetadata_Team::mutable_players(int index) {
+  // @@protoc_insertion_point(field_mutable:CDOTAMatchMetadata.Team.players)
+  return players_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_Player >*
+CDOTAMatchMetadata_Team::mutable_players() {
+  // @@protoc_insertion_point(field_mutable_list:CDOTAMatchMetadata.Team.players)
+  return &players_;
+}
+inline const ::CDOTAMatchMetadata_Team_Player& CDOTAMatchMetadata_Team::players(int index) const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.players)
+  return players_.Get(index);
+}
+inline ::CDOTAMatchMetadata_Team_Player* CDOTAMatchMetadata_Team::add_players() {
+  // @@protoc_insertion_point(field_add:CDOTAMatchMetadata.Team.players)
+  return players_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team_Player >&
+CDOTAMatchMetadata_Team::players() const {
+  // @@protoc_insertion_point(field_list:CDOTAMatchMetadata.Team.players)
+  return players_;
+}
+
+// repeated float graph_experience = 3;
+inline int CDOTAMatchMetadata_Team::graph_experience_size() const {
+  return graph_experience_.size();
+}
+inline void CDOTAMatchMetadata_Team::clear_graph_experience() {
+  graph_experience_.Clear();
+}
+inline float CDOTAMatchMetadata_Team::graph_experience(int index) const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.graph_experience)
+  return graph_experience_.Get(index);
+}
+inline void CDOTAMatchMetadata_Team::set_graph_experience(int index, float value) {
+  graph_experience_.Set(index, value);
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.graph_experience)
+}
+inline void CDOTAMatchMetadata_Team::add_graph_experience(float value) {
+  graph_experience_.Add(value);
+  // @@protoc_insertion_point(field_add:CDOTAMatchMetadata.Team.graph_experience)
+}
+inline const ::google::protobuf::RepeatedField< float >&
+CDOTAMatchMetadata_Team::graph_experience() const {
+  // @@protoc_insertion_point(field_list:CDOTAMatchMetadata.Team.graph_experience)
+  return graph_experience_;
+}
+inline ::google::protobuf::RepeatedField< float >*
+CDOTAMatchMetadata_Team::mutable_graph_experience() {
+  // @@protoc_insertion_point(field_mutable_list:CDOTAMatchMetadata.Team.graph_experience)
+  return &graph_experience_;
+}
+
+// repeated float graph_gold_earned = 4;
+inline int CDOTAMatchMetadata_Team::graph_gold_earned_size() const {
+  return graph_gold_earned_.size();
+}
+inline void CDOTAMatchMetadata_Team::clear_graph_gold_earned() {
+  graph_gold_earned_.Clear();
+}
+inline float CDOTAMatchMetadata_Team::graph_gold_earned(int index) const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.graph_gold_earned)
+  return graph_gold_earned_.Get(index);
+}
+inline void CDOTAMatchMetadata_Team::set_graph_gold_earned(int index, float value) {
+  graph_gold_earned_.Set(index, value);
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.graph_gold_earned)
+}
+inline void CDOTAMatchMetadata_Team::add_graph_gold_earned(float value) {
+  graph_gold_earned_.Add(value);
+  // @@protoc_insertion_point(field_add:CDOTAMatchMetadata.Team.graph_gold_earned)
+}
+inline const ::google::protobuf::RepeatedField< float >&
+CDOTAMatchMetadata_Team::graph_gold_earned() const {
+  // @@protoc_insertion_point(field_list:CDOTAMatchMetadata.Team.graph_gold_earned)
+  return graph_gold_earned_;
+}
+inline ::google::protobuf::RepeatedField< float >*
+CDOTAMatchMetadata_Team::mutable_graph_gold_earned() {
+  // @@protoc_insertion_point(field_mutable_list:CDOTAMatchMetadata.Team.graph_gold_earned)
+  return &graph_gold_earned_;
+}
+
+// repeated float graph_net_worth = 5;
+inline int CDOTAMatchMetadata_Team::graph_net_worth_size() const {
+  return graph_net_worth_.size();
+}
+inline void CDOTAMatchMetadata_Team::clear_graph_net_worth() {
+  graph_net_worth_.Clear();
+}
+inline float CDOTAMatchMetadata_Team::graph_net_worth(int index) const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.graph_net_worth)
+  return graph_net_worth_.Get(index);
+}
+inline void CDOTAMatchMetadata_Team::set_graph_net_worth(int index, float value) {
+  graph_net_worth_.Set(index, value);
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.graph_net_worth)
+}
+inline void CDOTAMatchMetadata_Team::add_graph_net_worth(float value) {
+  graph_net_worth_.Add(value);
+  // @@protoc_insertion_point(field_add:CDOTAMatchMetadata.Team.graph_net_worth)
+}
+inline const ::google::protobuf::RepeatedField< float >&
+CDOTAMatchMetadata_Team::graph_net_worth() const {
+  // @@protoc_insertion_point(field_list:CDOTAMatchMetadata.Team.graph_net_worth)
+  return graph_net_worth_;
+}
+inline ::google::protobuf::RepeatedField< float >*
+CDOTAMatchMetadata_Team::mutable_graph_net_worth() {
+  // @@protoc_insertion_point(field_mutable_list:CDOTAMatchMetadata.Team.graph_net_worth)
+  return &graph_net_worth_;
+}
+
+// optional bool cm_first_pick = 6;
+inline bool CDOTAMatchMetadata_Team::has_cm_first_pick() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void CDOTAMatchMetadata_Team::set_has_cm_first_pick() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void CDOTAMatchMetadata_Team::clear_has_cm_first_pick() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void CDOTAMatchMetadata_Team::clear_cm_first_pick() {
+  cm_first_pick_ = false;
+  clear_has_cm_first_pick();
+}
+inline bool CDOTAMatchMetadata_Team::cm_first_pick() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.cm_first_pick)
+  return cm_first_pick_;
+}
+inline void CDOTAMatchMetadata_Team::set_cm_first_pick(bool value) {
+  set_has_cm_first_pick();
+  cm_first_pick_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.cm_first_pick)
+}
+
+// optional uint32 cm_captain_player_id = 7;
+inline bool CDOTAMatchMetadata_Team::has_cm_captain_player_id() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void CDOTAMatchMetadata_Team::set_has_cm_captain_player_id() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void CDOTAMatchMetadata_Team::clear_has_cm_captain_player_id() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void CDOTAMatchMetadata_Team::clear_cm_captain_player_id() {
+  cm_captain_player_id_ = 0u;
+  clear_has_cm_captain_player_id();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team::cm_captain_player_id() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.cm_captain_player_id)
+  return cm_captain_player_id_;
+}
+inline void CDOTAMatchMetadata_Team::set_cm_captain_player_id(::google::protobuf::uint32 value) {
+  set_has_cm_captain_player_id();
+  cm_captain_player_id_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.cm_captain_player_id)
+}
+
+// repeated uint32 cm_bans = 8;
+inline int CDOTAMatchMetadata_Team::cm_bans_size() const {
+  return cm_bans_.size();
+}
+inline void CDOTAMatchMetadata_Team::clear_cm_bans() {
+  cm_bans_.Clear();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team::cm_bans(int index) const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.cm_bans)
+  return cm_bans_.Get(index);
+}
+inline void CDOTAMatchMetadata_Team::set_cm_bans(int index, ::google::protobuf::uint32 value) {
+  cm_bans_.Set(index, value);
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.cm_bans)
+}
+inline void CDOTAMatchMetadata_Team::add_cm_bans(::google::protobuf::uint32 value) {
+  cm_bans_.Add(value);
+  // @@protoc_insertion_point(field_add:CDOTAMatchMetadata.Team.cm_bans)
+}
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+CDOTAMatchMetadata_Team::cm_bans() const {
+  // @@protoc_insertion_point(field_list:CDOTAMatchMetadata.Team.cm_bans)
+  return cm_bans_;
+}
+inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+CDOTAMatchMetadata_Team::mutable_cm_bans() {
+  // @@protoc_insertion_point(field_mutable_list:CDOTAMatchMetadata.Team.cm_bans)
+  return &cm_bans_;
+}
+
+// repeated uint32 cm_picks = 9;
+inline int CDOTAMatchMetadata_Team::cm_picks_size() const {
+  return cm_picks_.size();
+}
+inline void CDOTAMatchMetadata_Team::clear_cm_picks() {
+  cm_picks_.Clear();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team::cm_picks(int index) const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.cm_picks)
+  return cm_picks_.Get(index);
+}
+inline void CDOTAMatchMetadata_Team::set_cm_picks(int index, ::google::protobuf::uint32 value) {
+  cm_picks_.Set(index, value);
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.cm_picks)
+}
+inline void CDOTAMatchMetadata_Team::add_cm_picks(::google::protobuf::uint32 value) {
+  cm_picks_.Add(value);
+  // @@protoc_insertion_point(field_add:CDOTAMatchMetadata.Team.cm_picks)
+}
+inline const ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >&
+CDOTAMatchMetadata_Team::cm_picks() const {
+  // @@protoc_insertion_point(field_list:CDOTAMatchMetadata.Team.cm_picks)
+  return cm_picks_;
+}
+inline ::google::protobuf::RepeatedField< ::google::protobuf::uint32 >*
+CDOTAMatchMetadata_Team::mutable_cm_picks() {
+  // @@protoc_insertion_point(field_mutable_list:CDOTAMatchMetadata.Team.cm_picks)
+  return &cm_picks_;
+}
+
+// optional uint32 cm_penalty = 10;
+inline bool CDOTAMatchMetadata_Team::has_cm_penalty() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void CDOTAMatchMetadata_Team::set_has_cm_penalty() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void CDOTAMatchMetadata_Team::clear_has_cm_penalty() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void CDOTAMatchMetadata_Team::clear_cm_penalty() {
+  cm_penalty_ = 0u;
+  clear_has_cm_penalty();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata_Team::cm_penalty() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.Team.cm_penalty)
+  return cm_penalty_;
+}
+inline void CDOTAMatchMetadata_Team::set_cm_penalty(::google::protobuf::uint32 value) {
+  set_has_cm_penalty();
+  cm_penalty_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.Team.cm_penalty)
+}
+
+// -------------------------------------------------------------------
+
+// CDOTAMatchMetadata
+
+// repeated .CDOTAMatchMetadata.Team teams = 1;
+inline int CDOTAMatchMetadata::teams_size() const {
+  return teams_.size();
+}
+inline void CDOTAMatchMetadata::clear_teams() {
+  teams_.Clear();
+}
+inline ::CDOTAMatchMetadata_Team* CDOTAMatchMetadata::mutable_teams(int index) {
+  // @@protoc_insertion_point(field_mutable:CDOTAMatchMetadata.teams)
+  return teams_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team >*
+CDOTAMatchMetadata::mutable_teams() {
+  // @@protoc_insertion_point(field_mutable_list:CDOTAMatchMetadata.teams)
+  return &teams_;
+}
+inline const ::CDOTAMatchMetadata_Team& CDOTAMatchMetadata::teams(int index) const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.teams)
+  return teams_.Get(index);
+}
+inline ::CDOTAMatchMetadata_Team* CDOTAMatchMetadata::add_teams() {
+  // @@protoc_insertion_point(field_add:CDOTAMatchMetadata.teams)
+  return teams_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::CDOTAMatchMetadata_Team >&
+CDOTAMatchMetadata::teams() const {
+  // @@protoc_insertion_point(field_list:CDOTAMatchMetadata.teams)
+  return teams_;
+}
+
+// repeated .CLobbyTimedRewardDetails item_rewards = 2;
+inline int CDOTAMatchMetadata::item_rewards_size() const {
+  return item_rewards_.size();
+}
+inline void CDOTAMatchMetadata::clear_item_rewards() {
+  item_rewards_.Clear();
+}
+inline ::CLobbyTimedRewardDetails* CDOTAMatchMetadata::mutable_item_rewards(int index) {
+  // @@protoc_insertion_point(field_mutable:CDOTAMatchMetadata.item_rewards)
+  return item_rewards_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::CLobbyTimedRewardDetails >*
+CDOTAMatchMetadata::mutable_item_rewards() {
+  // @@protoc_insertion_point(field_mutable_list:CDOTAMatchMetadata.item_rewards)
+  return &item_rewards_;
+}
+inline const ::CLobbyTimedRewardDetails& CDOTAMatchMetadata::item_rewards(int index) const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.item_rewards)
+  return item_rewards_.Get(index);
+}
+inline ::CLobbyTimedRewardDetails* CDOTAMatchMetadata::add_item_rewards() {
+  // @@protoc_insertion_point(field_add:CDOTAMatchMetadata.item_rewards)
+  return item_rewards_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::CLobbyTimedRewardDetails >&
+CDOTAMatchMetadata::item_rewards() const {
+  // @@protoc_insertion_point(field_list:CDOTAMatchMetadata.item_rewards)
+  return item_rewards_;
+}
+
+// optional fixed64 lobby_id = 3;
+inline bool CDOTAMatchMetadata::has_lobby_id() const {
+  return (_has_bits_[0] & 0x00000004u) != 0;
+}
+inline void CDOTAMatchMetadata::set_has_lobby_id() {
+  _has_bits_[0] |= 0x00000004u;
+}
+inline void CDOTAMatchMetadata::clear_has_lobby_id() {
+  _has_bits_[0] &= ~0x00000004u;
+}
+inline void CDOTAMatchMetadata::clear_lobby_id() {
+  lobby_id_ = GOOGLE_ULONGLONG(0);
+  clear_has_lobby_id();
+}
+inline ::google::protobuf::uint64 CDOTAMatchMetadata::lobby_id() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.lobby_id)
+  return lobby_id_;
+}
+inline void CDOTAMatchMetadata::set_lobby_id(::google::protobuf::uint64 value) {
+  set_has_lobby_id();
+  lobby_id_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.lobby_id)
+}
+
+// optional fixed64 report_until_time = 4;
+inline bool CDOTAMatchMetadata::has_report_until_time() const {
+  return (_has_bits_[0] & 0x00000008u) != 0;
+}
+inline void CDOTAMatchMetadata::set_has_report_until_time() {
+  _has_bits_[0] |= 0x00000008u;
+}
+inline void CDOTAMatchMetadata::clear_has_report_until_time() {
+  _has_bits_[0] &= ~0x00000008u;
+}
+inline void CDOTAMatchMetadata::clear_report_until_time() {
+  report_until_time_ = GOOGLE_ULONGLONG(0);
+  clear_has_report_until_time();
+}
+inline ::google::protobuf::uint64 CDOTAMatchMetadata::report_until_time() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.report_until_time)
+  return report_until_time_;
+}
+inline void CDOTAMatchMetadata::set_report_until_time(::google::protobuf::uint64 value) {
+  set_has_report_until_time();
+  report_until_time_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.report_until_time)
+}
+
+// optional bytes event_game_custom_table = 5;
+inline bool CDOTAMatchMetadata::has_event_game_custom_table() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CDOTAMatchMetadata::set_has_event_game_custom_table() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CDOTAMatchMetadata::clear_has_event_game_custom_table() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CDOTAMatchMetadata::clear_event_game_custom_table() {
+  event_game_custom_table_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  clear_has_event_game_custom_table();
+}
+inline const ::std::string& CDOTAMatchMetadata::event_game_custom_table() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.event_game_custom_table)
+  return event_game_custom_table_.GetNoArena();
+}
+inline void CDOTAMatchMetadata::set_event_game_custom_table(const ::std::string& value) {
+  set_has_event_game_custom_table();
+  event_game_custom_table_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), value);
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.event_game_custom_table)
+}
+#if LANG_CXX11
+inline void CDOTAMatchMetadata::set_event_game_custom_table(::std::string&& value) {
+  set_has_event_game_custom_table();
+  event_game_custom_table_.SetNoArena(
+    &::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:CDOTAMatchMetadata.event_game_custom_table)
+}
+#endif
+inline void CDOTAMatchMetadata::set_event_game_custom_table(const char* value) {
+  GOOGLE_DCHECK(value != NULL);
+  set_has_event_game_custom_table();
+  event_game_custom_table_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:CDOTAMatchMetadata.event_game_custom_table)
+}
+inline void CDOTAMatchMetadata::set_event_game_custom_table(const void* value, size_t size) {
+  set_has_event_game_custom_table();
+  event_game_custom_table_.SetNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:CDOTAMatchMetadata.event_game_custom_table)
+}
+inline ::std::string* CDOTAMatchMetadata::mutable_event_game_custom_table() {
+  set_has_event_game_custom_table();
+  // @@protoc_insertion_point(field_mutable:CDOTAMatchMetadata.event_game_custom_table)
+  return event_game_custom_table_.MutableNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline ::std::string* CDOTAMatchMetadata::release_event_game_custom_table() {
+  // @@protoc_insertion_point(field_release:CDOTAMatchMetadata.event_game_custom_table)
+  if (!has_event_game_custom_table()) {
+    return NULL;
+  }
+  clear_has_event_game_custom_table();
+  return event_game_custom_table_.ReleaseNonDefaultNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+}
+inline void CDOTAMatchMetadata::set_allocated_event_game_custom_table(::std::string* event_game_custom_table) {
+  if (event_game_custom_table != NULL) {
+    set_has_event_game_custom_table();
+  } else {
+    clear_has_event_game_custom_table();
+  }
+  event_game_custom_table_.SetAllocatedNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), event_game_custom_table);
+  // @@protoc_insertion_point(field_set_allocated:CDOTAMatchMetadata.event_game_custom_table)
+}
+
+// optional uint32 primary_event_id = 6;
+inline bool CDOTAMatchMetadata::has_primary_event_id() const {
+  return (_has_bits_[0] & 0x00000010u) != 0;
+}
+inline void CDOTAMatchMetadata::set_has_primary_event_id() {
+  _has_bits_[0] |= 0x00000010u;
+}
+inline void CDOTAMatchMetadata::clear_has_primary_event_id() {
+  _has_bits_[0] &= ~0x00000010u;
+}
+inline void CDOTAMatchMetadata::clear_primary_event_id() {
+  primary_event_id_ = 0u;
+  clear_has_primary_event_id();
+}
+inline ::google::protobuf::uint32 CDOTAMatchMetadata::primary_event_id() const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.primary_event_id)
+  return primary_event_id_;
+}
+inline void CDOTAMatchMetadata::set_primary_event_id(::google::protobuf::uint32 value) {
+  set_has_primary_event_id();
+  primary_event_id_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAMatchMetadata.primary_event_id)
+}
+
+// repeated .CMsgMatchTips match_tips = 7;
+inline int CDOTAMatchMetadata::match_tips_size() const {
+  return match_tips_.size();
+}
+inline void CDOTAMatchMetadata::clear_match_tips() {
+  match_tips_.Clear();
+}
+inline ::CMsgMatchTips* CDOTAMatchMetadata::mutable_match_tips(int index) {
+  // @@protoc_insertion_point(field_mutable:CDOTAMatchMetadata.match_tips)
+  return match_tips_.Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField< ::CMsgMatchTips >*
+CDOTAMatchMetadata::mutable_match_tips() {
+  // @@protoc_insertion_point(field_mutable_list:CDOTAMatchMetadata.match_tips)
+  return &match_tips_;
+}
+inline const ::CMsgMatchTips& CDOTAMatchMetadata::match_tips(int index) const {
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.match_tips)
+  return match_tips_.Get(index);
+}
+inline ::CMsgMatchTips* CDOTAMatchMetadata::add_match_tips() {
+  // @@protoc_insertion_point(field_add:CDOTAMatchMetadata.match_tips)
+  return match_tips_.Add();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::CMsgMatchTips >&
+CDOTAMatchMetadata::match_tips() const {
+  // @@protoc_insertion_point(field_list:CDOTAMatchMetadata.match_tips)
+  return match_tips_;
+}
+
+// optional .CMsgMatchMatchmakingStats matchmaking_stats = 8;
+inline bool CDOTAMatchMetadata::has_matchmaking_stats() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void CDOTAMatchMetadata::set_has_matchmaking_stats() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void CDOTAMatchMetadata::clear_has_matchmaking_stats() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void CDOTAMatchMetadata::clear_matchmaking_stats() {
+  if (matchmaking_stats_ != NULL) matchmaking_stats_->Clear();
+  clear_has_matchmaking_stats();
+}
+inline const ::CMsgMatchMatchmakingStats& CDOTAMatchMetadata::_internal_matchmaking_stats() const {
+  return *matchmaking_stats_;
+}
+inline const ::CMsgMatchMatchmakingStats& CDOTAMatchMetadata::matchmaking_stats() const {
+  const ::CMsgMatchMatchmakingStats* p = matchmaking_stats_;
+  // @@protoc_insertion_point(field_get:CDOTAMatchMetadata.matchmaking_stats)
+  return p != NULL ? *p : *reinterpret_cast<const ::CMsgMatchMatchmakingStats*>(
+      &::_CMsgMatchMatchmakingStats_default_instance_);
+}
+inline ::CMsgMatchMatchmakingStats* CDOTAMatchMetadata::release_matchmaking_stats() {
+  // @@protoc_insertion_point(field_release:CDOTAMatchMetadata.matchmaking_stats)
+  clear_has_matchmaking_stats();
+  ::CMsgMatchMatchmakingStats* temp = matchmaking_stats_;
+  matchmaking_stats_ = NULL;
+  return temp;
+}
+inline ::CMsgMatchMatchmakingStats* CDOTAMatchMetadata::mutable_matchmaking_stats() {
+  set_has_matchmaking_stats();
+  if (matchmaking_stats_ == NULL) {
+    auto* p = CreateMaybeMessage<::CMsgMatchMatchmakingStats>(GetArenaNoVirtual());
+    matchmaking_stats_ = p;
+  }
+  // @@protoc_insertion_point(field_mutable:CDOTAMatchMetadata.matchmaking_stats)
+  return matchmaking_stats_;
+}
+inline void CDOTAMatchMetadata::set_allocated_matchmaking_stats(::CMsgMatchMatchmakingStats* matchmaking_stats) {
+  ::google::protobuf::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == NULL) {
+    delete matchmaking_stats_;
+  }
+  if (matchmaking_stats) {
+    ::google::protobuf::Arena* submessage_arena = NULL;
+    if (message_arena != submessage_arena) {
+      matchmaking_stats = ::google::protobuf::internal::GetOwnedMessage(
+          message_arena, matchmaking_stats, submessage_arena);
+    }
+    set_has_matchmaking_stats();
+  } else {
+    clear_has_matchmaking_stats();
+  }
+  matchmaking_stats_ = matchmaking_stats;
+  // @@protoc_insertion_point(field_set_allocated:CDOTAMatchMetadata.matchmaking_stats)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
@@ -3587,9 +11515,73 @@ inline void CCLCMsg_ClientMessage::set_allocated_data(::std::string* data) {
 
 // -------------------------------------------------------------------
 
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 
+
+namespace google {
+namespace protobuf {
+
+template <> struct is_proto_enum< ::EDOTAMMRBoostType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::EDOTAMMRBoostType>() {
+  return ::EDOTAMMRBoostType_descriptor();
+}
+template <> struct is_proto_enum< ::EEvent> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::EEvent>() {
+  return ::EEvent_descriptor();
+}
+template <> struct is_proto_enum< ::EMatchBehaviorScoreVariance> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::EMatchBehaviorScoreVariance>() {
+  return ::EMatchBehaviorScoreVariance_descriptor();
+}
+
+}  // namespace protobuf
+}  // namespace google
 
 // @@protoc_insertion_point(global_scope)
 

@@ -5,9 +5,13 @@
 
 struct CSchemaClassBinding {
     CSchemaClassBinding* parent;
-    const char* bindingName; // ex: C_World
-    const char* dllName; // ex: libclient.so
-    const char* libName; // ex: client
+    const char* binaryName; // ex: C_World
+    const char* projectName; // ex: libclient.so
+    const char* className; // ex: client
+    void *classInfoOldSynthesized;
+    void *classInfoN;
+    void *thisModuleBindingPointer;
+    void *pSchemaType;
 };
 
 

@@ -26,7 +26,7 @@ bool Interfaces::FindExportedInterfaces( )
     gameEventSystem = GetInterface<CGameEventSystem>("./libengine2.so", "GameEventSystemClientV001", 21 );
     networkStrings = GetInterface<CNetworkStringTableContainer>("./libengine2.so", "Source2EngineToClientStringTable001", 19);
     materialSystem = GetInterface<IMaterialSystem>("./libmaterialsystem2.so", "VMaterialSystem2_001", 37);
-    networkSystem = GetInterface<CNetworkSystem>("./libnetworksystem.so", "NetworkSystemVersion001", 76);
+    networkSystem = GetInterface<CNetworkSystem>("./libnetworksystem.so", "NetworkSystemVersion001", 74);
 
     if( !requestedInterfaces.empty() ){
         for(auto & requestedInterface : requestedInterfaces){
@@ -129,8 +129,6 @@ void Interfaces::DumpInterfaces( const char *fileName )
 
 // Hook VMTs for interfaces that are not static (entities, netchannels, etc.)
 void Interfaces::HookDynamicVMTs( ) {
-    CDotaPlayer *localPlayer;
-
     camera = GetCurrentCamera();
 
     if( camera ){
@@ -143,17 +141,6 @@ void Interfaces::HookDynamicVMTs( ) {
         cameraVMT->ApplyVMT();
     } else {
         MC_PRINTF_WARN("GetCurrentCamera() returned null! Aborting CameraVMT.\n");
-    }
-
-    localPlayer = (CDotaPlayer*)entitySystem->GetBaseEntity(engine->GetLocalPlayer());
-    if( localPlayer ){
-        delete localPlayerVMT;
-        MC_PRINTF("Grabbing new localPlayer VMT - (%p)\n", (void*)camera);
-        localPlayerVMT = new VMT( localPlayer );
-        localPlayerVMT->HookVM( Hooks::PrepareUnitOrders, 443 );
-        localPlayerVMT->ApplyVMT();
-    } else {
-        MC_PRINTF_WARN("Localplayer is null! Aborting localPlayerVMT.\n");
     }
 
     if( networkClientService->GetIGameClient() ){

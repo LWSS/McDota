@@ -11,36 +11,62 @@ typedef enum _fieldtypes : uint64_t
     FIELD_BOOLEAN,			// boolean, implemented as an int, I may use this as a hint for compression
     FIELD_SHORT,			// 2 byte integer
     FIELD_CHARACTER,		// a byte
-    FIELD_COLOR32,			// 8-bit per channel r,g,b,a (32bit color)
+    FIELD_COLOR32,
     FIELD_EMBEDDED,			// an embedded object with a datadesc, recursively traverse and embedded class/structure based on an additional typedescription
-    FIELD_CUSTOM,			// special type that contains function pointers to it's read/write/parse functions
+    FIELD_CUSTOM,
 
-    FIELD_CLASSPTR,			// CBaseEntity *
-    FIELD_EHANDLE,			// Entity handle
-    FIELD_EDICT,			// edict_t *
+    FIELD_CLASSPTR   = 0x0C,
+    FIELD_EHANDLE    = 0x0D,
 
-    FIELD_POSITION_VECTOR,	// A world coordinate (these are fixed up across level transitions automagically)
-    FIELD_TIME,				// a floating point time (these are fixed up automatically too!)
-    FIELD_TICK,				// an integer tick count( fixed up similarly to time)
-    FIELD_MODELNAME,		// Engine string that is a model name (needs precache)
-    FIELD_SOUNDNAME,		// Engine string that is a sound name (needs precache)
+    FIELD_POSITION_VECTOR  = 0x0E,
+    FIELD_TIME       = 0x0F,
+    FIELD_TICK       = 0x10,
+    FIELD_SOUNDNAME  = 0x11,
 
-    FIELD_INPUT,			// a list of inputed data fields (all derived from CMultiInputVar)
-    FIELD_FUNCTION,			// A class function pointer (Think, Use, etc)
+    FIELD_INPUT      = 0x12,
+    FIELD_FUNCTION   = 0x13,
 
-    FIELD_VMATRIX,			// a vmatrix (output coords are NOT worldspace)
+    FIELD_VMATRIX    = 0x14,
 
-    // NOTE: Use float arrays for local transformations that don't need to be fixed up.
-    FIELD_VMATRIX_WORLDSPACE,// A VMatrix that maps some local space to world space (translation is fixed up on level transitions)
-    FIELD_MATRIX3X4_WORLDSPACE,	// matrix3x4_t that maps some local space to world space (translation is fixed up on level transitions)
+    FIELD_VMATRIX_WORLDSPACE  = 0x15,
+    FIELD_MATRIX3X4_WORLDSPACE  = 0x16,
 
-    FIELD_INTERVAL,			// a start and range floating point interval ( e.g., 3.2->3.6 == 3.2 and 0.4 )
-    FIELD_MODELINDEX,		// a model index
-    FIELD_MATERIALINDEX,	// a material index (using the material precache string table)
+    FIELD_INTERVAL   = 0x17,
+    FIELD_UNUSED     = 0x18,
+    FIELD_VECTOR2D   = 0x19,
+    FIELD_INTEGER64  = 0x1A,
+    FIELD_VECTOR4D   = 0x1B,
+    FIELD_RESOURCE   = 0x1C,
+    FIELD_TYPEUNKNOWN  = 0x1D,
+    FIELD_CSTRING    = 0x1E,
+    FIELD_HSCRIPT    = 0x1F,
+    FIELD_VARIANT    = 0x20,
+    FIELD_UINT64     = 0x21,
+    FIELD_FLOAT64    = 0x22,
+    FIELD_POSITIVEINTEGER_OR_NULL  = 0x23,
+    FIELD_HSCRIPT_NEW_INSTANCE  = 0x24,
+    FIELD_UINT       = 0x25,
+    FIELD_UTLSTRINGTOKEN  = 0x26,
+    FIELD_QANGLE     = 0x27,
+    FIELD_NETWORK_ORIGIN_CELL_QUANTIZED_VECTOR  = 0x28,
+    FIELD_HMATERIAL  = 0x29,
+    FIELD_HMODEL     = 0x2A,
+    FIELD_NETWORK_QUANTIZED_VECTOR  = 0x2B,
+    FIELD_NETWORK_QUANTIZED_FLOAT  = 0x2C,
+    FIELD_DIRECTION_VECTOR_WORLDSPACE  = 0x2D,
+    FIELD_QANGLE_WORLDSPACE  = 0x2E,
+    FIELD_QUATERNION_WORLDSPACE  = 0x2F,
+    FIELD_HSCRIPT_LIGHTBINDING  = 0x30,
 
-    FIELD_VECTOR2D,			// 2 floats
+    FIELD_V8_VALUE   = 0x31,
+    FIELD_V8_OBJECT  = 0x32,
+    FIELD_V8_ARRAY   = 0x33,
+    FIELD_V8_CALLBACK_INFO  = 0x34,
 
-    FIELD_TYPECOUNT,		// MUST BE LAST
+    FIELD_UTLSTRING  = 0x35,
+    FIELD_NETWORK_ORIGIN_CELL_QUANTIZED_POSITION_VECTOR  = 0x36,
+    FIELD_HRENDERTEXTURE  = 0x37,
+    FIELD_TYPECOUNT  = 0x38,
 } fieldtype_t;
 
 enum

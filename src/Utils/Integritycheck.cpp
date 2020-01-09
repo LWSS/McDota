@@ -28,7 +28,7 @@ static std::vector<VMTEntry> vms = {
         { "networkClientService", (void**)&networkClientService, 69 },
 };
 
-static const uint32_t dotaPlayerNum = 446;
+static const uint32_t dotaPlayerNum = 445;
 static const uint32_t baseNPCNum = 185;
 static const uint32_t panoramaUIPanelNum = 344;
 static const uint32_t uiEngineNum = 185;
@@ -54,7 +54,7 @@ bool Integrity::VMTsHaveMisMatch( ) {
             CBaseEntity *entity = entitySystem->GetBaseEntity( i );
             if( !entity )
                 continue;
-            if( strstr( entity->Schema_DynamicBinding()->bindingName, "DOTA_Unit_Hero" ) ){
+            if( strstr( entity->Schema_DynamicBinding()->binaryName, "DOTA_Unit_Hero" ) ){
                 baseNPC = (CDotaBaseNPC*)entity;
                 break;
             }
