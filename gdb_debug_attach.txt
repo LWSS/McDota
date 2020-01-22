@@ -1,0 +1,10 @@
+set $dlopen = (void*(*)(char*, int)) dlopen
+set $dlmopen = (void* (*)(long int, char*, int)) dlmopen
+set $dlinfo = (int (*)(void*, int, void*)) dlinfo
+set $malloc = (void* (*)(long long)) malloc
+set $dlerror = (char* (*)(void)) dlerror
+set confirm off
+set disassembly-flavor intel
+set  disassemble-next-line on
+show disassemble-next-line
+layout asm

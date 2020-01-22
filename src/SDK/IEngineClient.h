@@ -68,7 +68,7 @@ public:
     virtual void GetAvailableAsyncThread(void) = 0;
     virtual void GetScreenSize( int &width, int &height ) = 0;
     virtual bool IsDrawingLoadingImage(void) = 0;
-    virtual void HideLoadingPlaque(void) = 0; // 50
+    virtual void HideLoadingPlaque(void) = 0; // 48
     virtual const char* GetLevelName(void) = 0;
     virtual const char* GetLevelNameShort(void) = 0;
     virtual void* GetVoiceTweakAPI(void) = 0;

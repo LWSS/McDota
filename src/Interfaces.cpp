@@ -20,8 +20,8 @@ bool Interfaces::FindExportedInterfaces( )
     splitScreenService = GetInterface<CSplitScreenService>("./libengine2.so", "SplitScreenService_001", 46 );
     panoramaEngine = GetInterface<IPanoramaUIEngine>("./libpanorama.so", "PanoramaUIEngine001", 17 );
     fontManager = GetInterface<CFontManager>("./libmaterialsystem2.so", "FontManager_001", 45 );
-    engineServiceMgr = GetInterface<CEngineServiceMgr>("./libengine2.so", "EngineServiceMgr001", 51 );
-    particleSystemMgr = GetInterface<CParticleSystemMgr>("./libparticles.so", "ParticleSystemMgr003", 51 );
+    engineServiceMgr = GetInterface<CEngineServiceMgr>("./libengine2.so", "EngineServiceMgr001", 52 );
+    particleSystemMgr = GetInterface<CParticleSystemMgr>("./libparticles.so", "ParticleSystemMgr003", 48 );
     networkMessages = GetInterface<CNetworkMessages>("./libnetworksystem.so", "NetworkMessagesVersion001", 35 );
     gameEventSystem = GetInterface<CGameEventSystem>("./libengine2.so", "GameEventSystemClientV001", 21 );
     networkStrings = GetInterface<CNetworkStringTableContainer>("./libengine2.so", "Source2EngineToClientStringTable001", 19);

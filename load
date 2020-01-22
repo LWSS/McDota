@@ -41,7 +41,7 @@ sudo gdb -n -q -batch-silent \
 
 last_line="${input##*$'\n'}"
 
-sleep 1
+sleep 0.2
 sudo killall -18 steamwebhelper
 sudo killall -18 steam
 

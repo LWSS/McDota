@@ -342,7 +342,7 @@ static bool FindRichPresence()
 	return true;
 }
 
-static bool FindHardHooks()
+static bool FindGCFunctions()
 {
 	// GCSDK::CGCClient::DispatchPacket(GCSDK::IMsgNetPacket *)
 	// xref for "You have been waiting for"
@@ -361,6 +361,38 @@ static bool FindHardHooks()
         return false;
     }
 
+	// SendMessageGenericClientToGC(const google::protobuf::Message *const msg, uint32 nMsgID)
+	// xref for "DOTAPartySearch--Searching", there is 2, look for one that is Not at the end of a function.
+	// Follow the green arrow to the next block....
+
+	// E8 3B 39 19 00          call    sub_37F9EC0
+	// 48 89 C7                mov     rdi, rax
+	// E8 03 D7 1B 00          call    SendMessageGenericClientToGC_Wrapper <---- go into this function.
+	// 5B                      pop     rbx
+
+	// the last block in that function contains the target. (2nd to last function call)
+	// 83 4D E0 01             or      [rbp+var_20], 1
+	// 48 89 45 D0             mov     [rbp+var_30], rax
+	// C7 45 E8 00 00 00 00    mov     [rbp+var_18], 0
+	// E8 79 0E 64 00          call    SendMessageGenericClientToGC <-----
+	// 48 8D 05 D2 72 7F 01    lea     rax, off_501AFD0
+	// 48 89 DF                mov     rdi, rbx
+
+	uintptr_t line = PatternFinder::FindPatternInModule( "libclient.so", "C7 45 ?? 00 00 00 00 E8 ?? ?? ?? ?? 48 8D 05 ?? ?? ?? ?? 48 89 DF", "SendMessageGenericClientToGC()" );
+	if( !line ){
+		MC_PRINTF_ERROR("SendMessageGenericClientToGC sig is broke!\n");
+		return false;
+	}
+
+    line = GetAbsoluteAddress( line + 7, 1, 5 );
+	SendMessageGenericClientToGC = reinterpret_cast<SendMessageGenericClientToGCFn>( line );
+
+    // Grab Game coordinator client in here too.
+    // 55                      push    rbp
+    // 89 F2                   mov     edx, esi
+    // 48 89 FE                mov     rsi, rdi
+    // 48 8B 3D CB E6 59 01    mov     rdi, cs:s_pGCClient
+    gcClient = *reinterpret_cast<CGCClient**>( GetAbsoluteAddress( line + 6, 3, 7 ) );
 	return true;
 }
 
@@ -480,7 +512,7 @@ bool Scanner::FindAllSigs( )
 	sigsOK &= FindSoundOpSystem();
 	sigsOK &= FindAcceptMatch();
 	sigsOK &= FindRichPresence();
-	sigsOK &= FindHardHooks();
+	sigsOK &= FindGCFunctions();
 	sigsOK &= FindPhysicsQuery();
 	sigsOK &= FindRenderGameSystem();
 	sigsOK &= FindPanoramaScriptScopes();

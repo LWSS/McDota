@@ -2,6 +2,7 @@
 
 #include "../Interfaces.h"
 #include "../Utils/Protobuf.h"
+#include "../protos/mcdota.pb.h"
 
 bool HardHooks::MyBAsyncSendProto( IProtoBufSendHandler &handler, unsigned int unk,
                                     CMsgProtoBufHeader const &header, google::protobuf::Message *msg ) {
@@ -23,9 +24,10 @@ bool HardHooks::MyBAsyncSendProto( IProtoBufSendHandler &handler, unsigned int u
     //}
     //std::raise(SIGINT);
 end:
-    delete copy;
     HardHooks::BAsyncSendProto.Remove();
     bool ret = ((BAsyncSendProtoFn)BAsyncSendProtoFnAddr)( handler, unk, header, msg );
     HardHooks::BAsyncSendProto.Install();
+
+    delete copy;
     return ret;
 }

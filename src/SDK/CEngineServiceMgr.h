@@ -34,7 +34,7 @@ public:
     virtual bool IsLoopSwitchRequested( void ) = 0;
     virtual void *GetEventDispatcher( void ) = 0;
     virtual void *GetDebugVisualizerMgr( void ) = 0;
-    virtual void GetActiveLoopClientServerMode( void ) = 0;
+    virtual int GetActiveLoopClientServerMode( void ) = 0;
     virtual void PrintStatus( void ) = 0;
     virtual void GetActiveLoop( ActiveLoop_t & ) = 0;
     virtual bool IsLoadingLevel( void ) = 0;
@@ -51,6 +51,7 @@ public:
     virtual void InstallAddonListChangeNotify( IAddonListChangeNotify * ) = 0;
     virtual void UninstallAddonListChangeNotify( IAddonListChangeNotify * ) = 0;
     virtual void SetHighFPS( bool state ); // (NEW) added during TI 2019 battlepass 7-17 - probably to do with summer scrub or dota underlords?
+    virtual void StartEngineWatchDogThread(); // (NEW) added jan 2020
     virtual void ExitMainLoop( void ) = 0;
     virtual void RegisterPrerequisite( IPrerequisite * ) = 0;
     virtual void *LookupLocalizationToken( const char * ) = 0;

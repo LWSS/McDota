@@ -32,6 +32,7 @@ inline IMaterialSystem* materialSystem;
 inline CVPhys2World* phys2World;
 inline CRenderGameSystem* renderGameSystem;
 inline CNetworkSystem* networkSystem;
+inline CGCClient* gcClient;
 
 // VMT's
 inline VMT* cameraVMT;
@@ -59,6 +60,7 @@ typedef void (* GetMatricesForViewFn)( CRenderGameSystem *thisptr, CViewSetup &v
 typedef void*(* SetupViewFn)( CViewRender *thisptr );
 typedef void (* CGameTraceInitFn)( void *thisGameTrace );
 typedef void (* CTraceFilterConstructorFn)( void *thisTraceFilter, const void *IHandleEntity_Ignore, int, bool (* handler)( void *IHandleEntity, int ) );
+typedef void (* SendMessageGenericClientToGCFn)( const google::protobuf::Message * const msg, EDOTAGCMsg nMsgID );
 
 // Function Pointers
 inline GetPanoramaScriptScopesFn GetPanoramaScriptScopes;
@@ -67,6 +69,7 @@ inline GetMatricesForViewFn GetMatricesForView;
 inline SetupViewFn SetupView;
 inline CGameTraceInitFn GameTrace_Init;
 inline CTraceFilterConstructorFn CTraceFilter_Constructor;
+inline SendMessageGenericClientToGCFn SendMessageGenericClientToGC;
 
 // Viewmatrixes
 inline VMatrix *g_WorldToView;

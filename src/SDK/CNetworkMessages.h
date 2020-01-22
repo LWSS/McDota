@@ -1212,6 +1212,7 @@ enum EDOTAGCMsg : int {
     k_EMsgGCToClientNotificationsUpdated = 8639,
     k_EMsgGCtoGCAssociatedExploiterAccountInfo = 8640,
     k_EMsgGCtoGCAssociatedExploiterAccountInfoResponse = 8641,
+    k_EMsgGCtoGCRequestRecalibrationCheck = 8642,
 };
 
 inline const char *EDOTAGCMsg2String( EDOTAGCMsg msg )
@@ -2146,14 +2147,31 @@ public:
 };
 
 class CMsgProtoBufHeader;
-class IProtoBufSendHandler;
+class IProtoBufSendHandler
+{
+public:
+    virtual bool BAsyncSend( EDOTAGCMsg eMsg, const uint8_t *pubMsgBytes, uint32 cubSize );
+};
 
 class CProtoBufMsgBase
 {
 public:
-    virtual void DESTROY() = 0;
+    virtual ~CProtoBufMsgBase() = 0;
     virtual void DESTROY2() = 0;
     virtual google::protobuf::Message *GetGenericBody(void) = 0;
+
+    void *pNetPacket;
+    CMsgProtoBufHeader *pProtoBufHdr;
+    EDOTAGCMsg eMsg;
+    char _pad[4];
+};
+
+template<typename T>
+class CProtoBufMsg : CProtoBufMsgBase
+{
+public:
+
+    T *pProtoBufBody;
 };
 
 class CProtobuffBinding

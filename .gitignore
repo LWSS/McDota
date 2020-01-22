@@ -16,5 +16,6 @@ build_id_old
 *.nam
 *.til
 gdb.txt
+.gdb_history
 libMcDota.so
 McDota.cbp

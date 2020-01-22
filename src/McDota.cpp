@@ -60,7 +60,7 @@ int __attribute__((constructor)) Startup()
         return 1;
     }
     if( !Integrity::CheckInterfaceVMs() ){
-        MC_PRINTF_ERROR("CheckInterfaceVMs() Failed. Stopping...\n");
+        ConMsg( "[McDota] CheckInterfaceVMs() Failed. Stopping...\n" );
         return 2;
     }
     if( !Scanner::FindAllSigs() ){

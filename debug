@@ -19,15 +19,13 @@ filename="libMcDota.so"
 # https://www.kernel.org/doc/Documentation/security/Yama.txt
 sudo echo "2" | sudo tee /proc/sys/kernel/yama/ptrace_scope # Only allows root to inject code. This is temporary until reboot.
 
-# Adjust the Sleep time below for your system if needed. 
-# This sends 2 interrupts to DOTA after gdb attachs so gdb will drop into a shell.
-sleep 3 && kill -2 "$dota_pid" && sleep 1 && kill -2 "$dota_pid" &
-
 # dlopen method Credits: Aixxe @ aixxe.net
 if grep -q "$filename" /proc/"$dota_pid"/maps; then
-    (sudo echo -e "continue\\n"; cat) | sudo gdb -p "$dota_pid"
+    sudo gdb -p "$dota_pid" -x ./gdb_debug_attach.txt
 else
 	path="$(pwd)/$filename"
+	#put library name on first line
+	sed -i "1cset \$library = \"$path\"" ./gdb_debug_inject.txt
     echo "Injecting build $path"
-    (sudo echo -e "set confirm off\\nset \$dlopen = (void*(*)(char*, int)) dlopen\\ncall \$dlopen(\"$path\", 1)\\n"; cat) | sudo gdb -p "$dota_pid"
+    sudo gdb -p "$dota_pid" -x ./gdb_debug_inject.txt
 fi

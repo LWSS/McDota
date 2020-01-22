@@ -45,3 +45,4 @@
 #include "CRenderGameSystem.h"
 #include "CPanoramaGameScriptScope.h"
 #include "CDOTAPlayerResource.h"
+#include "CGCClient.h"

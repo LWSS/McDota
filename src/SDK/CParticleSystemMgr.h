@@ -68,13 +68,9 @@ public:
     virtual void sub_135AB0() = 0;
     virtual void sub_1183B0() = 0;
     virtual void sub_135B20() = 0;
-    virtual void sub_135BA0() = 0;
-    virtual void sub_135BB0() = 0;
-    virtual void sub_135BE0() = 0;
     virtual IParticleSnapshot CreateParticleSnapshot( void ) = 0;
     virtual void DestroyParticleSnapshot( IParticleSnapshot * ) = 0;
     virtual void sub_135A80() = 0;
     virtual void sub_135A90() = 0;
     virtual void sub_135D60() = 0;
-    virtual void sub_1387B0() = 0;
 };

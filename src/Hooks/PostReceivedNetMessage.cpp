@@ -29,7 +29,6 @@ void Hooks::PostReceivedNetMessage( INetChannel *thisptr, NetMessageHandle_t *me
             string.m_Memory.m_pMemory = new uint8_t[4096];
             string.m_Memory.m_nAllocationCount = 4096;
             string.m_Memory.m_nGrowSize = 4096;
-            info->pProtobufBinding->ToString( msg, &string );
             Util::Log( "Net Msg Received: (%s)\n", info->pProtobufBinding->ToString( msg, &string ) );
             delete[] string.m_Memory.m_pMemory;
         }
