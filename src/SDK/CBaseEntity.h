@@ -2,7 +2,6 @@
 
 #include "Schema.h"
 #include "vector.h"
-#include "ICvar.h"
 #include "CCollisionProperty.h"
 #include "Datamap.h"
 #include "../Utils/Util.h"

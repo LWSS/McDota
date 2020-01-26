@@ -150,43 +150,39 @@ int Util::FindDataMapElementOffset( Datamap *dMap, const char *element ) {
     return 0;
 }
 ConVar *Util::RegisterConVar( const char *name, const char *defaultValue, uint32_t flags, const char *helpString, bool bMin, float fMin, bool bMax, float fMax ) {
-	/** GHETTO HACKS AHEAD - BEWARE! **/
-	// we're gonna base our convar off of this random one
 	ConCommandBase* sens = cvar->FindCommandBase("sensitivity");
-	auto* command = new ConCommandBase;
-	// copy er' in
-	memcpy(command, sens, sizeof(ConCommandBase));
-	// Lastly, change the variables we want to be different.
-	command->isRegistered = false;
-	command->flags = flags;
-	command->next = nullptr;
-	command->thisptr = command;
-	command->hasMin = bMin;
-	command->hasMax = bMax;
-	command->minVal = fMin;
-	command->maxVal = fMax;
-	//command->unk = NULL;
-	//command->unk2 = NULL;
-    command->fValue = strtof(defaultValue, nullptr);
-    command->iValue = atoi(defaultValue);
+    ConVar* command = (ConVar*)new char[sizeof(ConVar)];
+
+    // copy the vtable/layout from the existing convar
+	memcpy(command, sens, sizeof(ConVar));
+
+	command->m_bRegistered = false;
+	command->m_nFlags = flags;
+	command->m_pNext = nullptr;
+	command->parent = command;
+	command->bHasMin = bMin;
+	command->bHasMax = bMax;
+	command->m_fMinVal = fMin;
+	command->m_fMaxVal = fMax;
+    command->m_Value.m_fValue = strtof(defaultValue, nullptr);
+    command->m_Value.m_nValue = atoi(defaultValue);
 
 	size_t nameLen = strlen(name) + 1;
-	command->name = new char[nameLen];
-	if( command->name && name ){
-		strncpy( command->name, name, nameLen);
+	command->m_pszName = new char[nameLen];
+	if( command->m_pszName && name ){
+		strncpy( command->m_pszName, name, nameLen);
 	} else {
         MC_PRINTF_ERROR("Error allocating space for ConVar name (%s)!\n", name);
 		return nullptr;
 	}
 
-
 	size_t valueLen = strlen(defaultValue) + 1;
-	command->strValue = new char[valueLen];
-    command->strDefault = new char[valueLen];
+	command->m_Value.m_pszString = new char[valueLen];
+    command->m_pszDefaultValue = new char[valueLen];
 
-	if( command->strValue && command->strDefault && defaultValue ){
-		strncpy( command->strValue, defaultValue, valueLen );
-        strncpy( command->strDefault, defaultValue, valueLen );
+	if( command->m_Value.m_pszString && command->m_pszDefaultValue && defaultValue ){
+		strncpy( command->m_Value.m_pszString, defaultValue, valueLen );
+        strncpy( command->m_pszDefaultValue, defaultValue, valueLen );
 	} else {
         MC_PRINTF_ERROR("[%s]Error allocating space for ConVar values (%s)!\n", name);
 		return nullptr;
@@ -194,20 +190,19 @@ ConVar *Util::RegisterConVar( const char *name, const char *defaultValue, uint32
 
 	if( helpString ){
 		size_t descLen = strlen( helpString ) + 1;
-		command->description = new char[descLen];
-		if( command->description ){
-			strncpy( command->description, helpString, descLen );
+		command->m_pszHelpString = new char[descLen];
+		if( command->m_pszHelpString ){
+			strncpy( command->m_pszHelpString, helpString, descLen );
 		} else{
 			MC_PRINTF_ERROR("[%s]Error allocating space for ConVar description (%s)!\n", name);
 			return nullptr;
 		}
 	} else {
-		command->description = nullptr;
+		command->m_pszHelpString = nullptr;
 	}
 
 	cvar->RegisterConCommand( command );
 	Util::createdConvars.push_back(command);
-    // cvar->ConsoleDPrintf("Registered convar %s @ %p\n", command->name, (void*)command);
 
     return cvar->FindVar(name);
 }

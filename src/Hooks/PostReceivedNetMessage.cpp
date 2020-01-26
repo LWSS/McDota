@@ -29,11 +29,17 @@ void Hooks::PostReceivedNetMessage( INetChannel *thisptr, NetMessageHandle_t *me
             string.m_Memory.m_pMemory = new uint8_t[4096];
             string.m_Memory.m_nAllocationCount = 4096;
             string.m_Memory.m_nGrowSize = 4096;
-            Util::Log( "Net Msg Received: (%s)\n", info->pProtobufBinding->ToString( msg, &string ) );
+            Util::Log( "Net Msg[%d] Received: (%s)\n", messageHandle->messageID, info->pProtobufBinding->ToString( msg, &string ) );
             delete[] string.m_Memory.m_pMemory;
         }
     }
 
+    if( mc_anti_mute->GetBool() && mc_hide_tips->GetBool() ){
+        if( messageHandle->messageID == 378 ) { // CDOTAClientMsg_TipAlert [378]
+            Util::Log("Suppressing a tipalert\n");
+            return;
+        }
+    }
 
     /*
     if( strstr( name, "CNETMsg_SignonState" ) ){

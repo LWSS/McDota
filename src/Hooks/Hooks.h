@@ -18,9 +18,8 @@ namespace Hooks
     // cnetworksystem
     INetChannel* CreateNetChannel( CNetworkSystem * thisptr, int, void *, const char *, unsigned int, unsigned int );
     // gameEventManager
+    CGameEvent* CreateEvent( CGameEventManager *thisptr, const char *name, bool force, int *cookie );
     bool FireEventClientSide( CGameEventManager *thisptr, CGameEvent *event );
-    // gameEventSystem
-    void PostEventAbstract( CGameEventSystem *thisptr, int splitScreenSlot, bool unk, int int2, unsigned const char *bytes, CNetworkSerializerPB* eventHandle,  google::protobuf::Message *msg, unsigned long dong, NetChannelBufType_t buftype );
     // inputInternal
     void SetKeyCodeState( IInputInternal* thisptr, ButtonCode_t code, bool bPressed );
     // INetChannel

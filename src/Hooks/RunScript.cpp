@@ -20,5 +20,5 @@ int Hooks::RunScript( panorama::UIEngine *thisptr, panorama::IUIPanel *panel, co
         }
     }
 
-    return uiEngineVMT->GetOriginalMethod<RunScriptFn>(110)( thisptr, panel, entireJSCode, pathToXMLContext, int1, int2, alreadyCompiled );
+    return uiEngineVMT->GetOriginalMethod<RunScriptFn>(111)( thisptr, panel, entireJSCode, pathToXMLContext, int1, int2, alreadyCompiled );
 }

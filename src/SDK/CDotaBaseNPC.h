@@ -56,7 +56,7 @@ public:
     virtual void sub_290E410() = 0;
     virtual void sub_290E430() = 0;
     virtual void sub_290E450() = 0;
-    virtual void sub_290E470() = 0; // underwater minux 10
+    virtual void sub_290E470() = 0;
     virtual void sub_290E471() = 0;
     virtual void sub_2B42550() = 0;
     virtual void sub_2D38700() = 0;

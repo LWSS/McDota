@@ -4,21 +4,22 @@
 #include "CUtlVector.h"
 #include "../Netvars.h"
 
-
 struct PlayerResourcePlayerTeamData_t
 {
-    void *unk[2];
-    int unk2;
-    int heroID; // ex: 48 = luna
-    int kills;
-    int assists;
-    int deaths;
-    int streak; // how many kills wo/ dying
-    int heroLevel;
-    int respawnSeconds; // seconds until respawn. -1 if alive.
-    int lastBuybackTime; // last buyback time in seconds since game started
-    int entHandle; // I think
-    void *_pad[32];
+    void *vtable;
+    void *SmartPointer_pChainEntity;
+    ChangeAccessorFieldPathIndex_t m_PathIndex;
+    char _pad[2];
+    int m_nSelectedHeroID; // ex: 48 = luna
+    int m_iKills;
+    int m_iAssists;
+    int m_iDeaths;
+    int m_iStreak; // how many kills wo/ dying
+    int m_iLevel;
+    int m_iRespawnSeconds; // seconds until respawn. -1 if alive.
+    int m_iLastBuybackTime; // last buyback time in seconds since game started
+    int m_hSelectedHero;
+    void *_pad2[32];
 };
 
 class CDOTAPlayerResource : CBaseEntity

@@ -27,7 +27,7 @@ bool Settings::RegisterCustomConvars( ) {
 
 	mc_camera_pitch_add = Util::RegisterConVar( "mc_camera_pitch_add", "0.0", 136, nullptr, true, -1.0f, true, 360.0f );
 	mc_camera_yaw_add = Util::RegisterConVar( "mc_camera_yaw_add", "0.0", 136, nullptr, true, 0.0f );
-	mc_camera_distance = Util::RegisterConVar( "mc_camera_distance", "1134.0", 136, nullptr, true, 0.0f );
+	mc_camera_distance = Util::RegisterConVar( "mc_camera_distance", "1200.0", 136, nullptr, true, 0.0f );
 
 	mc_fog_disable = Util::RegisterConVar( "mc_fog_disable", "false" );
 	mc_fow_disable = Util::RegisterConVar( "mc_fow_disable", "false" );
@@ -52,6 +52,7 @@ bool Settings::RegisterCustomConvars( ) {
 	mc_crash_server = Util::RegisterConVar( "mc_crash_server", "false" );
 
 	mc_anti_mute = Util::RegisterConVar( "mc_anti_mute", "false" );
+	mc_hide_tips = Util::RegisterConVar( "mc_hide_tips", "false" );
 	mc_send_voice = Util::RegisterConVar( "mc_send_voice", "false" );
 	mc_send_freq = Util::RegisterConVar( "mc_send_freq", "25" );
 	mc_send_status = Util::RegisterConVar( "mc_send_status", "false" );
@@ -62,8 +63,8 @@ bool Settings::RegisterCustomConvars( ) {
 	mc_custom_int = Util::RegisterConVar( "mc_custom_int", "1" );
 
 	for ( ConCommandBase *var : Util::createdConvars ) {
-		if( !cvar->FindVar(var->name) ){
-			MC_PRINTF_ERROR("Error Finding created Var: %s\n", var->name);
+		if( !cvar->FindVar(var->m_pszName) ){
+			MC_PRINTF_ERROR("Error Finding created Var: %s\n", var->m_pszName);
 			return false;
 		}
 	}

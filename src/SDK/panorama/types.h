@@ -41,7 +41,7 @@ namespace panorama
     class CUILength;
     class CLayoutFile;
     typedef unsigned short CPanoramaSymbol;
-    class PanelHandle_t;
+    typedef unsigned long long PanelHandle_t;
     class CJSONWebAPIParams;
     class UIEventFactory;
     class EPanelEventSource_t;

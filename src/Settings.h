@@ -1,6 +1,7 @@
 #pragma once
 
 #include "SDK/Convar.h"
+#include "SDK/CGameEventManager.h"
 
 /* Namespace is kinda annoying for these */
 inline ConVar *mc_esp_type_bbox;
@@ -47,6 +48,7 @@ inline ConVar *mc_mute_creeps;
 inline ConVar *mc_end_createmove;
 inline ConVar *mc_crash_server;
 inline ConVar *mc_anti_mute;
+inline ConVar *mc_hide_tips;
 
 inline ConVar *mc_send_voice;
 inline ConVar *mc_send_freq;

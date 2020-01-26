@@ -518,6 +518,7 @@ bool Scanner::FindAllSigs( )
 	sigsOK &= FindPanoramaScriptScopes();
     sigsOK &= FindTraceFuncs();
 
+	Util::Log("SetImage @ %p\n", PatternFinder::FindPatternInModule( "libclient.so", "55 48 89 E5 41 57 49 89 D7 41 56 49 89 F6 41 55 41 89 CD 41 54 4D 89 C4 53", "CImagePanel::SetImage" ) );
 	return sigsOK;
 }
 

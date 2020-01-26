@@ -8,7 +8,7 @@ namespace panorama
     public:
         virtual void DESTROY() = 0;
         virtual void DESTROY2() = 0;
-        virtual CPanoramaSymbol GetTargetPanel(void);
+        virtual panorama::PanelHandle_t* GetTargetPanel(void); // 0xC
         virtual void SetTargetPanel(IUIPanel const *);
         virtual CPanoramaSymbol BROKEN_GetEventType(void);
         virtual bool CanBubble(void);

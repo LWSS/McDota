@@ -5,8 +5,10 @@
 
 #define MAX_ENTITIES_IN_LIST 512
 #define MAX_ENTITY_LISTS 64
-#define MAX_TOTAL_ENTITIES MAX_ENTITIES_IN_LIST * MAX_ENTITY_LISTS
+#define MAX_TOTAL_ENTITIES MAX_ENTITIES_IN_LIST * MAX_ENTITY_LISTS // 0x8000
 
+#define LOWORD(a) ((uint16_t)(a))
+#define HIWORD(a) ((uint16_t)(((uint32_t)(a) >> 16) & 0xFFFF))
 
 inline uint32_t highestEntIndexOffset;
 
@@ -15,7 +17,7 @@ class CEntityIdentity {
 public:
     CBaseEntity *entity;
     void *dunno;
-    int unk;
+    int entHandle; // LOWORD(handle) & 0x7FFF = entID
     int unk2; // always seems to be -1
     const char* internalName; // these two strings are optional!
     const char* entityName; // ex: item_tpscroll
@@ -36,21 +38,29 @@ public:
 class CGameEntitySystem
 {
 public:
+    // rebuilt from CGameEntitySystem::GetBaseEntity()
     CBaseEntity* GetBaseEntity( int index )
     {
-        if ( index <= -1 || index >= MAX_TOTAL_ENTITIES )
+        if ( index <= -1 || index >= ( MAX_TOTAL_ENTITIES - 1 ) )
             return nullptr;
 
-        int listToUse = (index / MAX_ENTITIES_IN_LIST);
-        if( !m_pEntityList[listToUse] ){
-            ConMsg("Tried to Use an EntityList does that not exist yet! List #%d", listToUse);
+        CEntityIdentities *chunkToUse = m_pIdentityChunks[(index / MAX_ENTITIES_IN_LIST)]; // equal to ( index >> 9 )
+
+        if( !chunkToUse )
             return nullptr;
-        }
-        if( m_pEntityList[listToUse]->m_pIdentities[index % MAX_ENTITIES_IN_LIST].entity ){
-            return m_pEntityList[listToUse]->m_pIdentities[index % MAX_ENTITIES_IN_LIST].entity;
-        } else {
+
+        CEntityIdentity *identity = &chunkToUse->m_pIdentities[ index % MAX_ENTITIES_IN_LIST ]; // equal to ( index & 1FF )
+
+        if( !identity )
             return nullptr;
-        }
+
+        // This is an extra check in the official implementation that I am omitting for speed
+        //if( (LOWORD( identity->entHandle ) & 0x7FFF) == index ){
+        //    Util::Log("Check passed.\n");
+        //    return identity->entity;
+        //}
+
+        return identity->entity;
     }
 
     int GetHighestEntityIndex()
@@ -61,5 +71,5 @@ public:
     void* unk;
     void* unk2;
     void* unk3;
-    CEntityIdentities* m_pEntityList[MAX_ENTITY_LISTS];
+    CEntityIdentities* m_pIdentityChunks[MAX_ENTITY_LISTS];
 };

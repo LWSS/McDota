@@ -27,9 +27,6 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
     NetMessageInfo_t *info;
     const char *name;
 
-    info = networkMessages->GetNetMessageInfo(messageHandle);
-    name = info->pProtobufBinding->GetName();
-
     /*
     if( mc_crash_server->GetBool() && strstr( name, "CNETMsg_SignonState" ) ){
         uint32_t signon = Util::Protobuf::GetFieldTraverseUInt32(msg, "signon_state").value();
@@ -43,24 +40,14 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
         }
     }*/
 
-    if( mc_stall_connect->GetBool() && strstr( name, "CNETMsg_SignonState" ) ) {
+    if( mc_stall_connect->GetBool() && messageHandle->messageID == 7 ) { //CNETMsg_SignonState [7]
         uint32_t signon = Util::Protobuf::GetFieldTraverseUInt32( msg, "signon_state" ).value( );
         if ( signon >= ( uint32_t )SignonState_t::SIGNONSTATE_PRESPAWN ) {
             return true;
         }
     }
 
-    /*
-    if( strstr( name, "CCLCMsg_ClientInfo" ) ){
-        Util::Log("Suppressing clientinfo...\n");
-        return true;
-    }
-    if( strstr( name, "CMsgSource1LegacyListenEvents" ) ){
-        Util::Log("Suppressing listen events\n");
-        return true;
-    }*/
-
-    if( mc_anti_mute->GetBool() && strstr( name, "CNETMsg_StringCmd" ) ){
+    if( mc_anti_mute->GetBool() && messageHandle->messageID == 5 ){ //CNETMsg_StringCmd [5]
         CNETMsg_StringCmd *ree = static_cast<CNETMsg_StringCmd*>( msg );
         std::string command = std::string(ree->command().c_str());
         if( command.find("say_team") == 0 ){
@@ -83,10 +70,7 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
     }
 
     if( mc_send_status->GetBool() ){
-        info = networkMessages->GetNetMessageInfo(messageHandle);
-        name = info->pProtobufBinding->GetName();
-
-        if( strstr(name, "CCLCMsg_ServerStatus") != nullptr ){
+        if( messageHandle->messageID == 31 ){ // CCLCMsg_ServerStatus [31]
             for( int i = 0; i < mc_send_freq->GetInt(); i++ ){
                 engine->GetNetChannelInfo()->SetMaxRoutablePayloadSize(99999999);
                 engine->GetNetChannelInfo()->SetMaxBufferSize(NetChannelBufType_t::BUF_DEFAULT, 99999999);
@@ -96,10 +80,7 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
     }
 
     if( mc_send_voice->GetBool() ){
-        info = networkMessages->GetNetMessageInfo(messageHandle);
-        name = info->pProtobufBinding->GetName();
-
-        if( strstr(name, "CCLCMsg_VoiceData") != nullptr ){
+        if( messageHandle->messageID == 31 ){ // CCLCMsg_VoiceData [22]
             for( int i = 0; i < mc_send_freq->GetInt(); i++ ){
                 engine->GetNetChannelInfo()->SetMaxRoutablePayloadSize(99999999);
                 engine->GetNetChannelInfo()->SetMaxBufferSize(NetChannelBufType_t::BUF_DEFAULT, 99999999);
@@ -143,7 +124,7 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
             string.m_Memory.m_pMemory = new uint8_t[4096];
             string.m_Memory.m_nAllocationCount = 4096;
             string.m_Memory.m_nGrowSize = 4096;
-            Util::Log( "ToString: (%s)\n", info->pProtobufBinding->ToString( msg, &string ) );
+            Util::Log( "ToString[%d]: (%s)\n", messageHandle->messageID, info->pProtobufBinding->ToString( msg, &string ) );
             delete[] string.m_Memory.m_pMemory;
             //Util::Protobuf::LogMessageContents(msg);
 

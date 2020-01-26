@@ -131,6 +131,9 @@ R"zz(
 						<DOTASettingsSlider convar='mc_camera_pitch_add' min='-1.0' max='360.0' text='Pitch' />
 						<DOTASettingsSlider convar='mc_camera_yaw_add' min='0.0' max='360.0' text='Yaw Add' />
 						<DOTASettingsSlider convar='mc_camera_distance' min='1134.0' max='4000.0' text='Camera Distance' />
+						<Button id='btnTest' class='ButtonBevel' >
+							<Label text='sexy test button'/>
+						</Button>
 					</Panel>
 				</Panel>
 				<Panel id='RightColumn' class='SettingsColumn' style='width: 50%;'>

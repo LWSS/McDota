@@ -119,6 +119,7 @@ int __attribute__((constructor)) Startup()
     clientModeVMT->ApplyVMT();
 
     gameEventManagerVMT = new VMT(gameEventManager);
+    gameEventManagerVMT->HookVM(Hooks::CreateEvent, 7);
     gameEventManagerVMT->HookVM(Hooks::FireEventClientSide, 9);
     gameEventManagerVMT->ApplyVMT();
 
@@ -136,12 +137,8 @@ int __attribute__((constructor)) Startup()
     inputInternalVMT->ApplyVMT();
 
     uiEngineVMT = new VMT(panoramaEngine->AccessUIEngine());
-    uiEngineVMT->HookVM(Hooks::RunScript, 110);
+    uiEngineVMT->HookVM(Hooks::RunScript, 111);
     uiEngineVMT->ApplyVMT();
-
-    gameEventSystemVMT = new VMT( gameEventSystem );
-    gameEventSystemVMT->HookVM(Hooks::PostEventAbstract, 15);
-    gameEventSystemVMT->ApplyVMT();
 
     particleSystemVMT = new VMT( particleSystemMgr );
     particleSystemVMT->HookVM(Hooks::CreateParticleCollection, 18);
@@ -202,7 +199,7 @@ void __attribute__((destructor)) Shutdown()
         camera->SetMinPitch( -1.0f );
         camera->SetMaxPitch( -1.0f );
         camera->SetExtraYaw( 0.0f );
-        camera->SetDistanceToLookAtPos( 1134.0f );
+        camera->SetDistanceToLookAtPos( 1200.0f );
     }
 
 
@@ -222,13 +219,13 @@ void __attribute__((destructor)) Shutdown()
 
     if( cvar ){
         /* Cleanup ConVars we have made */
-        for( ConCommandBase* var : Util::createdConvars ){
+        for( ConVar* var : Util::createdConvars ){
             cvar->UnregisterConCommand(var);
-                delete[] var->name;
-                delete[] var->strValue;
-                delete[] var->strDefault;
-                delete[] var->description;
-            delete var;
+                delete[] var->m_pszName;
+                delete[] var->m_Value.m_pszString;
+                delete[] var->m_pszDefaultValue;
+                delete[] var->m_pszHelpString;
+            delete (char*)var; // cast so we dont invoke destructor
         }
         cvar->ConsoleColorPrintf(ColorRGBA(255, 0, 0), "[McDota] I'm outta here.\n");
     } else {

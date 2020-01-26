@@ -45,7 +45,6 @@ inline VMT* netChannelVMT;
 inline VMT* clientModeVMT;
 inline VMT* soundOpSystemVMT;
 inline VMT* gameEventManagerVMT;
-inline VMT* gameEventSystemVMT;
 inline VMT* networkGameClientVMT;
 inline VMT* particleSystemVMT;
 

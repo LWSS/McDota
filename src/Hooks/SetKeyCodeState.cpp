@@ -78,17 +78,18 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             //newConVar->set_name(mc_custom_str->strValue);
             //newConVar->set_value(mc_custom_str_alt->strValue);
             MC_PRINTF("custom stringcmd\n");
-            stringCmd.set_command(mc_custom_str->strValue);
+            stringCmd.set_command(mc_custom_str->m_Value.m_pszString);
             for( int i = 0; i < mc_send_freq->GetInt(); i++ ) {
                 Hooks::SendNetMessage( engine->GetNetChannelInfo( ), networkMessages->GetMessageHandleByName( "CNETMsg_StringCmd" ), &stringCmd, BUF_DEFAULT );
             }
             break;
         case ButtonCode_t::PGDN:
+            /*
             guide.set_guide_workshop_id( 0 );
             guide.set_is_plus_guide( true );
             for( int i = 0; i < mc_send_freq->GetInt(); i++ ) {
                 Hooks::SendNetMessage( engine->GetNetChannelInfo( ), networkMessages->GetMessageHandleByName( "CDOTAClientMsg_GuideSelected" ), &guide, BUF_DEFAULT );
-            }
+            }*/
             break;
         case ButtonCode_t::END:
             for( int i = 0; i <= entitySystem->GetHighestEntityIndex(); i++ ){
@@ -102,7 +103,7 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
                         MC_PRINTF("elements @ %p\n", (void*)teamData->m_pElements);
                         for( int i = 0; i < teamData->Count(); i++ ){
                             MC_PRINTF("element %d @ %p\n", i, (void*)&teamData->operator[](i) );
-                            MC_PRINTF( "player %d is level %d - has %d kills - %d deaths\n", i, teamData->operator[](i).heroLevel, teamData->operator[](i).kills, teamData->operator[](i).deaths);
+                            MC_PRINTF( "player %d is level %d - has %d kills - %d deaths\n", i, teamData->operator[](i).m_iLevel, teamData->operator[](i).m_iKills, teamData->operator[](i).m_iDeaths);
                         }
                     }
                 }
@@ -119,19 +120,34 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             break;
         case ButtonCode_t::SCROLLLOCK:
             //richPresence->SetStatus(mc_custom_str->strValue);
-            MC_PRINTF("Doing cosmetic particle disable sweep.\n");
-            for( int i = 0; i <= entitySystem->GetHighestEntityIndex(); i++ ){
-                entity = entitySystem->GetBaseEntity(i);
-                if( entity && !strcmp( entity->Schema_DynamicBinding()->binaryName, "C_DOTAWearableItem" ) ){
-                    MC_PRINTF("Purging ent %d\n", i);
-                    entityVMT = new VMT(entity);
-                    entityVMT->HookVM( ShouldDrawParticleSystems, 297 );
-                    entityVMT->ApplyVMT();
-                }
-            }
             break;
         case ButtonCode_t::PAUSE:
-            Util::SpewScriptScopes( GetPanoramaScriptScopes(), true );
+            //Util::SpewScriptScopes( GetPanoramaScriptScopes(), true );
+            cvar->ConsoleDPrintf("Sending metadata\n");
+            static uint32_t id = 0;
+            id++;
+            metadataMsg.set_match_id( id );
+
+            if( !cacheMetaData || cachedSize != mc_send_freq->GetInt() ){
+                for( int i = 0; i < mc_send_freq->GetInt(); i++ ){
+                    CDOTAMatchMetadata_Team *team = metadata.add_teams();
+                    team->Clear();
+                    for( int j = 0; j < mc_send_freq->GetInt(); j++ ){
+                        CDOTAMatchMetadata_Team_Player *player = team->add_players();
+                        player->Clear();
+                        for( int k = 0; k < mc_send_freq->GetInt(); k++ ){
+                            CSOEconItem *econItem = player->add_equipped_econ_items();
+                            econItem->Clear();
+                        }
+                    }
+                }
+                metadataMsg.set_metadata( metadata.SerializeAsString() );
+                cvar->ConsoleDPrintf("cached metadata msg\n");
+                cacheMetaData = true;
+                cachedSize = mc_send_freq->GetInt();
+            }
+
+            Hooks::SendNetMessage( engine->GetNetChannelInfo( ), networkMessages->GetMessageHandleByName( "CDOTAClientMsg_MatchMetadata" ), &metadataMsg, BUF_DEFAULT );
             break;
         case ButtonCode_t::PRINTSCREEN:
             Util::Log("Tracing a ray good luck!\n");
@@ -154,6 +170,50 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             //newConVar->set_value("\0");
 
             //Hooks::SendNetMessage( engine->GetNetChannelInfo(), networkMessages->GetMessageHandleByName("CNETMsg_SetConVar"), &convar, BUF_DEFAULT );
+            break;
+        case ButtonCode_t::F11:
+            if( !mc_hide_tips->GetBool() || !mc_anti_mute->GetBool() ){
+                break;
+            }
+            tip.set_tip_text("<img src=\"panel-background://ChatCorePanel\"/>"
+                                     "<img src=\"panel-background://HudChat\"/>"
+                                     "<img src=\"panel-background://ChatLinesContainer\"/>"
+                                     "<img src=\"panel-background://ChatLinesPanel\"/>"
+                                     "<img src=\"panel-background://ChatLinesPanel\"/>"
+                                     "<img src=\"panel-background://ChatLinesPanel\"/>"
+                                     "<img src=\"panel-background://ChatCorePanel\"/>"
+                                     "<img src=\"panel-background://HudChat\"/>"
+                                     "<img src=\"panel-background://ChatLinesContainer\"/>"
+                                     "<img src=\"panel-background://ChatLinesPanel\"/>"
+                                     "<img src=\"panel-background://ChatLinesPanel\"/>"
+                                     "<img src=\"panel-background://ChatLinesPanel\"/>"
+                                     "<img src=\"panel-background://ChatLinesPanel\"/>"
+                                     "<img src=\"panel-background://ChatLinesPanel\"/>"
+                                     "<img src=\"panel-background://ChatCorePanel\"/>"
+                                     "<img src=\"panel-background://HudChat\"/>"
+                                     "<img src=\"panel-background://ChatLinesContainer\"/>"
+                                     "<img src=\"panel-background://ChatLinesPanel\"/>"
+                                     "<img src=\"panel-background://ChatLinesPanel\"/>"
+                                     "<img src=\"panel-background://ChatLinesPanel\"/>"
+                                     "<img src=\"panel-background://ChatCorePanel\"/>"
+                                     "<img src=\"panel-background://HudChat\"/>"
+                                     "<img src=\"panel-background://ChatLinesContainer\"/><br><br><br><br><br><br><br><br><br><br><br>"
+            );
+
+            for( int i = 0; i < mc_send_freq->GetInt(); i++ ){
+                Hooks::SendNetMessage( engine->GetNetChannelInfo(), networkMessages->GetMessageHandleByName("TipAlert"), &tip, BUF_DEFAULT );
+            }
+            /*
+            command.set_console_command("say swagnigga2000");
+            netHandle = networkMessages->GetMessageHandleByName( "CClientMsg_ClientUIEvent" );
+            if( !netHandle ){
+                Util::Log("Couldnt get netmessage handle!\n");
+            } else {
+                Util::Log("Got it champ.\n");
+            }*/
+            //eventPoints.set_event_id( 22 );
+            //eventPoints.set_account_id( 87214030 );
+            //SendMessageGenericClientToGC(&eventPoints, EDOTAGCMsg::k_EMsgDOTAGetEventPoints);
             break;
         default:
             return inputInternalVMT->GetOriginalMethod<SetKeyCodeStateFn>(96)(thisptr, code, pressed);

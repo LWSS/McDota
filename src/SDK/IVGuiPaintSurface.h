@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ICvar.h" // just for ColorRGBA..
+#include "color.h"
 #include "vector.h"
 #include "CFontManager.h"
 
@@ -37,7 +37,7 @@ public:
 	virtual void DrawPolyLine(int n, void* VGuiPoint_t);
 
 	virtual void DrawSetTextColor(int r, int g, int b, int a);
-	virtual void DrawSetTextColor(ColorRGBA color);
+	virtual void DrawSetTextColor(Color color);
 	virtual void DrawSetTextPos(int x, int y);
 
 	virtual void DrawPrintText(wchar_t const* text,int textLen, int vguiFontDrawType_t = 0); //FONT_DRAW_DEFAULT
@@ -45,14 +45,14 @@ public:
 	virtual void DrawRenderCharFromInfo(void* vguiCharRenderInfo);
 	virtual void DrawUnicodeString(wchar_t const* text, int vguiFontDrawType_t = 0);
 	virtual void DrawFlushText(void);
-	virtual void DrawWordBubble(int,int,int,int,int,ColorRGBA,ColorRGBA,bool,int,int,int);
+	virtual void DrawWordBubble(int,int,int,int,int,Color,Color,bool,int,int,int);
 	virtual void DrawSetTexture(int id);
 	virtual void DrawTexturedRect(int x0,int y0,int x1,int y1);
 	virtual void DrawTexturedRectEx(void* vguiDrawTexturedRectParms_t);
 	virtual void DrawTexturedLine(void* vguiVertex_tStart, void* vguiVertex_tEnd);
 	virtual void DrawSetTextureFrame(int id,int nFrame,unsigned int * pFrameCache);
 	virtual void DrawTexturedPolygon(int n,void* vguiVertex_t,bool clipVertices = true);
-	virtual void DrawGradientFilledRect(int x0,int y0,int x1,int y1, int IVGuiPaintSurfaceEGradientDirection,ColorRGBA one,ColorRGBA two);
+	virtual void DrawGradientFilledRect(int x0,int y0,int x1,int y1, int IVGuiPaintSurfaceEGradientDirection,Color one,Color two);
 	virtual void PlaySound(const char* filename);
 	virtual void SetClipRect(int x0,int x1,int y0,int y1);
 	virtual void SetZPos(float zPos);

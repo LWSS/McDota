@@ -22,12 +22,22 @@ static const char *GameState2String( int state ){
     }
 }
 
+// `tree_cut` is an event that we hijack to communicate from panorama.
+// It is normally never used in the game, even when cutting a tree.
+// Why resort to this semi-ghetto method? Well I didn't want to include v8, especially when it needs to be version matched to the game's old version (5.8.283 - Feb 25 2017)
+// IUIEvent would be more appropriate but calling the custom events didn't want to work.
 bool Hooks::FireEventClientSide( CGameEventManager *thisptr, CGameEvent *event ) {
     const char *eventName;
 
+    // tree_cut
+    if( event->GetID() == 278 ){
+
+    }
+
+
     if( mc_log_clientevents->GetBool() ){
         eventName = event->GetName();
-        Util::Log("Event Fired! (%s)", eventName);
+        Util::Log("Event[%d] Fired! (%s)", event->GetID(), eventName);
         if( !strcmp( eventName, "dota_game_state_change" ) ){
             Util::Log("\n    Transitioning from State (%s) -> (%s)", GameState2String( event->GetInt("old_state") ), GameState2String( event->GetInt("new_state") ) );
         }

@@ -3,8 +3,6 @@
 #include "Valve/tier1/utldelegateimpl.h"
 #include "INetChannel.h"
 
-typedef unsigned int GameEventHandle_t;
-
 struct CUtlSlot;
 struct IRecipientFilter;
 

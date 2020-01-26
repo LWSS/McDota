@@ -23,18 +23,18 @@ public:
     virtual void DESTROY2() = 0;
 
     virtual const char* GetName( void ) = 0;
-    virtual const char* GetID( void ) = 0;
+    virtual int GetID( void ) = 0;
 
     virtual bool IsReliable( void ) = 0;
     virtual bool IsLocal( void ) = 0;
-    virtual bool IsEmpty( char const* keyname = NULL ) = 0;
+    virtual bool IsEmpty( char const* keyname = nullptr ) = 0;
 
-    virtual bool GetBool( char const* keyname = NULL, bool defaultValue = false ) = 0;
-    virtual int GetInt( char const* keyname = NULL, int defaultValue = 0 ) = 0;
-    virtual uint64_t GetUint64( char const* keyname = NULL, uint64_t DefaultValue = 0 ) = 0;
-    virtual float GetFloat( char const* keyname = NULL, float defaultValue = 0.0f ) = 0;
-    virtual const char* GetString( char const* keyname = NULL, char const* defaultValue = NULL ) = 0;
-    virtual const void* GetPtr( char const* keyname = NULL ) = 0;
+    virtual bool GetBool( char const* keyname = nullptr, bool defaultValue = false ) = 0;
+    virtual int GetInt( char const* keyname = nullptr, int defaultValue = 0 ) = 0;
+    virtual uint64_t GetUint64( char const* keyname = nullptr, uint64_t DefaultValue = 0 ) = 0;
+    virtual float GetFloat( char const* keyname = nullptr, float defaultValue = 0.0f ) = 0;
+    virtual const char* GetString( char const* keyname = nullptr, char const* defaultValue = nullptr ) = 0;
+    virtual const void* GetPtr( char const* keyname = nullptr ) = 0;
 
     virtual void SetBool( char const* keyname, bool value ) = 0;
     virtual void SetInt( char const* keyname, int value ) = 0;
@@ -57,6 +57,7 @@ class CGameEventListener2
 // xref "CGameEventManager::AddListener" to AddListener()
 class CGameEventManager
 {
+public:
     virtual void DESTROY() = 0;
     virtual void DESTROY2() = 0;
     virtual int LoadEventsFromFile( const char *filename ) = 0;

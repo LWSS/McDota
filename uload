@@ -31,7 +31,7 @@ sudo gdb -n -q -batch-silent \
 	-ex "quit"
 fi
 
-sleep 1
+sleep 0.2
 sudo killall -18 steamwebhelper
 sudo killall -18 steam
 

@@ -11,7 +11,7 @@
 
 namespace Util
 {
-    inline std::vector<ConCommandBase*> createdConvars;
+    inline std::vector<ConVar*> createdConvars;
 
 	// List of particles that should hid or tracked for performance reasons.
 	// Linear will be faster than a hashmap until about ~400 entries.
@@ -19,8 +19,7 @@ namespace Util
 	inline std::vector<std::string> trackedParticles;
 
 	ButtonCode_t GetButtonCode(const char* buttonName);
-    /* 136 flag is client & archive */
-	ConVar *RegisterConVar( const char *name, const char *defaultValue, uint32_t flags = 136, const char *helpString = nullptr, bool bMin = false, float fMin = 0.0f, bool bMax = false, float fMax = false );
+	ConVar *RegisterConVar( const char *name, const char *defaultValue, uint32_t flags = FCVAR_CLIENTDLL | FCVAR_ARCHIVE, const char *helpString = nullptr, bool bMin = false, float fMin = 0.0f, bool bMax = false, float fMax = false );
 
 	void SpewDataMap( Datamap *dMap, bool toLogFile = false );
 	void SpewScriptScopes( GameScriptScopesWrapper *scopes, bool toLogFile = false );

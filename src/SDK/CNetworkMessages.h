@@ -2219,6 +2219,7 @@ public:
     char _pad[22];
 };
 
+typedef CNetworkSerializerPB GameEventHandle_t;
 typedef CNetworkSerializerPB NetMessageHandle_t;
 
 struct MessageEntryWrapper {
