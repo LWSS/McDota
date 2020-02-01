@@ -42,7 +42,6 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
     std::string meme;
     CDOTAPlayerResource *playerResource;
     CUtlVector< PlayerResourcePlayerTeamData_t > *teamData;
-    CDOTAClientMsg_BeginLastHitChallenge lasthit;
 
     RnQueryTerrain traceFilter;
     CGameTrace traceOut;
@@ -88,12 +87,6 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             for( int i = 0; i < mc_send_freq->GetInt(); i++ ) {
                 Hooks::SendNetMessage( engine->GetNetChannelInfo( ), networkMessages->GetMessageHandleByName( "CDOTAClientMsg_GuideSelected" ), &guide, BUF_DEFAULT );
             }*/
-            if( engine->IsInGame() ){
-                MC_PRINTF("sending meme\n");
-                lasthit.set_chosen_lane( 2 );
-                lasthit.set_helper_enabled( false );
-                Hooks::SendNetMessage( engine->GetNetChannelInfo( ), networkMessages->GetMessageHandleByName( "CDOTAClientMsg_BeginLastHitChallenge" ), &lasthit, BUF_DEFAULT );
-            }
             break;
         case ButtonCode_t::END:
             for( int i = 0; i <= entitySystem->GetHighestEntityIndex(); i++ ){
