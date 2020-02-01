@@ -34,19 +34,18 @@ inline CRenderGameSystem* renderGameSystem;
 inline CNetworkSystem* networkSystem;
 inline CGCClient* gcClient;
 
-// VMT's
-inline VMT* cameraVMT;
-inline VMT* clientVMT;
-inline VMT* inputInternalVMT;
-inline VMT* panelVMT;
-inline VMT* uiEngineVMT;
-inline VMT* networkSystemVMT;
-inline VMT* netChannelVMT;
-inline VMT* clientModeVMT;
-inline VMT* soundOpSystemVMT;
-inline VMT* gameEventManagerVMT;
-inline VMT* networkGameClientVMT;
-inline VMT* particleSystemVMT;
+// VMT's - these get deleted on module unload.
+inline std::unique_ptr<VMT> cameraVMT;
+inline std::unique_ptr<VMT> clientVMT;
+inline std::unique_ptr<VMT> inputInternalVMT;
+inline std::unique_ptr<VMT> panelVMT;
+inline std::unique_ptr<VMT> uiEngineVMT;
+inline std::unique_ptr<VMT> networkSystemVMT;
+inline std::unique_ptr<VMT> netChannelVMT;
+inline std::unique_ptr<VMT> clientModeVMT;
+inline std::unique_ptr<VMT> soundOpSystemVMT;
+inline std::unique_ptr<VMT> gameEventManagerVMT;
+inline std::unique_ptr<VMT> particleSystemVMT;
 
 // HardHook Addresses
 inline uintptr_t DispatchPacketFnAddr;

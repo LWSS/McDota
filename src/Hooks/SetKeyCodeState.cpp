@@ -42,6 +42,7 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
     std::string meme;
     CDOTAPlayerResource *playerResource;
     CUtlVector< PlayerResourcePlayerTeamData_t > *teamData;
+    CDOTAClientMsg_BeginLastHitChallenge lasthit;
 
     RnQueryTerrain traceFilter;
     CGameTrace traceOut;
@@ -77,11 +78,8 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             //MC_PRINTF("Local Player ID(%d)\n", *(networkClientService->GetIGameClient()->GetLocalDOTAPlayerID()));
             //newConVar->set_name(mc_custom_str->strValue);
             //newConVar->set_value(mc_custom_str_alt->strValue);
-            MC_PRINTF("custom stringcmd\n");
-            stringCmd.set_command(mc_custom_str->m_Value.m_pszString);
-            for( int i = 0; i < mc_send_freq->GetInt(); i++ ) {
-                Hooks::SendNetMessage( engine->GetNetChannelInfo( ), networkMessages->GetMessageHandleByName( "CNETMsg_StringCmd" ), &stringCmd, BUF_DEFAULT );
-            }
+            cvar->ConsoleDPrintf("Handle - (%s)\n", networkMessages->GetMessageHandleByName(mc_custom_str->m_Value.m_pszString) ?
+                                                    networkMessages->GetMessageHandleByName(mc_custom_str->m_Value.m_pszString)->unscopedName : "null" );
             break;
         case ButtonCode_t::PGDN:
             /*
@@ -90,6 +88,12 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             for( int i = 0; i < mc_send_freq->GetInt(); i++ ) {
                 Hooks::SendNetMessage( engine->GetNetChannelInfo( ), networkMessages->GetMessageHandleByName( "CDOTAClientMsg_GuideSelected" ), &guide, BUF_DEFAULT );
             }*/
+            if( engine->IsInGame() ){
+                MC_PRINTF("sending meme\n");
+                lasthit.set_chosen_lane( 2 );
+                lasthit.set_helper_enabled( false );
+                Hooks::SendNetMessage( engine->GetNetChannelInfo( ), networkMessages->GetMessageHandleByName( "CDOTAClientMsg_BeginLastHitChallenge" ), &lasthit, BUF_DEFAULT );
+            }
             break;
         case ButtonCode_t::END:
             for( int i = 0; i <= entitySystem->GetHighestEntityIndex(); i++ ){

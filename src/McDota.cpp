@@ -109,43 +109,43 @@ int __attribute__((constructor)) Startup()
     //networkClientService->PrintSpawnGroupStatus();
     //networkClientService->PrintConnectionStatus();
 
-    clientVMT = new VMT(client);
+    clientVMT = std::unique_ptr<VMT>(new VMT(client));
     clientVMT->HookVM(Hooks::FrameStageNotify, 29);
     clientVMT->ApplyVMT();
 
-    clientModeVMT = new VMT(clientMode);
+    clientModeVMT = std::unique_ptr<VMT>(new VMT(clientMode));
     clientModeVMT->HookVM(Hooks::CreateMove, 29);
     clientModeVMT->HookVM(Hooks::LevelInit, 30);
     clientModeVMT->ApplyVMT();
 
-    gameEventManagerVMT = new VMT(gameEventManager);
+    gameEventManagerVMT = std::unique_ptr<VMT>(new VMT(gameEventManager));
     gameEventManagerVMT->HookVM(Hooks::CreateEvent, 7);
     gameEventManagerVMT->HookVM(Hooks::FireEventClientSide, 9);
     gameEventManagerVMT->ApplyVMT();
 
-    soundOpSystemVMT = new VMT(soundOpSystem);
+    soundOpSystemVMT = std::unique_ptr<VMT>(new VMT(soundOpSystem));
     soundOpSystemVMT->HookVM(Hooks::StartSoundEvent, 11);
     soundOpSystemVMT->HookVM(Hooks::StartSoundEvent2, 12);
     soundOpSystemVMT->ApplyVMT();
 
-    panelVMT = new VMT(panel);
+    panelVMT = std::unique_ptr<VMT>(new VMT(panel));
     panelVMT->HookVM(Hooks::PaintTraverse, 55);
     panelVMT->ApplyVMT();
 
-	inputInternalVMT = new VMT(inputInternal);
+	inputInternalVMT = std::unique_ptr<VMT>(new VMT(inputInternal));
     inputInternalVMT->HookVM(Hooks::SetKeyCodeState, 96);
     inputInternalVMT->ApplyVMT();
 
-    uiEngineVMT = new VMT(panoramaEngine->AccessUIEngine());
+    uiEngineVMT = std::unique_ptr<VMT>(new VMT(panoramaEngine->AccessUIEngine()));
     uiEngineVMT->HookVM(Hooks::RunScript, 111);
     uiEngineVMT->ApplyVMT();
 
-    particleSystemVMT = new VMT( particleSystemMgr );
+    particleSystemVMT = std::unique_ptr<VMT>(new VMT( particleSystemMgr ));
     particleSystemVMT->HookVM(Hooks::CreateParticleCollection, 18);
     particleSystemVMT->HookVM(Hooks::DeleteParticleCollection, 19);
     particleSystemVMT->ApplyVMT();
 
-    networkSystemVMT = new VMT( networkSystem );
+    networkSystemVMT = std::unique_ptr<VMT>(new VMT( networkSystem ));
     networkSystemVMT->HookVM(Hooks::CreateNetChannel, 28);
     networkSystemVMT->ApplyVMT();
 
@@ -158,18 +158,14 @@ int __attribute__((constructor)) Startup()
     if( engine->IsInGame() ){
         Interfaces::HookDynamicVMTs();
 
-        if( (!netChannelVMT || (engine->GetNetChannelInfo() != (void*)netChannelVMT->interface)) ){
-            delete netChannelVMT;
-
-            if( engine->GetNetChannelInfo() ) {
-                MC_PRINTF( "Grabbing new NetChannel VMT - %p\n", (void*)engine->GetNetChannelInfo() );
-                netChannelVMT = new VMT( engine->GetNetChannelInfo( ) );
-                netChannelVMT->HookVM( Hooks::SendNetMessage, 66 );
-                netChannelVMT->HookVM( Hooks::PostReceivedNetMessage, 84 );
-                netChannelVMT->ApplyVMT( );
-            } else {
-                MC_PRINTF_WARN("GetNetChannelInfo returned null! Aborting NetChannel VMT!\n");
-            }
+        if( engine->GetNetChannelInfo() ) {
+            MC_PRINTF( "Grabbing new NetChannel VMT - %p\n", (void*)engine->GetNetChannelInfo() );
+            netChannelVMT = std::unique_ptr<VMT>(new VMT( engine->GetNetChannelInfo( ) ));
+            netChannelVMT->HookVM( Hooks::SendNetMessage, 66 );
+            netChannelVMT->HookVM( Hooks::PostReceivedNetMessage, 84 );
+            netChannelVMT->ApplyVMT( );
+        } else {
+            MC_PRINTF_WARN("GetNetChannelInfo returned null! Aborting NetChannel VMT!\n");
         }
     }
 
@@ -188,11 +184,6 @@ void __attribute__((destructor)) Shutdown()
     /* Remove Hard Hooks (if any) */
     HardHooks::BAsyncSendProto.Remove();
     HardHooks::DispatchPacket.Remove();
-
-    /* Release all VMTs */
-    for( VMT* vmt : createdVMTs ){
-        delete vmt;
-    }
 
     /* Reset camera mods */
     if( camera && engine && engine->IsInGame() ){

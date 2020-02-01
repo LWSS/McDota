@@ -1,7 +1,6 @@
 #pragma once
 
 #include "CBaseEntity.h"
-#include "ConMsg.h"
 
 #define MAX_ENTITIES_IN_LIST 512
 #define MAX_ENTITY_LISTS 64
@@ -56,11 +55,28 @@ public:
 
         // This is an extra check in the official implementation that I am omitting for speed
         //if( (LOWORD( identity->entHandle ) & 0x7FFF) == index ){
-        //    Util::Log("Check passed.\n");
         //    return identity->entity;
         //}
 
         return identity->entity;
+    }
+
+    unsigned int GetEntHandle( int index )
+    {
+        if ( index <= -1 || index >= ( MAX_TOTAL_ENTITIES - 1 ) )
+            return -1;
+
+        CEntityIdentities *chunkToUse = m_pIdentityChunks[(index / MAX_ENTITIES_IN_LIST)]; // equal to ( index >> 9 )
+
+        if( !chunkToUse )
+            return -1;
+
+        CEntityIdentity *identity = &chunkToUse->m_pIdentities[ index % MAX_ENTITIES_IN_LIST ]; // equal to ( index & 1FF )
+
+        if( !identity )
+            return -1;
+
+        return identity->entHandle;
     }
 
     int GetHighestEntityIndex()
