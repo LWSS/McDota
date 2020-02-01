@@ -1,6 +1,7 @@
 #include "Hooks.h"
 
 #include "../Settings.h"
+#include "../GUI/Callbacks.h"
 
 typedef bool (* FireEventClientSideFn)( CGameEventManager*, CGameEvent * );
 
@@ -28,12 +29,7 @@ static const char *GameState2String( int state ){
 // IUIEvent would be more appropriate but calling the custom events didn't want to work.
 bool Hooks::FireEventClientSide( CGameEventManager *thisptr, CGameEvent *event ) {
     const char *eventName;
-
-    // tree_cut
-    if( event->GetID() == 278 ){
-
-    }
-
+    int actionID = 0;
 
     if( mc_log_clientevents->GetBool() ){
         eventName = event->GetName();
@@ -43,5 +39,24 @@ bool Hooks::FireEventClientSide( CGameEventManager *thisptr, CGameEvent *event )
         }
         Util::Log("\n");
     }
+
+    // tree_cut
+    if( event->GetID() == 281 ){
+        actionID = event->GetInt( "action", 0 );
+        if( !actionID ){
+            Util::Log("tree_cut: No \"action\" supplied!\n");
+            return true;
+        }
+        switch( actionID ){
+            case 1:
+                UI::Callbacks::Quarantine();
+                break;
+            default:
+                break;
+        }
+
+        return true;
+    }
+
     return gameEventManagerVMT->GetOriginalMethod<FireEventClientSideFn>(9)( thisptr, event );
 }

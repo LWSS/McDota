@@ -89,6 +89,14 @@ R"zz(
 		function removeWarning( ){
 			$('#McDotaMain').FindChild('McToolTip').visible = false;
 		}
+
+		function executeQuarantine( ){
+			$.DispatchEvent( 'PlaySoundEffect', 'ui_flare_explode' );
+			var args = {
+				"action" : 1,
+			};
+			GameEvents.SendEventClientSide( "tree_cut", args );
+		}
 	</script>
 
 	<!-- Empty onactivate prevents clicking panels beneath this one -->
@@ -132,7 +140,7 @@ R"zz(
 						<DOTASettingsSlider convar='mc_camera_yaw_add' min='0.0' max='360.0' text='Yaw Add' />
 						<DOTASettingsSlider convar='mc_camera_distance' min='1134.0' max='4000.0' text='Camera Distance' />
 						<Button id='btnTest' class='ButtonBevel' >
-							<Label text='sexy test button'/>
+							<Label text='Mid Lane Party!' onactivate='executeQuarantine()'/>
 						</Button>
 					</Panel>
 				</Panel>
