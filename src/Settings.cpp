@@ -61,6 +61,7 @@ bool Settings::RegisterCustomConvars( ) {
     mc_custom_str = Util::RegisterConVar( "mc_custom_str", "#as Mars (Lvl 25)" );
 	mc_custom_str_alt = Util::RegisterConVar( "mc_custom_str_alt", "test123" );
 	mc_custom_int = Util::RegisterConVar( "mc_custom_int", "1" );
+	mc_custom_int_alt = Util::RegisterConVar( "mc_custom_int_alt", "1" );
 
 	for ( ConCommandBase *var : Util::createdConvars ) {
 		if( !cvar->FindVar(var->m_pszName) ){

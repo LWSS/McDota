@@ -109,21 +109,6 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
             string.m_Memory.m_pMemory = new uint8_t[4096];
             string.m_Memory.m_nAllocationCount = 4096;
             string.m_Memory.m_nGrowSize = 4096;
-            info->pProtobufBinding->ToString( msg, &string );
-            //Util::Log( "ToString: (%s)\n", info->pProtobufBinding->ToString( msg, &string ) );
-            delete[] string.m_Memory.m_pMemory;
-            /*
-            if( strstr(name, "CDOTAClientMsg_SetUnitShareFlag") != NULL ){
-                Util::Protobuf::EditFieldTraverseUInt32( msg, "playerID", (unsigned int)mc_custom_int->GetInt() );
-                Util::Protobuf::EditFieldTraverseBool( msg, "state", true );
-            }*/
-            //std::string out;
-            //msg->SerializeToString( &out );
-
-
-            string.m_Memory.m_pMemory = new uint8_t[4096];
-            string.m_Memory.m_nAllocationCount = 4096;
-            string.m_Memory.m_nGrowSize = 4096;
             Util::Log( "ToString[%d]: (%s)\n", messageHandle->messageID, info->pProtobufBinding->ToString( msg, &string ) );
             delete[] string.m_Memory.m_pMemory;
             //Util::Protobuf::LogMessageContents(msg);

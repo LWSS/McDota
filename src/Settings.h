@@ -58,6 +58,7 @@ inline ConVar *mc_stall_connect;
 inline ConVar *mc_custom_str;
 inline ConVar *mc_custom_str_alt;
 inline ConVar *mc_custom_int;
+inline ConVar *mc_custom_int_alt;
 
 
 namespace Settings

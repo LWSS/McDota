@@ -7,11 +7,11 @@ typedef INetChannel* (* CreateNetChannelFn)( CNetworkSystem*, int, void *, const
 
 // This will not work for splitscreen slots ( if somehow this code needs to be used for that )
 INetChannel* Hooks::CreateNetChannel( CNetworkSystem *thisptr, int unk, void *ns_addr, const char *str, unsigned int uUnk, unsigned int uUnk2 ) {
-    delete netChannelVMT;
+    netChannelVMT.reset();
     INetChannel *ret = networkSystemVMT->GetOriginalMethod<CreateNetChannelFn>( 28 )( thisptr, unk, ns_addr, str, uUnk, uUnk2 );
 
     MC_PRINTF( "Grabbing new NetChannel VMT - %p\n", (void*)ret );
-    netChannelVMT = new VMT( ret );
+    netChannelVMT = std::unique_ptr<VMT>(new VMT( ret ));
     netChannelVMT->HookVM( Hooks::SendNetMessage, 66 );
     netChannelVMT->HookVM( Hooks::PostReceivedNetMessage, 84 );
     netChannelVMT->ApplyVMT();

@@ -127,28 +127,19 @@ void Interfaces::DumpInterfaces( const char *fileName )
 	fclose(logFile);
 }
 
-// Hook VMTs for interfaces that are not static (entities, netchannels, etc.)
+// Hook VMTs for interfaces that are not static (in-game entities, etc.)
 void Interfaces::HookDynamicVMTs( ) {
     camera = GetCurrentCamera();
 
     if( camera ){
-        delete cameraVMT;
+        cameraVMT.reset();
         MC_PRINTF("Grabbing new Camera VMT - (%p)\n", (void*)camera);
-        cameraVMT = new VMT( camera );
+        cameraVMT = std::unique_ptr<VMT>(new VMT( camera ));
         cameraVMT->HookVM( Hooks::GetFogEnd, 19 );
         cameraVMT->HookVM( Hooks::GetZFar, 20 );
         cameraVMT->HookVM( Hooks::GetFoWAmount, 26 );
         cameraVMT->ApplyVMT();
     } else {
         MC_PRINTF_WARN("GetCurrentCamera() returned null! Aborting CameraVMT.\n");
-    }
-
-    if( networkClientService->GetIGameClient() ){
-        delete networkGameClientVMT;
-        MC_PRINTF( "Grabbing new NetworkGameClient VMT - %p\n", (void*)networkClientService->GetIGameClient() );
-        networkGameClientVMT = new VMT( networkClientService->GetIGameClient() );
-        networkGameClientVMT->ApplyVMT();
-    } else {
-        MC_PRINTF_WARN("GetIGameClient() returned null! Aborting NetworkGameClient VMT.\n");
     }
 }

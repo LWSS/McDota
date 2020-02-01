@@ -39,7 +39,7 @@ namespace protobuf_mcdota_2eproto {
 struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
-  static const ::google::protobuf::internal::ParseTable schema[38];
+  static const ::google::protobuf::internal::ParseTable schema[39];
   static const ::google::protobuf::internal::FieldMetadata field_metadata[];
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
@@ -58,6 +58,9 @@ extern CCLCMsg_FileCRCCheckDefaultTypeInternal _CCLCMsg_FileCRCCheck_default_ins
 class CCLCMsg_SplitPlayerConnect;
 class CCLCMsg_SplitPlayerConnectDefaultTypeInternal;
 extern CCLCMsg_SplitPlayerConnectDefaultTypeInternal _CCLCMsg_SplitPlayerConnect_default_instance_;
+class CDOTAClientMsg_BeginLastHitChallenge;
+class CDOTAClientMsg_BeginLastHitChallengeDefaultTypeInternal;
+extern CDOTAClientMsg_BeginLastHitChallengeDefaultTypeInternal _CDOTAClientMsg_BeginLastHitChallenge_default_instance_;
 class CDOTAClientMsg_CoinWager;
 class CDOTAClientMsg_CoinWagerDefaultTypeInternal;
 extern CDOTAClientMsg_CoinWagerDefaultTypeInternal _CDOTAClientMsg_CoinWager_default_instance_;
@@ -166,6 +169,7 @@ template<> ::CCLCMsg_ClientMessage* Arena::CreateMaybeMessage<::CCLCMsg_ClientMe
 template<> ::CCLCMsg_CmdKeyValues* Arena::CreateMaybeMessage<::CCLCMsg_CmdKeyValues>(Arena*);
 template<> ::CCLCMsg_FileCRCCheck* Arena::CreateMaybeMessage<::CCLCMsg_FileCRCCheck>(Arena*);
 template<> ::CCLCMsg_SplitPlayerConnect* Arena::CreateMaybeMessage<::CCLCMsg_SplitPlayerConnect>(Arena*);
+template<> ::CDOTAClientMsg_BeginLastHitChallenge* Arena::CreateMaybeMessage<::CDOTAClientMsg_BeginLastHitChallenge>(Arena*);
 template<> ::CDOTAClientMsg_CoinWager* Arena::CreateMaybeMessage<::CDOTAClientMsg_CoinWager>(Arena*);
 template<> ::CDOTAClientMsg_EventCNY2015Cmd* Arena::CreateMaybeMessage<::CDOTAClientMsg_EventCNY2015Cmd>(Arena*);
 template<> ::CDOTAClientMsg_EventPointsTip* Arena::CreateMaybeMessage<::CDOTAClientMsg_EventPointsTip>(Arena*);
@@ -6226,6 +6230,130 @@ class CDOTAMatchMetadata : public ::google::protobuf::Message /* @@protoc_insert
   ::google::protobuf::uint32 primary_event_id_;
   friend struct ::protobuf_mcdota_2eproto::TableStruct;
 };
+// -------------------------------------------------------------------
+
+class CDOTAClientMsg_BeginLastHitChallenge : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:CDOTAClientMsg_BeginLastHitChallenge) */ {
+ public:
+  CDOTAClientMsg_BeginLastHitChallenge();
+  virtual ~CDOTAClientMsg_BeginLastHitChallenge();
+
+  CDOTAClientMsg_BeginLastHitChallenge(const CDOTAClientMsg_BeginLastHitChallenge& from);
+
+  inline CDOTAClientMsg_BeginLastHitChallenge& operator=(const CDOTAClientMsg_BeginLastHitChallenge& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  #if LANG_CXX11
+  CDOTAClientMsg_BeginLastHitChallenge(CDOTAClientMsg_BeginLastHitChallenge&& from) noexcept
+    : CDOTAClientMsg_BeginLastHitChallenge() {
+    *this = ::std::move(from);
+  }
+
+  inline CDOTAClientMsg_BeginLastHitChallenge& operator=(CDOTAClientMsg_BeginLastHitChallenge&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+  #endif
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _internal_metadata_.unknown_fields();
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return _internal_metadata_.mutable_unknown_fields();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const CDOTAClientMsg_BeginLastHitChallenge& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const CDOTAClientMsg_BeginLastHitChallenge* internal_default_instance() {
+    return reinterpret_cast<const CDOTAClientMsg_BeginLastHitChallenge*>(
+               &_CDOTAClientMsg_BeginLastHitChallenge_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    38;
+
+  void Swap(CDOTAClientMsg_BeginLastHitChallenge* other);
+  friend void swap(CDOTAClientMsg_BeginLastHitChallenge& a, CDOTAClientMsg_BeginLastHitChallenge& b) {
+    a.Swap(&b);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CDOTAClientMsg_BeginLastHitChallenge* New() const final {
+    return CreateMaybeMessage<CDOTAClientMsg_BeginLastHitChallenge>(NULL);
+  }
+
+  CDOTAClientMsg_BeginLastHitChallenge* New(::google::protobuf::Arena* arena) const final {
+    return CreateMaybeMessage<CDOTAClientMsg_BeginLastHitChallenge>(arena);
+  }
+  void CopyFrom(const ::google::protobuf::Message& from) final;
+  void MergeFrom(const ::google::protobuf::Message& from) final;
+  void CopyFrom(const CDOTAClientMsg_BeginLastHitChallenge& from);
+  void MergeFrom(const CDOTAClientMsg_BeginLastHitChallenge& from);
+  void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  bool MergePartialFromCodedStream(
+      ::google::protobuf::io::CodedInputStream* input) final;
+  void SerializeWithCachedSizes(
+      ::google::protobuf::io::CodedOutputStream* output) const final;
+  ::google::protobuf::uint8* InternalSerializeWithCachedSizesToArray(
+      bool deterministic, ::google::protobuf::uint8* target) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CDOTAClientMsg_BeginLastHitChallenge* other);
+  private:
+  inline ::google::protobuf::Arena* GetArenaNoVirtual() const {
+    return NULL;
+  }
+  inline void* MaybeArenaPtr() const {
+    return NULL;
+  }
+  public:
+
+  ::google::protobuf::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  // optional uint32 chosen_lane = 1;
+  bool has_chosen_lane() const;
+  void clear_chosen_lane();
+  static const int kChosenLaneFieldNumber = 1;
+  ::google::protobuf::uint32 chosen_lane() const;
+  void set_chosen_lane(::google::protobuf::uint32 value);
+
+  // optional bool helper_enabled = 2;
+  bool has_helper_enabled() const;
+  void clear_helper_enabled();
+  static const int kHelperEnabledFieldNumber = 2;
+  bool helper_enabled() const;
+  void set_helper_enabled(bool value);
+
+  // @@protoc_insertion_point(class_scope:CDOTAClientMsg_BeginLastHitChallenge)
+ private:
+  void set_has_chosen_lane();
+  void clear_has_chosen_lane();
+  void set_has_helper_enabled();
+  void clear_has_helper_enabled();
+
+  ::google::protobuf::internal::InternalMetadataWithArena _internal_metadata_;
+  ::google::protobuf::internal::HasBits<1> _has_bits_;
+  mutable ::google::protobuf::internal::CachedSize _cached_size_;
+  ::google::protobuf::uint32 chosen_lane_;
+  bool helper_enabled_;
+  friend struct ::protobuf_mcdota_2eproto::TableStruct;
+};
 // ===================================================================
 
 
@@ -11480,9 +11608,63 @@ inline void CDOTAMatchMetadata::set_allocated_matchmaking_stats(::CMsgMatchMatch
   // @@protoc_insertion_point(field_set_allocated:CDOTAMatchMetadata.matchmaking_stats)
 }
 
+// -------------------------------------------------------------------
+
+// CDOTAClientMsg_BeginLastHitChallenge
+
+// optional uint32 chosen_lane = 1;
+inline bool CDOTAClientMsg_BeginLastHitChallenge::has_chosen_lane() const {
+  return (_has_bits_[0] & 0x00000001u) != 0;
+}
+inline void CDOTAClientMsg_BeginLastHitChallenge::set_has_chosen_lane() {
+  _has_bits_[0] |= 0x00000001u;
+}
+inline void CDOTAClientMsg_BeginLastHitChallenge::clear_has_chosen_lane() {
+  _has_bits_[0] &= ~0x00000001u;
+}
+inline void CDOTAClientMsg_BeginLastHitChallenge::clear_chosen_lane() {
+  chosen_lane_ = 0u;
+  clear_has_chosen_lane();
+}
+inline ::google::protobuf::uint32 CDOTAClientMsg_BeginLastHitChallenge::chosen_lane() const {
+  // @@protoc_insertion_point(field_get:CDOTAClientMsg_BeginLastHitChallenge.chosen_lane)
+  return chosen_lane_;
+}
+inline void CDOTAClientMsg_BeginLastHitChallenge::set_chosen_lane(::google::protobuf::uint32 value) {
+  set_has_chosen_lane();
+  chosen_lane_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAClientMsg_BeginLastHitChallenge.chosen_lane)
+}
+
+// optional bool helper_enabled = 2;
+inline bool CDOTAClientMsg_BeginLastHitChallenge::has_helper_enabled() const {
+  return (_has_bits_[0] & 0x00000002u) != 0;
+}
+inline void CDOTAClientMsg_BeginLastHitChallenge::set_has_helper_enabled() {
+  _has_bits_[0] |= 0x00000002u;
+}
+inline void CDOTAClientMsg_BeginLastHitChallenge::clear_has_helper_enabled() {
+  _has_bits_[0] &= ~0x00000002u;
+}
+inline void CDOTAClientMsg_BeginLastHitChallenge::clear_helper_enabled() {
+  helper_enabled_ = false;
+  clear_has_helper_enabled();
+}
+inline bool CDOTAClientMsg_BeginLastHitChallenge::helper_enabled() const {
+  // @@protoc_insertion_point(field_get:CDOTAClientMsg_BeginLastHitChallenge.helper_enabled)
+  return helper_enabled_;
+}
+inline void CDOTAClientMsg_BeginLastHitChallenge::set_helper_enabled(bool value) {
+  set_has_helper_enabled();
+  helper_enabled_ = value;
+  // @@protoc_insertion_point(field_set:CDOTAClientMsg_BeginLastHitChallenge.helper_enabled)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
