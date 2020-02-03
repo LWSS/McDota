@@ -334,8 +334,3 @@ message CDOTAMatchMetadata {
 	repeated .CMsgMatchTips match_tips = 7;
 	optional .CMsgMatchMatchmakingStats matchmaking_stats = 8;
 }
-
-message CDOTAClientMsg_BeginLastHitChallenge {
-	optional uint32 chosen_lane = 1;
-	optional bool helper_enabled = 2;
-}

@@ -5,6 +5,7 @@ namespace UI
 {
     namespace Callbacks
     {
-        void Quarantine(); // 1
+        // Action 1
+
     }
 }

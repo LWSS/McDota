@@ -233,11 +233,6 @@ class CDOTAMatchMetadataDefaultTypeInternal {
   ::google::protobuf::internal::ExplicitlyConstructed<CDOTAMatchMetadata>
       _instance;
 } _CDOTAMatchMetadata_default_instance_;
-class CDOTAClientMsg_BeginLastHitChallengeDefaultTypeInternal {
- public:
-  ::google::protobuf::internal::ExplicitlyConstructed<CDOTAClientMsg_BeginLastHitChallenge>
-      _instance;
-} _CDOTAClientMsg_BeginLastHitChallenge_default_instance_;
 namespace protobuf_mcdota_2eproto {
 static void InitDefaultsCDOTAClientMsg_TipAlert() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -793,20 +788,6 @@ static void InitDefaultsCDOTAMatchMetadata() {
       &protobuf_mcdota_2eproto::scc_info_CMsgMatchTips.base,
       &protobuf_mcdota_2eproto::scc_info_CMsgMatchMatchmakingStats.base,}};
 
-static void InitDefaultsCDOTAClientMsg_BeginLastHitChallenge() {
-  GOOGLE_PROTOBUF_VERIFY_VERSION;
-
-  {
-    void* ptr = &::_CDOTAClientMsg_BeginLastHitChallenge_default_instance_;
-    new (ptr) ::CDOTAClientMsg_BeginLastHitChallenge();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
-  }
-  ::CDOTAClientMsg_BeginLastHitChallenge::InitAsDefaultInstance();
-}
-
-::google::protobuf::internal::SCCInfo<0> scc_info_CDOTAClientMsg_BeginLastHitChallenge =
-    {{ATOMIC_VAR_INIT(::google::protobuf::internal::SCCInfoBase::kUninitialized), 0, InitDefaultsCDOTAClientMsg_BeginLastHitChallenge}, {}};
-
 void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_CDOTAClientMsg_TipAlert.base);
   ::google::protobuf::internal::InitSCC(&scc_info_CCLCMsg_SplitPlayerConnect.base);
@@ -846,10 +827,9 @@ void InitDefaults() {
   ::google::protobuf::internal::InitSCC(&scc_info_CDOTAMatchMetadata_Team_Player.base);
   ::google::protobuf::internal::InitSCC(&scc_info_CDOTAMatchMetadata_Team.base);
   ::google::protobuf::internal::InitSCC(&scc_info_CDOTAMatchMetadata.base);
-  ::google::protobuf::internal::InitSCC(&scc_info_CDOTAClientMsg_BeginLastHitChallenge.base);
 }
 
-::google::protobuf::Metadata file_level_metadata[39];
+::google::protobuf::Metadata file_level_metadata[38];
 const ::google::protobuf::EnumDescriptor* file_level_enum_descriptors[3];
 
 const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
@@ -1393,15 +1373,6 @@ const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUT
   4,
   ~0u,
   1,
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::CDOTAClientMsg_BeginLastHitChallenge, _has_bits_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::CDOTAClientMsg_BeginLastHitChallenge, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::CDOTAClientMsg_BeginLastHitChallenge, chosen_lane_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::CDOTAClientMsg_BeginLastHitChallenge, helper_enabled_),
-  0,
-  1,
 };
 static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
   { 0, 6, sizeof(::CDOTAClientMsg_TipAlert)},
@@ -1442,7 +1413,6 @@ static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROT
   { 401, 450, sizeof(::CDOTAMatchMetadata_Team_Player)},
   { 494, 509, sizeof(::CDOTAMatchMetadata_Team)},
   { 519, 532, sizeof(::CDOTAMatchMetadata)},
-  { 540, 547, sizeof(::CDOTAClientMsg_BeginLastHitChallenge)},
 };
 
 static ::google::protobuf::Message const * const file_default_instances[] = {
@@ -1484,7 +1454,6 @@ static ::google::protobuf::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::google::protobuf::Message*>(&::_CDOTAMatchMetadata_Team_Player_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::_CDOTAMatchMetadata_Team_default_instance_),
   reinterpret_cast<const ::google::protobuf::Message*>(&::_CDOTAMatchMetadata_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::_CDOTAClientMsg_BeginLastHitChallenge_default_instance_),
 };
 
 void protobuf_AssignDescriptors() {
@@ -1502,7 +1471,7 @@ void protobuf_AssignDescriptorsOnce() {
 void protobuf_RegisterTypes(const ::std::string&) GOOGLE_PROTOBUF_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 39);
+  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 38);
 }
 
 void AddDescriptorsImpl() {
@@ -1648,42 +1617,40 @@ void AddDescriptorsImpl() {
       "y_wards_placed\030+ \001(\r\022\026\n\016wards_dewarded\030,"
       " \001(\r\022\025\n\rstun_duration\030- \001(\002\022I\n\023rank_mmr_"
       "boost_type\030. \001(\0162\022.EDOTAMMRBoostType:\030k_"
-      "EDOTAMMRBoostType_None\"S\n$CDOTAClientMsg"
-      "_BeginLastHitChallenge\022\023\n\013chosen_lane\030\001 "
-      "\001(\r\022\026\n\016helper_enabled\030\002 \001(\010*s\n\021EDOTAMMRB"
-      "oostType\022\034\n\030k_EDOTAMMRBoostType_None\020\000\022\036"
-      "\n\032k_EDOTAMMRBoostType_Leader\020\001\022 \n\034k_EDOT"
-      "AMMRBoostType_Follower\020\002*\337\006\n\006EEvent\022\021\n\rE"
-      "VENT_ID_NONE\020\000\022\025\n\021EVENT_ID_DIRETIDE\020\001\022\034\n"
-      "\030EVENT_ID_SPRING_FESTIVAL\020\002\022\033\n\027EVENT_ID_"
-      "FROSTIVUS_2013\020\003\022\034\n\030EVENT_ID_COMPENDIUM_"
-      "2014\020\004\022\032\n\026EVENT_ID_NEXON_PC_BANG\020\005\022\032\n\026EV"
-      "ENT_ID_PWRD_DAC_2015\020\006\022\033\n\027EVENT_ID_NEW_B"
-      "LOOM_2015\020\007\022\037\n\033EVENT_ID_INTERNATIONAL_20"
-      "15\020\010\022\034\n\030EVENT_ID_FALL_MAJOR_2015\020\t\022\026\n\022EV"
-      "ENT_ID_ORACLE_PA\020\n\022$\n EVENT_ID_NEW_BLOOM"
-      "_2015_PREBEAST\020\013\022\026\n\022EVENT_ID_FROSTIVUS\020\014"
-      "\022\036\n\032EVENT_ID_WINTER_MAJOR_2016\020\r\022\037\n\033EVEN"
-      "T_ID_INTERNATIONAL_2016\020\016\022\034\n\030EVENT_ID_FA"
-      "LL_MAJOR_2016\020\017\022\036\n\032EVENT_ID_WINTER_MAJOR"
-      "_2017\020\020\022\033\n\027EVENT_ID_NEW_BLOOM_2017\020\021\022\037\n\033"
-      "EVENT_ID_INTERNATIONAL_2017\020\022\022\036\n\032EVENT_I"
-      "D_PLUS_SUBSCRIPTION\020\023\022\035\n\031EVENT_ID_SINGLE"
-      "S_DAY_2017\020\024\022\033\n\027EVENT_ID_FROSTIVUS_2017\020"
-      "\025\022\037\n\033EVENT_ID_INTERNATIONAL_2018\020\026\022\033\n\027EV"
-      "ENT_ID_FROSTIVUS_2018\020\027\022\033\n\027EVENT_ID_NEW_"
-      "BLOOM_2019\020\030\022\037\n\033EVENT_ID_INTERNATIONAL_2"
-      "019\020\031\022\"\n\036EVENT_ID_NEW_PLAYER_EXPERIENCE\020"
-      "\032\022\033\n\027EVENT_ID_FROSTIVUS_2019\020\033\022\022\n\016EVENT_"
-      "ID_COUNT\020\034*\301\001\n\033EMatchBehaviorScoreVarian"
-      "ce\022)\n%k_EMatchBehaviorScoreVariance_Inva"
-      "lid\020\000\022%\n!k_EMatchBehaviorScoreVariance_L"
-      "ow\020\001\022(\n$k_EMatchBehaviorScoreVariance_Me"
-      "dium\020\002\022&\n\"k_EMatchBehaviorScoreVariance_"
-      "High\020\003B\005H\001\200\001\000"
+      "EDOTAMMRBoostType_None*s\n\021EDOTAMMRBoostT"
+      "ype\022\034\n\030k_EDOTAMMRBoostType_None\020\000\022\036\n\032k_E"
+      "DOTAMMRBoostType_Leader\020\001\022 \n\034k_EDOTAMMRB"
+      "oostType_Follower\020\002*\337\006\n\006EEvent\022\021\n\rEVENT_"
+      "ID_NONE\020\000\022\025\n\021EVENT_ID_DIRETIDE\020\001\022\034\n\030EVEN"
+      "T_ID_SPRING_FESTIVAL\020\002\022\033\n\027EVENT_ID_FROST"
+      "IVUS_2013\020\003\022\034\n\030EVENT_ID_COMPENDIUM_2014\020"
+      "\004\022\032\n\026EVENT_ID_NEXON_PC_BANG\020\005\022\032\n\026EVENT_I"
+      "D_PWRD_DAC_2015\020\006\022\033\n\027EVENT_ID_NEW_BLOOM_"
+      "2015\020\007\022\037\n\033EVENT_ID_INTERNATIONAL_2015\020\010\022"
+      "\034\n\030EVENT_ID_FALL_MAJOR_2015\020\t\022\026\n\022EVENT_I"
+      "D_ORACLE_PA\020\n\022$\n EVENT_ID_NEW_BLOOM_2015"
+      "_PREBEAST\020\013\022\026\n\022EVENT_ID_FROSTIVUS\020\014\022\036\n\032E"
+      "VENT_ID_WINTER_MAJOR_2016\020\r\022\037\n\033EVENT_ID_"
+      "INTERNATIONAL_2016\020\016\022\034\n\030EVENT_ID_FALL_MA"
+      "JOR_2016\020\017\022\036\n\032EVENT_ID_WINTER_MAJOR_2017"
+      "\020\020\022\033\n\027EVENT_ID_NEW_BLOOM_2017\020\021\022\037\n\033EVENT"
+      "_ID_INTERNATIONAL_2017\020\022\022\036\n\032EVENT_ID_PLU"
+      "S_SUBSCRIPTION\020\023\022\035\n\031EVENT_ID_SINGLES_DAY"
+      "_2017\020\024\022\033\n\027EVENT_ID_FROSTIVUS_2017\020\025\022\037\n\033"
+      "EVENT_ID_INTERNATIONAL_2018\020\026\022\033\n\027EVENT_I"
+      "D_FROSTIVUS_2018\020\027\022\033\n\027EVENT_ID_NEW_BLOOM"
+      "_2019\020\030\022\037\n\033EVENT_ID_INTERNATIONAL_2019\020\031"
+      "\022\"\n\036EVENT_ID_NEW_PLAYER_EXPERIENCE\020\032\022\033\n\027"
+      "EVENT_ID_FROSTIVUS_2019\020\033\022\022\n\016EVENT_ID_CO"
+      "UNT\020\034*\301\001\n\033EMatchBehaviorScoreVariance\022)\n"
+      "%k_EMatchBehaviorScoreVariance_Invalid\020\000"
+      "\022%\n!k_EMatchBehaviorScoreVariance_Low\020\001\022"
+      "(\n$k_EMatchBehaviorScoreVariance_Medium\020"
+      "\002\022&\n\"k_EMatchBehaviorScoreVariance_High\020"
+      "\003B\005H\001\200\001\000"
   };
   ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 6893);
+      descriptor, 6808);
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
     "mcdota.proto", &protobuf_RegisterTypes);
 }
@@ -16311,283 +16278,6 @@ void CDOTAMatchMetadata::InternalSwap(CDOTAMatchMetadata* other) {
 }
 
 
-// ===================================================================
-
-void CDOTAClientMsg_BeginLastHitChallenge::InitAsDefaultInstance() {
-}
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int CDOTAClientMsg_BeginLastHitChallenge::kChosenLaneFieldNumber;
-const int CDOTAClientMsg_BeginLastHitChallenge::kHelperEnabledFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
-
-CDOTAClientMsg_BeginLastHitChallenge::CDOTAClientMsg_BeginLastHitChallenge()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  ::google::protobuf::internal::InitSCC(
-      &protobuf_mcdota_2eproto::scc_info_CDOTAClientMsg_BeginLastHitChallenge.base);
-  SharedCtor();
-  // @@protoc_insertion_point(constructor:CDOTAClientMsg_BeginLastHitChallenge)
-}
-CDOTAClientMsg_BeginLastHitChallenge::CDOTAClientMsg_BeginLastHitChallenge(const CDOTAClientMsg_BeginLastHitChallenge& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL),
-      _has_bits_(from._has_bits_) {
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::memcpy(&chosen_lane_, &from.chosen_lane_,
-    static_cast<size_t>(reinterpret_cast<char*>(&helper_enabled_) -
-    reinterpret_cast<char*>(&chosen_lane_)) + sizeof(helper_enabled_));
-  // @@protoc_insertion_point(copy_constructor:CDOTAClientMsg_BeginLastHitChallenge)
-}
-
-void CDOTAClientMsg_BeginLastHitChallenge::SharedCtor() {
-  ::memset(&chosen_lane_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&helper_enabled_) -
-      reinterpret_cast<char*>(&chosen_lane_)) + sizeof(helper_enabled_));
-}
-
-CDOTAClientMsg_BeginLastHitChallenge::~CDOTAClientMsg_BeginLastHitChallenge() {
-  // @@protoc_insertion_point(destructor:CDOTAClientMsg_BeginLastHitChallenge)
-  SharedDtor();
-}
-
-void CDOTAClientMsg_BeginLastHitChallenge::SharedDtor() {
-}
-
-void CDOTAClientMsg_BeginLastHitChallenge::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-const ::google::protobuf::Descriptor* CDOTAClientMsg_BeginLastHitChallenge::descriptor() {
-  ::protobuf_mcdota_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_mcdota_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
-const CDOTAClientMsg_BeginLastHitChallenge& CDOTAClientMsg_BeginLastHitChallenge::default_instance() {
-  ::google::protobuf::internal::InitSCC(&protobuf_mcdota_2eproto::scc_info_CDOTAClientMsg_BeginLastHitChallenge.base);
-  return *internal_default_instance();
-}
-
-
-void CDOTAClientMsg_BeginLastHitChallenge::Clear() {
-// @@protoc_insertion_point(message_clear_start:CDOTAClientMsg_BeginLastHitChallenge)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  cached_has_bits = _has_bits_[0];
-  if (cached_has_bits & 3u) {
-    ::memset(&chosen_lane_, 0, static_cast<size_t>(
-        reinterpret_cast<char*>(&helper_enabled_) -
-        reinterpret_cast<char*>(&chosen_lane_)) + sizeof(helper_enabled_));
-  }
-  _has_bits_.Clear();
-  _internal_metadata_.Clear();
-}
-
-bool CDOTAClientMsg_BeginLastHitChallenge::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:CDOTAClientMsg_BeginLastHitChallenge)
-  for (;;) {
-    ::std::pair<::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
-      // optional uint32 chosen_lane = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
-          set_has_chosen_lane();
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::uint32, ::google::protobuf::internal::WireFormatLite::TYPE_UINT32>(
-                 input, &chosen_lane_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      // optional bool helper_enabled = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(16u /* 16 & 0xFF */)) {
-          set_has_helper_enabled();
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   bool, ::google::protobuf::internal::WireFormatLite::TYPE_BOOL>(
-                 input, &helper_enabled_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
-      default: {
-      handle_unusual:
-        if (tag == 0) {
-          goto success;
-        }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
-      }
-    }
-  }
-success:
-  // @@protoc_insertion_point(parse_success:CDOTAClientMsg_BeginLastHitChallenge)
-  return true;
-failure:
-  // @@protoc_insertion_point(parse_failure:CDOTAClientMsg_BeginLastHitChallenge)
-  return false;
-#undef DO_
-}
-
-void CDOTAClientMsg_BeginLastHitChallenge::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:CDOTAClientMsg_BeginLastHitChallenge)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  cached_has_bits = _has_bits_[0];
-  // optional uint32 chosen_lane = 1;
-  if (cached_has_bits & 0x00000001u) {
-    ::google::protobuf::internal::WireFormatLite::WriteUInt32(1, this->chosen_lane(), output);
-  }
-
-  // optional bool helper_enabled = 2;
-  if (cached_has_bits & 0x00000002u) {
-    ::google::protobuf::internal::WireFormatLite::WriteBool(2, this->helper_enabled(), output);
-  }
-
-  if (_internal_metadata_.have_unknown_fields()) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        _internal_metadata_.unknown_fields(), output);
-  }
-  // @@protoc_insertion_point(serialize_end:CDOTAClientMsg_BeginLastHitChallenge)
-}
-
-::google::protobuf::uint8* CDOTAClientMsg_BeginLastHitChallenge::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
-  // @@protoc_insertion_point(serialize_to_array_start:CDOTAClientMsg_BeginLastHitChallenge)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  cached_has_bits = _has_bits_[0];
-  // optional uint32 chosen_lane = 1;
-  if (cached_has_bits & 0x00000001u) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteUInt32ToArray(1, this->chosen_lane(), target);
-  }
-
-  // optional bool helper_enabled = 2;
-  if (cached_has_bits & 0x00000002u) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteBoolToArray(2, this->helper_enabled(), target);
-  }
-
-  if (_internal_metadata_.have_unknown_fields()) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields(), target);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:CDOTAClientMsg_BeginLastHitChallenge)
-  return target;
-}
-
-size_t CDOTAClientMsg_BeginLastHitChallenge::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:CDOTAClientMsg_BeginLastHitChallenge)
-  size_t total_size = 0;
-
-  if (_internal_metadata_.have_unknown_fields()) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        _internal_metadata_.unknown_fields());
-  }
-  if (_has_bits_[0 / 32] & 3u) {
-    // optional uint32 chosen_lane = 1;
-    if (has_chosen_lane()) {
-      total_size += 1 +
-        ::google::protobuf::internal::WireFormatLite::UInt32Size(
-          this->chosen_lane());
-    }
-
-    // optional bool helper_enabled = 2;
-    if (has_helper_enabled()) {
-      total_size += 1 + 1;
-    }
-
-  }
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
-}
-
-void CDOTAClientMsg_BeginLastHitChallenge::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:CDOTAClientMsg_BeginLastHitChallenge)
-  GOOGLE_DCHECK_NE(&from, this);
-  const CDOTAClientMsg_BeginLastHitChallenge* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const CDOTAClientMsg_BeginLastHitChallenge>(
-          &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:CDOTAClientMsg_BeginLastHitChallenge)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
-  } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:CDOTAClientMsg_BeginLastHitChallenge)
-    MergeFrom(*source);
-  }
-}
-
-void CDOTAClientMsg_BeginLastHitChallenge::MergeFrom(const CDOTAClientMsg_BeginLastHitChallenge& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:CDOTAClientMsg_BeginLastHitChallenge)
-  GOOGLE_DCHECK_NE(&from, this);
-  _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  cached_has_bits = from._has_bits_[0];
-  if (cached_has_bits & 3u) {
-    if (cached_has_bits & 0x00000001u) {
-      chosen_lane_ = from.chosen_lane_;
-    }
-    if (cached_has_bits & 0x00000002u) {
-      helper_enabled_ = from.helper_enabled_;
-    }
-    _has_bits_[0] |= cached_has_bits;
-  }
-}
-
-void CDOTAClientMsg_BeginLastHitChallenge::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:CDOTAClientMsg_BeginLastHitChallenge)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-void CDOTAClientMsg_BeginLastHitChallenge::CopyFrom(const CDOTAClientMsg_BeginLastHitChallenge& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:CDOTAClientMsg_BeginLastHitChallenge)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool CDOTAClientMsg_BeginLastHitChallenge::IsInitialized() const {
-  return true;
-}
-
-void CDOTAClientMsg_BeginLastHitChallenge::Swap(CDOTAClientMsg_BeginLastHitChallenge* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
-void CDOTAClientMsg_BeginLastHitChallenge::InternalSwap(CDOTAClientMsg_BeginLastHitChallenge* other) {
-  using std::swap;
-  swap(chosen_lane_, other->chosen_lane_);
-  swap(helper_enabled_, other->helper_enabled_);
-  swap(_has_bits_[0], other->_has_bits_[0]);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-}
-
-::google::protobuf::Metadata CDOTAClientMsg_BeginLastHitChallenge::GetMetadata() const {
-  protobuf_mcdota_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_mcdota_2eproto::file_level_metadata[kIndexInFileMessages];
-}
-
-
 // @@protoc_insertion_point(namespace_scope)
 namespace google {
 namespace protobuf {
@@ -16704,9 +16394,6 @@ template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::CDOTAMatchMetadata_Team* Arena::
 }
 template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::CDOTAMatchMetadata* Arena::CreateMaybeMessage< ::CDOTAMatchMetadata >(Arena* arena) {
   return Arena::CreateInternal< ::CDOTAMatchMetadata >(arena);
-}
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::CDOTAClientMsg_BeginLastHitChallenge* Arena::CreateMaybeMessage< ::CDOTAClientMsg_BeginLastHitChallenge >(Arena* arena) {
-  return Arena::CreateInternal< ::CDOTAClientMsg_BeginLastHitChallenge >(arena);
 }
 }  // namespace protobuf
 }  // namespace google

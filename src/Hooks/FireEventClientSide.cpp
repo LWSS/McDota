@@ -49,7 +49,6 @@ bool Hooks::FireEventClientSide( CGameEventManager *thisptr, CGameEvent *event )
         }
         switch( actionID ){
             case 1:
-                UI::Callbacks::Quarantine();
                 break;
             default:
                 break;
