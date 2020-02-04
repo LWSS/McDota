@@ -251,14 +251,11 @@ static bool FindDBPlayPanel()
 static bool FindSoundOpSystem()
 {
     // xref "DOTAMusic.MainLoop" to first function ( it should also have "opvars" and "dota_music_opvars", but NOT "current_music") go to start of function; it is the first cs:xxxxxxxx address
-    // 48 8B 1D 53 97 20 03          mov     rbx, cs:off_61D92E0
-	// C6 85 90 FE FF FF FF          mov     [rbp+var_170], 0FFh
-	// 64 48 8B 04 25 28 00 00 00    mov     rax, fs:28h
-	// 48 89 45 E8                   mov     [rbp+var_18], rax
-	// 31 C0                         xor     eax, eax
-	// C7 85 98 FE FF FF 00 00 00 00 mov     [rbp+var_168], 0
+    // 48 8B 05 EE F3 32 02    mov     rax, cs:soundOpSystem
+    // C7 85 94 FE FF FF 04 00+mov     [rbp+var_16C], 4
+    // 48 8D 35 96 95 39 01    lea     rsi, aDotaMusicOpvar ; "dota_music_opvars"
     
-    uintptr_t soundOpSystemLine = PatternFinder::FindPatternInModule("libclient.so", "48 8B 1D ?? ?? ?? ?? C6 85 ?? ?? ?? ?? ?? 64 48 8B 04 25 ?? ?? ?? ?? 48 89 ?? ?? 31 C0 C7", "SoundOpSystem");
+    uintptr_t soundOpSystemLine = PatternFinder::FindPatternInModule("libclient.so", "48 8B 05 ?? ?? ?? ?? C7 85 94", "SoundOpSystem");
 
     if( !soundOpSystemLine ){
         MC_PRINTF_ERROR("SoundOpSystem Sig is broke!\n");
@@ -451,9 +448,6 @@ static bool FindRenderGameSystem()
 	g_ViewToProjection = reinterpret_cast<VMatrix*>( GetAbsoluteAddress( line, 3, 7 ) );
 	line += 7;
 	GetMatricesForView = reinterpret_cast<GetMatricesForViewFn>( GetAbsoluteAddress( line, 1, 5 ) );
-
-	line = PatternFinder::FindPatternInModule( "libclient.so", "55 48 89 E5 41 57 41 56 41 55 41 54 53 48 89 FB 48 81 EC A8 00 00 00 48 8B 07 89", "setupview" );
-	SetupView = reinterpret_cast<SetupViewFn>( line );
 
 	return true;
 }

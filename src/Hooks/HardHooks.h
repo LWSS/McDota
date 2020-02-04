@@ -10,18 +10,11 @@
 namespace HardHooks
 {
     inline subhook::Hook DispatchPacket;
-    inline subhook::Hook BSendMessage;
     inline subhook::Hook BAsyncSendProto;
-    inline subhook::Hook InitFromPacketInternal;
 
-    typedef bool ( *DispatchPacketFn)( void *, CStructNetPacket * );
-    typedef void ( *BSendMessageFn)( void *, CProtoBufMsgBase * );
+    typedef bool ( *DispatchPacketFn)( void *, IMsgNetPacket * );
     typedef bool ( *BAsyncSendProtoFn)( IProtoBufSendHandler &, unsigned int, CMsgProtoBufHeader const&, google::protobuf::Message * );
-    typedef void ( *InitFromPacketInternalFn )( CProtoBufMsgBase *thisptr, CStructNetPacket *IMsgNetPacket );
-    typedef void ( *CProtoBufMsgBaseConstructorFn )( CProtoBufMsgBase *babyMsg, unsigned int type );
 
-    bool MyDispatchPacket( void* thisptr, CStructNetPacket *IMsgNetPacket );
-    void MyBSendMessage( void* thisptr, CProtoBufMsgBase *msg );
+    bool MyDispatchPacket( void* thisptr, IMsgNetPacket *netPacket );
     bool MyBAsyncSendProto( IProtoBufSendHandler &, unsigned int, CMsgProtoBufHeader const&, google::protobuf::Message * );
-    void MyInitFromPacketInternal( CProtoBufMsgBase *thisptr, CStructNetPacket *IMsgNetPacket );
 }

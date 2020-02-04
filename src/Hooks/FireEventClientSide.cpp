@@ -19,7 +19,7 @@ static const char *GameState2String( int state ){
         CASE_STRING( GameState::DOTA_GAMERULES_CUSTOM_GAME_SETUP );
         CASE_STRING( GameState::DOTA_GAMERULES_WAIT_FOR_MAP_TO_LOAD );
         default:
-            return std::to_string( state ).c_str();
+            return "gaaaa";
     }
 }
 

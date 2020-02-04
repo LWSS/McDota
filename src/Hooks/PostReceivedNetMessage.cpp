@@ -34,8 +34,8 @@ void Hooks::PostReceivedNetMessage( INetChannel *thisptr, NetMessageHandle_t *me
         }
     }
 
-    if( mc_anti_mute->GetBool() && mc_hide_tips->GetBool() ){
-        if( messageHandle->messageID == 378 ) { // CDOTAClientMsg_TipAlert [378]
+    if( mc_hide_tips->GetBool() ){
+        if( messageHandle->messageID == 577 ) { // CDOTAUserMsg_TipAlert 577
             Util::Log("Suppressing a tipalert\n");
             return;
         }

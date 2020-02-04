@@ -80,7 +80,7 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
     }
 
     if( mc_send_voice->GetBool() ){
-        if( messageHandle->messageID == 31 ){ // CCLCMsg_VoiceData [22]
+        if( messageHandle->messageID == 22 ){ // CCLCMsg_VoiceData [22]
             for( int i = 0; i < mc_send_freq->GetInt(); i++ ){
                 engine->GetNetChannelInfo()->SetMaxRoutablePayloadSize(99999999);
                 engine->GetNetChannelInfo()->SetMaxBufferSize(NetChannelBufType_t::BUF_DEFAULT, 99999999);

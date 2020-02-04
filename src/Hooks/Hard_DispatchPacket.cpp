@@ -3,7 +3,7 @@
 
 #include <csignal>
 
-bool HardHooks::MyDispatchPacket( void *thisptr, CStructNetPacket *IMsgNetPacket ) {
+bool HardHooks::MyDispatchPacket( void *thisptr, IMsgNetPacket *IMsgNetPacket ) {
     CNetPacket *pkt = IMsgNetPacket->GetCNetPacket();
 
     Util::Log("[GC]Recv(%p) - CNetPacket(%p) - type(%s) - len(%d)\n", (void*)IMsgNetPacket, pkt, EDOTAGCMsg2String( IMsgNetPacket->GetEMsg() ), IMsgNetPacket->CubData());

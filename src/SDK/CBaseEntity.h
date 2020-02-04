@@ -180,7 +180,7 @@ public:
     virtual bool C_BaseEntity__InLocalTeam(void);
     virtual void C_BaseAnimating__DrawDebugTextOverlays(unsigned long long unk, int unk2);
     virtual bool C_BaseEntity__IsValidIDTarget(void);
-    virtual const char* C_BaseEntity__GetIDString(void);
+    virtual const char* C_BaseEntity__GetIDString(void); // haystack
     virtual bool C_BaseEntity__IsPotentiallyUsable(void);
     virtual const char* C_BaseEntity__GetUseString(CBaseEntity *ent);
     virtual bool C_BaseEntity__IsAbleToGlow(void);
@@ -211,7 +211,7 @@ public:
     virtual void C_BaseEntity__TakeDamage(void* CTakeDamageInfo);
     virtual void sub_26F57E0();
     virtual void unk_newFuncHashBucket(); // added with summer scrub pt2 - elf_gnu_hash_bucket
-    virtual void sub_2937C60();
+    virtual void unk_checkbyteDoSomethin(); // added late 2019 prob
     virtual int C_BaseEntity__ClothSettingsTypeID(); // a guess
     virtual void sub_2907330();
     virtual void unk_elfshit(); //  rax, qword ptr ds:stru_D90.st_name - added 7-17-19
@@ -238,7 +238,7 @@ public:
     virtual void C_BasePlayer__PhysicsSolidMaskForEntity(void);
     virtual void* C_BaseEntity__ClothGetEntityInstanceSettings(void);
     virtual void C_BaseEntity__NotifySystemEvent(void* C_BaseEntity, int notify_system_event_t, void* notify_system_event_params_t);
-    virtual void C_BaseEntity__SUB_Remove(void);
+    virtual void C_BaseEntity__SUB_Remove(void); // "SUB_Remove"
     virtual void sub_2903930();
     virtual void sub_275B090();
     virtual void sub_273A9D0();
@@ -251,7 +251,7 @@ public:
     virtual void sub_273C020();
     virtual bool C_BaseEntity__ShouldDrawWaterImpacts(void);
     virtual bool C_BaseEntity__ShouldDrawUnderwaterBulletBubbles(void);
-    virtual void sub_273F850();
+    virtual void HandleShotImpactingWater();//(FireBulletsInfo_t const&,Vector const&,ITraceFilter *,Vector*) "gunshotsplash"
     virtual ColorRGBA C_BaseCombatCharacter__BloodColor(void);
     virtual bool unk_something_new(void); //added with TI2019 battlepass, setz al
     virtual bool C_DOTAPlayer__IsPlayer(void);
@@ -273,7 +273,7 @@ public:
     virtual void C_BaseEntity__SetHealth(int health);
     virtual int C_BaseEntity__GetHealth(void);
     virtual int C_BaseEntity__GetActualHealth(void);
-    virtual void C_BaseEntity__ModifyOrAppendCriteria(void* CResponseCriteriaSet);
+    virtual void C_BaseEntity__ModifyOrAppendCriteria(void* CResponseCriteriaSet); // "unitname"
     virtual bool C_BaseEntity__WantSpawnCallOnPreData(void);
     virtual Vector* C_DOTAPlayer__EyePosition(void);
     virtual QAngle* C_DOTAPlayer__EyeAngles(void);
@@ -324,9 +324,8 @@ public:
     virtual float C_BaseAnimating__GetGlobalFadeScale(void);
     virtual void C_BaseModelEntity__DamageDecal(int unk, int unk2);
     virtual void sub_26F56F0();
-    virtual void sub_26F5700();
-    virtual void sub_25DDF10(); // added sept 26 dota+ update -- empty function.
-    virtual void sub_26FF8D0();
+    virtual void sub_26F5700(); // added sept 26 dota+ update -- empty function.
+    virtual void sub_25DDF10(); // "m_vecX" quantizedfloat meme
     virtual bool C_BaseModelEntity__CanBeSeenByTeam(DOTATeam_t team) = 0;
     virtual bool C_BaseModelEntity__IsPartOfFOWSystem(void); // F.O.W. = Fog Of War
     virtual void C_BaseAnimating__SetTransmit(void* CCheckTransmitInfo, bool unk);
@@ -348,8 +347,11 @@ public:
     virtual void sub_26F57F0();
     virtual void sub_26F5800();
     virtual void sub_2902630();
+    virtual void sub_29F9230(); //added w/ new boom extension 2020
+    virtual void sub_29F9500(); //added w/ new boom extension 2020
+    virtual void sub_29E64D0(); //added w/ new boom extension 2020
     virtual void sub_292A800();
-    virtual void sub_292A801();
+    virtual void sub_292A801(); // loc_
     virtual void C_BaseAnimating__HandleScriptedAnimEvent(void* animevent_t);
     virtual void C_BaseAnimating__HandleBehaviorAnimEvent(void* animevent_t);
     virtual void C_BaseAnimating__SpeechAnimEvent(const char* unk);

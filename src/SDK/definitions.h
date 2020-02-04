@@ -5,6 +5,7 @@
 
 /* Inspired by: https://github.com/DustinHLand/vkDOOM3/blob/master/neo/renderer/Vulkan/RenderBackend_VK.cpp#L91 */
 #define CASE_STRING( x ) case static_cast<int>( x ) : return #x
+#define CASE_STD_STRING( x ) case static_cast<int>( x ) : return std::string(#x)
 
 typedef unsigned long long VPANEL;
 typedef unsigned long long HFont;

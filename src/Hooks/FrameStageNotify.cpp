@@ -19,7 +19,7 @@ static const char* Stage2String( ClientFrameStage_t stage ){
         CASE_STRING( FRAME_RENDER_START );
         CASE_STRING( FRAME_RENDER_END );
         default:
-            return std::to_string((int)stage).c_str();
+            return "gaaaa";
     }
 }
 void Hooks::FrameStageNotify( CSource2Client *thisptr, ClientFrameStage_t stage ) {

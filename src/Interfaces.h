@@ -55,7 +55,6 @@ inline uintptr_t BAsyncSendProtoFnAddr;
 typedef GameScriptScopesWrapper* (* GetPanoramaScriptScopesFn)( void );
 typedef void (* OnAcceptMatchFn)( panorama::CPanel2D* );
 typedef void (* GetMatricesForViewFn)( CRenderGameSystem *thisptr, CViewSetup &view, VMatrix *worldToView, VMatrix *viewToProjection, VMatrix *worldToProjection, VMatrix *worldToScreen );
-typedef void*(* SetupViewFn)( CViewRender *thisptr );
 typedef void (* CGameTraceInitFn)( void *thisGameTrace );
 typedef void (* CTraceFilterConstructorFn)( void *thisTraceFilter, const void *IHandleEntity_Ignore, int, bool (* handler)( void *IHandleEntity, int ) );
 typedef void (* SendMessageGenericClientToGCFn)( const google::protobuf::Message * const msg, EDOTAGCMsg nMsgID );
@@ -64,7 +63,6 @@ typedef void (* SendMessageGenericClientToGCFn)( const google::protobuf::Message
 inline GetPanoramaScriptScopesFn GetPanoramaScriptScopes;
 inline OnAcceptMatchFn OnAcceptMatch;
 inline GetMatricesForViewFn GetMatricesForView;
-inline SetupViewFn SetupView;
 inline CGameTraceInitFn GameTrace_Init;
 inline CTraceFilterConstructorFn CTraceFilter_Constructor;
 inline SendMessageGenericClientToGCFn SendMessageGenericClientToGC;
