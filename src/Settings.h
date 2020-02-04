@@ -41,8 +41,8 @@ inline ConVar *mc_log_recvnetmsg;
 inline ConVar *mc_log_recvnetmsg_to_string;
 inline ConVar *mc_log_recvnetmsg_filter_commons;
 inline ConVar *mc_log_runscript;
-inline ConVar *mc_log_GC_send;
-inline ConVar *mc_log_GC_recv;
+inline ConVar *mc_log_GC_client_send;
+inline ConVar *mc_log_GC_client_recv;
 
 inline ConVar *mc_mute_creeps;
 inline ConVar *mc_end_createmove;

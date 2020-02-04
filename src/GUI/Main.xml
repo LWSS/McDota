@@ -197,8 +197,8 @@ R"zz(
 						<DOTASettingsCheckbox convar='mc_log_sendnetmsg' text='Log SendNetMsg' onactivate='clickSound()' />
 						<DOTASettingsCheckbox convar='mc_log_sendnetmsg_filter_commons' text='^ Filter Commons' onactivate='clickSound()' />
 						<DOTASettingsCheckbox convar='mc_log_sendnetmsg_to_string' text='^^ To String' onactivate='clickSound()' />
-						<DOTASettingsCheckbox convar='mc_log_GC_recv' text='Log GC Recv' onactivate='clickSound()' onmouseover='addWarning("GC Logs use Hard Hooks. Hard Hooks are not safe. They are not detected but may be in the future. Restart your game after Enabling.")' onmouseout='removeWarning()'/>
-						<DOTASettingsCheckbox convar='mc_log_GC_send' text='Log GC Send' onactivate='clickSound()' onmouseover='addWarning("GC Logs use Hard Hooks. Hard Hooks are not safe. They are not detected but may be in the future. Restart your game after Enabling.")' onmouseout='removeWarning()'/>
+						<DOTASettingsCheckbox convar='mc_log_GC_client_recv' text='Log GC Recv' onactivate='clickSound()' onmouseover='addWarning("GC Logs use Hard Hooks. Hard Hooks are not safe. They are not detected but may be in the future. Restart your game after Enabling.")' onmouseout='removeWarning()'/>
+						<DOTASettingsCheckbox convar='mc_log_GC_client_send' text='Log GC Send' onactivate='clickSound()' onmouseover='addWarning("GC Logs use Hard Hooks. Hard Hooks are not safe. They are not detected but may be in the future. Restart your game after Enabling.")' onmouseout='removeWarning()'/>
 					</Panel>
 				</Panel>
 			</Panel>

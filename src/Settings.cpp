@@ -1,7 +1,31 @@
 #include "Settings.h"
 
+#include "Hooks/HardHooks.h"
 #include "Utils/Util_sdk.h"
 #include "Interfaces.h"
+
+void CC_GC_Client_Recv( ConVar*, const char *, float )
+{
+	if( mc_log_GC_client_recv->GetBool() ){
+		Util::Log("Installing HardHook- Client GC Recv\n");
+		HardHooks::DispatchPacket.Install( (void*)DispatchPacketFnAddr, (void*)HardHooks::MyDispatchPacket );
+	} else {
+		Util::Log("Removing HardHook - Client GC Recv");
+		HardHooks::DispatchPacket.Remove();
+	}
+}
+
+void CC_GC_Client_Send( ConVar*, const char *, float )
+{
+	Util::Log("GC Send convar changed!(%d)\n", mc_log_GC_client_send ->GetInt());
+	if( mc_log_GC_client_send->GetBool() ){
+		Util::Log("Installing HardHook - Client GC Recv\n");
+		HardHooks::BAsyncSendProto.Install( (void*)BAsyncSendProtoFnAddr, (void*)HardHooks::MyBAsyncSendProto );
+	} else {
+		Util::Log("Removing HardHook - Client GC Send\n");
+		HardHooks::BAsyncSendProto.Remove();
+	}
+}
 
 /* ConVars are guaranteed to exist after this function */
 bool Settings::RegisterCustomConvars( ) {
@@ -44,8 +68,17 @@ bool Settings::RegisterCustomConvars( ) {
 	mc_log_recvnetmsg_to_string = Util::RegisterConVar( "mc_log_recvnetmsg_to_string", "false" );
     mc_log_recvnetmsg_filter_commons = Util::RegisterConVar( "mc_log_recvnetmsg_filter_commons", "false" );
 	mc_log_runscript = Util::RegisterConVar( "mc_log_runscript", "false" );
-	mc_log_GC_recv = Util::RegisterConVar( "mc_log_GC_recv", "false" );
-	mc_log_GC_send = Util::RegisterConVar( "mc_log_GC_send", "false" );
+	mc_log_GC_client_recv = Util::RegisterConVar( "mc_log_GC_client_recv", "false" );
+	mc_log_GC_client_send = Util::RegisterConVar( "mc_log_GC_client_send", "false" );
+
+	if( !mc_log_GC_client_recv->AddChangeCallback( CC_GC_Client_Recv ) ){
+		Util::Log("Failed to add Change Callback for GC Client Recv\n");
+		return false;
+	}
+	if( !mc_log_GC_client_send->AddChangeCallback( CC_GC_Client_Send ) ){
+		Util::Log("Failed to add Change Callback for GC Client Send\n");
+		return false;
+	}
 
     mc_mute_creeps = Util::RegisterConVar( "mc_mute_creeps", "false" );
 	mc_end_createmove = Util::RegisterConVar( "mc_end_createmove", "false" );

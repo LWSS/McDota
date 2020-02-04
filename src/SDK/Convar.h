@@ -102,6 +102,9 @@ public:
     char _padflags[4]; //alignment
 };
 
+class ConVar;
+typedef void (*ConVarHandlerFn)(ConVar*,char const*,float);
+
 class ConVar : public ConCommandBase
 {
 public:
@@ -115,5 +118,17 @@ public:
     bool bHasMax;
     char _pad2[3];
     float m_fMaxVal;
-    CUtlVector<void (*)(ConVar*,char const*,float)>/*,CUtlMemory<void (*)(IConVar*,char const*,float),int> >*/ m_fnChangeCallbacks;
+    CUtlVector<ConVarHandlerFn> m_fnChangeCallbacks;
+
+    inline bool AddChangeCallback( ConVarHandlerFn callback )
+    {
+        // only support 1 callback, don't see a reason for more.
+        if( this->m_fnChangeCallbacks.m_Size > 0 || this->m_fnChangeCallbacks.m_pElements ){
+            return false;
+        }
+        this->m_fnChangeCallbacks.m_Size++;
+        this->m_fnChangeCallbacks.m_pElements = new ConVarHandlerFn[1];
+        this->m_fnChangeCallbacks[0] = callback;
+        return true;
+    }
 };

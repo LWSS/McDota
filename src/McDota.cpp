@@ -216,6 +216,7 @@ void __attribute__((destructor)) Shutdown()
                 delete[] var->m_Value.m_pszString;
                 delete[] var->m_pszDefaultValue;
                 delete[] var->m_pszHelpString;
+                delete[] var->m_fnChangeCallbacks.m_pElements;
             delete (char*)var; // cast so we dont invoke destructor
         }
         cvar->ConsoleColorPrintf(ColorRGBA(255, 0, 0), "[McDota] I'm outta here.\n");

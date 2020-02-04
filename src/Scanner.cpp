@@ -343,7 +343,7 @@ static bool FindGCFunctions()
 {
 	// GCSDK::CGCClient::DispatchPacket(GCSDK::IMsgNetPacket *)
 	// xref for "You have been waiting for"
-	DispatchPacketFnAddr = PatternFinder::FindPatternInModule( "libclient.so", "55 48 89 E5 41 57 49 89 FF 41 56 41 55 41 54 4C 8D 25 ?? ?? ?? ?? 53 48 89 F3 48", "DispatchPacket()" );
+	DispatchPacketFnAddr = PatternFinder::FindPatternInModule( "libclient.so", "55 48 89 E5 41 57 49 89 FF 41 56 41 55 41 54 4C 8D 25 ?? ?? ?? ?? 53 48 89 F3 48 83 EC ?? 48 8B 06", "DispatchPacket()" );
 
 	if( !DispatchPacketFnAddr ){
 		MC_PRINTF_ERROR("DispatchPacketFn sig is broke!\n");
