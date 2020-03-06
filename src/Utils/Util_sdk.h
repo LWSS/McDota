@@ -27,5 +27,5 @@ namespace Util
 
 	int FindDataMapElementOffset( Datamap *dMap, const char *element );
 
-	bool ReadParticleFiles( const char *blacklistFile = nullptr, const char *trackedFile = nullptr );
+	bool ReadParticleFiles( const char *pathID, const char *blacklistFileName = nullptr, const char *tracklistFileName = nullptr );
 }

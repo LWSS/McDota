@@ -1,0 +1,28 @@
+#!/bin/bash
+# Attach GDB with User-defined settings
+
+dota_pid=$(pidof dota2)
+if [ -z "$dota_pid" ]; then
+    /bin/echo -e "\\e[31mDota needs to be open before you can inject...\\e[0m"
+    exit 1
+fi
+
+# pBypass for crash dumps being sent
+# You may also want to consider using -nobreakpad in your launch options.
+sudo rm -rf /tmp/dumps # Remove if it exists
+sudo mkdir /tmp/dumps # Make it as root
+sudo chmod 000 /tmp/dumps # No permissions
+
+filename="libMcDota.so"
+
+# https://www.kernel.org/doc/Documentation/security/Yama.txt
+sudo echo "0" | sudo tee /proc/sys/kernel/yama/ptrace_scope # Only allows root to inject code. This is temporary until reboot.
+
+# dlopen method Credits: Aixxe @ aixxe.net
+if grep -q "$filename" /proc/"$dota_pid"/maps; then
+    gdb -p "$dota_pid"
+else
+	path="$(pwd)/$filename"
+    echo "Injecting build $path"
+    gdb -p "$dota_pid"
+fi

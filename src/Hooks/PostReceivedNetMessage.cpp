@@ -1,11 +1,13 @@
 #include "Hooks.h"
 
 #include "../Utils/Protobuf.h"
+#include "../Utils/Logger.h"
 #include "../Settings.h"
 
 typedef void (* PostReceivedNetMessageFn)( INetChannel *, NetMessageHandle_t *, google::protobuf::Message*, NetChannelBufType_t const *);
 
 uint32_t biggestSignon = 0;
+uint32_t latestSpawnCount = 0;
 
 void Hooks::PostReceivedNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHandle, google::protobuf::Message *msg, NetChannelBufType_t const *type ) {
 
@@ -22,21 +24,21 @@ void Hooks::PostReceivedNetMessage( INetChannel *thisptr, NetMessageHandle_t *me
                 goto end;
             }
         }
-        Util::Log( "Recv Msg: (%s)\n", name );
+        MC_LOGF( "Recv Msg: (%s)\n", name );
 
         if( mc_log_recvnetmsg_to_string->GetBool() ){
             CUtlString string;
             string.m_Memory.m_pMemory = new uint8_t[4096];
             string.m_Memory.m_nAllocationCount = 4096;
             string.m_Memory.m_nGrowSize = 4096;
-            Util::Log( "Net Msg[%d] Received: (%s)\n", messageHandle->messageID, info->pProtobufBinding->ToString( msg, &string ) );
+            MC_LOGF( "Net Msg[%d] Received: (%s)BufType(%d)\n", messageHandle->messageID, info->pProtobufBinding->ToString( msg, &string ), *type );
             delete[] string.m_Memory.m_pMemory;
         }
     }
 
     if( mc_hide_tips->GetBool() ){
-        if( messageHandle->messageID == 577 ) { // CDOTAUserMsg_TipAlert 577
-            Util::Log("Suppressing a tipalert\n");
+        if( messageHandle->messageID == 577 ) { // CDOTAUserMsg_TipAlert
+            MC_LOGF("Suppressing a tipalert\n");
             return;
         }
     }
@@ -52,5 +54,5 @@ void Hooks::PostReceivedNetMessage( INetChannel *thisptr, NetMessageHandle_t *me
     }*/
 
 end:
-    return netChannelVMT->GetOriginalMethod<PostReceivedNetMessageFn>(84)( thisptr, messageHandle, msg, type );
+    return netChannelVMT->GetOriginalMethod<PostReceivedNetMessageFn>(83)( thisptr, messageHandle, msg, type );
 }

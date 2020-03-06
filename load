@@ -34,7 +34,7 @@ sudo gdb -n -q -batch-silent \
   -ex "set logging redirect on" \
   -ex "attach $dota_pid" \
   -ex "set \$dlopen = (void*(*)(char*, int)) dlopen" \
-  -ex "call \$dlopen(\"$(pwd)/$filename\", 1)" \
+  -ex "call \$dlopen(\"$(pwd)/$filename\", 2)" \
   -ex "detach" \
   -ex "quit"
 )"

@@ -3,6 +3,8 @@
 #include "../Settings.h"
 #include "../GUI/Callbacks.h"
 
+#include "../Utils/Logger.h"
+
 typedef bool (* FireEventClientSideFn)( CGameEventManager*, CGameEvent * );
 
 static const char *GameState2String( int state ){
@@ -33,18 +35,18 @@ bool Hooks::FireEventClientSide( CGameEventManager *thisptr, CGameEvent *event )
 
     if( mc_log_clientevents->GetBool() ){
         eventName = event->GetName();
-        Util::Log("Event[%d] Fired! (%s)", event->GetID(), eventName);
+        MC_LOGF("Event[%d] Fired! (%s)", event->GetID(), eventName);
         if( !strcmp( eventName, "dota_game_state_change" ) ){
-            Util::Log("\n    Transitioning from State (%s) -> (%s)", GameState2String( event->GetInt("old_state") ), GameState2String( event->GetInt("new_state") ) );
+            MC_LOGF("\n    Transitioning from State (%s) -> (%s)", GameState2String( event->GetInt("old_state") ), GameState2String( event->GetInt("new_state") ) );
         }
-        Util::Log("\n");
+        MC_LOGF("\n");
     }
 
     // tree_cut
     if( event->GetID() == 281 ){
         actionID = event->GetInt( "action", 0 );
         if( !actionID ){
-            Util::Log("tree_cut: No \"action\" supplied!\n");
+            MC_LOGF("tree_cut: No \"action\" supplied!\n");
             return true;
         }
         switch( actionID ){

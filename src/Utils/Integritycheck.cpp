@@ -1,5 +1,7 @@
 #include "Integritycheck.h"
 
+#include "../Interfaces.h"
+
 #include <vector>
 
 static void PrintVMTError( const char *className, uint32_t old, uint32_t now ){
@@ -28,11 +30,11 @@ static std::vector<VMTEntry> vms = {
         { "networkClientService", (void**)&networkClientService, 69 },
 };
 
-static const uint32_t dotaPlayerNum = 447;
+static const uint32_t dotaPlayerNum = 449;
 static const uint32_t baseNPCNum = 185;
 static const uint32_t panoramaUIPanelNum = 344;
 static const uint32_t uiEngineNum = 185;
-static const uint32_t networkGameClientNum = 124;
+static const uint32_t networkGameClientNum = 125;
 static const uint32_t netChannelNum = 92;
 
 bool Integrity::VMTsHaveMisMatch( ) {

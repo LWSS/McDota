@@ -53,7 +53,6 @@ public:
     virtual void _unk3() = 0;
     virtual const char* GetRemoteAddress(void) = 0;
     virtual void _unk4() = 0;
-    virtual void _unk5() = 0;
     virtual void CanPacket() = 0;
     virtual bool IsOverflowed(void) = 0;
     virtual bool HasPendingReliableData(void) = 0;

@@ -33,6 +33,7 @@ inline CVPhys2World* phys2World;
 inline CRenderGameSystem* renderGameSystem;
 inline CNetworkSystem* networkSystem;
 inline CGCClient* gcClient;
+inline CBaseFileSystem* fileSystem; // there is another pointer to this in Logger
 
 // VMT's - these get deleted on module unload.
 inline std::unique_ptr<VMT> cameraVMT;
@@ -73,7 +74,7 @@ inline VMatrix *g_WorldToScreen;
 inline VMatrix *g_WorldToProjection;
 inline VMatrix *g_ViewToProjection;
 
-// Custom
+// Other
 inline panorama::CPanel2D* gDBPlayPanel; // Special Panel
 
 #define MC_PRINTF(f_, ...) cvar->ConsoleColorPrintf(ColorRGBA( 255, 140, 5 ), ("[McDota] " f_), ##__VA_ARGS__)

@@ -3,26 +3,27 @@
 #include "Hooks/HardHooks.h"
 #include "Utils/Util_sdk.h"
 #include "Interfaces.h"
+#include "Utils/Logger.h"
 
 void CC_GC_Client_Recv( ConVar*, const char *, float )
 {
 	if( mc_log_GC_client_recv->GetBool() ){
-		Util::Log("Installing HardHook- Client GC Recv\n");
+		MC_LOGF("Installing HardHook- Client GC Recv\n");
 		HardHooks::DispatchPacket.Install( (void*)DispatchPacketFnAddr, (void*)HardHooks::MyDispatchPacket );
 	} else {
-		Util::Log("Removing HardHook - Client GC Recv");
+		MC_LOGF("Removing HardHook - Client GC Recv");
 		HardHooks::DispatchPacket.Remove();
 	}
 }
 
 void CC_GC_Client_Send( ConVar*, const char *, float )
 {
-	Util::Log("GC Send convar changed!(%d)\n", mc_log_GC_client_send ->GetInt());
+	MC_LOGF("GC Send convar changed!(%d)\n", mc_log_GC_client_send ->GetInt());
 	if( mc_log_GC_client_send->GetBool() ){
-		Util::Log("Installing HardHook - Client GC Recv\n");
+		MC_LOGF("Installing HardHook - Client GC Recv\n");
 		HardHooks::BAsyncSendProto.Install( (void*)BAsyncSendProtoFnAddr, (void*)HardHooks::MyBAsyncSendProto );
 	} else {
-		Util::Log("Removing HardHook - Client GC Send\n");
+		MC_LOGF("Removing HardHook - Client GC Send\n");
 		HardHooks::BAsyncSendProto.Remove();
 	}
 }
@@ -72,11 +73,11 @@ bool Settings::RegisterCustomConvars( ) {
 	mc_log_GC_client_send = Util::RegisterConVar( "mc_log_GC_client_send", "false" );
 
 	if( !mc_log_GC_client_recv->AddChangeCallback( CC_GC_Client_Recv ) ){
-		Util::Log("Failed to add Change Callback for GC Client Recv\n");
+		MC_LOGF("Failed to add Change Callback for GC Client Recv\n");
 		return false;
 	}
 	if( !mc_log_GC_client_send->AddChangeCallback( CC_GC_Client_Send ) ){
-		Util::Log("Failed to add Change Callback for GC Client Send\n");
+		MC_LOGF("Failed to add Change Callback for GC Client Send\n");
 		return false;
 	}
 
@@ -95,6 +96,8 @@ bool Settings::RegisterCustomConvars( ) {
 	mc_custom_str_alt = Util::RegisterConVar( "mc_custom_str_alt", "test123" );
 	mc_custom_int = Util::RegisterConVar( "mc_custom_int", "1" );
 	mc_custom_int_alt = Util::RegisterConVar( "mc_custom_int_alt", "1" );
+    mc_custom_bool = Util::RegisterConVar( "mc_custom_bool", "1" );
+    mc_custom_bool_alt = Util::RegisterConVar( "mc_custom_bool_alt", "1" );
 
 	for ( ConCommandBase *var : Util::createdConvars ) {
 		if( !cvar->FindVar(var->m_pszName) ){

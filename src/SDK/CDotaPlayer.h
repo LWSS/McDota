@@ -57,7 +57,7 @@ enum OrderQueueBehavior_t : int {
 class CDotaPlayer : public CBaseCombatCharacter
 {
 public:
-    virtual void sub_2A5EB10(); // 304
+    virtual void sub_2A5EB10(); // 315
     virtual void sub_2A5EB11();
     virtual void sub_2A5EB12();
     virtual void sub_2A5EB13();

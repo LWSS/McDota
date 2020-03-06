@@ -4,7 +4,6 @@
 #include "vector.h"
 #include "CCollisionProperty.h"
 #include "Datamap.h"
-#include "../Utils/Util.h"
 
 
 enum OverlayFlags_t : unsigned long long
@@ -48,6 +47,7 @@ struct RenderableInstance_t{
 
 
 class ClientClass;
+//xref "SUB_Remove called on entity" to SUB_Remove()
 class CBaseEntity
 {
 public:
@@ -55,7 +55,6 @@ public:
     {
         static int offset = Util::FindDataMapElementOffset( this->C_DOTAPlayer__GetPredDescMap(), "m_iTeamNum" );
         if( !offset ){
-            Util::Log("ERROR GetTeam offset is Zero!\n");
             return DOTA_TEAM_INVALID;
         }
         return *( DOTATeam_t* )( ((uintptr_t)this) + offset );
@@ -64,7 +63,6 @@ public:
     {
         static int offset = Util::FindDataMapElementOffset( this->C_DOTAPlayer__GetPredDescMap(), "m_angNetworkAngles" );
         if( !offset ){
-            Util::Log("ERROR NetworkAngles offset is Zero!\n");
             return nullptr;
         }
         return ( QAngle* )( ((uintptr_t)this) + offset );
@@ -73,7 +71,6 @@ public:
     {
         static int offset = Util::FindDataMapElementOffset( this->C_DOTAPlayer__GetPredDescMap(), "m_vecNetworkOrigin" );
         if( !offset ){
-            Util::Log("ERROR NetworkOrigin offset is Zero!\n");
             return nullptr;
         }
         return ( Vector* )( ((uintptr_t)this) + offset );
@@ -82,7 +79,6 @@ public:
     {
         static int offset = Util::FindDataMapElementOffset( this->C_DOTAPlayer__GetPredDescMap(), "m_hOwnerEntity" );
         if( !offset ){
-            Util::Log("ERROR OwnerEntity offset is Zero!\n");
             return -1;
         }
         int *ptr = ( int* )( ((uintptr_t)this) + offset );
@@ -348,8 +344,10 @@ public:
     virtual void sub_26F5800();
     virtual void sub_2902630();
     virtual void sub_29F9230(); //added w/ new boom extension 2020
-    virtual void sub_29F9500(); //added w/ new boom extension 2020
-    virtual void sub_29E64D0(); //added w/ new boom extension 2020
+    virtual void sub_29F9500(); //added w/ new boom extension 2020 yeeter
+    virtual void sub_28547F0(); //added w/ shader update march 3 2020 -empty func
+    virtual void sub_29E64D0(); //added w/ new boom extension 2020 skeeter
+    virtual void sub_29D23B0(); //added w/ shader update march 3 2020
     virtual void sub_292A800();
     virtual void sub_292A801(); // loc_
     virtual void C_BaseAnimating__HandleScriptedAnimEvent(void* animevent_t);
@@ -384,5 +382,5 @@ public:
     virtual void C_BaseFlex__ProcessSequenceSceneEvent();
     virtual void C_BaseFlex__ClearSceneEvent();
     virtual void C_BaseFlex__CheckSceneEventCompletion();
-    virtual void C_BaseFlex__ShouldProcessSceneEvents();
+    virtual void C_BaseFlex__ShouldProcessSceneEvents(); //293
 };

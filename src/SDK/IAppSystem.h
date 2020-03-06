@@ -24,16 +24,18 @@ enum AppSystemTier_t
     APP_SYSTEM_TIER_OTHER,
 };
 
+typedef void* (*CreateInterfaceFn)(const char *pName, int *pReturnCode);
+
 /* Things that at the start of the Officially exported Interfaces */
 /* Note that some classes may not include all of these */
 class IAppSystem
 {
 public:
-    virtual void Connect() = 0;
+    virtual void Connect( CreateInterfaceFn factory ) = 0;
     virtual void Disconnect() = 0;
     // Here's where systems can access other interfaces implemented by this object
     // Returns NULL if it doesn't implement the requested interface
-    virtual void QueryInterface(const char* interfaceName) = 0; // normally has string of interface in it. EX: "PanoramaUIEngine001"
+    virtual void* QueryInterface(const char* interfaceName) = 0; // normally has string of interface in it. EX: "PanoramaUIEngine001"
     virtual InitReturnVal_t Init() = 0;
     virtual void Shutdown() = 0;
     virtual void Preshutdown() = 0;

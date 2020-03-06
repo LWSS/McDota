@@ -130,7 +130,7 @@ R"zz(
 						<DOTASettingsCheckbox convar='mc_autoaccept_on' text='AutoAccept' onactivate='clickSound()'/>
 						<DOTASettingsSlider convar='mc_camera_pitch_add' min='-1.0' max='360.0' text='Pitch' />
 						<DOTASettingsSlider convar='mc_camera_yaw_add' min='0.0' max='360.0' text='Yaw Add' />
-						<DOTASettingsSlider convar='mc_camera_distance' min='1134.0' max='4000.0' text='Camera Distance' />
+						<DOTASettingsSlider convar='mc_camera_distance' min='1200.0' max='4000.0' text='Camera Distance' />
 						<!--<Button id='btnTest' class='ButtonBevel' onactivate='executeQuarantine()' > <Label text='Mid Lane Party!' /></Button>-->
 					</Panel>
 				</Panel>

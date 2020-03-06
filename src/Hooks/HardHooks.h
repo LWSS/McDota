@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Utils/subhook/subhook.h"
-#include "../SDK/SDK.h"
+#include "../Interfaces.h"
 
 // (libclient)
 //GCSDK::CGCClient::DispatchPacket(GCSDK::IMsgNetPacket *)

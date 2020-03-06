@@ -1,10 +1,13 @@
 #include "Hooks.h"
 #include "../Settings.h"
+
+#include "../Utils/Logger.h"
+
 typedef int (* RunScriptFn)( panorama::UIEngine*, panorama::IUIPanel *,char const*,char const*,int,int,bool );
 
 int Hooks::RunScript( panorama::UIEngine *thisptr, panorama::IUIPanel *panel, const char *entireJSCode, const char *pathToXMLContext, int int1, int int2, bool alreadyCompiled ) {
     if ( mc_log_runscript->GetBool() ){
-        Util::Log( "--RunScript--\n Panel: %s Str1: %s, Str2: (%s), int1: %d, int2: %d, bool1(%s)\n", panel->GetID(), entireJSCode, pathToXMLContext, int1, int2, alreadyCompiled? "yes" : "no" );
+        MC_LOGF( "--RunScript--\n Panel: %s Str1: %s, Str2: (%s), int1: %d, int2: %d, bool1(%s)\n", panel->GetID(), entireJSCode, pathToXMLContext, int1, int2, alreadyCompiled? "yes" : "no" );
     }
 
     /* AutoAccept */

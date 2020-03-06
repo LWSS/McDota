@@ -2,6 +2,8 @@
 #include <csignal>
 
 #include "../Utils/Protobuf.h"
+#include "../Utils/Logger.h"
+
 #include "../Settings.h"
 
 #include "../protos/mcdota.pb.h"
@@ -33,16 +35,16 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
         if( signon == (uint32_t)SignonState_t::SIGNONSTATE_PRESPAWN ){
             mc_crash_server->SetValue(false);
             int32_t value = 0xADADADAD;//mc_custom_int->GetInt();
-            Util::Log("Changing localID from %d to %d\n", *(networkClientService->GetIGameClient()->GetLocalDOTAPlayerID()), value);
+            MC_LOGF("Changing localID from %d to %d\n", *(networkClientService->GetIGameClient()->GetLocalDOTAPlayerID()), value);
             *(networkClientService->GetIGameClient()->GetLocalDOTAPlayerID()) = value;
-            netChannelVMT->GetOriginalMethod<SendNetMessageFn>(66)( thisptr, messageHandle, msg, type );
+            netChannelVMT->GetOriginalMethod<SendNetMessageFn>(65)( thisptr, messageHandle, msg, type );
             return true;
         }
     }*/
 
     if( mc_stall_connect->GetBool() && messageHandle->messageID == 7 ) { //CNETMsg_SignonState [7]
         uint32_t signon = Util::Protobuf::GetFieldTraverseUInt32( msg, "signon_state" ).value( );
-        if ( signon >= ( uint32_t )SignonState_t::SIGNONSTATE_PRESPAWN ) {
+        if ( signon >= ( uint32_t )SignonState_t::SIGNONSTATE_SPAWN ) {
             return true;
         }
     }
@@ -56,7 +58,7 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
             CDOTAClientMsg_TipAlert tip;
             tip.set_tip_text(command);
             static auto msgHandle = networkMessages->GetMessageHandleByName("TipAlert");
-            netChannelVMT->GetOriginalMethod<SendNetMessageFn>(66)( thisptr, msgHandle, &tip, BUF_DEFAULT );
+            netChannelVMT->GetOriginalMethod<SendNetMessageFn>(65)( thisptr, msgHandle, &tip, BUF_DEFAULT );
             return true;
         } else if( command.find("say") == 0 ){
             command.erase(0, 5);
@@ -64,7 +66,7 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
             CDOTAClientMsg_TipAlert tip;
             tip.set_tip_text(command);
             static auto msgHandle = networkMessages->GetMessageHandleByName("TipAlert");
-            netChannelVMT->GetOriginalMethod<SendNetMessageFn>(66)( thisptr, msgHandle, &tip, BUF_DEFAULT );
+            netChannelVMT->GetOriginalMethod<SendNetMessageFn>(65)( thisptr, msgHandle, &tip, BUF_DEFAULT );
             return true;
         }
     }
@@ -74,7 +76,7 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
             for( int i = 0; i < mc_send_freq->GetInt(); i++ ){
                 engine->GetNetChannelInfo()->SetMaxRoutablePayloadSize(99999999);
                 engine->GetNetChannelInfo()->SetMaxBufferSize(NetChannelBufType_t::BUF_DEFAULT, 99999999);
-                netChannelVMT->GetOriginalMethod<SendNetMessageFn>(66)( thisptr, messageHandle, msg, type );
+                netChannelVMT->GetOriginalMethod<SendNetMessageFn>(65)( thisptr, messageHandle, msg, type );
             }
         }
     }
@@ -84,7 +86,7 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
             for( int i = 0; i < mc_send_freq->GetInt(); i++ ){
                 engine->GetNetChannelInfo()->SetMaxRoutablePayloadSize(99999999);
                 engine->GetNetChannelInfo()->SetMaxBufferSize(NetChannelBufType_t::BUF_DEFAULT, 99999999);
-                netChannelVMT->GetOriginalMethod<SendNetMessageFn>(66)( thisptr, messageHandle, msg, type );
+                netChannelVMT->GetOriginalMethod<SendNetMessageFn>(65)( thisptr, messageHandle, msg, type );
             }
         }
     }
@@ -101,15 +103,15 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
             }
         }
 
-        Util::Log( "NetMessage: Type(%d-%s) - Handle(%p) - Message@: (%p) - info@: (%p) - name(%s) -type(%d)\n", type, Type2String(type), messageHandle, msg, info, info->pProtobufBinding->GetName(), info->pProtobufBinding->GetBufType() );
+        MC_LOGF( "NetMessage: Type(%d-%s) - Handle(%p) - Message@: (%p) - info@: (%p) - name(%s) -type(%d)\n", type, Type2String(type), messageHandle, msg, info, info->pProtobufBinding->GetName(), info->pProtobufBinding->GetBufType() );
 
         if( mc_log_sendnetmsg_to_string->GetBool() ){
 
             CUtlString string;
             string.m_Memory.m_pMemory = new uint8_t[4096];
             string.m_Memory.m_nAllocationCount = 4096;
-            string.m_Memory.m_nGrowSize = 4096;
-            Util::Log( "ToString[%d]: (%s)\n", messageHandle->messageID, info->pProtobufBinding->ToString( msg, &string ) );
+            string.m_Memory.m_nGrowSize = 0;
+            MC_LOGF( "ToString[%d]: (%s)\n", messageHandle->messageID, info->pProtobufBinding->ToString( msg, &string ) );
             delete[] string.m_Memory.m_pMemory;
             //Util::Protobuf::LogMessageContents(msg);
 
@@ -118,5 +120,5 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
     }
 
 end:
-    return netChannelVMT->GetOriginalMethod<SendNetMessageFn>(66)( thisptr, messageHandle, msg, type );
+    return netChannelVMT->GetOriginalMethod<SendNetMessageFn>(65)( thisptr, messageHandle, msg, type );
 }

@@ -1,17 +1,15 @@
 #include "Interfaces.h"
 
 #include "Utils/Patternfinder.h" //dlinfo_t
-#include "Utils/Util.h"
+#include "Utils/Logger.h"
 #include "Hooks/Hooks.h"
 
 #include <link.h> // dl_iterate_phdr
-#include <sys/stat.h>
-
 
 bool Interfaces::FindExportedInterfaces( )
 {
     client = GetInterface<CSource2Client>("../../dota/bin/linuxsteamrt64/libclient.so", "Source2Client002", 132 );
-    cvar = GetInterface<ICvar>( "./libvstdlib.so", "VEngineCvar007", 52 );
+    cvar = GetInterface<ICvar>( "./libvstdlib.so", "VEngineCvar007", 53 );
     engine = GetInterface<IEngineClient>( "./libengine2.so", "Source2EngineToClient001", 174 );
     inputSystem = GetInterface<IInputSystem>( "./libinputsystem.so", "InputSystemVersion001", 89 );
     inputInternal = GetInterface<IInputInternal>("./libvgui2.so", "VGUI_InputInternal001", 101 );
@@ -27,6 +25,8 @@ bool Interfaces::FindExportedInterfaces( )
     networkStrings = GetInterface<CNetworkStringTableContainer>("./libengine2.so", "Source2EngineToClientStringTable001", 19);
     materialSystem = GetInterface<IMaterialSystem>("./libmaterialsystem2.so", "VMaterialSystem2_001", 37);
     networkSystem = GetInterface<CNetworkSystem>("./libnetworksystem.so", "NetworkSystemVersion001", 74);
+    fileSystem = GetInterface<CBaseFileSystem>( "./libfilesystem_stdio.so", "VFileSystem017", 181);
+    fs = fileSystem;
 
     if( !requestedInterfaces.empty() ){
         for(auto & requestedInterface : requestedInterfaces){
@@ -42,10 +42,10 @@ bool Interfaces::FindExportedInterfaces( )
 void Interfaces::DumpInterfaces( const char *fileName )
 {
 	static std::vector<dlinfo_t> modules;
-    struct stat buffer;
+    FileHandle_t dumpFile = fileSystem->Open( "dotainterfaces.txt", "w", "TMPDIR" );
 
-    // already exists? skip
-    if( stat( fileName, &buffer ) == 0 ) {
+    if( !dumpFile ){
+        MC_PRINTF_ERROR("Couldn't create dumpfile for interfaces!\n");
         return;
     }
 
@@ -61,10 +61,8 @@ void Interfaces::DumpInterfaces( const char *fileName )
 		return 0;
 	}, nullptr);
 
-	FILE *logFile;
-	logFile = fopen(fileName, "a");
-    setbuf( logFile, nullptr ); // turn off buffered I/O so it writes even if a crash occurs soon after.
-    fprintf(logFile, "\n\n***************** Start of Log *****************\n");
+    fileSystem->FPrintf( dumpFile, "\n\n***************** Start of Log *****************\n");
+
     for ( const dlinfo_t& module: modules )
     {
         if( !module.library )
@@ -76,17 +74,17 @@ void Interfaces::DumpInterfaces( const char *fileName )
         if( strcasestr( module.library, "libvideo.so" ) )
             continue;
 
-        fprintf(logFile, "-- Module Name: %s --\n", module.library);
+        fileSystem->FPrintf( dumpFile, "-- Module Name: %s --\n", module.library);
 
         void *library = dlopen(module.library, RTLD_NOLOAD | RTLD_NOW);
         if ( library == nullptr ){
-            fprintf(logFile, "**Couldn't open library**\n");
+            fileSystem->FPrintf( dumpFile, "**Couldn't open library**\n");
             continue;
         }
 
         void *createInterfaceSym = dlsym(library, "CreateInterface");
         if ( createInterfaceSym == nullptr ) {
-            fprintf( logFile, "**Couldn't find CreateInterface**\n" );
+            fileSystem->FPrintf( dumpFile,  "**Couldn't find CreateInterface**\n" );
             dlclose(library);
             continue;
         }
@@ -102,7 +100,7 @@ void Interfaces::DumpInterfaces( const char *fileName )
         dlclose(library);
         if( !interface_list )
         {
-            fprintf(logFile, "ERROR: Couldn't find Interface List in Module: %s\n", module.library);
+            fileSystem->FPrintf( dumpFile,  "ERROR: Couldn't find Interface List in Module: %s\n", module.library);
             continue;
         }
 
@@ -114,17 +112,20 @@ void Interfaces::DumpInterfaces( const char *fileName )
             interface_name.push_back(cur_interface->m_pName);
 
         if ( interface_name.empty() ){
-            fprintf(logFile, "Interface List is Empty!\n");
+            fileSystem->FPrintf( dumpFile,  "Interface List is Empty!\n");
             continue;
         }
 
 
         for (auto interface : interface_name)
-            fprintf(logFile, "\t%s\n", interface);
+            fileSystem->FPrintf( dumpFile, "\t%s\n", interface);
 
-        fprintf(logFile, "\n");
+        fileSystem->FPrintf( dumpFile,  "\n");
     }
-	fclose(logFile);
+
+    fs->FPrintf(dumpFile, "\n\n***************** End of Log *****************\n");
+
+    fileSystem->Close( dumpFile );
 }
 
 // Hook VMTs for interfaces that are not static (in-game entities, etc.)

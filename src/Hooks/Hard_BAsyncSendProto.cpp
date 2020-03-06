@@ -1,22 +1,22 @@
 #include "HardHooks.h"
 
-#include "../Interfaces.h"
 #include "../Utils/Protobuf.h"
+#include "../Utils/Logger.h"
 #include "../protos/mcdota.pb.h"
 
 bool HardHooks::MyBAsyncSendProto( IProtoBufSendHandler &handler, unsigned int unk,
                                     CMsgProtoBufHeader const &header, google::protobuf::Message *msg ) {
-    Util::Log("[GC]Send - Msg(%p)\n", (void*)msg);
+    MC_LOGF("[GC]Send - Msg(%p)\n", (void*)msg);
     google::protobuf::Message *copy = msg->New();
     copy->CopyFrom( *msg );
 
     const google::protobuf::Descriptor* desc = copy->GetDescriptor();
     if( !desc ){
-        Util::Log("No Descriptor!\n");
+        MC_LOGF("No Descriptor!\n");
         goto end;
     }
 
-    Util::Log("TypeName: %s\n", desc->name().c_str());
+    MC_LOGF("TypeName: %s\n", desc->name().c_str());
     Util::Protobuf::LogMessageContents( copy );
 
     //if( strstr( desc->name().c_str(), "CMsgDOTAChatMessage" ) ){

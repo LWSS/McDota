@@ -181,6 +181,7 @@ public:
     virtual void InstallStringTableCallback(const char *tableName) = 0;
     virtual void HookClientStringTable(const char *) = 0;
     virtual void GetClientName(int splitScreenSlot) = 0;
+    virtual void loc_348070() = 0; //something to do with eventdispatcher
     virtual void OnPreserveEntity(void * CEntityReadInfo) = 0;
     virtual void CopyNewEntity(void *IEntityReport, void *CEntityReadInfo, void *ClientClass, int, unsigned int) = 0;
     virtual void CopyExistingEntity(void *IEntityReport, void *CEntityReadInfo) = 0;

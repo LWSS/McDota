@@ -1,7 +1,6 @@
 #pragma once
 
 #include "SDK/Convar.h"
-#include "SDK/CGameEventManager.h"
 
 /* Namespace is kinda annoying for these */
 inline ConVar *mc_esp_type_bbox;
@@ -59,6 +58,8 @@ inline ConVar *mc_custom_str;
 inline ConVar *mc_custom_str_alt;
 inline ConVar *mc_custom_int;
 inline ConVar *mc_custom_int_alt;
+inline ConVar *mc_custom_bool;
+inline ConVar *mc_custom_bool_alt;
 
 
 namespace Settings

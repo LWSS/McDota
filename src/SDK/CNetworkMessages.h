@@ -2127,23 +2127,23 @@ public:
 class IMsgNetPacket
 {
 public:
-    virtual void DESTROY();
-    virtual void DESTROY2();
-    virtual void DestroyThis(void);
-    virtual int GetEMsgFormatType(void);
-    virtual CNetPacket* GetCNetPacket(void);
-    virtual const uint8_t *PubData(void); // Pointer-Unsigned-Byte Data
-    virtual uint32_t CubData(void); // Count-Unsigned-Byte Data - u can find some of this in the steamworks sdk
-    virtual EDOTAGCMsg GetEMsg(void);
-    virtual int GetSourceJobID(void);
-    virtual unsigned long long GetTargetJobID(void);
-    virtual void SetTargetJobID(unsigned long long);
-    virtual int64_t GetSteamID(void);
-    virtual void SetSteamID(int64_t CSteamID);
-    virtual unsigned int GetSourceAppID(void);
-    virtual void SetSourceAppID(unsigned int);
-    virtual bool BHasTargetJobName(void);
-    virtual const char *GetTargetJobName(void);
+    virtual void DESTROY() = 0;
+    virtual void DESTROY2() = 0;
+    virtual void DestroyThis(void) = 0;
+    virtual int GetEMsgFormatType(void) = 0;
+    virtual CNetPacket* GetCNetPacket(void) = 0;
+    virtual const uint8_t *PubData(void) = 0; // Pointer-Unsigned-Byte Data
+    virtual uint32_t CubData(void) = 0; // Count-Unsigned-Byte Data - u can find some of this in the steamworks sdk
+    virtual EDOTAGCMsg GetEMsg(void) = 0;
+    virtual int GetSourceJobID(void) = 0;
+    virtual unsigned long long GetTargetJobID(void) = 0;
+    virtual void SetTargetJobID(unsigned long long) = 0;
+    virtual int64_t GetSteamID(void) = 0;
+    virtual void SetSteamID(int64_t CSteamID) = 0;
+    virtual unsigned int GetSourceAppID(void) = 0;
+    virtual void SetSourceAppID(unsigned int) = 0;
+    virtual bool BHasTargetJobName(void) = 0;
+    virtual const char *GetTargetJobName(void) = 0;
 
     inline void GetMsgBody( const uint8_t **msg, uint32_t *msgSize )
     {
@@ -2158,7 +2158,7 @@ class CMsgProtoBufHeader;
 class IProtoBufSendHandler
 {
 public:
-    virtual bool BAsyncSend( EDOTAGCMsg eMsg, const uint8_t *pubMsgBytes, uint32 cubSize );
+    virtual bool BAsyncSend( EDOTAGCMsg eMsg, const uint8_t *pubMsgBytes, uint32 cubSize ) = 0;
 };
 
 class CProtoBufMsgBase
@@ -2185,19 +2185,19 @@ public:
 class CProtobuffBinding
 {
 public:
-    virtual const char* GetName(void);
-    virtual int GetSize(void);
-    virtual const char* ToString(google::protobuf::Message *msg, CUtlString *storage);
-    virtual const char *GetGroup(void);
-    virtual ColorRGBA GetGroupColor(void);
-    virtual NetChannelBufType_t GetBufType(void);
-    virtual bool ReadFromBuffer(google::protobuf::Message *msg, bf_read &); // true if parsing OK
-    virtual bool WriteToBuffer(google::protobuf::Message *msg, bf_write &); // true if parsing OK
-    virtual void AllocateMessage(void);
-    virtual void DeallocateMessage(void *);
-    virtual void AllocateAndCopyConstructNetMessage(void const*);
-    virtual bool OkToRedispatch(void);
-    virtual void Copy(void const*,void *);
+    virtual const char* GetName(void) = 0;
+    virtual int GetSize(void) = 0;
+    virtual const char* ToString(google::protobuf::Message *msg, CUtlString *storage) = 0;
+    virtual const char *GetGroup(void) = 0;
+    virtual ColorRGBA GetGroupColor(void) = 0;
+    virtual NetChannelBufType_t GetBufType(void) = 0;
+    virtual bool ReadFromBuffer(google::protobuf::Message *msg, bf_read &); // true if parsing O = 0K
+    virtual bool WriteToBuffer(google::protobuf::Message *msg, bf_write &); // true if parsing O = 0K
+    virtual void AllocateMessage(void) = 0;
+    virtual void DeallocateMessage(void *) = 0;
+    virtual void AllocateAndCopyConstructNetMessage(void const*) = 0;
+    virtual bool OkToRedispatch(void) = 0;
+    virtual void Copy(void const*,void *) = 0;
 };
 
 class CNetworkSerializerPB // PB must = protobuf

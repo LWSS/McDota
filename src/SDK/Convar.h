@@ -112,12 +112,14 @@ public:
     ConVar *parent;
     char *m_pszDefaultValue;
     CVValue_t m_Value;
+    /// this section has changed, dont expect it to work.
     bool bHasMin;
     char _pad1[3];
     float m_fMinVal;
     bool bHasMax;
     char _pad2[3];
     float m_fMaxVal;
+    /// end
     CUtlVector<ConVarHandlerFn> m_fnChangeCallbacks;
 
     inline bool AddChangeCallback( ConVarHandlerFn callback )

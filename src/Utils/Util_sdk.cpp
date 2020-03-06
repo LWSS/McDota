@@ -1,9 +1,8 @@
 #include "Util_sdk.h"
-#include "Util.h"
+
+#include "Logger.h"
 
 #include "../Interfaces.h"
-
-#include <sys/stat.h>
 
 ButtonCode_t Util::GetButtonCode(const char* buttonName)
 {
@@ -87,7 +86,7 @@ void Util::SpewDataMap( Datamap *dMap, bool toLogFile ) {
 
 	while( dMap ){
         if( toLogFile ){
-            Util::Log( "\nStart of Pred Map for %s\n", dMap->className );
+            MC_LOGF( "\nStart of Pred Map for %s\n", dMap->className );
         } else {
             cvar->ConsoleDPrintf( "Start of Pred Map for: %s\n", dMap->className );
         }
@@ -96,20 +95,20 @@ void Util::SpewDataMap( Datamap *dMap, bool toLogFile ) {
 				continue;
 
             if( toLogFile ){
-                Util::Log( "-%s - [0x%x] - (%s)\n", dMap->dataDesc[i].fieldName, dMap->dataDesc[i].fieldOffset[TD_OFFSET_NORMAL], DataFieldType2String( dMap->dataDesc[i].type ) );
+                MC_LOGF( "-%s - [0x%x] - (%s)\n", dMap->dataDesc[i].fieldName, dMap->dataDesc[i].fieldOffset[TD_OFFSET_NORMAL], DataFieldType2String( dMap->dataDesc[i].type ) );
             } else {
                 cvar->ConsoleDPrintf( "-%s - [0x%x] - (%s)\n", dMap->dataDesc[i].fieldName, dMap->dataDesc[i].fieldOffset[TD_OFFSET_NORMAL], DataFieldType2String( dMap->dataDesc[i].type ) );
             }
             if( dMap->dataDesc[i].type == FIELD_EMBEDDED ){
                 if( dMap->dataDesc[i].td ){
                     if( toLogFile ){
-                        Util::Log("Recursing for Property: %s(%s)\n", dMap->dataDesc[i].fieldName, dMap->dataDesc[i].td->className ? dMap->dataDesc[i].td->className : "NULL_NAME");
+                        MC_LOGF("Recursing for Property: %s(%s)\n", dMap->dataDesc[i].fieldName, dMap->dataDesc[i].td->className ? dMap->dataDesc[i].td->className : "NULL_NAME");
                     } else {
                         cvar->ConsoleDPrintf("Recursing for Property: %s(%s)\n", dMap->dataDesc[i].fieldName, dMap->dataDesc[i].td->className ? dMap->dataDesc[i].td->className : "NULL_NAME");
                     }
                     Util::SpewDataMap( dMap->dataDesc[i].td, toLogFile );
                     if( toLogFile ){
-                        Util::Log("^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n");
+                        MC_LOGF("^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n");
                     } else {
                         cvar->ConsoleDPrintf("^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n");
                     }
@@ -117,7 +116,7 @@ void Util::SpewDataMap( Datamap *dMap, bool toLogFile ) {
             }
 		}
         if( toLogFile ){
-            Util::Log( "^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n" );
+            MC_LOGF( "^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n" );
         } else {
             cvar->ConsoleDPrintf( "^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n" );
         }
@@ -150,7 +149,7 @@ int Util::FindDataMapElementOffset( Datamap *dMap, const char *element ) {
     return 0;
 }
 ConVar *Util::RegisterConVar( const char *name, const char *defaultValue, uint32_t flags, const char *helpString, bool bMin, float fMin, bool bMax, float fMax ) {
-	ConCommandBase* sens = cvar->FindCommandBase("sensitivity");
+	ConCommandBase* sens = cvar->FindCommandBase("m_yaw");
     ConVar* command = (ConVar*)new char[sizeof(ConVar)];
 
     // copy the vtable/layout from the existing convar
@@ -209,34 +208,34 @@ ConVar *Util::RegisterConVar( const char *name, const char *defaultValue, uint32
 
 void Util::SpewScriptScopes( GameScriptScopesWrapper *scopes, bool toLogFile ) {
     for( size_t i = 0; i < scopes->numScopes; i++ ){
-        Util::Log("------ %s(%d) ------\n", scopes->scopes[i]->name, scopes->scopes[i]->numFuncs);
+        MC_LOGF("------ %s(%d) ------\n", scopes->scopes[i]->name, scopes->scopes[i]->numFuncs);
 
         for( size_t j = 0; j < scopes->scopes[i]->numFuncs; j++ ){
             ScopeFunction &func = scopes->scopes[i]->funcs[j];
-            Util::Log("%s %s ( ", GetArgTypeString(func.returnType), func.name);
+            MC_LOGF("%s %s ( ", GetArgTypeString(func.returnType), func.name);
             const char *names = func.argNames;
             if( names ){
                 for( int k = 0; k < func.argNum; k++ ){
-                    Util::Log( "%s %s, ", GetArgTypeString( func.argTypes[k] ), names );
+                    MC_LOGF( "%s %s, ", GetArgTypeString( func.argTypes[k] ), names );
                     names += strlen( names ) + 1;
                 }
             } else {
                 for( int k = 0; k < func.argNum; k++ ){
-                    Util::Log( "%s noname_arg_%d, ", GetArgTypeString( func.argTypes[k] ), k );
+                    MC_LOGF( "%s noname_arg_%d, ", GetArgTypeString( func.argTypes[k] ), k );
                 }
             }
-            Util::Log(")\n");
+            MC_LOGF(")\n");
         }
     }
 }
 
 void* Util::GetScriptScopeFunction( GameScriptScopesWrapper *scopes, const char *exactName ) {
-    Util::Log("GetScriptScopeFunction called!\n");
+    MC_LOGF("GetScriptScopeFunction called!\n");
     for( size_t i = 0; i < scopes->numScopes; i++ ) {
         for ( size_t j = 0; j < scopes->scopes[i]->numFuncs; j++ ) {
             ScopeFunction &func = scopes->scopes[i]->funcs[j];
             if( !strcmp( func.name, exactName ) ){
-                Util::Log("Found func at %p\n", func.function);
+                MC_LOGF("Found func at %p\n", func.function);
                 return func.function;
             }
         }
@@ -245,42 +244,46 @@ void* Util::GetScriptScopeFunction( GameScriptScopesWrapper *scopes, const char 
 }
 
 
-bool Util::ReadParticleFiles( const char *blacklistFile, const char *trackedFile ) {
-    struct stat buffer;
-    FILE *fp;
-    char fileline[256];
+bool Util::ReadParticleFiles( const char *pathID, const char *blacklistFileName, const char *tracklistFileName ) {
+    char linebuffer[256];
+    char *scan;
     std::string temp;
 
-    if( blacklistFile && ( stat( blacklistFile, &buffer ) == 0 ) ){
-        fp = fopen( blacklistFile, "r" );
-        while( fgets( fileline, sizeof(fileline), fp ) ) {
-            temp = fileline;
-            if( temp.size() > 2 && temp[temp.length() - 1] == '\n' ){
-                temp.erase( temp.length() -1 );
+    FileHandle_t blacklist = fileSystem->Open( blacklistFileName, "r", pathID );
+    FileHandle_t tracklist = fileSystem->Open( tracklistFileName, "r", pathID );
+
+    if( blacklist ){
+        while( fileSystem->ReadLine( linebuffer, sizeof( linebuffer ), blacklist) ) {
+            scan = linebuffer;
+            temp.clear();
+            while( *scan && (*scan != ' ') && (*scan != '\n') ){
+                temp.push_back( *scan );
+                scan++;
             }
             blacklistedParticles.push_back( temp );
         }
-        fclose( fp );
+        fileSystem->Close( blacklist );
     }
 
-    if( trackedFile && ( stat( trackedFile, &buffer ) == 0 ) ){
-        fp = fopen( trackedFile, "r" );
-        while( fgets( fileline, sizeof(fileline), fp ) ) {
-            temp = fileline;
-            if( temp.size() > 2 && temp[temp.length() - 1] == '\n' ){
-                temp.erase( temp.length() -1 );
+    if( tracklist ){
+        while( fileSystem->ReadLine( linebuffer, sizeof( linebuffer ), tracklist) ) {
+            scan = linebuffer;
+            temp.clear();
+            while( *scan && (*scan != ' ') && (*scan != '\n') ){
+                temp.push_back( *scan );
+                scan++;
             }
             trackedParticles.push_back( temp );
         }
-        fclose( fp );
+        fileSystem->Close( tracklist );
     }
 
-    for( size_t i = 0; i < blacklistedParticles.size(); i++ ){
-        Util::Log("Blacklisted particle - (%s)\n", blacklistedParticles[i].c_str());
+    for( const std::string& particle : blacklistedParticles ){
+        MC_LOGF("Blacklisted particle - (%s)\n", particle.c_str());
     }
 
-    for( size_t i = 0; i < trackedParticles.size(); i++ ){
-        Util::Log("Tracked particle - (%s)\n", trackedParticles[i].c_str());
+    for( const std::string& particle : trackedParticles ){
+        MC_LOGF("Tracked particle - (%s)\n", particle.c_str());
     }
 
     return true;

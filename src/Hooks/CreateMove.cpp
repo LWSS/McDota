@@ -4,6 +4,7 @@
 
 #include "../Settings.h"
 #include "../protos/mcdota.pb.h"
+#include "../Utils/Logger.h"
 
 typedef bool (* CreateMoveFn)( IClientMode*, CUserCmd*, QAngle&, Vector& );
 
@@ -68,8 +69,6 @@ static std::string Buttons2ButtonStr( int32_t buttons ) {
     return ss.str();
 }
 
-bool lineInProgress = false;
-
 //angle changed with +left/right stays the same.
 //position is a delta, changes with arrow keys
 bool Hooks::CreateMove( IClientMode *thisptr, CUserCmd* cmd, QAngle &angle, Vector &pos ) {
@@ -90,7 +89,7 @@ bool Hooks::CreateMove( IClientMode *thisptr, CUserCmd* cmd, QAngle &angle, Vect
         cmd->tick_count = 16777216;
     }
     if( mc_log_createmove->GetBool() ){
-        Util::Log("CreateMove: UserCmd @ %p, "
+        MC_LOGF("CreateMove: UserCmd @ %p, "
                           "\n-Viewangle(%f,%f,%f)"
                           "\n-CommandNum: %d"
                           "\n-TickCount: %d"

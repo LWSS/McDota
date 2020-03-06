@@ -63,58 +63,58 @@ public:
 
 
     // Xref "SetCameraYaw", CDOTA_PanoramaScript_GameUI::SetCameraYaw() will be right above it
-    // Function jmp'd at the end.
+    // Function CDOTA_Camera::SetExtraYaw() jmp'd at the end.
     void SetExtraYaw( float amount )
     {
-        auto *extraYaw = (float*)((uintptr_t)this + 0x264);
+        auto *extraYaw = (float*)((uintptr_t)this + 0x274);
         *extraYaw = amount;
     }
 
     void SetMinPitch( float amount )
     {
-        auto *minPitch = (float*)((uintptr_t)this + 0x260);
+        auto *minPitch = (float*)((uintptr_t)this + 0x270);
         *minPitch = amount;
     }
 
     void SetMaxPitch( float amount )
     {
-        auto *maxPitch = (float*)((uintptr_t)this + 0x25C);
+        auto *maxPitch = (float*)((uintptr_t)this + 0x26C);
         *maxPitch = amount;
     }
 
     float GetMinPitch( )
     {
-        auto *minPitch = (float*)((uintptr_t)this + 0x260);
+        auto *minPitch = (float*)((uintptr_t)this + 0x270);
         return *minPitch;
     }
 
     float GetMaxPitch( )
     {
-        auto *maxPitch = (float*)((uintptr_t)this + 0x25C);
+        auto *maxPitch = (float*)((uintptr_t)this + 0x26C);
         return *maxPitch;
     }
 
     void SetDistanceToLookAtPos( float dist )
     {
-        auto *distance = (float*)((uintptr_t)this + 0x268);
+        auto *distance = (float*)((uintptr_t)this + 0x278);
         *distance = dist;
     }
 
     const Vector *GetLookAtPos( void )
     {
-        auto *lookAtPos = (const Vector*)((uintptr_t)this + 0x270);
+        auto *lookAtPos = (const Vector*)((uintptr_t)this + 0x280);
         return lookAtPos;
     }
 
     void SetLookAtPos( Vector &input )
     {
-        auto *lookatPos = (Vector*)((uintptr_t)this + 0x270);
+        auto *lookatPos = (Vector*)((uintptr_t)this + 0x280);
         *lookatPos = input;
     }
 
     void SetFOWAmount( float amount )
     {
-        auto *fowAmount = (float*)((uintptr_t)this + 0x60);
+        auto *fowAmount = (float*)((uintptr_t)this + 0x70);
         *fowAmount = amount;
     }
 };

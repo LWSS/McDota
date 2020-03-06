@@ -7,53 +7,65 @@
 #include "Scanner.h"
 #include "Settings.h"
 #include "Utils/Integritycheck.h"
-#include "Utils/Util.h"
 #include "Utils/Util_sdk.h"
 #include "Utils/Memory.h"
+#include "Utils/Logger.h"
 
-#include <csignal>
-#include <random>
-#include <thread>
-
-const char *Util::logFileName = "/tmp/dota.log";
-void *mcPrev, *mcCurr, *mcNext;
+#include <dlfcn.h> //dlopen
+#include <link.h> // link map
 
 struct sigaction sa;
 struct sigaction oldSa;
 
+void *mcPrev, *mcCurr, *mcNext;
+
 /* We need to restore the linkmap before our unloading will work.
  * The unload script will send a signal that we intercept here */
-static void SignalHandler( int sigNum, siginfo_t *si, void * uContext )
+static void RestoreLinkMapEntry( int sigNum, siginfo_t *si, void * uContext )
 {
-    std::string path("/proc/");
-    path += std::to_string( si->si_pid );
-    path += "/comm";
-
-    std::string procName;
-    if( Util::GetFileContents( path.c_str(), &procName ) ){
-        Util::Log( "Failed to open file (%s) for checking signal sender\n", path.c_str() );
-        return;
+    if( mcPrev )
+    {
+        auto *previousEntry = reinterpret_cast<link_map*>(mcPrev);
+        previousEntry->l_next = reinterpret_cast<link_map*>(mcCurr);
     }
-
-    if( strstr( procName.c_str(), "uload" ) == nullptr ){
-        Util::Log("Received a Foreign Unload Signal from Process: (%s). Intruder alert!", procName.c_str());
-        return;
+    if( mcNext )
+    {
+        auto *nextEntry = reinterpret_cast<link_map*>(mcNext);
+        nextEntry->l_prev = reinterpret_cast<link_map*>(mcCurr);
     }
-
-    Util::Log("Unload Signal Received from process (%s), Looks ok.\n", procName.c_str());
-
-    Util::RestoreLinkMapEntry( mcPrev, mcCurr, mcNext );
 }
+
+/* Removes McDota from Library-Level dynamic library linked list
+ * saves the prev/curr/next void ptrs for unloading. */
+static void RemoveLinkMapEntry()
+{
+    auto *map = reinterpret_cast<struct link_map*>(dlopen(nullptr, RTLD_NOW));
+    map = map->l_next->l_next;
+    while (map) {
+        if( strstr( map->l_name, "libMcDota.so" ) != nullptr ){
+            mcPrev = map->l_prev;
+            mcCurr = map;
+            mcNext = map->l_next;
+            if( map->l_prev ){
+                map->l_prev->l_next = map->l_next;
+            }
+            if( map->l_next ){
+                map->l_next->l_prev = map->l_prev;
+            }
+            return;
+        }
+        map = map->l_next;
+    }
+}
+
 /* Entrypoint to the Library. Called when loading */
 int __attribute__((constructor)) Startup()
 {
     /* Setup new Signal Handler */
     sa.sa_flags = SA_SIGINFO;
     sigemptyset(&sa.sa_mask);
-    sa.sa_sigaction = SignalHandler;
+    sa.sa_sigaction = RestoreLinkMapEntry;
     sigaction(SIGXCPU, &sa, &oldSa); // set ours and backup the old one at the same time.
-
-    Interfaces::DumpInterfaces( "/tmp/dotainterfaces.txt" );
 
     if( !Interfaces::FindExportedInterfaces( ) ){
         ConMsg( "[McDota] FindExportedInterfaces() Failed. Stopping...\n" );
@@ -63,22 +75,32 @@ int __attribute__((constructor)) Startup()
         ConMsg( "[McDota] CheckInterfaceVMs() Failed. Stopping...\n" );
         return 2;
     }
+    /* The filesystem interface will only look in search paths. Add one so we can write in /tmp/. */
+    fileSystem->AddSearchPath( "/tmp/", "TMPDIR", SearchPathAdd_t::PATH_ADD_TO_TAIL, 1 );
+    /* Create our logfile in /tmp/ */
+    Logger::logFile = fileSystem->Open("dota.log", "a+", "TMPDIR" );
+    if( !Logger::logFile ){
+        MC_PRINTF_ERROR("Couldn't create the logfile! Stopping...\n");
+        return 3;
+    }
     if( !Scanner::FindAllSigs() ){
         MC_PRINTF_ERROR("Failed to find one of the Signatures. Stopping...\n");
-        return 3;
+        return 4;
     }
     if( Integrity::VMTsHaveMisMatch() ){
         MC_PRINTF_ERROR("One of the VMs has had a Mismatch. Stopping...\n");
-        return 4;
+        return 5;
     }
     if( !Settings::RegisterCustomConvars() ){
         MC_PRINTF_ERROR("Error Registering ConVars, Stopping...\n");
-        return 5;
+        return 6;
     }
     if( !PaintTraverse::InitFonts() ){
         MC_PRINTF_ERROR("Paint Fonts Failed to Initialize, Stopping...\n");
-        return 6;
+        return 7;
     }
+
+    Interfaces::DumpInterfaces( "/tmp/dotainterfaces.txt" );
 
     cvar->ConsoleColorPrintf( ColorRGBA(10, 210, 10), "[McDota] I'm in like Flynn.\n" );
 
@@ -106,8 +128,6 @@ int __attribute__((constructor)) Startup()
     MC_PRINTF( "GetAllClasses @ %p - [%s]\n", (void*)client->GetAllClasses(), Memory::GetModuleName( uintptr_t(client->GetAllClasses()) ) );
     MC_PRINTF( "World2Screen @ %p - RenderGameSystem @ %p\n", g_WorldToScreen, renderGameSystem);
     MC_PRINTF( "Camera @ %p\n", (void*)camera );
-    //networkClientService->PrintSpawnGroupStatus();
-    //networkClientService->PrintConnectionStatus();
 
     clientVMT = std::unique_ptr<VMT>(new VMT(client));
     clientVMT->HookVM(Hooks::FrameStageNotify, 29);
@@ -149,11 +169,8 @@ int __attribute__((constructor)) Startup()
     networkSystemVMT->HookVM(Hooks::CreateNetChannel, 28);
     networkSystemVMT->ApplyVMT();
 
-    std::random_device dev;
-    srand(dev()); // Seed random # Generator so we can call rand() later
-
-    Netvars::DumpNetvars( "/tmp/dotanetvars.txt" );
-    Netvars::CacheNetvars();
+    Netvars::DumpNetvars( client, "/tmp/dotanetvars.txt" );
+    Netvars::CacheNetvars( client );
 
     if( engine->IsInGame() ){
         Interfaces::HookDynamicVMTs();
@@ -161,20 +178,19 @@ int __attribute__((constructor)) Startup()
         if( engine->GetNetChannelInfo() ) {
             MC_PRINTF( "Grabbing new NetChannel VMT - %p\n", (void*)engine->GetNetChannelInfo() );
             netChannelVMT = std::unique_ptr<VMT>(new VMT( engine->GetNetChannelInfo( ) ));
-            netChannelVMT->HookVM( Hooks::SendNetMessage, 66 );
-            netChannelVMT->HookVM( Hooks::PostReceivedNetMessage, 84 );
+            netChannelVMT->HookVM( Hooks::SendNetMessage, 65 );
+            netChannelVMT->HookVM( Hooks::PostReceivedNetMessage, 83 );
             netChannelVMT->ApplyVMT( );
         } else {
             MC_PRINTF_WARN("GetNetChannelInfo returned null! Aborting NetChannel VMT!\n");
         }
     }
 
-    // TODO: prob move this to ~/.config/
-    if( !Util::ReadParticleFiles("/tmp/dotaparticleblacklist.txt", "/tmp/dotaparticletracker.txt" ) ){
+    if( !Util::ReadParticleFiles( "TMPDIR", "dotaparticleblacklist.txt", "dotaparticletracker.txt" ) ){
         MC_PRINTF_WARN("Specified particle file/s was missing or empty - Particle filters may not be set.\n");
     }
 
-    Util::RemoveLinkMapEntry("libMcDota.so", &mcPrev, &mcCurr, &mcNext);
+    RemoveLinkMapEntry();
 
     return 0;
 }
@@ -193,9 +209,8 @@ void __attribute__((destructor)) Shutdown()
         camera->SetDistanceToLookAtPos( 1200.0f );
     }
 
-
+    /* Cleanup panels */
     if( panoramaEngine ){
-        /* Cleanup panels */
         if( panoramaEngine->AccessUIEngine()->IsValidPanelPointer( UI::mcDota ) ){
             UI::mcDota->RemoveAndDeleteChildren();
             panorama::IUIPanel *root = UI::mcDota->GetParent();
@@ -207,9 +222,8 @@ void __attribute__((destructor)) Shutdown()
         }
     }
 
-
+    /* Cleanup ConVars we have made */
     if( cvar ){
-        /* Cleanup ConVars we have made */
         for( ConVar* var : Util::createdConvars ){
             cvar->UnregisterConCommand(var);
                 delete[] var->m_pszName;
@@ -223,6 +237,11 @@ void __attribute__((destructor)) Shutdown()
     } else {
         ConMsg( "[McDota] I'm outta here.\n" );
     }
+
+    /* Close logfile */
+    fileSystem->Close( Logger::logFile );
+    /* Remove our added filesystem search path. */
+    fileSystem->RemoveSearchPath( "/tmp/", "TMPDIR" );
 
     /* Restore previous signal handler */
     /* SIGXCPU actually just normally kills the game lol */

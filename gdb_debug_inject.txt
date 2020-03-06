@@ -9,4 +9,4 @@ set disassembly-flavor intel
 set  disassemble-next-line on
 show disassemble-next-line
 layout asm
-call $dlopen($library, 1)
+call $dlopen($library, 2)

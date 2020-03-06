@@ -46,3 +46,4 @@
 #include "CPanoramaGameScriptScope.h"
 #include "CDOTAPlayerResource.h"
 #include "CGCClient.h"
+#include "CBaseFileSystem.h"

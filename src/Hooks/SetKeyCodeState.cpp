@@ -3,6 +3,7 @@
 #include "../Settings.h"
 #include "../GUI/Gui.h"
 #include "../protos/mcdota.pb.h"
+#include "../Utils/Logger.h"
 
 #include <csignal>
 
@@ -11,14 +12,14 @@ typedef bool (* SendNetMessageFn)( INetChannel *thisptr, NetMessageHandle_t *, g
 
 bool EntHitHandler( void *IHandleEntity, int unk )
 {
-    Util::Log("Ent hit handler REEEE ent(%p) - int(%d)\n", IHandleEntity, unk);
+    MC_LOGF("Ent hit handler REEEE ent(%p) - int(%d)\n", IHandleEntity, unk);
     std::raise(SIGINT);
     return true;
 }
 
 bool ShouldDrawParticleSystems( void )
 {
-    Util::Log("Should draw particle callback\n");
+    MC_LOGF("Should draw particle callback\n");
     return false;
 }
 
@@ -147,7 +148,7 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             Hooks::SendNetMessage( engine->GetNetChannelInfo( ), networkMessages->GetMessageHandleByName( "CDOTAClientMsg_MatchMetadata" ), &metadataMsg, BUF_DEFAULT );
             break;
         case ButtonCode_t::PRINTSCREEN:
-            Util::Log("Tracing a ray good luck!\n");
+            MC_LOGF("Tracing a ray good luck!\n");
             //CTraceFilter_Constructor( &traceFilter, nullptr, 0x69696969, EntHitHandler );
             ray.Init( Vector(100.0f, 200.0f, 300.0f), Vector(100.0f, 200.0f, -1200.0f) );
             traceFilter.Init( 0, 0xFFFFFFFF, EntHitHandler );
@@ -155,7 +156,7 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             GameTrace_Init( &traceOut );
             client->TraceRay( ray, traceFilter, &traceOut );
 
-            Util::Log("Traceout(%p) - filter(%p) - fraction(%f)\n", &traceOut, &traceFilter, traceOut.fraction);
+            MC_LOGF("Traceout(%p) - filter(%p) - fraction(%f)\n", &traceOut, &traceFilter, traceOut.fraction);
             std::raise(SIGINT);
             /*
              * CVoiceGamerMgrHelper::CanPlayerHearPlayer()
@@ -200,14 +201,6 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             for( int i = 0; i < mc_send_freq->GetInt(); i++ ){
                 Hooks::SendNetMessage( engine->GetNetChannelInfo(), networkMessages->GetMessageHandleByName("TipAlert"), &tip, BUF_DEFAULT );
             }
-            /*
-            command.set_console_command("say swagnigga2000");
-            netHandle = networkMessages->GetMessageHandleByName( "CClientMsg_ClientUIEvent" );
-            if( !netHandle ){
-                Util::Log("Couldnt get netmessage handle!\n");
-            } else {
-                Util::Log("Got it champ.\n");
-            }*/
             //eventPoints.set_event_id( 22 );
             //eventPoints.set_account_id( 87214030 );
             //SendMessageGenericClientToGC(&eventPoints, EDOTAGCMsg::k_EMsgDOTAGetEventPoints);

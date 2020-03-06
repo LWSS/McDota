@@ -1,11 +1,5 @@
 #include "Draw.h"
 
-#include "../Hooks/Hooks.h"
-#include "../SDK/CRenderGameSystem.h"
-
-
-#include "../Interfaces.h"
-
 // FrustumTransform
 bool Draw::WorldToScreen( const Vector &spot, int &xOut, int &yOut, const VMatrix &vMatrix ) {
     float w;
