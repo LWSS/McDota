@@ -48,8 +48,6 @@ public:
     virtual int GetMaxClients(void) = 0;
     virtual bool IsInGame(void) = 0;
     virtual bool IsConnected(void) = 0;
-    virtual void ConNPrintf( int unk, const char* str, ... ) = 0;
-    virtual void ConNXPrintf( void * printf_options_t, const char* str, ... ) = 0;
     virtual INetChannel* GetNetChannelInfo( int splitScreenSlot = 0 ) = 0;
     virtual bool IsPlayingDemo(void) = 0;
     virtual bool IsRecordingDemo(void) = 0;
@@ -58,7 +56,7 @@ public:
     virtual void ClientCmd_Unrestricted( const char* command ) = 0;
     virtual void __unknown(void) = 0;
     virtual void SetRestrictServerCommands( bool restrict ) = 0;
-    virtual void SetRestrictClientCommands( bool restrict ) = 0; // 40
+    virtual void SetRestrictClientCommands( bool restrict ) = 0;
     virtual bool IsLowViolence(void) = 0;
     virtual int GetSplitScreenPlayer( int splitScreenSlot ) = 0;
     virtual bool IsSplitScreenActive(void) = 0;
@@ -68,12 +66,10 @@ public:
     virtual void GetAvailableAsyncThread(void) = 0;
     virtual void GetScreenSize( int &width, int &height ) = 0;
     virtual bool IsDrawingLoadingImage(void) = 0;
-    virtual void HideLoadingPlaque(void) = 0; // 48
+    virtual void HideLoadingPlaque(void) = 0; // 46
     virtual const char* GetLevelName(void) = 0;
     virtual const char* GetLevelNameShort(void) = 0;
     virtual void* GetVoiceTweakAPI(void) = 0;
-    virtual void EngineStats_BeginFrame(void) = 0; // CEngineStats::BeginFrame
-    virtual void EngineStats_EndFrame(void) = 0; // CEngineStats::EndFrame
     virtual void CheckPoint( const char* unknown ) = 0;
     // Demo Recording and Playback related functions
     virtual bool IsDemoPaused(void) = 0;
@@ -92,94 +88,116 @@ public:
     virtual float GetScreenAspectRatio( int width, int height ) = 0;
     virtual int GetEngineBuildNumber(void) = 0;
     virtual const char* GetProductVersionString(void) = 0; // eg "47"
-    virtual int GetBuildVersion(void);
+    virtual int GetBuildVersion(void) = 0;
 	virtual const char* GetBuildDateString() = 0; // ex: "Aug 3 2018"
 	virtual const char* GetBuildTimeString() = 0; // ex: "14:00:13"
     virtual int GetConnectedServerNetworkVersion(void) = 0;
 	virtual int GetAppID(void) = 0; // steam App ID (570)
-	virtual void ReadConfiguration( int splitScreenSlot );
-	virtual void SetAchievementMgr( void* achievementMgr );
-	virtual void* GetAchivementMgr( void );
+	virtual void ReadConfiguration( int splitScreenSlot ) = 0;
+	virtual void SetAchievementMgr( void* achievementMgr ) = 0;
+	virtual void* GetAchivementMgr( void ) = 0;
 	/* Xbox-Related */
-	virtual void OnStorageDeviceAttached( int );
-	virtual void OnStorageDeviceDetached( int );
+	virtual void OnStorageDeviceAttached( int ) = 0;
+	virtual void OnStorageDeviceDetached( int ) = 0;
 
-	virtual int GetActiveSplitScreenPlayerSlot( void );
-	virtual void SetActiveSplitScreenPlayerSlot( int splitScreenSlot );
-	virtual void SetLocalPlayerIsResolvable( const char*, int slot, bool state );
-	virtual bool IsLocalPlayerResolvable( void );
-	virtual void* GetSinglePlayerSharedMemorySpace( const char*, int );
-	virtual void RegisterDemoCustomDataCallback(); //(CUtlSymbolLarge,void (*)(uchar *,ulong))
-	virtual void RecordDemoCustomData(void (*)(unsigned char *,unsigned long),void const*,unsigned long);
-	virtual void SetPitchScale( float pitch );
-	virtual float GetPitchScale( void );
-	virtual void* DSPGetCurrentDASRoomNew(void);
-	virtual void* DSPGetCurrentDASRoomChanged(void);
-	virtual void* DSPGetCurrentDASRoomSkyAbove(void);
-	virtual bool IsRecordingVoice( void );
-	virtual void SetTimeScale( float timescale );
-	virtual void SetGameStatsData( void* CGameStatsData );
-	virtual void* GetGameStatsData( void );
-	virtual void UpdateDAndELights( void );
-	virtual int GetBugSubmissionsCount( void );
-	virtual void ClearBugSubmissionsCount( void );
-	virtual float GetServerSimulationFrameTime( void );
-	virtual float GetServerTickTimes( ); //(ulong long,CUtlVector<IVEngineClient2::ServerTickTime_t,CUtlMemory<IVEngineClient2::ServerTickTime_t,int>> &)
-	virtual bool IsInCommentaryMode( void );
-	virtual void SetBlurFade( float fade );
-	virtual bool IsTransitioningToLoad( void );
-	virtual void SearchPathsChangedAfterInstall( void ); // might be bool?
-	virtual void SetConnectionPassword( const char* password );
-	virtual void* GetSteamAPIContext( void );
-	virtual void ServerCmdKeyValues( void* KeyValues );
-	virtual void* GetStartupImage( void );
-	virtual void* GetBackgroundMovie( void );
-	virtual void* GetBackgroundMusic( void );
-	virtual void TickProgressBar( void );
-	virtual void* GetMainWindow( void );
-	virtual void DrawSelectedPanel( int panelHandle );
-	virtual bool IsPanelInFocusList( unsigned long long );
-	virtual bool IsViewEntity( int entIndex );
-	virtual int GetViewEntity( int splitScreenSlot = 0 ); // returns ent index I think.
-	virtual void TouchLight( void* dlight_t );
+	virtual int GetActiveSplitScreenPlayerSlot( void ) = 0;
+	virtual void SetActiveSplitScreenPlayerSlot( int splitScreenSlot ) = 0;
+	virtual void SetLocalPlayerIsResolvable( const char*, int slot, bool state ) = 0;
+	virtual bool IsLocalPlayerResolvable( void ) = 0;
+	virtual void RegisterDemoCustomDataCallback() = 0; //(CUtlSymbolLarge,void (*)(uchar *,ulong) = 0)
+	virtual void RecordDemoCustomData(void (*)(unsigned char *,unsigned long),void const*,unsigned long) = 0; //"IEngineClient::RecordDemoCustomData(): "
+	virtual void SetPitchScale( float pitch ) = 0;
+	virtual float GetPitchScale( void ) = 0;
+	virtual void* DSPGetCurrentDASRoomNew(void) = 0;
+	virtual void* DSPGetCurrentDASRoomChanged(void) = 0;
+	virtual void* DSPGetCurrentDASRoomSkyAbove(void) = 0;
+	virtual bool IsRecordingVoice( void ) = 0;
+	virtual void SetTimeScale( float timescale ) = 0;
+	virtual void SetGameStatsData( void* CGameStatsData ) = 0;
+	virtual void* GetGameStatsData( void ) = 0;
+	virtual int GetBugSubmissionsCount( void ) = 0;
+	virtual void ClearBugSubmissionsCount( void ) = 0;
+	virtual float GetServerSimulationFrameTime( void ) = 0;
+	virtual float GetServerTickTimes( ) = 0; //(ulong long,CUtlVector<IVEngineClient2::ServerTickTime_t,CUtlMemory<IVEngineClient2::ServerTickTime_t,int>> &)
+	virtual bool IsInCommentaryMode( void ) = 0;
+	virtual void SetBlurFade( float fade ) = 0;
+	virtual bool IsTransitioningToLoad( void ) = 0;
+	virtual void SearchPathsChangedAfterInstall( void ) = 0; // might be bool?
+	virtual void SetConnectionPassword( const char* password ) = 0;
+	virtual void* GetSteamAPIContext( void ) = 0;
+	virtual void ServerCmdKeyValues( void* KeyValues ) = 0;
+	virtual void* GetStartupImage( void ) = 0;
+	virtual void* GetBackgroundMovie( void ) = 0;
+	virtual void* GetBackgroundMusic( void ) = 0;
+	virtual void TickProgressBar( void ) = 0;
+	virtual void* GetMainWindow( void ) = 0;
+	virtual void DrawSelectedPanel( int panelHandle ) = 0;
+	virtual bool IsPanelInFocusList( unsigned long long ) = 0;
+	virtual bool IsViewEntity( int entIndex ) = 0;
+	virtual int GetViewEntity( int splitScreenSlot = 0 ) = 0; // returns ent index I think.
+	virtual void TouchLight( void* dlight_t ) = 0;
 
 	/* SOUP START */
-	virtual void SetAreaState( unsigned char*, unsigned char* );
-	virtual void ChangePVSSpawnGroupHandle( unsigned int );
-	virtual void SetDemoTime( float time );
-	virtual void FlashWindow( void );
-	virtual void DesktopNotify( const char*, const char* );
-	virtual void GetDemoGameInfo(); //(google::protobuf::Message &)
-	virtual void GetDemoFileGameInfo(); //(char const*,google::protobuf::Message &)
-	virtual void DecompressBZipFile( const char*, const char* );
-	virtual void _unk1();
-	virtual void _unk2();
+	virtual void SetAreaState( unsigned char*, unsigned char* ) = 0;
+	virtual void SetDemoTime( float time ) = 0;
+	virtual void FlashWindow( void ) = 0;
+	virtual void DesktopNotify( const char*, const char* ) = 0;
+	virtual void AlertUser() = 0;
+	virtual void GetDemoGameInfo() = 0; //(google::protobuf::Message &)
+	virtual void GetDemoFileGameInfo() = 0; //(char const*,google::protobuf::Message &)
+	virtual void DecompressBZipFile( const char*, const char* ) = 0;
 	/* SOUP END */
 
-	virtual void UnzipZip( const char*, const char*, const char*, bool, bool, bool);
+	virtual void UnzipZip( const char*, const char*, const char*, bool, bool, bool) = 0;
 	/* Functions only for Windows */
-	virtual void SOSSetOpvarFloat();
-	virtual void SOSGetOpvarFloat();
+	virtual void SOSSetOpvarFloat() = 0;
+	virtual void SOSGetOpvarFloat() = 0;
 
-	virtual bool GameLoadFailed( void );
-	virtual void SetGameLoadFailed( bool state );
+	virtual bool GameLoadFailed( void ) = 0;
+	virtual void SetGameLoadFailed( bool state ) = 0;
 	/* Soup after this point */
-	virtual void LoadSpawnGroup( void* SpawnGroupDesc_t );
-	virtual void UnloadSpawnGroup( unsigned int, int ESpawnGroupUnloadOption );
-	virtual void SetSpawnGroupDescription( unsigned int, const char* );
-	virtual void _pad();
-	virtual void _pad2();
-	virtual void _pad3();
-	virtual void _pad4();
-	virtual void _pad5();
-	virtual void _pad6();
-	virtual void _pad7();
-	virtual void _pad8();
-	virtual void _pad9();
-	virtual void _pad10();
-	virtual void _pad11();
+	virtual void LoadSpawnGroup( void* SpawnGroupDesc_t ) = 0;
+	virtual void UnloadSpawnGroup( unsigned int, int ESpawnGroupUnloadOption ) = 0;
+	virtual void SetSpawnGroupDescription( unsigned int, const char* ) = 0;
+	virtual void _pad() = 0;
+	virtual void _pad2() = 0;
+	virtual void _pad3() = 0;
+	virtual void _pad4() = 0;
+	virtual void _pad5() = 0;
+	virtual void _pad6() = 0;
+	virtual void _pad7() = 0;
+	virtual void _pad8() = 0;
+	virtual void _pad9() = 0;
+	virtual void _pad10() = 0;
+	virtual void _pad11() = 0;
 
-	virtual bool IsClientLocalToActiveServer( void );
-	virtual void PostReceivedNetMessage(); //(NetMessageHandle_t__ *,void const*,NetChannelBufType_t)
-	// some more ...
+	virtual bool IsClientLocalToActiveServer( void ) = 0;
+	virtual void PostReceivedNetMessage() = 0; //(NetMessageHandle_t__ *,void const*,NetChannelBufType_t)
+    virtual void sub_36BAB0() = 0;
+    virtual void sub_36BAA0() = 0;
+    virtual void sub_36BA90() = 0;
+    virtual void sub_36BA80() = 0;
+    virtual void sub_36BA70() = 0;
+    virtual void RenderSystemOptionFlags() = 0;
+    virtual void sub_36BA50() = 0;
+    virtual void sub_36BA40() = 0;
+    virtual void sub_36BA20() = 0;
+    virtual void sub_36BA00() = 0;
+    virtual void sub_36B9F0() = 0;
+    virtual void sub_36B9E0() = 0;
+    virtual void sub_36B9D0() = 0;
+    virtual void sub_36B9C0() = 0;
+    virtual void sub_36B9B0() = 0;
+    virtual void sub_36B9A0() = 0;
+    virtual void sub_36B990() = 0;
+    virtual void sub_36B980() = 0;
+    virtual void sub_36B970() = 0;
+    virtual void sub_36B960() = 0;
+    virtual void sub_36B950() = 0;
+    virtual void sub_36B940() = 0;
+    virtual void CreateMinidump() = 0;
+    virtual void LowViolence() = 0;
+    virtual void LowViolence2() = 0;
+    virtual void sub_36B890() = 0;
+    virtual void sub_36B8B0() = 0;
 };

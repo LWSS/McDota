@@ -1,8 +1,9 @@
 #include "Util_sdk.h"
 
 #include "Logger.h"
-
 #include "../Interfaces.h"
+
+#include <link.h>
 
 ButtonCode_t Util::GetButtonCode(const char* buttonName)
 {
@@ -287,4 +288,22 @@ bool Util::ReadParticleFiles( const char *pathID, const char *blacklistFileName,
     }
 
     return true;
+}
+
+GFX_API Util::GetGraphicsApiType() {
+    static GFX_API ret = GFX_API::UNKNOWN;
+
+    dl_iterate_phdr([] (struct dl_phdr_info* info, size_t, void*) {
+        /* Only one of the rendersystem dll's will be loaded at once. */
+        if( strstr(info->dlpi_name, "librendersystemgl") ){
+            ret = GFX_API::OPENGL;
+        }
+        if( strstr(info->dlpi_name, "librendersystemvulkan") ){
+            ret = GFX_API::VULKAN;
+        }
+
+        return 0;
+    }, nullptr);
+
+    return ret;
 }

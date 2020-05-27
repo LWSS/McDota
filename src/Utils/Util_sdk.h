@@ -9,6 +9,14 @@
 #include <vector>
 #include <string>
 
+enum GFX_API
+{
+    UNKNOWN = -1,
+    OPENGL = 0,
+    VULKAN = 1,
+    DIRECTX = 2,
+};
+
 namespace Util
 {
     inline std::vector<ConVar*> createdConvars;
@@ -28,4 +36,6 @@ namespace Util
 	int FindDataMapElementOffset( Datamap *dMap, const char *element );
 
 	bool ReadParticleFiles( const char *pathID, const char *blacklistFileName = nullptr, const char *tracklistFileName = nullptr );
+
+	GFX_API GetGraphicsApiType(void);
 }

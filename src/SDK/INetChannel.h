@@ -41,6 +41,12 @@ public:
     virtual void SetLatencyStats(int, void const * SNetChannelLatencyStats) = 0;
     virtual void SetInterpolationAmount(float) = 0;
     virtual void sub_C7980() = 0;
+    virtual void sub_CC680() = 0; // added with 2020 BP
+    virtual void sub_CC840() = 0; // added with 2020 BP
+    virtual void sub_CC860() = 0; // added with 2020 BP
+    virtual void sub_CC650() = 0; // added with 2020 BP
+    virtual void sub_CC300() = 0; // added with 2020 BP
+    virtual void sub_CC330() = 0; // added with 2020 BP
     virtual void DESTROY() = 0;
     virtual void DESTROY2() = 0;
     virtual int GetTotalPacketBytes(int,int) = 0;
@@ -50,7 +56,7 @@ public:
     virtual void Clear(void) = 0;
     virtual void Shutdown(int ENetworkDisconnectionReason) = 0;
     virtual void SendData(void *bf_write, NetChannelBufType_t type) = 0;
-    virtual void _unk3() = 0;
+    virtual void _unk3() = 0; // this is Transmit()
     virtual const char* GetRemoteAddress(void) = 0;
     virtual void _unk4() = 0;
     virtual void CanPacket() = 0;
@@ -72,7 +78,7 @@ public:
     virtual bool IsRemoteDisconnected(void) = 0;
     virtual void SetNetMessageDispatcher(void *INetMessageDispatcher) = 0;
     virtual void GetNetMessageDispatcher(void) = 0;
-    virtual void SendNetMessage(NetMessageHandle_t *messageHandle, google::protobuf::Message *something, NetChannelBufType_t type) = 0;
+    virtual void SendNetMessage(NetMessageHandle_t *messageHandle, google::protobuf::Message *message, NetChannelBufType_t type) = 0;
     virtual void StartRegisteringMessageHandlers(void) = 0;
     virtual void FinishRegisteringMessageHandlers(void) = 0;
     virtual void RegisterNetMessageHandlerAbstract();//CUtlSlot *,CUtlAbstractDelegate const&,int,NetMessageHandle_t__ *,int) = 0;

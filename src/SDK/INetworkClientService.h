@@ -43,7 +43,6 @@ public:
     virtual void* GetNetChannel( void ) = 0;
     virtual void ClockDriftAdjustFrameTime( double diff ) = 0;
     virtual void* GetViewEntity( int splitScreenSlot ) = 0;
-    virtual float GetTickInterval( void ) = 0;
     virtual long GetClientTime( void ) = 0;
     virtual long ComputeNextRenderTime( float mightBeFrameDiff ) = 0; // 49
     virtual bool IsEntityReportActive( void ) = 0; // 50

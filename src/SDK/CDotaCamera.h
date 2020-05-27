@@ -2,7 +2,6 @@
 
 #include "vector.h"
 
-static const int debugBinsDelta = -16;
 // xref "camera_dota_default" to sub_I__unity_dota_05. go into function below string. it should have operator new.
 // go into the function it calls, then vtable will be first offset address.
 class CDotaCamera

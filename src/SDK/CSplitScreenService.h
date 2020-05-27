@@ -22,28 +22,29 @@ public:
 class CSplitScreenService : CBaseEngineService
 {
 public:
-    virtual void Destroy(); // 22
-    virtual void Destroy2();
-    virtual void AddSplitScreenUser(int splitScreenSlot, void* SplitScreenClient_t); // 24
-    virtual void AddBaseUser(int splitScreenSlot, void* SplitScreenClient_t);
-    virtual void RemoveSplitScreenUser(int splitScreenSlot);
-    virtual int GetActiveSplitScreenPlayerSlot(void);
-    virtual void SetActiveSplitScreenPlayerSlot(int splitScreenSlot);
-    virtual bool IsValidSplitScreenSlot(int splitScreenSlot);
-    virtual int FirstValidSplitScreenSlot(void);
-    virtual int NextValidSplitScreenSlot(int splitScreenSlot);
-    virtual int GetNumSplitScreenPlayers(void);
-    virtual int GetSplitScreenPlayerEntity(int splitScreenSlot);
-    virtual void* GetSplitScreenPlayerNetChan(int splitScreenSlot);
-    virtual bool IsDisconnecting(int splitScreenSlot);
-    virtual void SetDisconnecting(int splitScreenSlot, bool disconnecting);
-    virtual void SetLocalPlayerIsResolvable(const char* unk, int unk2, bool resolvable);
-    virtual bool IsLocalPlayerResolvable(void);
-    virtual int GetMaxSplitScreenPlayers(void);
-    virtual bool IsSplitScreenPlayerEntity(int entIndex);
-    virtual int FindSplitPlayerSlot(int entIndex);
-    virtual void ReadSomethingFromSteamCloud();
-    virtual void WriteSomethingFromSteamCloud();
-    virtual void GenerateSomeUserConfigurationFile();
-    virtual void EmptyFunc();
+    virtual void Destroy() = 0; // 22
+    virtual void Destroy2()= 0;
+    virtual void AddSplitScreenUser(int splitScreenSlot, void* SplitScreenClient_t) = 0; // 24
+    virtual void AddBaseUser(int splitScreenSlot, void* SplitScreenClient_t)= 0;
+    virtual void RemoveSplitScreenUser(int splitScreenSlot)= 0;
+    virtual int GetActiveSplitScreenPlayerSlot(void)= 0;
+    virtual void SetActiveSplitScreenPlayerSlot(int splitScreenSlot)= 0;
+    virtual bool IsValidSplitScreenSlot(int splitScreenSlot)= 0;
+    virtual int FirstValidSplitScreenSlot(void)= 0;
+    virtual int NextValidSplitScreenSlot(int splitScreenSlot)= 0;
+    virtual int GetNumSplitScreenPlayers(void)= 0;
+    virtual int GetSplitScreenPlayerEntity(int splitScreenSlot)= 0;
+    virtual void* GetSplitScreenPlayerNetChan(int splitScreenSlot)= 0;
+    virtual bool IsDisconnecting(int splitScreenSlot)= 0;
+    virtual void SetDisconnecting(int splitScreenSlot, bool disconnecting)= 0;
+    virtual void SetLocalPlayerIsResolvable(const char* unk, int unk2, bool resolvable)= 0;
+    virtual bool IsLocalPlayerResolvable(void)= 0;
+    virtual int GetMaxSplitScreenPlayers(void)= 0;
+    virtual bool IsSplitScreenPlayerEntity(int entIndex)= 0;
+    virtual int FindSplitPlayerSlot(int entIndex)= 0;
+    virtual void ReadSomethingFromSteamCloud()= 0;
+    virtual void WriteSomethingToSteamCloud()= 0;
+    virtual void GenerateSomeUserConfigurationFile()= 0;
+    virtual void EmptyFunc()= 0;
+    virtual void EmptyFunc2()= 0;
 };

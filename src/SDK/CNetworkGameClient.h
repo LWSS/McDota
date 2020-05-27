@@ -126,7 +126,7 @@ public:
     virtual bool IsChangeLevelPending(void) = 0;
     virtual void GetAllLoadingSpawnGroups();//(CUtlVector<uint,CUtlMemory<uint,int>> *)
     virtual void UpdateSceneObjects(CCallQueue &) = 0;
-    virtual void ProcessConnectionlessPacket(void const * ns_address, void * bf_read) = 0;
+    virtual void ProcessConnectionlessPacket(void *a2) = 0; //virtual void ProcessConnectionlessPacket(void const * ns_address, void * bf_read) = 0;
     virtual void BlockDisconnectionTracking(bool) = 0;
     virtual void DESTROY() = 0;
     virtual void DESTROY2() = 0;
@@ -162,8 +162,8 @@ public:
     virtual void ProcessSplitScreen(CSVCMsg_SplitScreen_t const &) = 0;
     virtual void ProcessCmdKeyValues(CSVCMsg_CmdKeyValues_t const &) = 0;
     virtual void ProcessSounds(CSVCMsg_Sounds_t const &) = 0;
-    virtual void ProcessBSPDecal(CSVCMsg_BSPDecal_t const &) = 0;
-    virtual void ProcessPrefetch(CSVCMsg_Prefetch_t const &) = 0;
+    //virtual void ProcessBSPDecal(CSVCMsg_BSPDecal_t const &) = 0; //
+    virtual void ProcessPrefetch(CSVCMsg_Prefetch_t const &) = 0;   // this function is either Prefetch or the above BSPDecal. 50/50
     virtual void sub_5A5D50() = 0;
     virtual void ProcessPacketReliable(CSVCMsg_PacketReliable_t const &) = 0;
     virtual void ProcessFullFrameSplit(CSVCMsg_FullFrameSplit_t const &) = 0;

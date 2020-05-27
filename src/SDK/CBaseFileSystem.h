@@ -102,7 +102,7 @@ class CUtlBuffer;
 class CBaseFileSystem : IAppSystem
 {
 public:
-    virtual void AddSearchPath( const char *pPath, const char *pathID, SearchPathAdd_t addType, int searchPathPriority ) = 0;
+    virtual void AddSearchPath( const char *pPath, const char *pathID, SearchPathAdd_t addType, int searchPathPriority ) = 0;// 11
     virtual void RemoveSearchPath( const char *pPath, const char *pathID ) = 0;
     virtual void SaveSearchPathState( const char * ) = 0;
     virtual void RestoreSearchPathState( void * SearchPathStateHandle_t__ ) = 0;
@@ -121,10 +121,9 @@ public:
     virtual void sub_1EDC0() = 0;
     virtual void RemoveFile( char const* pRelativePath, const char *pathID = 0 ) = 0;
     virtual bool RenameFile( char const *pOldPath, char const *pNewPath, const char *pathID = 0 ) = 0;
-    virtual void CreateDirHierarchy( const char *path, const char *pathID = 0 ) = 0;
-    virtual bool IsDirectory( const char *pFileName, const char *pathID = 0  ) = 0;
+    virtual bool IsDirectory( const char *pFileName, const char *pathID = 0  ) = 0; // 30
     virtual void FileTimeToString( char* pStrip, int maxCharsIncludingTerminator, long long fileTime ) = 0;
-    virtual void SetBufferSize( FileHandle_t, unsigned int nBytes ) = 0;
+    virtual void SetBufferSize( FileHandle_t, unsigned int nBytes ) = 0; //"FS:  Tried to SetBufferSize NULL file"
     virtual bool IsOK( FileHandle_t file ) = 0;
     virtual bool EndOfFile( FileHandle_t file ) = 0;
     virtual char* ReadLine( char *pOutput, int maxChars, FileHandle_t file ) = 0;
@@ -137,11 +136,8 @@ public:
     virtual void FindClose( FileFindHandle_t &handle ) = 0;
     virtual const char* FindFirstEx( const char *pWildCard, const char *pPathID, FileFindHandle_t *pHandle ) = 0;
     virtual void FindFileAbsoluteList() = 0;//CUtlVector<CUtlString,CUtlMemory<CUtlString,int>> &,char const*,char const* ) = 0;
-    virtual void sub_11210() = 0;
     virtual const char* GetLocalPath( const char *pFileName, char *pLocalPath, int localPathBufferSize ) = 0;
-    virtual bool FullPathToRelativePath( const char *pFullpath, const char *pPathId, char *pRelative, int maxlen ) = 0;
     virtual bool GetCurrentDirectory( char* pDirectory, int maxlen ) = 0;
-    virtual void loc_11FE0() = 0;
     virtual FileNameHandle_t FindOrAddFileName( const char *pFileName ) = 0;
     virtual bool String( const FileNameHandle_t& handle, char *buf, int buflen ) = 0;
     virtual void AsyncReadMultiple() = 0;
@@ -201,7 +197,6 @@ public:
     virtual int GetWhitelistSpewFlags(void) = 0;
     virtual void SetWhitelistSpewFlags( int flags ) = 0;
     virtual void InstallDirtyDiskReportFunc(void (*)(void)) = 0;
-
     virtual bool IsLaunchedFromXboxHDD(void) = 0;
     virtual bool IsInstalledToXboxHDDCache(void) = 0;
     virtual bool IsDVDHosted(void) = 0;
@@ -219,18 +214,16 @@ public:
     virtual void IsUGCVPKFileLoaded() = 0;
     virtual void ParseUGCHandleFromFilename() = 0;
     virtual void CreateFilenameforUGCFile() = 0;
-    virtual void GetUGCInfo() = 0;
     virtual void OpenUGCFile() = 0;
-    virtual void SyncDvdDevCache() = 0;
-    virtual void DiscoverDLC() = 0;
-    virtual void IsAnyDLCPresent() = 0;
-    virtual void GetAnyDLCInfo() = 0;
-    virtual void IsAnyCorruptDLC() = 0;
-    virtual void GetAnyCorruptDLCInfo() = 0;
-    virtual void AddDLCSearchPath() = 0;
-    virtual void IsSpecificDLCPresent() = 0;
-    virtual void loc_126A0() = 0;
-    virtual void sub_11310() = 0;
+    virtual void sub_10E00() = 0; // DLC-related functions. Changed with battlepass 2020
+    virtual void sub_10E10() = 0; // DLC-related functions. Changed with battlepass 2020
+    virtual void sub_10E20() = 0; // DLC-related functions. Changed with battlepass 2020
+    virtual void sub_10E30() = 0; // DLC-related functions. Changed with battlepass 2020
+    virtual void sub_10E40() = 0; // DLC-related functions. Changed with battlepass 2020
+    virtual void sub_10E60() = 0; // DLC-related functions. Changed with battlepass 2020
+    virtual void sub_10E50() = 0; // DLC-related functions. Changed with battlepass 2020
+    virtual void loc_11F80() = 0; // DLC-related functions. Changed with battlepass 2020
+    virtual void sub_10E70() = 0; // DLC-related functions. Changed with battlepass 2020
     virtual void DumpFilesystemStats() = 0;
     virtual void DeleteDirectory() = 0;
     virtual void DeleteDirectoryAndContents() = 0;
@@ -240,10 +233,9 @@ public:
     virtual void sub_238A0() = 0;
     virtual void sub_12AD0() = 0;
     virtual void sub_11330() = 0;
-    virtual void sub_10E40() = 0;
+    virtual void sub_10E40_2() = 0;
     virtual void loc_125E0() = 0;
-    // if pathID is NULL, all paths will be searched for the file
-    virtual FileHandle_t Open( const char *pFileName, const char *pOptions, const char *pathID = 0 ) = 0;
+    virtual FileHandle_t Open( const char *pFileName, const char *pOptions, const char *pathID = 0 ) = 0;     // if pathID is NULL, all paths will be searched for the file
     virtual void Close( FileHandle_t file ) = 0;
     virtual void Seek( FileHandle_t file, int pos, FileSystemSeek_t seekType ) = 0;
     virtual unsigned int Tell( FileHandle_t file ) = 0;
@@ -255,6 +247,8 @@ public:
     virtual int	Write( void const* pInput, int size, FileHandle_t file ) = 0;
     virtual bool ReadFile() = 0;//const char *pFileName, const char *pPath, CUtlBuffer &buf, int nMaxBytes = 0, int nStartingByte = 0, FSAllocFunc_t pfnAlloc = NULL ) = 0;
     virtual bool WriteFile( const char *pFileName, const char *pPath, CUtlBuffer &buf ) = 0;
+
+
     // Not "hooked up" for linux
     virtual bool UnzipFile( const char *pFileName, const char *pPath, const char *pDestination ) = 0;
     virtual bool CopyAFile( const char *pFileName, const char *pPath, const char *pDestination, bool unk ) = 0;
@@ -275,5 +269,4 @@ public:
     virtual void pure16() = 0;
     virtual void pure17() = 0;
     virtual void sub_10DE0() = 0;
-
 };

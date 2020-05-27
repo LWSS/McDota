@@ -23,9 +23,9 @@ sudo echo "2" | sudo tee /proc/sys/kernel/yama/ptrace_scope # Only allows root t
 if grep -q "$filename" /proc/"$dota_pid"/maps; then
     sudo gdb -p "$dota_pid" -x ./gdb_debug_attach.txt
 else
-	path="$(pwd)/$filename"
-	#put library name on first line
-	sed -i "1cset \$library = \"$path\"" ./gdb_debug_inject.txt
+	  path="$(pwd)/$filename"
+	  #put library name on first line
+	  sed -i "1cset \$library = \"$path\"" ./gdb_debug_inject.txt
     echo "Injecting build $path"
     sudo gdb -p "$dota_pid" -x ./gdb_debug_inject.txt
 fi

@@ -110,7 +110,6 @@ public:
     virtual void unknown(); // added around 5/13/18. Returns 0 by default.
     virtual void*C_BasePlayer__GetRenderedWeaponModel(void);
     virtual bool C_BasePlayer__IsOverridingViewModel(void);
-    virtual void C_BasePlayer__DrawOverriddenViewModel(void* C_BaseViewModel, int unk);
     virtual float C_BasePlayer__GetDefaultAnimSpeed(void);
     virtual void C_BasePlayer__ThirdPersonSwitch(bool thirdperson);
     virtual void sub_2CAF2C0(); // added mid-july 2018. Possibly related to CViewAngleAnimation::RunAnimation
@@ -167,6 +166,7 @@ public:
     virtual void sub_2AF9440(); // added after ti8
     virtual void sub_2AF9450(); // ^^
     virtual void sub_2860060();
+    virtual void sub_2F8BA00(); // added with battlepass 2020
     virtual void C_BasePlayer__CalcPlayerView(Vector& eyeOrigin, QAngle& eyeAngles, float& fov);
     virtual void C_DOTAPlayer__CalcObserverView(Vector& eyeOrigin, QAngle& eyeAngles, float& fov);
     virtual void C_BasePlayer__GetChaseCamViewOffset(void *targetC_BaseEntity );

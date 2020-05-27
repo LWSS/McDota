@@ -135,8 +135,6 @@ public:
 	virtual void HudText(void* client_textmessage_t);
 	virtual void IN_ClearStates(void);
 	virtual bool IN_IsKeyDown(const char *name, bool isDown);
-	virtual void DecalShoot();
-	virtual void PlayerDecalShoot();
 	virtual void OnLevelLoadingStarted(void);
 	virtual void CenterStringOff(void);
 	virtual void View_Fade(void* ScreenFade_t);

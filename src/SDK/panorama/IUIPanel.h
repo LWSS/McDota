@@ -335,6 +335,7 @@ namespace panorama
         virtual void UpdateVisibility(bool) = 0;
         virtual void unk14() = 0; // something to do with profiling
         virtual void SetProperty(CPanoramaSymbol, const char *) = 0;
+        virtual void sub_F2680() = 0; // added with 2020 battlepass
         virtual void FindChildrenWithClass() = 0; // (char const*,CUtlVector<panorama::IUIPanel *,CUtlMemory<panorama::IUIPanel *,int>> &)
         virtual void FindChildrenWithClassTraverse() = 0; // (char const*,CUtlVector<panorama::IUIPanel *,CUtlMemory<panorama::IUIPanel *,int>> &)
         virtual void FindChildrenWithClassSomething() = 0; // added 7-17-19
@@ -357,6 +358,8 @@ namespace panorama
         virtual void unk_1529F0() = 0;
         virtual void unk_152A00() = 0;
         virtual void unk_152A20() = 0;
+        virtual void sub_E7F80() = 0; // added with battlepass 2020
+        virtual void sub_E7FA0() = 0; // added with battlepass 2020
         virtual void unk_136B20() = 0;
         virtual void unk_152A30() = 0;
         virtual void unk_139260() = 0;

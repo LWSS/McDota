@@ -165,6 +165,8 @@ public:
     virtual void C_BaseEntity__PredCopy_GetHeaderBlock(void* CFieldPath, unsigned int unk);
     virtual void unk_stringshit(); // added 7-17-19
     virtual void unk_haystack(); // yeehaw! ^^
+    virtual void unk_emptyfunc(); // added with 2020 battlepass
+    virtual int  unk_returns1(); // added with 2020 battlepass
     virtual void* C_BaseAnimating__GetMouth(void);
     virtual void C_BaseEntity__GetSoundSpatialization(void* SpatializationInfo_t);
     virtual int C_BaseAnimating__LookupAttachment(const char* name);
@@ -207,12 +209,12 @@ public:
     virtual void C_BaseEntity__TakeDamage(void* CTakeDamageInfo);
     virtual void sub_26F57E0();
     virtual void unk_newFuncHashBucket(); // added with summer scrub pt2 - elf_gnu_hash_bucket
-    virtual void unk_checkbyteDoSomethin(); // added late 2019 prob
     virtual int C_BaseEntity__ClothSettingsTypeID(); // a guess
     virtual void sub_2907330();
     virtual void unk_elfshit(); //  rax, qword ptr ds:stru_D90.st_name - added 7-17-19
     virtual void* C_BasePlayer__GetPredictionOwner(void);
     virtual void unk_NewFunc(); // added with summer scrub pt2
+    virtual void sub_2E4BC90();
     virtual void C_BaseEntity__InitPredictable(void* C_BasePlayer);
     virtual void C_BaseAnimating__SetPredictable(bool predictable);
     virtual void C_BaseEntity__DecalTrace(void* CGameTrace, const char* unk);
@@ -249,22 +251,21 @@ public:
     virtual bool C_BaseEntity__ShouldDrawUnderwaterBulletBubbles(void);
     virtual void HandleShotImpactingWater();//(FireBulletsInfo_t const&,Vector const&,ITraceFilter *,Vector*) "gunshotsplash"
     virtual ColorRGBA C_BaseCombatCharacter__BloodColor(void);
-    virtual bool unk_something_new(void); //added with TI2019 battlepass, setz al
-    virtual bool C_DOTAPlayer__IsPlayer(void);
-    virtual bool C_BaseEntity__IsHMDAvatar(void);
-    virtual void sub_26F5350();
-    virtual void sub_25DDBB0(); //added with sept 26 dota+ update.
-    virtual bool C_BaseCombatCharacter__IsBaseCombatCharacter(void);
-    virtual void* C_BaseCombatCharacter__MyCombatCharacterPointer(void);
-    virtual void* C_BaseCombatCharacter__MyCombatCharacterPointer2(void);
-    virtual bool C_BaseEntity__IsBaseCombatWeapon(void);
-    virtual void* C_BaseEntity__MyCombatWeaponPointer(void);
-    virtual bool C_BaseEntity__IsBaseObject(void);
-    virtual bool C_BaseEntity__IsBaseTrain(void);
-    virtual bool C_BaseEntity__IsNextBot(void);
-    virtual void* C_BaseEntity__MyInfectedPointer(void);
-    virtual void* C_BaseEntity__MyInfectedRagdollPointer(void);
-    virtual bool C_BaseEntity__IsSprite(void);
+    virtual bool unk_something_new(void); //added with TI2019 battlepass, setz al // Note: One of these is missing, couldn't tell which one, they all return 0
+    virtual bool C_DOTAPlayer__IsPlayer(void); // Note: One of these is missing, couldn't tell which one, they all return 0
+    virtual bool C_BaseEntity__IsHMDAvatar(void); // Note: One of these is missing, couldn't tell which one, they all return 0
+    virtual void sub_26F5350(); // Note: One of these is missing, couldn't tell which one, they all return 0
+    virtual void sub_25DDBB0(); //added with sept 26 dota+ update. // Note: One of these is missing, couldn't tell which one, they all return 0
+    virtual bool C_BaseCombatCharacter__IsBaseCombatCharacter(void); // Note: One of these is missing, couldn't tell which one, they all return 0
+    virtual void* C_BaseCombatCharacter__MyCombatCharacterPointer(void); // Note: One of these is missing, couldn't tell which one, they all return 0
+    virtual void* C_BaseCombatCharacter__MyCombatCharacterPointer2(void); // Note: One of these is missing, couldn't tell which one, they all return 0
+    virtual bool C_BaseEntity__IsBaseCombatWeapon(void); // Note: One of these is missing, couldn't tell which one, they all return 0
+    virtual void* C_BaseEntity__MyCombatWeaponPointer(void); // Note: One of these is missing, couldn't tell which one, they all return 0
+    virtual bool C_BaseEntity__IsBaseObject(void); // Note: One of these is missing, couldn't tell which one, they all return 0
+    virtual bool C_BaseEntity__IsBaseTrain(void); // Note: One of these is missing, couldn't tell which one, they all return 0
+    virtual bool C_BaseEntity__IsNextBot(void); // Note: One of these is missing, couldn't tell which one, they all return 0
+    virtual void* C_BaseEntity__MyInfectedPointer(void); // Note: One of these is missing, couldn't tell which one, they all return 0 --- //virtual void* C_BaseEntity__MyInfectedRagdollPointer(void); Removed this one
+    virtual bool C_BaseEntity__IsSprite(void); // Note: One of these is missing, couldn't tell which one, they all return 0
     virtual int C_BaseEntity__GetMaxHealth(void);
     virtual void C_BaseEntity__SetHealth(int health);
     virtual int C_BaseEntity__GetHealth(void);
@@ -310,7 +311,6 @@ public:
     virtual void sub_2739F00();
     virtual void sub_2739EA0();
     virtual void sub_2739EB0();
-    virtual void sub_2739EC0();
     virtual void sub_2739F30();
     virtual void sub_2739ED0();
     virtual void sub_2739F10();
@@ -349,7 +349,6 @@ public:
     virtual void sub_29E64D0(); //added w/ new boom extension 2020 skeeter
     virtual void sub_29D23B0(); //added w/ shader update march 3 2020
     virtual void sub_292A800();
-    virtual void sub_292A801(); // loc_
     virtual void C_BaseAnimating__HandleScriptedAnimEvent(void* animevent_t);
     virtual void C_BaseAnimating__HandleBehaviorAnimEvent(void* animevent_t);
     virtual void C_BaseAnimating__SpeechAnimEvent(const char* unk);

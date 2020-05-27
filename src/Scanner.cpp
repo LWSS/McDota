@@ -328,7 +328,7 @@ static bool FindRichPresence()
 
 
 	// xref "active RP" to SetRPStatus()
-	uintptr_t funcAddr = PatternFinder::FindPatternInModule( "libclient.so", "55 48 89 E5 41 57 41 56 41 89 D6 41 55 41 54 49 89 FC 53 48 81", "SetRPStatus" );
+	uintptr_t funcAddr = PatternFinder::FindPatternInModule( "libclient.so", "55 48 89 E5 41 57 41 56 41 89 D6 41 55 49 89 FD 41 54 53 48 81 EC", "SetRPStatus" );
 
 	if( !funcAddr ){
 		MC_PRINTF_ERROR("SetRPStatus sig is broke!\n");
@@ -343,7 +343,7 @@ static bool FindGCFunctions()
 {
 	// GCSDK::CGCClient::DispatchPacket(GCSDK::IMsgNetPacket *)
 	// xref for "You have been waiting for"
-	DispatchPacketFnAddr = PatternFinder::FindPatternInModule( "libclient.so", "55 48 89 E5 41 57 49 89 FF 41 56 41 55 41 54 4C 8D 25 ?? ?? ?? ?? 53 48 89 F3 48 83 EC ?? 48 8B 06", "DispatchPacket()" );
+	DispatchPacketFnAddr = PatternFinder::FindPatternInModule( "libclient.so", "55 48 89 E5 41 57 41 56 41 55 41 54 49 89 FC 53 48 89 F3 48 83 EC ?? 48 8B 3D", "DispatchPacket()" );
 
 	if( !DispatchPacketFnAddr ){
 		MC_PRINTF_ERROR("DispatchPacketFn sig is broke!\n");
@@ -488,6 +488,35 @@ static bool FindTraceFuncs()
 
     CTraceFilter_Constructor = reinterpret_cast<CTraceFilterConstructorFn>( line );
     return true;
+}
+
+static bool FindRenderDevice()
+{
+   // Xref "CreateDevice: Requested DX level %d" to CRenderDeviceMgrGL::CreateDevice()
+   // look a couple blocks below the string...
+   // E8 0D 42 FC FF          call    LoadVideoConfig
+   // 44 89 F1                mov     ecx, r14d
+   // 44 89 E2                mov     edx, r12d
+   // 89 DE                   mov     esi, ebx
+   // 48 8B 05 DE F1 30 00    mov     rax, cs:_g_pRenderDeviceGL <----------- This one (it also has more xref's than below)
+   // 4C 8B 2D 7F ED 30 00    mov     r13, cs:_g_pRenderDeviceBase
+   // 48 8B 38                mov     rdi, [rax]
+   // 49 89 7D 00             mov     [r13+0], rdi
+   // E8 9B CE FF FF          call    InitDevice
+
+   if( Util::GetGraphicsApiType() != GFX_API::OPENGL ){
+       MC_PRINTF_ERROR("Does anyone use the vulkan port?\nIf so, you'll have to add another sig here %s", __LINE__);
+       return false;
+   }
+
+   uintptr_t line = PatternFinder::FindPatternInModule("librendersystemgl.so", "48 8B 05 ?? ?? ?? ?? 4C 8B 2D ?? ?? ?? ?? 48", "CRenderDeviceGL");
+   if( !line ){
+       MC_PRINTF_ERROR("FindRenderDevice sig is broke!\n");
+       return false;
+   }
+
+
+   return true;
 }
 
 bool Scanner::FindAllSigs( )
