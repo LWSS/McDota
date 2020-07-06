@@ -23,7 +23,7 @@ namespace Hooks
     // inputInternal
     void SetKeyCodeState( IInputInternal* thisptr, ButtonCode_t code, bool bPressed );
     // INetChannel
-    void PostReceivedNetMessage( INetChannel *thisptr, NetMessageHandle_t * messageHandle, google::protobuf::Message* msg, NetChannelBufType_t const* type);
+    void PostReceivedNetMessage( INetChannel *thisptr, NetMessageHandle_t * messageHandle, google::protobuf::Message* msg, NetChannelBufType_t const* type, int bits );
     bool SendNetMessage( INetChannel *thisptr, NetMessageHandle_t * messageHandle, google::protobuf::Message* msg, NetChannelBufType_t type );
     // ParticleSystemMgr
     CParticleCollection* CreateParticleCollection( CParticleSystemMgr *thisptr, CWeakHandle_InfoForResourceTypeIParticleSystemDefinition *info, void *unk, IParticleSystemQuery *query, bool bUnk, float fUnk, int iUnk );

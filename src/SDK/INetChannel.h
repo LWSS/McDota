@@ -96,7 +96,7 @@ public:
     virtual bool WasLastMessageReliable(void) = 0;
     virtual void InstallMessageFilter(void *INetworkMessageProcessingPreFilter) = 0;
     virtual void UninstallMessageFilter(void *INetworkMessageProcessingPreFilter) = 0;
-    virtual void PostReceivedNetMessage(NetMessageHandle_t *, google::protobuf::Message* ,NetChannelBufType_t const*) = 0;
+    virtual void PostReceivedNetMessage(NetMessageHandle_t *, google::protobuf::Message* ,NetChannelBufType_t const*, int) = 0;
     virtual void InsertReplayMessage(void *InstantReplayMessage_t) = 0;
     virtual bool HasQueuedPackets(void) = 0;
     virtual void _unk8() = 0;

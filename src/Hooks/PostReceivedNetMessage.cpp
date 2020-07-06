@@ -4,12 +4,12 @@
 #include "../Utils/Logger.h"
 #include "../Settings.h"
 
-typedef void (* PostReceivedNetMessageFn)( INetChannel *, NetMessageHandle_t *, google::protobuf::Message*, NetChannelBufType_t const *);
+typedef void (* PostReceivedNetMessageFn)( INetChannel *, NetMessageHandle_t *, google::protobuf::Message*, NetChannelBufType_t const *, int );
 
 uint32_t biggestSignon = 0;
 uint32_t latestSpawnCount = 0;
 
-void Hooks::PostReceivedNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHandle, google::protobuf::Message *msg, NetChannelBufType_t const *type ) {
+void Hooks::PostReceivedNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHandle, google::protobuf::Message *msg, NetChannelBufType_t const *type, int bits ) {
 
     NetMessageInfo_t *info;
     const char *name;
@@ -31,7 +31,7 @@ void Hooks::PostReceivedNetMessage( INetChannel *thisptr, NetMessageHandle_t *me
             string.m_Memory.m_pMemory = new uint8_t[4096];
             string.m_Memory.m_nAllocationCount = 4096;
             string.m_Memory.m_nGrowSize = 4096;
-            MC_LOGF( "Net Msg[%d] Received: (%s)BufType(%d)\n", messageHandle->messageID, info->pProtobufBinding->ToString( msg, &string ), *type );
+            MC_LOGF( "Net Msg[%d] Received: (%s)\n", messageHandle->messageID, info->pProtobufBinding->ToString( msg, &string ) );
             delete[] string.m_Memory.m_pMemory;
         }
     }
@@ -54,5 +54,5 @@ void Hooks::PostReceivedNetMessage( INetChannel *thisptr, NetMessageHandle_t *me
     }*/
 
 end:
-    return netChannelVMT->GetOriginalMethod<PostReceivedNetMessageFn>(89)( thisptr, messageHandle, msg, type );
+    return netChannelVMT->GetOriginalMethod<PostReceivedNetMessageFn>(89)( thisptr, messageHandle, msg, type, bits );
 }

@@ -10,7 +10,7 @@ bool Interfaces::FindExportedInterfaces( )
 {
     client = GetInterface<CSource2Client>("../../dota/bin/linuxsteamrt64/libclient.so", "Source2Client002", 131 );
     cvar = GetInterface<ICvar>( "./libvstdlib.so", "VEngineCvar007", 53 );
-    engine = GetInterface<IEngineClient>( "./libengine2.so", "Source2EngineToClient001", 168 );
+    engine = GetInterface<IEngineClient>( "./libengine2.so", "Source2EngineToClient001", 170 );
     inputSystem = GetInterface<IInputSystem>( "./libinputsystem.so", "InputSystemVersion001", 89 );
     inputInternal = GetInterface<IInputInternal>("./libvgui2.so", "VGUI_InputInternal001", 101 );
     networkClientService = GetInterface<INetworkClientService>("./libengine2.so", "NetworkClientService_001", 68 );
