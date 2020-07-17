@@ -20,7 +20,7 @@ public:
     virtual void sub_1F1EF0() = 0;
     virtual void sub_1E3540() = 0;
     virtual void sub_1F2370() = 0;
-    virtual void InitP2PNetworking(IPeerToPeerCallbacks *) = 0;
+    virtual void InitP2PNetworking(IPeerToPeerCallbacks *) = 0; // "Can't connectloopback"
     virtual void ShutdownP2PNetworking(int) = 0;
     virtual void TerminateP2PSockets(int) = 0;
     virtual void sub_1E3CC0() = 0;
@@ -37,6 +37,7 @@ public:
     virtual void sub_1ED1B0() = 0;
     virtual void loc_1ED530() = 0;
     virtual void loc_1ECEE0() = 0;
+    /*
     virtual void sub_1F0140() = 0;
     virtual void CloseNetworkSocket(int, int) = 0;
     virtual void OutOfBandPrintf(int, const void *ns_address, const char *, ...) = 0;
@@ -45,8 +46,10 @@ public:
     virtual double GetNetTime(void) = 0;
     virtual void DescribeSocket(int) = 0;
     virtual void sub_1E3500() = 0;
+     */
     virtual void BufferToBufferCompress(char *, unsigned int *, const char *, unsigned int) = 0;
     virtual void BufferToBufferDecompress(char *, unsigned int *, const char *, unsigned int) = 0;
+    /*
     virtual void *GetPublicAdr(void) = 0;
     virtual void *GetLocalAdr(void) = 0;
     virtual void GetUDPPort(int) = 0;
@@ -79,4 +82,5 @@ public:
     virtual void DESTROY1(void) = 0;
     virtual void DESTROY2(void) = 0;
     virtual void MessageData(unsigned int, unsigned short, unsigned int, unsigned char *) = 0;
+    */
 };

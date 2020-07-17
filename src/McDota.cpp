@@ -102,7 +102,7 @@ int __attribute__((constructor)) Startup()
 
     Interfaces::DumpInterfaces( "/tmp/dotainterfaces.txt" );
 
-    cvar->ConsoleColorPrintf( ColorRGBA(10, 210, 10), "[McDota] I'm in like Flynn.\n" );
+    ConColorMsg( Color(10, 210, 10), "[McDota] I'm in like Flynn.\n" );
 
     int width, height;
     engine->GetScreenSize( width, height );
@@ -178,8 +178,8 @@ int __attribute__((constructor)) Startup()
         if( engine->GetNetChannelInfo() ) {
             MC_PRINTF( "Grabbing new NetChannel VMT - %p\n", (void*)engine->GetNetChannelInfo() );
             netChannelVMT = std::unique_ptr<VMT>(new VMT( engine->GetNetChannelInfo( ) ));
-            netChannelVMT->HookVM( Hooks::SendNetMessage, 71 );
-            netChannelVMT->HookVM( Hooks::PostReceivedNetMessage, 89 );
+            netChannelVMT->HookVM( Hooks::SendNetMessage, 68 );
+            netChannelVMT->HookVM( Hooks::PostReceivedNetMessage, 86 );
             netChannelVMT->ApplyVMT( );
         } else {
             MC_PRINTF_WARN("GetNetChannelInfo returned null! Aborting NetChannel VMT!\n");
@@ -233,7 +233,7 @@ void __attribute__((destructor)) Shutdown()
                 delete[] var->m_fnChangeCallbacks.m_pElements;
             delete (char*)var; // cast so we dont invoke destructor
         }
-        cvar->ConsoleColorPrintf(ColorRGBA(255, 0, 0), "[McDota] I'm outta here.\n");
+        ConColorMsg(Color(255, 0, 0), "[McDota] I'm outta here.\n");
     } else {
         ConMsg( "[McDota] I'm outta here.\n" );
     }

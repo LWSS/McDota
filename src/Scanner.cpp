@@ -322,7 +322,7 @@ static bool FindRichPresence()
 	uintptr_t NotifyClientSignon = reinterpret_cast<uintptr_t>( (void*)(client->*notifyClientSignonPtr) );
 
 	typedef CDOTARichPresence* ( *GetRichPresenceFn )();
-	auto GetRichPresence = reinterpret_cast<GetRichPresenceFn>( GetAbsoluteAddress(NotifyClientSignon + 52, 1, 5) );
+	auto GetRichPresence = reinterpret_cast<GetRichPresenceFn>( GetAbsoluteAddress(NotifyClientSignon + 38, 1, 5) );
 
 	richPresence = GetRichPresence();
 

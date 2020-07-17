@@ -77,10 +77,11 @@ inline VMatrix *g_ViewToProjection;
 // Other
 inline panorama::CPanel2D* gDBPlayPanel; // Special Panel
 
-#define MC_PRINTF(f_, ...) cvar->ConsoleColorPrintf(ColorRGBA( 255, 140, 5 ), ("[McDota] " f_), ##__VA_ARGS__)
-#define MC_PRINTF_PLAIN(f_, ...) cvar->ConsoleColorPrintf(ColorRGBA( 255, 140, 5 ), ("" f_), ##__VA_ARGS__)
-#define MC_PRINTF_ERROR(f_, ...) cvar->ConsoleColorPrintf(ColorRGBA( 255, 20, 140 ), ("[McDota:%s] " f_ ), __FUNCTION__, ##__VA_ARGS__)
-#define MC_PRINTF_WARN(f_, ...) cvar->ConsoleColorPrintf(ColorRGBA( 255, 223, 0 ), ("[McDota:%s] " f_ ), __FUNCTION__, ##__VA_ARGS__)
+#define MC_PRINTF(f_, ...) ConColorMsg(Color( 255, 140, 5 ), ("[McDota] " f_), ##__VA_ARGS__)
+#define MC_PRINTF(f_, ...) ConColorMsg(Color( 255, 140, 5 ), ("[McDota] " f_), ##__VA_ARGS__)
+#define MC_PRINTF_PLAIN(f_, ...) ConColorMsg(Color( 255, 140, 5 ), ("" f_), ##__VA_ARGS__)
+#define MC_PRINTF_ERROR(f_, ...) ConColorMsg(Color( 255, 20, 140 ), ("[McDota:%s] " f_ ), __FUNCTION__, ##__VA_ARGS__)
+#define MC_PRINTF_WARN(f_, ...) ConColorMsg(Color( 255, 223, 0 ), ("[McDota:%s] " f_ ), __FUNCTION__, ##__VA_ARGS__)
 
 namespace Interfaces
 {

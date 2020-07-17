@@ -36,6 +36,7 @@ public:
 	virtual void sub_20440() = 0;
 	virtual void sub_20450() = 0;
 	virtual void sub_20AD0() = 0;
+	virtual void sub_222E0() = 0; // Added with aghanim's labyrinth - something to do with shaders.
 	virtual void DESTROY() = 0;
 	virtual void DESTROY2() = 0;
 };

@@ -43,7 +43,6 @@ public:
     virtual void sub_C7980() = 0;
     virtual void sub_CC680() = 0; // added with 2020 BP
     virtual void sub_CC840() = 0; // added with 2020 BP
-    virtual void sub_CC860() = 0; // added with 2020 BP
     virtual void sub_CC650() = 0; // added with 2020 BP
     virtual void sub_CC300() = 0; // added with 2020 BP
     virtual void sub_CC330() = 0; // added with 2020 BP
@@ -69,8 +68,6 @@ public:
     virtual void SetUsesMaxRoutablePayload(bool state) = 0;
     virtual void Setup(void) = 0;
     virtual void _unk6() = 0;
-    virtual void SetUpdateRate(int) = 0;
-    virtual void SetCommandRate(int) = 0;
     virtual void SetTimeout(float,bool) = 0;
     virtual bool IsTimedOut(void) = 0;
     virtual void SomethingTimeOut() = 0;

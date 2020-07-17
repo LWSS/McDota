@@ -59,17 +59,17 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             UI::ToggleUI();
             break;
         case ButtonCode_t::HOME:
-            cvar->ConsoleDPrintf("TickCount: %d\n", globalVars->tickcount);
-            cvar->ConsoleDPrintf("Curtime: %f\n", globalVars->curtime);
-            cvar->ConsoleDPrintf("Seconds since start: %f\n", (float(globalVars->tickcount) * globalVars->intervalPerTick) );
+            MC_PRINTF("TickCount: %d\n", globalVars->tickcount);
+            MC_PRINTF("Curtime: %f\n", globalVars->curtime);
+            MC_PRINTF("Seconds since start: %f\n", (float(globalVars->tickcount) * globalVars->intervalPerTick) );
             for( int i = 0; i <= entitySystem->GetHighestEntityIndex(); i++ ){
                 entity = entitySystem->GetBaseEntity(i);
                 if( entity ){
-                    cvar->ConsoleDPrintf("Entity#%d(%p) - Name:(%s)", i, (void*)entity, entity->Schema_DynamicBinding()->binaryName );
+                    MC_PRINTF("Entity#%d(%p) - Name:(%s)", i, (void*)entity, entity->Schema_DynamicBinding()->binaryName );
                     if( entity->GetOwnerID() >= 0 ){
-                        cvar->ConsoleDPrintf(" - Owner:(%d)", entity->GetOwnerID());
+                        MC_PRINTF(" - Owner:(%d)", entity->GetOwnerID());
                     }
-                    cvar->ConsoleDPrintf("\n");
+                    MC_PRINTF("\n");
                 }
             }
             break;
@@ -78,7 +78,7 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             //MC_PRINTF("Local Player ID(%d)\n", *(networkClientService->GetIGameClient()->GetLocalDOTAPlayerID()));
             //newConVar->set_name(mc_custom_str->strValue);
             //newConVar->set_value(mc_custom_str_alt->strValue);
-            cvar->ConsoleDPrintf("Handle - (%s)\n", networkMessages->GetMessageHandleByName(mc_custom_str->m_Value.m_pszString) ?
+            MC_PRINTF("Handle - (%s)\n", networkMessages->GetMessageHandleByName(mc_custom_str->m_Value.m_pszString) ?
                                                     networkMessages->GetMessageHandleByName(mc_custom_str->m_Value.m_pszString)->unscopedName : "null" );
             break;
         case ButtonCode_t::PGDN:
@@ -121,7 +121,7 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             break;
         case ButtonCode_t::PAUSE:
             //Util::SpewScriptScopes( GetPanoramaScriptScopes(), true );
-            cvar->ConsoleDPrintf("Sending metadata\n");
+            MC_PRINTF("Sending metadata\n");
             static uint32_t id = 0;
             id++;
             metadataMsg.set_match_id( id );
@@ -140,7 +140,7 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
                     }
                 }
                 metadataMsg.set_metadata( metadata.SerializeAsString() );
-                cvar->ConsoleDPrintf("cached metadata msg\n");
+                MC_PRINTF("cached metadata msg\n");
                 cacheMetaData = true;
                 cachedSize = mc_send_freq->GetInt();
             }

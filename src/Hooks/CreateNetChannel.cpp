@@ -12,8 +12,8 @@ INetChannel* Hooks::CreateNetChannel( CNetworkSystem *thisptr, int unk, void *ns
 
     MC_PRINTF( "Grabbing new NetChannel VMT - %p\n", (void*)ret );
     netChannelVMT = std::unique_ptr<VMT>(new VMT( ret ));
-    netChannelVMT->HookVM( Hooks::SendNetMessage, 71 );
-    netChannelVMT->HookVM( Hooks::PostReceivedNetMessage, 89 );
+    netChannelVMT->HookVM( Hooks::SendNetMessage, 68 );
+    netChannelVMT->HookVM( Hooks::PostReceivedNetMessage, 86 );
     netChannelVMT->ApplyVMT();
 
     return ret;

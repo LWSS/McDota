@@ -162,7 +162,7 @@ public:
 		return getvfunc<oColorModulate>(this, 28)(this, r, g, b);
 	}
 
-	void ColorModulate(Color color)
+	void ColorModulate(Color2 color)
 	{
 		typedef void (* oColorModulate)(void*, float, float, float);
 		return getvfunc<oColorModulate>(this, 28)(this, color.r / 255.0f, color.g / 255.0f, color.b / 255.0f);

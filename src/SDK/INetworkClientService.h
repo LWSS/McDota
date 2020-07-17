@@ -23,7 +23,7 @@ public:
     virtual CNetworkGameClient* GetIGameClient() = 0;
     virtual void SetGameSpawnGroupMgr( void* groupMgr ) = 0;
     virtual void __dunno3() = 0;
-    virtual void AllocateRemoteConnectionClient( void* keyValues ) = 0;
+    virtual void AllocateRemoteConnectionClient( void* keyValues ) = 0; // 27
     virtual void SetClientSocket( int socket ) = 0;
     virtual void DisconnectGameNow( int disconnectReasonEnum ) = 0;
     virtual void DisconnectGameQueued( int disconnectReasonEnum ) = 0; // 30
@@ -61,5 +61,6 @@ public:
     virtual void __dunno4() = 0; // might be RegisterNetMessage()
     virtual void PrintConnectionStatus( void ) = 0; // same as doing status in console
     virtual void __dunno5() = 0; // might be ProcessConnectionlessPacket()
+    virtual void sub_2F15E0() = 0; // added with aghanim's labyrinth
     virtual void MessageData( unsigned int dunno, unsigned short something, unsigned int somethinElse, unsigned char* someBytes ) = 0;
 };

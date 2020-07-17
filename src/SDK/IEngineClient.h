@@ -82,9 +82,7 @@ public:
     virtual const char* GetDemoPlaybackFileName(void) = 0;
     virtual bool IsHLTV(void) = 0;
     //
-    virtual void GetMainMenuBackgroundName( char** buffer, int bufferLen ) = 0;
     virtual void GetUILanguage( char** buffer, int bufferLen ) = 0;
-    virtual bool IsSkyboxVisibleFromPoint( const Vector &point ) = 0;
     virtual float GetScreenAspectRatio( int width, int height ) = 0;
     virtual int GetEngineBuildNumber(void) = 0;
     virtual const char* GetProductVersionString(void) = 0; // eg "47"
@@ -100,8 +98,6 @@ public:
 	virtual void OnStorageDeviceAttached( int ) = 0;
 	virtual void OnStorageDeviceDetached( int ) = 0;
 
-	virtual int GetActiveSplitScreenPlayerSlot( void ) = 0;
-	virtual void SetActiveSplitScreenPlayerSlot( int splitScreenSlot ) = 0;
 	virtual void SetLocalPlayerIsResolvable( const char*, int slot, bool state ) = 0;
 	virtual bool IsLocalPlayerResolvable( void ) = 0;
 	virtual void RegisterDemoCustomDataCallback() = 0; //(CUtlSymbolLarge,void (*)(uchar *,ulong) = 0)
@@ -120,15 +116,10 @@ public:
 	virtual float GetServerSimulationFrameTime( void ) = 0;
 	virtual float GetServerTickTimes( ) = 0; //(ulong long,CUtlVector<IVEngineClient2::ServerTickTime_t,CUtlMemory<IVEngineClient2::ServerTickTime_t,int>> &)
 	virtual bool IsInCommentaryMode( void ) = 0;
-	virtual void SetBlurFade( float fade ) = 0;
 	virtual bool IsTransitioningToLoad( void ) = 0;
-	virtual void SearchPathsChangedAfterInstall( void ) = 0; // might be bool?
 	virtual void SetConnectionPassword( const char* password ) = 0;
 	virtual void* GetSteamAPIContext( void ) = 0;
 	virtual void ServerCmdKeyValues( void* KeyValues ) = 0;
-	virtual void* GetStartupImage( void ) = 0;
-	virtual void* GetBackgroundMovie( void ) = 0;
-	virtual void* GetBackgroundMusic( void ) = 0;
 	virtual void TickProgressBar( void ) = 0;
 	virtual void* GetMainWindow( void ) = 0;
 	virtual void DrawSelectedPanel( int panelHandle ) = 0;

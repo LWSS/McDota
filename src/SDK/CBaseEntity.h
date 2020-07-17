@@ -168,7 +168,6 @@ public:
     virtual void unk_emptyfunc(); // added with 2020 battlepass
     virtual int  unk_returns1(); // added with 2020 battlepass
     virtual void* C_BaseAnimating__GetMouth(void);
-    virtual void C_BaseEntity__GetSoundSpatialization(void* SpatializationInfo_t);
     virtual int C_BaseAnimating__LookupAttachment(const char* name);
     virtual bool C_BaseAnimating__GetAttachment(unsigned char, matrix3x4_t &);
     virtual void C_BaseEntity__InvalidateAttachments(void);
@@ -180,16 +179,17 @@ public:
     virtual bool C_BaseEntity__IsValidIDTarget(void);
     virtual const char* C_BaseEntity__GetIDString(void); // haystack
     virtual bool C_BaseEntity__IsPotentiallyUsable(void);
-    virtual const char* C_BaseEntity__GetUseString(CBaseEntity *ent);
+    virtual const char* C_BaseEntity__GetUseString(CBaseEntity *ent); //haystack anudda
     virtual bool C_BaseEntity__IsAbleToGlow(void);
     virtual int C_BaseEntity__GetUseType(CBaseEntity *ent);
     virtual void* C_BaseModelEntity__GetGlowEntity(void);
     virtual bool C_BaseEntity__IsSaveNonNetworkable(void);
     virtual void sub_2A65970();
-    virtual bool C_DOTAPlayer__ShouldDraw(void);
+    virtual bool C_DOTAPlayer__ShouldDraw(void); // "vr_hmd_tracking_passthrough"
     virtual void C_DOTAPlayer__Simulate(void);
     virtual void sub_2A97C00();
     virtual void sub_2CDAE90();
+    virtual void sub_2CDAE91();
     virtual void sub_2CDAD10();
     virtual void* C_BaseEntity__GetClientVehicle(void);
     virtual void sub_26F5240();
@@ -199,15 +199,13 @@ public:
     virtual void loc_2A93EF0();
     virtual void sub_2A7C7A0();
     virtual void C_BaseModelEntity__Clear(void);
-    virtual long C_BaseEntity__GetTextureAnimationStartTime(void);
+    virtual float C_BaseEntity__GetTextureAnimationStartTime(void);
     virtual bool C_BaseEntity__TextureAnimationWrapped(void);
-    virtual int C_BasePlayer__ShadowCastType(void);
-    virtual bool C_BasePlayer__ShouldReceiveProjectedTextures(int unk);
-    virtual void* sub_2A95330(); // added dec 7th 2018, returns pointer most likely
     virtual void loc_2A7A330();
     virtual void C_BaseEntity__OnTakeDamage(void* CTakeDamageInfo);
     virtual void C_BaseEntity__TakeDamage(void* CTakeDamageInfo);
     virtual void sub_26F57E0();
+    virtual void sub_2E1E560(); // added with aghanim's labyrinth. xor eax, eax.
     virtual void unk_newFuncHashBucket(); // added with summer scrub pt2 - elf_gnu_hash_bucket
     virtual int C_BaseEntity__ClothSettingsTypeID(); // a guess
     virtual void sub_2907330();
@@ -259,8 +257,6 @@ public:
     virtual bool C_BaseCombatCharacter__IsBaseCombatCharacter(void); // Note: One of these is missing, couldn't tell which one, they all return 0
     virtual void* C_BaseCombatCharacter__MyCombatCharacterPointer(void); // Note: One of these is missing, couldn't tell which one, they all return 0
     virtual void* C_BaseCombatCharacter__MyCombatCharacterPointer2(void); // Note: One of these is missing, couldn't tell which one, they all return 0
-    virtual bool C_BaseEntity__IsBaseCombatWeapon(void); // Note: One of these is missing, couldn't tell which one, they all return 0
-    virtual void* C_BaseEntity__MyCombatWeaponPointer(void); // Note: One of these is missing, couldn't tell which one, they all return 0
     virtual bool C_BaseEntity__IsBaseObject(void); // Note: One of these is missing, couldn't tell which one, they all return 0
     virtual bool C_BaseEntity__IsBaseTrain(void); // Note: One of these is missing, couldn't tell which one, they all return 0
     virtual bool C_BaseEntity__IsNextBot(void); // Note: One of these is missing, couldn't tell which one, they all return 0
@@ -325,7 +321,8 @@ public:
     virtual bool C_BaseModelEntity__CanBeSeenByTeam(DOTATeam_t team) = 0;
     virtual bool C_BaseModelEntity__IsPartOfFOWSystem(void); // F.O.W. = Fog Of War
     virtual void C_BaseAnimating__SetTransmit(void* CCheckTransmitInfo, bool unk);
-    virtual void C_BaseAnimating__GetRenderData(void* unk, int ModelDataCategory_t);
+    virtual void sub_2F9D910(); // added with aghanim's labyrinth. Empty func.
+    virtual void C_BaseAnimating__GetRenderData(void* unk, int ModelDataCategory_t); // StudioFrameAdvance wrapper
     virtual void C_BaseAnimating__UpdateClientSideAnimation(void);
     virtual void C_BaseAnimating__ComputeClientSideAnimationFlags(void);
     virtual void PlayPlayerFootstep(); // a guess

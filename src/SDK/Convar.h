@@ -81,14 +81,14 @@ public:
     virtual	void SetValue(char const*)= 0;
     virtual	void SetValue(float)= 0;
     virtual	void SetValue(int)= 0;
-    virtual	void SetValue(Color)= 0;
+    virtual	void SetValue(ColorRGBA)= 0;
     virtual	float GetFloat(void)= 0;
     virtual	int GetInt(void)= 0;
     virtual	bool GetBool(void)= 0;
     virtual	void InternalSetValue(char const*)= 0;
     virtual	void InternalSetFloatValue(float)= 0;
     virtual	void InternalSetIntValue(int)= 0;
-    virtual	void InternalSetColorValue(Color)= 0;
+    virtual	void InternalSetColorValue(ColorRGBA)= 0;
     virtual	void ClampValue(float &)= 0;
     virtual	void ChangeStringValue(char const*,float)= 0;
     virtual	void Create()= 0;//char const*,char const*,long long,char const*,bool,float,bool,float,void (*)(IConVar *,char const*,float)) = 0;

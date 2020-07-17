@@ -53,7 +53,7 @@ public:
     virtual void GetColorCorrectionScale(void) = 0;
     virtual void OnResetHUD(void) = 0;
     virtual void HudElementKeyInput(int, int buttonCode_t, const char*) = 0;
-    virtual Color GetPropGlowColor(CBaseEntity const *) = 0;
+    virtual Color2 GetPropGlowColor(CBaseEntity const *) = 0;
     virtual int GetSplitScreenPlayerSlot(void) = 0;
     virtual void GetInputCommandSource(void) = 0;
     virtual bool CanVoiceChat(void) = 0;

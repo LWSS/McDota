@@ -89,7 +89,7 @@ void Util::SpewDataMap( Datamap *dMap, bool toLogFile ) {
         if( toLogFile ){
             MC_LOGF( "\nStart of Pred Map for %s\n", dMap->className );
         } else {
-            cvar->ConsoleDPrintf( "Start of Pred Map for: %s\n", dMap->className );
+            MC_PRINTF( "Start of Pred Map for: %s\n", dMap->className );
         }
 		for( uint64_t i = 0; i < dMap->numFields; i++ ){
 			if( !dMap->dataDesc[i].fieldName )
@@ -98,20 +98,20 @@ void Util::SpewDataMap( Datamap *dMap, bool toLogFile ) {
             if( toLogFile ){
                 MC_LOGF( "-%s - [0x%x] - (%s)\n", dMap->dataDesc[i].fieldName, dMap->dataDesc[i].fieldOffset[TD_OFFSET_NORMAL], DataFieldType2String( dMap->dataDesc[i].type ) );
             } else {
-                cvar->ConsoleDPrintf( "-%s - [0x%x] - (%s)\n", dMap->dataDesc[i].fieldName, dMap->dataDesc[i].fieldOffset[TD_OFFSET_NORMAL], DataFieldType2String( dMap->dataDesc[i].type ) );
+                MC_PRINTF( "-%s - [0x%x] - (%s)\n", dMap->dataDesc[i].fieldName, dMap->dataDesc[i].fieldOffset[TD_OFFSET_NORMAL], DataFieldType2String( dMap->dataDesc[i].type ) );
             }
             if( dMap->dataDesc[i].type == FIELD_EMBEDDED ){
                 if( dMap->dataDesc[i].td ){
                     if( toLogFile ){
                         MC_LOGF("Recursing for Property: %s(%s)\n", dMap->dataDesc[i].fieldName, dMap->dataDesc[i].td->className ? dMap->dataDesc[i].td->className : "NULL_NAME");
                     } else {
-                        cvar->ConsoleDPrintf("Recursing for Property: %s(%s)\n", dMap->dataDesc[i].fieldName, dMap->dataDesc[i].td->className ? dMap->dataDesc[i].td->className : "NULL_NAME");
+                        MC_PRINTF("Recursing for Property: %s(%s)\n", dMap->dataDesc[i].fieldName, dMap->dataDesc[i].td->className ? dMap->dataDesc[i].td->className : "NULL_NAME");
                     }
                     Util::SpewDataMap( dMap->dataDesc[i].td, toLogFile );
                     if( toLogFile ){
                         MC_LOGF("^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n");
                     } else {
-                        cvar->ConsoleDPrintf("^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n");
+                        MC_PRINTF("^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n");
                     }
                 }
             }
@@ -119,7 +119,7 @@ void Util::SpewDataMap( Datamap *dMap, bool toLogFile ) {
         if( toLogFile ){
             MC_LOGF( "^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n" );
         } else {
-            cvar->ConsoleDPrintf( "^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n" );
+            MC_PRINTF( "^^^^^^^^^^^^^^^^^^^^^^^^^^\n\n" );
         }
         dMap = dMap->baseMap;
 	}

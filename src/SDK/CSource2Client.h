@@ -132,22 +132,18 @@ public:
 	virtual void HudVidInit(void); // 30
 	virtual void HudUpdate(bool bActive);
 	virtual void HudReset(void);
-	virtual void HudText(void* client_textmessage_t);
 	virtual void IN_ClearStates(void);
 	virtual bool IN_IsKeyDown(const char *name, bool isDown);
 	virtual void OnLevelLoadingStarted(void);
 	virtual void CenterStringOff(void);
 	virtual void View_Fade(void* ScreenFade_t);
 	virtual void OnSplitScreenStateChanged(void);
-	virtual void ResetHudCloseCaption(void);
 	virtual int GetPlayerTeamIndex(int entIndex);
 	virtual void sub_2B60070();
 	virtual bool CanVoiceChat(void);
 	virtual void OnFullEntityUpdate(void);
 	virtual void OnServerConnectionTimedOut(void const * ns_address);
 	virtual void sub_2B60080();
-	virtual void sub_2B614E0();
-	virtual void sub_2B61530();
 	virtual void UpdateAudioState(void* AudioState_t, int splitScreenSlot);
 	virtual void sub_2B60040();
 	virtual void sub_2B6E830();
