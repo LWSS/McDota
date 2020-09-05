@@ -3,7 +3,7 @@
 #include "CBaseEntity.h"
 
 #define MAX_ENTITIES_IN_LIST 512
-#define MAX_ENTITY_LISTS 64
+#define MAX_ENTITY_LISTS 64 // 0x3F
 #define MAX_TOTAL_ENTITIES MAX_ENTITIES_IN_LIST * MAX_ENTITY_LISTS // 0x8000
 
 #define LOWORD(a) ((uint16_t)(a))
@@ -86,6 +86,5 @@ public:
 
     void* unk;
     void* unk2;
-    void* unk3;
     CEntityIdentities* m_pIdentityChunks[MAX_ENTITY_LISTS];
 };

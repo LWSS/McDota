@@ -140,23 +140,6 @@ public:
     virtual bool GetCurrentDirectory( char* pDirectory, int maxlen ) = 0;
     virtual FileNameHandle_t FindOrAddFileName( const char *pFileName ) = 0;
     virtual bool String( const FileNameHandle_t& handle, char *buf, int buflen ) = 0;
-    virtual void AsyncReadMultiple() = 0;
-    virtual void AsyncAppend() = 0;
-    virtual void AsyncAppendFile() = 0;
-    virtual void AsyncFinishAll() = 0;
-    virtual void AsyncFinishAllWrites() = 0;
-    virtual void AsyncFlush() = 0;
-    virtual void AsyncSuspend() = 0;
-    virtual void AsyncResume() = 0;
-    virtual void AsyncBeginRead() = 0;
-    virtual void AsyncEndRead() = 0;
-    virtual void AsyncFinish() = 0;
-    virtual void AsyncGetResult() = 0;
-    virtual void AsyncAbort() = 0;
-    virtual void AsyncStatus() = 0;
-    virtual void AsyncSetPriority() = 0;
-    virtual void AsyncAddRef() = 0;
-    virtual void AsyncRelease() = 0;
     virtual void pure1() = 0;
     virtual void pure2() = 0;
     virtual void pure3() = 0;
@@ -176,10 +159,6 @@ public:
     virtual FileNameHandle_t FindFilename( char const *pFileName ) = 0;
     virtual KeyValues	*LoadKeyValues( KeyValuesPreloadType_t type, char const *filename, char const *pPathID = 0 ) = 0;
     virtual void loc_16F30() = 0;
-    virtual void sub_30D80() = 0;
-    virtual void sub_31200() = 0;
-    virtual void sub_2FA50() = 0;
-    virtual void sub_30880() = 0;
     virtual bool GetFileTypeForFullPath( char const *pFullPath, wchar_t *buf, int bufSizeInBytes ) = 0;
     virtual bool ReadToBuffer() = 0;//void *,CUtlBuffer &,int,void * (*)(char const*,uint)
     virtual bool GetOptimalIOConstraints( FileHandle_t hFile, unsigned *pOffsetAlign, unsigned *pSizeAlign, unsigned *pBufferAlign ) = 0;
@@ -224,7 +203,6 @@ public:
     virtual void sub_10E50() = 0; // DLC-related functions. Changed with battlepass 2020
     virtual void loc_11F80() = 0; // DLC-related functions. Changed with battlepass 2020
     virtual void sub_10E70() = 0; // DLC-related functions. Changed with battlepass 2020
-    virtual void DumpFilesystemStats() = 0;
     virtual void DeleteDirectory() = 0;
     virtual void DeleteDirectoryAndContents() = 0;
     virtual void IsPathInvalidForFilesystem() = 0;
@@ -249,7 +227,7 @@ public:
     virtual bool WriteFile( const char *pFileName, const char *pPath, CUtlBuffer &buf ) = 0;
 
 
-    // Not "hooked up" for linux
+    // zip stuff Not "hooked up" for linux
     virtual bool UnzipFile( const char *pFileName, const char *pPath, const char *pDestination ) = 0;
     virtual bool CopyAFile( const char *pFileName, const char *pPath, const char *pDestination, bool unk ) = 0;
     virtual void loc_26460() = 0;

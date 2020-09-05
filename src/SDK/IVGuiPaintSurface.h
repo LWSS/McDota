@@ -6,6 +6,7 @@
 
 typedef unsigned long long VPANEL;
 
+// (libvguirendersurface) - xref "DrawFilledRectFastFade" to ::DrawFilledRectFastFade()
 class IVGuiPaintSurface
 {
 public:

@@ -46,9 +46,7 @@ static bool FindGameEntitySystem()
         return false;
     }
 
-    uintptr_t jumpInstructionAddr = reinitPredictables + 33;
-    int32_t jumpDisplacement = *reinterpret_cast<int32_t*>(jumpInstructionAddr + 1);
-    uintptr_t getHighestEntIndexFnAddr = (jumpInstructionAddr + 5) + jumpDisplacement;
+    uintptr_t getHighestEntIndexFnAddr = GetAbsoluteAddress( reinitPredictables + 33, 1, 5 );
 
     // CGameEntitySystem::GetHighestEntityIndex()
     // We get the class offset for the highest Ent Index

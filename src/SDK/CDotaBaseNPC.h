@@ -110,6 +110,7 @@ public:
     virtual void sub_2ED6891() = 0;
     virtual void sub_287ADD0() = 0; // added w/ 2020 new bloom extender. returns 0
     virtual void sub_2CAED50() = 0; // added w/ battlepass 2020. returns 0
+    virtual float sub_2E7D090() = 0; // added w/ WR Arcana, returns a float from outside the object
     virtual bool C_DOTA_BaseNPC__IsDemon(void) = 0;
     virtual bool C_DOTA_BaseNPC__IsRoshan(void) = 0;
     virtual bool C_DOTA_BaseNPC__ShouldForwardPurchaseRequest(void) = 0;

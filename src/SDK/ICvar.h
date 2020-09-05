@@ -3,7 +3,7 @@
 #include "IAppSystem.h"
 #include "Convar.h"
 
-//xref "Parent and child ConVars with different" to RegisterConCommand
+//xref "VEngineCvar007" to ::QueryInterface() - should be 1st one (moved to libtier0.so)
 class ICvar : public IAppSystem
 {
 public:
@@ -29,12 +29,6 @@ public:
 	virtual int GetMaxSplitScreenSlots(void) = 0;
 	virtual void AddSplitScreenConVars(void) = 0;
 	virtual void RemoveSplitScreenConVars(int) = 0;
-	virtual void IsMaterialThreadSetAllowed(void) = 0;
-	virtual void QueueMaterialThreadSetValue(ConVar *,char const*) = 0;
-	virtual void QueueMaterialThreadSetValue(ConVar *,int) = 0;
-	virtual void QueueMaterialThreadSetValue(ConVar *,float) = 0;
-	virtual void HasQueuedMaterialThreadConVarSets(void) = 0;
-	virtual void ProcessQueuedMaterialThreadConVarSets(void) = 0;
 	virtual void FactoryInternalIterator(void) = 0;
 	virtual void InstallConVarListener(void *IConVarListener) = 0;
 	virtual void RemoveConVarListener(void *IConVarListener) = 0;
@@ -44,4 +38,5 @@ public:
 	virtual void ResetConVarsToSnapshot(void* ConVarSnapshot_t__ ) = 0;
 	virtual void DestroyConVarSnapshot(void* ConVarSnapshot_t__ ) = 0;
 	virtual bool IsValid(void) = 0; // added march 2 2020
+	virtual void* GetSomething(void) = 0; // added sept 4 2020 - returns [rdi+100h]
 };

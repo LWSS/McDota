@@ -179,8 +179,6 @@ public:
     virtual bool C_BaseEntity__IsValidIDTarget(void);
     virtual const char* C_BaseEntity__GetIDString(void); // haystack
     virtual bool C_BaseEntity__IsPotentiallyUsable(void);
-    virtual const char* C_BaseEntity__GetUseString(CBaseEntity *ent); //haystack anudda
-    virtual bool C_BaseEntity__IsAbleToGlow(void);
     virtual int C_BaseEntity__GetUseType(CBaseEntity *ent);
     virtual void* C_BaseModelEntity__GetGlowEntity(void);
     virtual bool C_BaseEntity__IsSaveNonNetworkable(void);
@@ -188,7 +186,6 @@ public:
     virtual bool C_DOTAPlayer__ShouldDraw(void); // "vr_hmd_tracking_passthrough"
     virtual void C_DOTAPlayer__Simulate(void);
     virtual void sub_2A97C00();
-    virtual void sub_2CDAE90();
     virtual void sub_2CDAE91();
     virtual void sub_2CDAD10();
     virtual void* C_BaseEntity__GetClientVehicle(void);
@@ -220,7 +217,7 @@ public:
     virtual bool C_DOTAPlayer__ShouldPredict(void);
     virtual void C_BasePlayer__PreRender(int splitScreenSlot);
     virtual const char* C_BaseEntity__GetPlayerName(void); // This function doesn't really do jack
-    virtual int C_BaseEntity__GetUsePriority(void* C_BaseEntity);
+    virtual int C_BaseEntity__GetUsePriority(void* C_BaseEntity); //returns 1
     virtual void C_BaseEntity__EstimateAbsVelocity(Vector &out);
     virtual bool C_BaseEntity__CanBePoweredUp(void);
     virtual void C_BaseEntity__AttemptToPowerup(int unk, float unk2, float unk3, void* C_BaseEntity, void* CDamageModifier);
@@ -285,7 +282,6 @@ public:
     virtual void* C_BaseEntity__GetS1Skin(void);
     virtual void C_BaseEntity__BoneMergeFastCullBloat();
     virtual void sub_2739EE0();
-    virtual void sub_2739EF0();
     virtual void C_BaseEntity__AddRagdollToFadeQueue();
     virtual void C_BaseEntity__OnLeftClick(void* C_BasePlayer, bool unk);
     virtual void C_BaseEntity__OnRightClick(void* C_BasePlayer);
@@ -346,6 +342,8 @@ public:
     virtual void sub_29E64D0(); //added w/ new boom extension 2020 skeeter
     virtual void sub_29D23B0(); //added w/ shader update march 3 2020
     virtual void sub_292A800();
+    virtual void sub_292A800_grug();
+    virtual void sub_292A800_grug2();
     virtual void C_BaseAnimating__HandleScriptedAnimEvent(void* animevent_t);
     virtual void C_BaseAnimating__HandleBehaviorAnimEvent(void* animevent_t);
     virtual void C_BaseAnimating__SpeechAnimEvent(const char* unk);
@@ -368,11 +366,10 @@ public:
     virtual void C_BaseAnimating__ComputeStencilState(void* ShaderStencilState_t);
     virtual bool C_BaseAnimating__WantsInterpolatedVars(void);
     virtual void sub_29025F0();
-    virtual void C_BasePlayer__FootstepSound();
+    virtual void C_BasePlayer__FootstepSound(); // sounder
     virtual void sub_26F5880();
     virtual void sub_26F5890();
     virtual void C_BaseFlex__InitPhonemeMappings(void);
-    virtual void C_BaseFlex__OwnsChoreoScene(void* CChoreoScene);
     virtual void C_BaseFlex__OverrideBlinkWeight(float weight);
     virtual void C_BaseFlex__StartSceneEvent();
     virtual void C_BaseFlex__ProcessSequenceSceneEvent();
