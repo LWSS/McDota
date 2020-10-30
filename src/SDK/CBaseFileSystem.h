@@ -195,17 +195,18 @@ public:
     virtual void CreateFilenameforUGCFile() = 0;
     virtual void OpenUGCFile() = 0;
     virtual void sub_10E00() = 0; // DLC-related functions. Changed with battlepass 2020
-    virtual void sub_10E10() = 0; // DLC-related functions. Changed with battlepass 2020
-    virtual void sub_10E20() = 0; // DLC-related functions. Changed with battlepass 2020
-    virtual void sub_10E30() = 0; // DLC-related functions. Changed with battlepass 2020
-    virtual void sub_10E40() = 0; // DLC-related functions. Changed with battlepass 2020
-    virtual void sub_10E60() = 0; // DLC-related functions. Changed with battlepass 2020
-    virtual void sub_10E50() = 0; // DLC-related functions. Changed with battlepass 2020
-    virtual void loc_11F80() = 0; // DLC-related functions. Changed with battlepass 2020
-    virtual void sub_10E70() = 0; // DLC-related functions. Changed with battlepass 2020
+    //Removed with Diretide 2020?? - might return at a later date.
+    //virtual void sub_10E10() = 0; // DLC-related functions. Changed with battlepass 2020
+    //virtual void sub_10E20() = 0; // DLC-related functions. Changed with battlepass 2020
+    //virtual void sub_10E30() = 0; // DLC-related functions. Changed with battlepass 2020
+    //virtual void sub_10E40() = 0; // DLC-related functions. Changed with battlepass 2020
+    //virtual void sub_10E60() = 0; // DLC-related functions. Changed with battlepass 2020
+    //virtual void sub_10E50() = 0; // DLC-related functions. Changed with battlepass 2020
+    //virtual void loc_11F80() = 0; // DLC-related functions. Changed with battlepass 2020
+    //virtual void sub_10E70() = 0; // DLC-related functions. Changed with battlepass 2020
     virtual void DeleteDirectory() = 0;
     virtual void DeleteDirectoryAndContents() = 0;
-    virtual void IsPathInvalidForFilesystem() = 0;
+    virtual void IsPathInvalidForFilesystem() = 0; //strLener
     virtual void GetAvailableDrives() = 0;
     virtual void Readline() = 0;
     virtual void sub_238A0() = 0;

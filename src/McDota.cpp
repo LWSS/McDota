@@ -166,7 +166,7 @@ int __attribute__((constructor)) Startup()
     particleSystemVMT->ApplyVMT();
 
     networkSystemVMT = std::unique_ptr<VMT>(new VMT( networkSystem ));
-    networkSystemVMT->HookVM(Hooks::CreateNetChannel, 28);
+    networkSystemVMT->HookVM(Hooks::CreateNetChannel, 26);
     networkSystemVMT->ApplyVMT();
 
     Netvars::DumpNetvars( client, "/tmp/dotanetvars.txt" );

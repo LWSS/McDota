@@ -9,7 +9,7 @@
 
 bool Interfaces::FindExportedInterfaces( )
 {
-    client = GetInterface<CSource2Client>("../../dota/bin/linuxsteamrt64/libclient.so", "Source2Client002", 127 );
+    client = GetInterface<CSource2Client>("../../dota/bin/linuxsteamrt64/libclient.so", "Source2Client002", 130 );
     cvar = GetInterface<ICvar>( "./libtier0.so", "VEngineCvar007", 41 );
     engine = GetInterface<IEngineClient>( "./libengine2.so", "Source2EngineToClient001", 163 );
     inputSystem = GetInterface<IInputSystem>( "./libinputsystem.so", "InputSystemVersion001", 89 );
@@ -18,15 +18,15 @@ bool Interfaces::FindExportedInterfaces( )
     panel = GetInterface<IVPanel>("./libvgui2.so", "VGUI_Panel010", 82 );
     splitScreenService = GetInterface<CSplitScreenService>("./libengine2.so", "SplitScreenService_001", 47 );
     panoramaEngine = GetInterface<IPanoramaUIEngine>("./libpanorama.so", "PanoramaUIEngine001", 17 );
-    fontManager = GetInterface<CFontManager>("./libmaterialsystem2.so", "FontManager_001", 45 );
+    fontManager = GetInterface<CFontManager>("./libmaterialsystem2.so", "FontManager_001", 48 );
     engineServiceMgr = GetInterface<CEngineServiceMgr>("./libengine2.so", "EngineServiceMgr001", 51 );
     particleSystemMgr = GetInterface<CParticleSystemMgr>("./libparticles.so", "ParticleSystemMgr003", 48 );
     networkMessages = GetInterface<CNetworkMessages>("./libnetworksystem.so", "NetworkMessagesVersion001", 35 );
     gameEventSystem = GetInterface<CGameEventSystem>("./libengine2.so", "GameEventSystemClientV001", 21 );
     networkStrings = GetInterface<CNetworkStringTableContainer>("./libengine2.so", "Source2EngineToClientStringTable001", 19);
     materialSystem = GetInterface<IMaterialSystem>("./libmaterialsystem2.so", "VMaterialSystem2_001", 38);
-    networkSystem = GetInterface<CNetworkSystem>("./libnetworksystem.so", "NetworkSystemVersion001", 66);
-    fileSystem = GetInterface<CBaseFileSystem>( "./libfilesystem_stdio.so", "VFileSystem017", 156);
+    networkSystem = GetInterface<CNetworkSystem>("./libnetworksystem.so", "NetworkSystemVersion001", 64);
+    fileSystem = GetInterface<CBaseFileSystem>( "./libfilesystem_stdio.so", "VFileSystem017", 148);
     fs = fileSystem;
 
     if( !requestedInterfaces.empty() ){

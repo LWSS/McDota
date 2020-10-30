@@ -17,7 +17,7 @@ static bool FindGlobalVars() {
 
     uintptr_t SetGlobals = reinterpret_cast<uintptr_t>( (void*)(client->*setGlobalsPtr) );
 
-	globalVars = **reinterpret_cast<CGlobalVars***>(GetAbsoluteAddress(SetGlobals + 9, 3, 7));
+	globalVars = **reinterpret_cast<CGlobalVars***>(GetAbsoluteAddress(SetGlobals + 7, 3, 7));
 	return true;
 }
 
@@ -532,7 +532,7 @@ bool Scanner::FindAllSigs( )
 	sigsOK &= FindDBPlayPanel();
 	sigsOK &= FindSoundOpSystem();
 	sigsOK &= FindAcceptMatch();
-	sigsOK &= FindRichPresence();
+	//sigsOK &= FindRichPresence(); // removed for now, unused and silly - can do this easier
 	sigsOK &= FindGCFunctions();
 	sigsOK &= FindPhysicsQuery();
 	sigsOK &= FindRenderGameSystem();

@@ -7,6 +7,7 @@ class IPeerToPeerCallbacks;
 class IConnectionlessPacketHandler;
 
 // xref "Leaked channel %s remote %s\n" to Shutdown()
+// or xref "CNetworkSystem::ShutdownGameServer" to ShutdownGameServer()
 class CNetworkSystem : IAppSystem
 {
 public:
@@ -18,8 +19,6 @@ public:
     virtual void loc_1F5210() = 0;
     virtual void sub_1E4ED0() = 0;
     virtual void sub_1F1EF0() = 0;
-    virtual void sub_1E3540() = 0;
-    virtual void sub_1F2370() = 0;
     virtual void InitP2PNetworking(IPeerToPeerCallbacks *) = 0; // "Can't connectloopback"
     virtual void ShutdownP2PNetworking(int) = 0;
     virtual void TerminateP2PSockets(int) = 0;

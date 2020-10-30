@@ -150,6 +150,7 @@ public:
 	virtual void View_Render(void* vrect_t);
 	virtual void SetBlurFade(float blurFade);
 	virtual void* GetSoundSpatialization(int entIndex, void* SpatializationInfo_t);
+	virtual void sub_2E35350( void *rsi ); // Added with diretide-2020, sets some sort of utlstring.
 	virtual void NotifyClientSignon(int unk);
 	virtual bool CanRecordDemo(char * unk, int unk2);
 	virtual void OnDemoRecordStart(const char* name);
@@ -216,6 +217,8 @@ public:
 	virtual void sub_2B5FF80();
 	virtual void sub_2B5FFA0();
 	virtual void sub_2B61940();
+    virtual void sub_2E32F90(); // added with Diretide-2020
+    virtual void sub_2E359D0(); // added with Diretide-2020
 	virtual void sub_2B65BD0();
 	virtual void sub_someDebugShit(); //%5d: %8.6f msec change ',27h,'%s()',27h,' on field %s(path=%s) fo' db 'r ent %s(%s) name=',27h,'%s',27h,0Ah
 };

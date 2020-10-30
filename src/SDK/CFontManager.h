@@ -40,6 +40,7 @@ enum class FontDrawType_t : int
 };
 
 // "DefaultFontAliasGroup" xref to the one that's by a bunch of `mov dword ptr [rax+xx], 0` - this is Init()
+// or xref "Tag: %s \n" back to SpewFonts
 class CFontManager : IAppSystem
 {
 public:
@@ -80,3 +81,4 @@ public:
 };
 
 // disabled bitmap fonts with the Ti2019 battlepass
+// some threading changes with Diretide 2020

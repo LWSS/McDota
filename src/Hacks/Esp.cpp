@@ -127,7 +127,7 @@ void ESP::PaintTraverse( IVPanel *thisptr, IVGuiPaintSurface *surface, VPANEL pa
 
             if( strstr( entity->Schema_DynamicBinding()->binaryName, "C_DOTAPlayer" ) != nullptr ){
                 auto *player = (CDotaPlayer*)entity;
-                strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" - %s", player->C_DOTAPlayer__GetPlayerName() );
+                strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" - %s", "GetPlayerName Broke :)"/*player->C_DOTAPlayer__GetPlayerName()*/ );
                 strLen += swprintf( buffer + strLen, std::max( 0, bufferLen - strLen ), L" - (%p)", (void*)player );
             }
 

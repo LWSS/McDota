@@ -113,12 +113,10 @@ public:
     virtual void sub_273BE20();
     virtual void CEntityInstance__AddChangeAccessorPath(void* CFieldPath);
     virtual void CEntityInstance__ReloadPrivateScripts(void);
-    virtual void* C_BaseAnimating__GetDataDescMap(void); // C_BaseAnimatingOverlay::m_DataMap
     virtual Datamap* C_DOTAPlayer__GetPredDescMap(void);
-    virtual CCollisionProperty* C_BaseModelEntity__GetCollideable(void);
-    virtual void* C_BaseEntity__GetPredictionCopyable(void);
     virtual void YouForgotToImplementOrDeclareClientClass();
     virtual ClientClass* C_DOTAPlayer__GetClientClass(void);
+    virtual void* datamap_maybe(); // might be the missing datamap from above. unsure - diretide 2020
     virtual void C_BaseModelEntity__SpawnShared(void* CEntityKeyValues);
     virtual void C_BaseModelEntity__PopulatePoseParameters(void);
     virtual void C_BasePlayer__PreFirstNetworkUpdate(void);
@@ -129,6 +127,7 @@ public:
     virtual void sub_285FB30();
     virtual void sub_285FB40();
     virtual bool C_BasePlayer__Classify(void);
+    virtual CCollisionProperty* C_BaseModelEntity__GetCollideable(void); // moved w/ diretide 2020
     virtual void C_BaseEntity__ModifyEconParticles(int unk);
     virtual bool C_BaseEntity__ShouldSavePhysics(void);
     virtual bool C_BaseEntity__CreateVPhysics(void);
@@ -152,25 +151,9 @@ public:
     virtual void sub_2A5E2D0();
     virtual void sub_2739BE0();
     virtual void C_BaseEntity__ValidateModelIndex(void);
-    virtual void C_BaseEntity__AsParticleEHandle(void);
     virtual void C_BaseCombatCharacter__OnNewParticleEffect(const char* name, void* CNewParticleEffect);
     virtual void C_BaseCombatCharacter__OnParticleEffectDeleted(void *CNewParticleEffect);
-    virtual void C_BaseEntity__PredCopy_SetHeapSize(int);
-    virtual void* C_BaseEntity__PredCopy_GetStructBase(void);
-    virtual int C_BaseEntity__PredCopy_GetOffsetType(void);
-    virtual void C_BaseEntity__PredCopy_SetCommand(int);
-    virtual void* C_BaseEntity__PredCopy_GetCommand(void);
-    virtual void C_BaseEntity__PredCopy_Alloc(unsigned int unk, void* datamap_t, bool unk2);
-    virtual void C_BaseEntity__PredCopy_Tell(void);
-    virtual void C_BaseEntity__PredCopy_GetHeaderBlock(void* CFieldPath, unsigned int unk);
-    virtual void unk_stringshit(); // added 7-17-19
-    virtual void unk_haystack(); // yeehaw! ^^
-    virtual void unk_emptyfunc(); // added with 2020 battlepass
-    virtual int  unk_returns1(); // added with 2020 battlepass
     virtual void* C_BaseAnimating__GetMouth(void);
-    virtual int C_BaseAnimating__LookupAttachment(const char* name);
-    virtual bool C_BaseAnimating__GetAttachment(unsigned char, matrix3x4_t &);
-    virtual void C_BaseEntity__InvalidateAttachments(void);
     virtual void C_BaseEntity__OnBoneTransformsChanged(void);
     virtual void C_BaseEntity__ChangeTeam(DOTATeam_t team);
     virtual bool C_BaseEntity__InSameTeam(CBaseEntity *otherEnt);
@@ -204,12 +187,10 @@ public:
     virtual void sub_26F57E0();
     virtual void sub_2E1E560(); // added with aghanim's labyrinth. xor eax, eax.
     virtual void unk_newFuncHashBucket(); // added with summer scrub pt2 - elf_gnu_hash_bucket
-    virtual int C_BaseEntity__ClothSettingsTypeID(); // a guess
     virtual void sub_2907330();
     virtual void unk_elfshit(); //  rax, qword ptr ds:stru_D90.st_name - added 7-17-19
     virtual void* C_BasePlayer__GetPredictionOwner(void);
     virtual void unk_NewFunc(); // added with summer scrub pt2
-    virtual void sub_2E4BC90();
     virtual void C_BaseEntity__InitPredictable(void* C_BasePlayer);
     virtual void C_BaseAnimating__SetPredictable(bool predictable);
     virtual void C_BaseEntity__DecalTrace(void* CGameTrace, const char* unk);
@@ -233,15 +214,9 @@ public:
     virtual void C_BaseEntity__NotifySystemEvent(void* C_BaseEntity, int notify_system_event_t, void* notify_system_event_params_t);
     virtual void C_BaseEntity__SUB_Remove(void); // "SUB_Remove"
     virtual void sub_2903930();
-    virtual void sub_275B090();
-    virtual void sub_273A9D0();
-    virtual void sub_2A60550();
-    virtual void* C_BaseEntity__GetTracerAttachment(void);
-    virtual int C_BasePlayer__GetTracerType(void);
-    virtual void* C_BaseEntity__GetBeamTraceFilter(void);
+    virtual void sub_273A9D0(); // cmp qword ptr [rsi+50h], 0
     virtual void C_BaseEntity__DispatchTraceAttack(void* CTakeDamageInfo, const Vector &direction, void* CGameTrace);
     virtual void C_BaseEntity__TraceAttack(void* CTakeDamageInfo, const Vector &direction, void* CGameTrace);
-    virtual void sub_273C020();
     virtual bool C_BaseEntity__ShouldDrawWaterImpacts(void);
     virtual bool C_BaseEntity__ShouldDrawUnderwaterBulletBubbles(void);
     virtual void HandleShotImpactingWater();//(FireBulletsInfo_t const&,Vector const&,ITraceFilter *,Vector*) "gunshotsplash"
@@ -280,7 +255,6 @@ public:
     virtual void C_BaseEntity__InternalSetEffects(int unk);
     virtual bool C_DOTAPlayer__ShouldInterpolate(void);
     virtual void* C_BaseEntity__GetS1Skin(void);
-    virtual void C_BaseEntity__BoneMergeFastCullBloat();
     virtual void sub_2739EE0();
     virtual void C_BaseEntity__AddRagdollToFadeQueue();
     virtual void C_BaseEntity__OnLeftClick(void* C_BasePlayer, bool unk);
@@ -305,11 +279,14 @@ public:
     virtual void sub_2739EB0();
     virtual void sub_2739F30();
     virtual void sub_2739ED0();
+    virtual void sub_2B50A80(); //empty func - diretide 2020
     virtual void sub_2739F10();
     virtual void sub_2739F20();
     virtual void C_BaseCombatCharacter__OnNewModel_0();
+    virtual void sub_diretide_stinker(); // added w/ diretide 2020
+    virtual void sub_diretide_stinker1();// added w/ diretide 2020
+    virtual void sub_diretide_stinker2();// added w/ diretide 2020
     virtual void C_BaseModelEntity__GetColorModulation(float *out);
-    virtual float C_BaseAnimating__GetGlobalFadeScale(void);
     virtual void C_BaseModelEntity__DamageDecal(int unk, int unk2);
     virtual void sub_26F56F0();
     virtual void sub_26F5700(); // added sept 26 dota+ update -- empty function.
@@ -322,10 +299,8 @@ public:
     virtual void C_BaseAnimating__UpdateClientSideAnimation(void);
     virtual void C_BaseAnimating__ComputeClientSideAnimationFlags(void);
     virtual void PlayPlayerFootstep(); // a guess
-    virtual void sub_29027A0();
     virtual void sub_26F57A0();
-    virtual void sub_29032A0();
-    virtual void sub_2910170();
+    virtual void sub_2910170(); // 0x80000000h
     virtual void sub_26F57B0();
     virtual void sub_26F6A90();
     virtual void sub_26F57C0();
@@ -333,13 +308,12 @@ public:
     virtual void sub_26F57D0();
     virtual void sub_2902720();
     virtual void sub_2902760();
-    virtual void sub_26F57F0();
     virtual void sub_26F5800();
     virtual void sub_2902630();
-    virtual void sub_29F9230(); //added w/ new boom extension 2020
-    virtual void sub_29F9500(); //added w/ new boom extension 2020 yeeter
+    virtual void sub_29F9230(); //added w/ new bloom extension 2020
+    virtual void sub_29F9500(); //added w/ new bloom extension 2020 yeeter
     virtual void sub_28547F0(); //added w/ shader update march 3 2020 -empty func
-    virtual void sub_29E64D0(); //added w/ new boom extension 2020 skeeter
+    virtual void sub_29E64D0(); //added w/ new bloom extension 2020 skeeter
     virtual void sub_29D23B0(); //added w/ shader update march 3 2020
     virtual void sub_292A800();
     virtual void sub_292A800_grug();
@@ -369,11 +343,9 @@ public:
     virtual void C_BasePlayer__FootstepSound(); // sounder
     virtual void sub_26F5880();
     virtual void sub_26F5890();
-    virtual void C_BaseFlex__InitPhonemeMappings(void);
+    virtual void C_BaseFlex__InitPhonemeMappings(void); //"phonemes"
     virtual void C_BaseFlex__OverrideBlinkWeight(float weight);
     virtual void C_BaseFlex__StartSceneEvent();
     virtual void C_BaseFlex__ProcessSequenceSceneEvent();
     virtual void C_BaseFlex__ClearSceneEvent();
-    virtual void C_BaseFlex__CheckSceneEventCompletion();
-    virtual void C_BaseFlex__ShouldProcessSceneEvents(); //293
 };
