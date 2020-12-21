@@ -208,8 +208,7 @@ public:
     virtual void C_BaseEntity__Think(void);
     virtual void sub_2CCC210();
     virtual void C_BasePlayer__PhysicsSimulate(void);
-    virtual void qword_2B708B0();
-    virtual void C_BasePlayer__PhysicsSolidMaskForEntity(void);
+    virtual void C_BaseEntity__SimulateThinkInternal(void);
     virtual void* C_BaseEntity__ClothGetEntityInstanceSettings(void);
     virtual void C_BaseEntity__NotifySystemEvent(void* C_BaseEntity, int notify_system_event_t, void* notify_system_event_params_t);
     virtual void C_BaseEntity__SUB_Remove(void); // "SUB_Remove"
@@ -256,13 +255,16 @@ public:
     virtual bool C_DOTAPlayer__ShouldInterpolate(void);
     virtual void* C_BaseEntity__GetS1Skin(void);
     virtual void sub_2739EE0();
+    virtual void sub_2D7A100(); // added with furry hero
+    virtual void sub_2D7A110(); // added with furry hero
+    virtual void sub_2D7A120(); // added with furry hero
     virtual void C_BaseEntity__AddRagdollToFadeQueue();
     virtual void C_BaseEntity__OnLeftClick(void* C_BasePlayer, bool unk);
     virtual void C_BaseEntity__OnRightClick(void* C_BasePlayer);
     virtual void C_BaseEntity__OnCursorEntered(void);
     virtual void C_BaseEntity__OnCursorExited(void);
     virtual void* C_BaseEntity__GetSelection(void);
-    virtual void C_BaseEntity__GenericSelectionGetClickValidBehaviors(void);
+    virtual void C_BaseEntity__GenericSelectionGetClickValidBehaviors(void); //0x0FFFFFFFFh
     virtual void sub_2B6C440();
     virtual void sub_2BAEE50(); // added in outlanders update.
     virtual const Vector* C_BaseEntity__GetRenderOrigin(void);
@@ -322,28 +324,26 @@ public:
     virtual void C_BaseAnimating__HandleBehaviorAnimEvent(void* animevent_t);
     virtual void C_BaseAnimating__SpeechAnimEvent(const char* unk);
     virtual void unk_animEvent(); // added 7-17-19
-    virtual void C_BaseAnimating__ControlMouth(const void* CModel);
+    virtual void C_BaseAnimating__ControlMouth(const void* CModel); //"mouth"
     virtual bool C_BaseAnimating__IsViewModelOrAttachment(void);
     virtual void sub_2902780();
     virtual bool C_BaseAnimating__IsClientRagdoll(void);
     virtual void loc_2929160();
-    virtual void C_BaseAnimating__CreateClientRagdoll(bool unk);
+    virtual void C_BaseAnimating__CreateClientRagdoll(bool unk); //"client_ragdoll"
     virtual void sub_2A68210();
-    virtual void sub_26F5850();
-    virtual void C_BaseAnimating__DispatchMuzzleEffect(const char* effectNameMaybe, bool unk);
+    virtual void C_BaseAnimating__DispatchMuzzleEffect(const char* effectNameMaybe, bool unk); // "weaponType"
     virtual void C_BaseAnimating__EjectParticleBrass(const char* brassNameMaybe, int unk);
-    virtual void sub_2A82700();
-    virtual void sub_290EAC0();
     virtual bool C_BaseAnimating__IsViewModel(void);
     virtual void C_BaseAnimating__FormatViewModelAttachment(int unk, matrix3x4_t &matrix);
     virtual bool C_BaseAnimating__IsMenuModel(void);
     virtual void C_BaseAnimating__ComputeStencilState(void* ShaderStencilState_t);
     virtual bool C_BaseAnimating__WantsInterpolatedVars(void);
     virtual void sub_29025F0();
-    virtual void C_BasePlayer__FootstepSound(); // sounder
+    virtual void C_BasePlayer__FootstepSound(); // sounder +23 virts to the last of class technically
     virtual void sub_26F5880();
     virtual void sub_26F5890();
     virtual void C_BaseFlex__InitPhonemeMappings(void); //"phonemes"
+    virtual void sub_empty(); // empty function added with furry hero
     virtual void C_BaseFlex__OverrideBlinkWeight(float weight);
     virtual void C_BaseFlex__StartSceneEvent();
     virtual void C_BaseFlex__ProcessSequenceSceneEvent();

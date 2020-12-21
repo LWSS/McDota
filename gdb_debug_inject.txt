@@ -1,4 +1,4 @@
-set $library = "/home/lwss/Documents/McDota-Master/libMcDota.so"
+set $library = "/home/blackops/Documents/McDota-Master/libMcDota.so"
 set $dlopen = (void*(*)(char*, int)) dlopen
 set $dlmopen = (void* (*)(long int, char*, int)) dlmopen
 set $dlinfo = (int (*)(void*, int, void*)) dlinfo

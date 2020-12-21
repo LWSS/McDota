@@ -67,6 +67,8 @@ int __attribute__((constructor)) Startup()
     sa.sa_sigaction = RestoreLinkMapEntry;
     sigaction(SIGXCPU, &sa, &oldSa); // set ours and backup the old one at the same time.
 
+    Interfaces::DumpInterfaces( "/tmp/dotainterfaces.txt" );
+
     if( !Interfaces::FindExportedInterfaces( ) ){
         ConMsg( "[McDota] FindExportedInterfaces() Failed. Stopping...\n" );
         return 1;
@@ -100,7 +102,6 @@ int __attribute__((constructor)) Startup()
         return 7;
     }
 
-    Interfaces::DumpInterfaces( "/tmp/dotainterfaces.txt" );
 
     ConColorMsg( Color(10, 210, 10), "[McDota] I'm in like Flynn.\n" );
 

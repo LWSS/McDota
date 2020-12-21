@@ -18,7 +18,7 @@ void Hooks::PostReceivedNetMessage( INetChannel *thisptr, NetMessageHandle_t *me
         info = networkMessages->GetNetMessageInfo( messageHandle );
         name = info->pProtobufBinding->GetName();
 
-        if( mc_log_recvnetmsg_filter_commons ){
+        if( mc_log_recvnetmsg_filter_commons->GetBool() ){
             if( strstr(name, "CNETMsg_Tick") ||
                 strstr(name, "CSVCMsg_PacketEntities") ){
                 goto end;

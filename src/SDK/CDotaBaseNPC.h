@@ -54,12 +54,11 @@ public:
     virtual void sub_2B08240() = 0;
     virtual void sub_2B08940() = 0;
     virtual void sub_290E410() = 0;
-    virtual void sub_290E430() = 0;
+    virtual void sub_290E430() = 0; //subby20
     virtual void sub_290E450() = 0;
     virtual void sub_290E470() = 0;
     virtual void sub_290E471() = 0;
-    virtual void sub_2B42550() = 0;
-    virtual void sub_2D38700() = 0;
+    virtual void sub_2D38700() = 0; //floaty54
     virtual void sub_2A99C60() = 0;
     virtual void sub_2CBFE80() = 0;
     virtual float C_DOTA_BaseNPC__GetZChangeSpeed(void) = 0;
@@ -71,7 +70,7 @@ public:
     virtual float C_DOTA_BaseNPC__GetHealthThinkRegen(void) = 0;
     virtual float C_DOTA_BaseNPC__GetMana(void) = 0;
     virtual float C_DOTA_BaseNPC__GetMaxMana(void) = 0;
-    virtual float C_DOTA_BaseNPC__GetManaThinkRegen(void) = 0;
+    virtual float C_DOTA_BaseNPC__GetManaThinkRegen(void) = 0; //floater_same
     virtual void unk_29ae2c0() = 0;
     virtual void unk_29ae2f0() = 0;
     virtual float C_DOTA_BaseNPC__GetPhysicalArmorBaseValue() = 0;
@@ -96,7 +95,7 @@ public:
     virtual void sub_27F8410() = 0;
     virtual void loc_2B523C0() = 0;
     virtual void sub_2E9B4A0() = 0;
-    virtual void loc_2E978C0() = 0;
+    virtual void loc_2E978C0() = 0; //same_still
     virtual void sub_2E978F0() = 0;
     virtual void sub_2ED6760() = 0;
     virtual void sub_2ED6790() = 0;
@@ -130,7 +129,7 @@ public:
     virtual void sub_2EB9C60() = 0;
     virtual CDotaBaseNPC* C_DOTA_BaseNPC__GetChosenTarget(void) = 0;
     virtual int C_DOTA_BaseNPC__GetDamageMin(void) = 0;
-    virtual int C_DOTA_BaseNPC__GetDamageMax(void) = 0;
+    virtual int C_DOTA_BaseNPC__GetDamageMax(void) = 0; //27
     virtual float C_DOTA_BaseNPC__GetDamageBonus(void) = 0;
     virtual bool C_DOTA_BaseNPC__IsRooted(void) = 0;
     virtual void sub_2ED6A30() = 0;
@@ -150,7 +149,7 @@ public:
     virtual bool C_DOTA_BaseNPC__IsEvadeDisabled(void) = 0;
     virtual bool C_DOTA_BaseNPC__IsUnselectable(void) = 0;
     virtual bool C_DOTA_BaseNPC__IsSpeciallyDeniable(void) = 0;
-    virtual bool C_DOTA_BaseNPC__IsFrozen(void) = 0;
+    virtual bool C_DOTA_BaseNPC__IsFrozen(void) = 0; //fourteen
     virtual bool C_DOTA_BaseNPC__IsCommandRestricted(void) = 0;
     virtual bool C_DOTA_BaseNPC__NotOnMiniMap(void) = 0;
     virtual bool C_DOTA_BaseNPC__NotOnMiniMapForEnemies(void) = 0;
@@ -164,7 +163,8 @@ public:
     virtual bool C_DOTA_BaseNPC__IsBlind(void) = 0;
     virtual bool C_DOTA_BaseNPC__IsOutOfGame(void) = 0;
     virtual bool C_DOTA_BaseNPC__IsFakeAlly(void) = 0;
-    virtual void sub_2D3B320() = 0;
+    virtual bool sub_2D3B320() = 0; // shr 0x22
+    virtual bool sub_3194720() = 0; // shr 0x2D - added with furry hero
     virtual void sub_2D3B321() = 0;
     virtual void sub_2D3F810() = 0;
     virtual void C_DOTA_BaseNPC__OnStatesAdded(unsigned long long unk) = 0;
@@ -173,6 +173,7 @@ public:
     virtual void C_DOTA_BaseNPC__OnDebuffStateRemoved( unsigned int ) = 0;
     virtual bool C_DOTA_BaseNPC__HasMovementCapability(void) = 0;
     virtual bool C_DOTA_BaseNPC__HasFlyingVision(void) = 0;
+    virtual bool sub_31947C0() = 0; // added with furry hero
     virtual bool C_DOTA_BaseNPC__IsFlyingVisually(void) = 0;
     virtual void sub_2D3B770() = 0;
     virtual void C_DOTA_BaseNPC__CalculateActivityModifiers(int) = 0;

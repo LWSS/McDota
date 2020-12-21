@@ -9,7 +9,7 @@
 
 bool Interfaces::FindExportedInterfaces( )
 {
-    client = GetInterface<CSource2Client>("../../dota/bin/linuxsteamrt64/libclient.so", "Source2Client002", 130 );
+    client = GetInterface<CSource2Client>("../../dota/bin/linuxsteamrt64/libclient.so", "Source2Client002", 131 );
     cvar = GetInterface<ICvar>( "./libtier0.so", "VEngineCvar007", 41 );
     engine = GetInterface<IEngineClient>( "./libengine2.so", "Source2EngineToClient001", 163 );
     inputSystem = GetInterface<IInputSystem>( "./libinputsystem.so", "InputSystemVersion001", 89 );
