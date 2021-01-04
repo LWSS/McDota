@@ -26,9 +26,9 @@ fi
 
 if grep -Rq "cartographer" /proc/modules
 then
-	sudo echo "turnoff allsettings" > /proc/cartographer
-    sudo echo "settarget libMcDota.so" > /proc/cartographer
-	sudo echo "removeentry" > /proc/cartographer
+	sudo echo "turnoff allsettings" | sudo tee /proc/cartographer
+        sudo echo "settarget libMcDota.so" | sudo tee /proc/cartographer
+	sudo echo "removeentry" | sudo tee /proc/cartographer
 else
     echo -e "$error_prefix Cartographer doesn't seem to be loaded. VAC will see McDota in the m-maps"
     while true; do
