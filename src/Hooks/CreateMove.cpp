@@ -108,7 +108,7 @@ bool Hooks::CreateMove( IClientMode *thisptr, CUserCmd* cmd, QAngle &angle, Vect
 
     }
 
-    ret = clientModeVMT->GetOriginalMethod<CreateMoveFn>( 29 )( thisptr, cmd, angle, pos );
+    ret = clientModeVMT->GetOriginalMethod<CreateMoveFn>( 27 )( thisptr, cmd, angle, pos );
     CreateMove::lastMouse3D = cmd->CursorRay;
     return ret;
 }

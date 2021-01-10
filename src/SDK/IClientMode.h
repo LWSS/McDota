@@ -34,8 +34,6 @@ public:
     virtual void sub_2DC5F20() = 0;
     virtual void sub_2DC4A00() = 0;
     virtual void sub_28DF9F0() = 0;
-    virtual void OverrideMouseInput(float *, float *) = 0;
-    virtual void OverrideJoystickInput(float *, float *) = 0;
     virtual bool CreateMove(CUserCmd *cmd, QAngle &, Vector &) = 0;
     virtual void LevelInit(const char *newmap) = 0;
     virtual void LevelShutdown(void) = 0;

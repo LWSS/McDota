@@ -109,12 +109,6 @@ void Hooks::SetKeyCodeState(IInputInternal* thisptr, ButtonCode_t code, bool pre
             break;
         case ButtonCode_t::DELETE:
             //networkClientService->GetIGameClient()->ForceFullUpdate("unnamed");
-            MC_PRINTF("sending meme\n");
-            option.set_option( mc_custom_int->GetInt() );
-            option.set_force_recalculate( true );
-            for( int i = 0; i < mc_send_freq->GetInt(); i++ ) {
-                Hooks::SendNetMessage( engine->GetNetChannelInfo( ), networkMessages->GetMessageHandleByName( "CDOTAClientMsg_GuideSelectOption" ), &option, BUF_DEFAULT );
-            }
             break;
         case ButtonCode_t::SCROLLLOCK:
             //richPresence->SetStatus(mc_custom_str->strValue);

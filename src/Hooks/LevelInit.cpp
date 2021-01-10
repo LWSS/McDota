@@ -8,5 +8,5 @@ typedef void ( *LevelInitFn )( IClientMode*, const char * );
 void Hooks::LevelInit( IClientMode *thisptr, const char *newmap ) {
     Interfaces::HookDynamicVMTs();
 
-    clientModeVMT->GetOriginalMethod<LevelInitFn>( 30 )( thisptr, newmap );
+    clientModeVMT->GetOriginalMethod<LevelInitFn>( 28 )( thisptr, newmap );
 }

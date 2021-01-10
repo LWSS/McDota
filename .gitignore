@@ -19,3 +19,6 @@ gdb.txt
 .gdb_history
 libMcDota.so
 McDota.cbp
+
+protos/*.pb.*
+Testing/*

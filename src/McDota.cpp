@@ -109,6 +109,7 @@ int __attribute__((constructor)) Startup()
     engine->GetScreenSize( width, height );
     MC_PRINTF( "Your Dota 2 was Built on - %s - %sPST\n", engine->GetBuildDateString(), engine->GetBuildTimeString() );
     MC_PRINTF( "ScreenSize: %dx%d - Max Clients: %d\n", width, height, engine->GetMaxClients() );
+    MC_PRINTF( "globalVars @ %p - [%s]\n", (void*)globalVars, Memory::GetModuleName(uintptr_t(globalVars)) );
     MC_PRINTF( "client @ %p - [%s]\n", (void*)client, Memory::GetModuleName((uintptr_t(client))) );
     MC_PRINTF( "viewRender @ %p - [%s]\n", (void*)viewRender, Memory::GetModuleName((uintptr_t(viewRender))) );
     MC_PRINTF( "clientMode @ %p - [%s]\n", (void*)clientMode, Memory::GetModuleName((uintptr_t(clientMode))) );
@@ -135,8 +136,8 @@ int __attribute__((constructor)) Startup()
     clientVMT->ApplyVMT();
 
     clientModeVMT = std::unique_ptr<VMT>(new VMT(clientMode));
-    clientModeVMT->HookVM(Hooks::CreateMove, 29);
-    clientModeVMT->HookVM(Hooks::LevelInit, 30);
+    clientModeVMT->HookVM(Hooks::CreateMove, 27);
+    clientModeVMT->HookVM(Hooks::LevelInit, 28);
     clientModeVMT->ApplyVMT();
 
     gameEventManagerVMT = std::unique_ptr<VMT>(new VMT(gameEventManager));

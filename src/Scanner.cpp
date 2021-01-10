@@ -6,18 +6,18 @@
 static bool FindGlobalVars() {
 
 	// CSource2Client::SetGlobals()
-	// 55                         push    rbp
-	// 48 89 E5                   mov     rbp, rsp
-	// 53                         push    rbx
-	// 48 83 EC 08                sub     rsp, 8
-	// 48 85 F6                   test    rsi, rsi
-	// 48 8B 1D 1D 30 3A 03       mov     rbx, cs:_gpGlobals
+	// 55                      push    rbp
+    // 48 85 F6                test    rsi, rsi
+    // 48 89 E5                mov     rbp, rsp
+    // 48 89 35 D2 8C A0 02    mov     cs:_gpGlobals, rsi
 
     void ( CSource2Client::*setGlobalsPtr )( void* ) = &CSource2Client::SetGlobals;
 
     uintptr_t SetGlobals = reinterpret_cast<uintptr_t>( (void*)(client->*setGlobalsPtr) );
 
-	globalVars = **reinterpret_cast<CGlobalVars***>(GetAbsoluteAddress(SetGlobals + 7, 3, 7));
+    MC_PRINTF("setglobalsPtr (%p)\n", (void*)(client->*setGlobalsPtr) );
+
+	globalVars = *reinterpret_cast<CGlobalVars**>(GetAbsoluteAddress(SetGlobals + 7, 3, 7));
 	return true;
 }
 
@@ -172,21 +172,17 @@ static bool FindClientMode()
 
 static bool FindCamera()
 {
-	// CenterOnLocalPlayersHero(), xref "CMD_SelectHeroStart" and look around there
-	// E8 E5 84 09 00          call    GDOTADefaultCamera
-	// F3 0F 10 4D EC          movss   xmm1, [rbp+var_14]
-	// 31 C9                   xor     ecx, ecx
-	// 31 D2                   xor     edx, edx
-	
+	// Xref "SetCameraYaw" - right above it will be CDOTA_PanoramaScript_GameUI::SetCameraYaw()
+	// In here, the first function is GDOTADefaultCamera() which we will sig.
 
-	uintptr_t getCameraFuncAddr = PatternFinder::FindPatternInModule("libclient.so", "E8 ?? ?? ?? ?? F3 0F 10 ?? ?? 31 C9 31 D2", "Get DOTADefaultCamera");
+	uintptr_t getCameraFuncAddr = PatternFinder::FindPatternInModule("libclient.so", "55 BF FF FF FF FF 48 89 E5 E8 ?? FF FF FF 48 85 C0 74", "GDOTADefaultCamera()");
 
 	if( !getCameraFuncAddr ){
 		MC_PRINTF_ERROR("Get Camera sig failed\n");
 		return false;
 	}
 
-	GetCurrentCamera = reinterpret_cast<GetCameraFn>( GetAbsoluteAddress(getCameraFuncAddr, 1, 5) );
+	GetCurrentCamera = reinterpret_cast<GetCameraFn>( getCameraFuncAddr );
 
 	camera = GetCurrentCamera();
 	return true;
