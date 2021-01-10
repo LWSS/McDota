@@ -24,9 +24,12 @@ It has been built from the ground-up to be faster and better than previous cheat
 * Build essentials( make, `gdb`, etc.. )
 * [google protobufs](https://github.com/protocolbuffers/protobuf) development library
 ## Build Instructions
+First Build Protobufs
+`./rebuildprotos.sh`
+
+Now you can build the project 
 `cmake . && make -j`
 
-*Note: did you get a protobuf error? Regenerate the protobuf files in /src/protos/ with your local version if needed.* `./rebuildprotos.sh`
 
 *For a Debug Build*
 `cmake . -DCMAKE_BUILD_TYPE="Debug" . && make -j`
