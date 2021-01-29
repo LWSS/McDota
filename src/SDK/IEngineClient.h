@@ -80,6 +80,12 @@ public:
     virtual float GetDemoPlaybackTimeScale(void) = 0;
     virtual int GetDemoPlaybackTotalTicks(void) = 0;
     virtual const char* GetDemoPlaybackFileName(void) = 0;
+    // New! Overwatch related functions. Added with Dota Overwatch.
+    virtual void sub_379D40() = 0;
+    virtual bool sub_379D90() = 0;
+    virtual void sub_379DE0() = 0;
+    virtual void sub_379E30() = 0;
+    virtual void sub_379E80() = 0;
     virtual bool IsHLTV(void) = 0;
     //
     virtual void GetUILanguage( char** buffer, int bufferLen ) = 0;

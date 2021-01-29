@@ -315,7 +315,6 @@ public:
     virtual void sub_29F9230(); //added w/ new bloom extension 2020
     virtual void sub_29F9500(); //added w/ new bloom extension 2020 yeeter
     virtual void sub_28547F0(); //added w/ shader update march 3 2020 -empty func
-    virtual void sub_29E64D0(); //added w/ new bloom extension 2020 skeeter
     virtual void sub_29D23B0(); //added w/ shader update march 3 2020
     virtual void sub_292A800();
     virtual void sub_292A800_grug();

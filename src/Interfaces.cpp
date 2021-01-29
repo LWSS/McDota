@@ -9,9 +9,9 @@
 
 bool Interfaces::FindExportedInterfaces( )
 {
-    client = GetInterface<CSource2Client>("../../dota/bin/linuxsteamrt64/libclient.so", "Source2Client002", 131 );
+    client = GetInterface<CSource2Client>("../../dota/bin/linuxsteamrt64/libclient.so", "Source2Client002", 133 );
     cvar = GetInterface<ICvar>( "./libtier0.so", "VEngineCvar007", 41 );
-    engine = GetInterface<IEngineClient>( "./libengine2.so", "Source2EngineToClient001", 164 );
+    engine = GetInterface<IEngineClient>( "./libengine2.so", "Source2EngineToClient001", 169 );
     inputSystem = GetInterface<IInputSystem>( "./libinputsystem.so", "InputSystemVersion001", 89 );
     inputInternal = GetInterface<IInputInternal>("./libvgui2.so", "VGUI_InputInternal001", 101 );
     networkClientService = GetInterface<INetworkClientService>("./libengine2.so", "NetworkClientService_001", 69 );
@@ -27,6 +27,7 @@ bool Interfaces::FindExportedInterfaces( )
     materialSystem = GetInterface<IMaterialSystem>("./libmaterialsystem2.so", "VMaterialSystem2_001", 38);
     networkSystem = GetInterface<CNetworkSystem>("./libnetworksystem.so", "NetworkSystemVersion001", 64);
     fileSystem = GetInterface<CBaseFileSystem>( "./libfilesystem_stdio.so", "VFileSystem017", 148);
+    soundOpSystem = GetInterface<CSoundOpSystem>( "./libsoundsystem.so", "SoundOpSystem001", 147);
     fs = fileSystem;
 
     if( !requestedInterfaces.empty() ){

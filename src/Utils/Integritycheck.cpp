@@ -30,7 +30,7 @@ static std::vector<VMTEntry> vms = {
         { "networkClientService", (void**)&networkClientService, 69 },
 };
 
-static const uint32_t dotaPlayerNum = 373;
+static const uint32_t dotaPlayerNum = 372;
 static const uint32_t baseNPCNum = 185;
 static const uint32_t panoramaUIPanelNum = 347;
 static const uint32_t uiEngineNum = 185;

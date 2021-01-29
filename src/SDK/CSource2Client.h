@@ -152,6 +152,8 @@ public:
 	virtual void* GetSoundSpatialization(int entIndex, void* SpatializationInfo_t);
 	virtual void sub_2E35350( void *rsi ); // Added with diretide-2020, sets some sort of utlstring.
 	virtual void NotifyClientSignon(int unk);
+    virtual void sub_30E8E20() = 0; // Added with Dota Overwatch update.
+    virtual void sub_30E9B00() = 0; // Added with Dota Overwatch update.
 	virtual int unk_30A6910(); // Added with Furry fetish hero - CUtlString::IsEqual_CaseSensitive
 	virtual bool CanRecordDemo(char * unk, int unk2);
 	virtual void OnDemoRecordStart(const char* name);

@@ -26,6 +26,12 @@ FUNCTION (EXCLUDE_FILES_FROM_DIR_IN_LIST _InFileList _excludeDirName _verbose)
 ENDFUNCTION (EXCLUDE_FILES_FROM_DIR_IN_LIST)
 
 find_package(Protobuf REQUIRED)
+message("Protobuf Version ${Protobuf_VERSION}")
+
+#unfortunately shit will randomly segfault if you're on a newer version.
+if( ${Protobuf_VERSION} VERSION_GREATER "3.7.0" )
+	message(FATAL_ERROR "ATTENTION! ATTENTION! Your Protobuf is newer(${Protobuf_VERSION}) than the Recommended Version! LWSS recommends you build 3.7.0 from Source!")
+endif()
 
 #no-pmf-conversions warning for deducing vtable offsets from our class prototypes sdk
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}\
@@ -70,4 +76,4 @@ EXCLUDE_FILES_FROM_DIR_IN_LIST("${SOURCE_FILES}" "${CMAKE_SOURCE_DIR}/src/Utils/
 include_directories(${INCLUDE_DIRS} ${PROTOBUF_INCLUDE_DIR})
 
 add_library(McDota SHARED ${SOURCE_FILES})
-target_link_libraries(McDota dl ${PROTOBUF_LIBRARY})
+target_link_libraries(McDota dl pthread ${PROTOBUF_LIBRARY})

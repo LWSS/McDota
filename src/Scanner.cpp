@@ -242,33 +242,6 @@ static bool FindDBPlayPanel()
 	return true;
 }
 
-static bool FindSoundOpSystem()
-{
-    // xref "DOTAMusic.MainLoop" to first function ( it should also have "opvars" and "dota_music_opvars", but NOT "current_music") go to start of function; it is the first cs:xxxxxxxx address
-    // 48 8B 05 EE F3 32 02    mov     rax, cs:soundOpSystem
-    // C7 85 94 FE FF FF 04 00+mov     [rbp+var_16C], 4
-    // 48 8D 35 96 95 39 01    lea     rsi, aDotaMusicOpvar ; "dota_music_opvars"
-    
-    uintptr_t soundOpSystemLine = PatternFinder::FindPatternInModule("libclient.so", "48 8B 05 ?? ?? ?? ?? C7 85 94", "SoundOpSystem");
-
-    if( !soundOpSystemLine ){
-        MC_PRINTF_ERROR("SoundOpSystem Sig is broke!\n");
-        return false;
-    }
-
-    auto soundOpSystemAddr = reinterpret_cast<uintptr_t>( GetAbsoluteAddress( soundOpSystemLine, 3, 7 ) );
-
-    if( !soundOpSystemAddr ){
-        MC_PRINTF_ERROR("SoundOpSystemAddr is NULL!\n");
-        return false;
-    }
-
-    soundOpSystem = **reinterpret_cast<CSoundOpSystem***>( soundOpSystemAddr );
-
-    return true;
-}
-
-
 static bool FindAcceptMatch()
 {
 	// xref "ui.click_back"
@@ -526,7 +499,6 @@ bool Scanner::FindAllSigs( )
 	sigsOK &= FindCamera();
 	sigsOK &= FindGameEventManager();
 	sigsOK &= FindDBPlayPanel();
-	sigsOK &= FindSoundOpSystem();
 	sigsOK &= FindAcceptMatch();
 	//sigsOK &= FindRichPresence(); // removed for now, unused and silly - can do this easier
 	sigsOK &= FindGCFunctions();

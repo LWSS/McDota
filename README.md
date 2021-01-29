@@ -22,7 +22,7 @@ It has been built from the ground-up to be faster and better than previous cheat
 * CMake
 * a C++17 compiler ( like `clang` or `gcc` )
 * Build essentials( make, `gdb`, etc.. )
-* [google protobufs](https://github.com/protocolbuffers/protobuf) development library
+* [google protobufs](https://github.com/protocolbuffers/protobuf/archive/v3.7.0.tar.gz) development library - Version 3.7.0 is recommended! The Newest versions are not compatible and will segfault even in proto2 mode!
 ## Build Instructions
 First Build Protobufs
 `./rebuildprotos.sh`
