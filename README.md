@@ -17,6 +17,7 @@ It has been built from the ground-up to be faster and better than previous cheat
 * Camera Zoom, pitch/yaw
 * ESP, spotted ESP ( when seen by enemy team ), info.
 * No Fog / No Fog of War ( not a maphack )
+* Full Protobuf packet interception/inspection/editing.
 * More...
 ## System Requirements
 * CMake
@@ -24,6 +25,24 @@ It has been built from the ground-up to be faster and better than previous cheat
 * Build essentials( make, `gdb`, etc.. )
 * [google protobufs](https://github.com/protocolbuffers/protobuf/archive/v3.7.0.tar.gz) development library - Version 3.7.0 is recommended! The Newest versions are not compatible and will segfault even in proto2 mode!
 ## Build Instructions
+####**Update:** Dota Anime-Patch has Introduced Pre-2011 String ABI into the game. This means you Need to build protobufs from Source!
+#### (Pre-Requisite)Building Protobufs
+```
+First, uninstall any protobuf-devel package your distro may have. (Just the headers/libs don't remove Gnome)
+
+git clone https://github.com/protocolbuffers/protobuf
+git checkout v3.15.3
+make -j8 CFLAGS=-D_GLIBCXX_USE_CXX11_ABI=0 CXXFLAGS=-D_GLIBCXX_USE_CXX11_ABI=0
+cd src
+sudo make install
+sudo ldconfig #refresh .so cache
+
+Check in the terminal the Version is correct.
+[gamer@localhost McDota-Master]$ protoc --version
+libprotoc 3.15.3
+```
+
+
 First Build Protobufs
 `./rebuildprotos.sh`
 

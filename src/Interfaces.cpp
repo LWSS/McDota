@@ -9,25 +9,25 @@
 
 bool Interfaces::FindExportedInterfaces( )
 {
-    client = GetInterface<CSource2Client>("../../dota/bin/linuxsteamrt64/libclient.so", "Source2Client002", 133 );
+    client = GetInterface<CSource2Client>("../../dota/bin/linuxsteamrt64/libclient.so", "Source2Client002", 136 );
     cvar = GetInterface<ICvar>( "./libtier0.so", "VEngineCvar007", 41 );
-    engine = GetInterface<IEngineClient>( "./libengine2.so", "Source2EngineToClient001", 169 );
-    inputSystem = GetInterface<IInputSystem>( "./libinputsystem.so", "InputSystemVersion001", 89 );
+    engine = GetInterface<IEngineClient>( "./libengine2.so", "Source2EngineToClient001", 171 );
+    inputSystem = GetInterface<IInputSystem>( "./libinputsystem.so", "InputSystemVersion001", 103 );
     inputInternal = GetInterface<IInputInternal>("./libvgui2.so", "VGUI_InputInternal001", 101 );
-    networkClientService = GetInterface<INetworkClientService>("./libengine2.so", "NetworkClientService_001", 69 );
+    networkClientService = GetInterface<INetworkClientService>("./libengine2.so", "NetworkClientService_001", 68 );
     panel = GetInterface<IVPanel>("./libvgui2.so", "VGUI_Panel010", 82 );
     splitScreenService = GetInterface<CSplitScreenService>("./libengine2.so", "SplitScreenService_001", 47 );
     panoramaEngine = GetInterface<IPanoramaUIEngine>("./libpanorama.so", "PanoramaUIEngine001", 17 );
-    fontManager = GetInterface<CFontManager>("./libmaterialsystem2.so", "FontManager_001", 48 );
+    fontManager = GetInterface<CFontManager>("./libmaterialsystem2.so", "FontManager_001", 45 );
     engineServiceMgr = GetInterface<CEngineServiceMgr>("./libengine2.so", "EngineServiceMgr001", 51 );
-    particleSystemMgr = GetInterface<CParticleSystemMgr>("./libparticles.so", "ParticleSystemMgr003", 48 );
+    particleSystemMgr = GetInterface<CParticleSystemMgr>("./libparticles.so", "ParticleSystemMgr003", 49 );
     networkMessages = GetInterface<CNetworkMessages>("./libnetworksystem.so", "NetworkMessagesVersion001", 35 );
     gameEventSystem = GetInterface<CGameEventSystem>("./libengine2.so", "GameEventSystemClientV001", 21 );
     networkStrings = GetInterface<CNetworkStringTableContainer>("./libengine2.so", "Source2EngineToClientStringTable001", 19);
-    materialSystem = GetInterface<IMaterialSystem>("./libmaterialsystem2.so", "VMaterialSystem2_001", 38);
+    materialSystem = GetInterface<IMaterialSystem>("./libmaterialsystem2.so", "VMaterialSystem2_001", 39);
     networkSystem = GetInterface<CNetworkSystem>("./libnetworksystem.so", "NetworkSystemVersion001", 64);
     fileSystem = GetInterface<CBaseFileSystem>( "./libfilesystem_stdio.so", "VFileSystem017", 148);
-    soundOpSystem = GetInterface<CSoundOpSystem>( "./libsoundsystem.so", "SoundOpSystem001", 147);
+    soundOpSystem = GetInterface<CSoundOpSystem>( "./libsoundsystem.so", "SoundOpSystem001", 155);
     fs = fileSystem;
 
     if( !requestedInterfaces.empty() ){

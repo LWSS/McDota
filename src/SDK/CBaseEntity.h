@@ -99,14 +99,15 @@ public:
     virtual void C_DOTAPlayer__PostDataUpdate(int DataUpdateType_t);
     virtual void C_BaseFlex__Activate(void);
     virtual void C_BasePlayer__UpdateOnRemove(void);
-    virtual void C_BaseAnimating__OnSetDormant(void);
+    virtual void C_BaseAnimating__OnSetDormant(void); // 0FFFFFFFEh
     virtual void C_BasePlayer__PreDataUpdate(int DataUpdateType_t);
     virtual void C_BaseEntity__DrawEntityDebugOverlays(OverlayFlags_t flags);
-    virtual void C_BaseEntity__Save( void* ISave );
+    virtual void sub_2F95420(); // added with dota-anime
+    virtual void C_BaseEntity__Save( void* ISave ); // miner54
     virtual void C_BaseEntity__Restore( void* IRestore );
     virtual void C_BaseEntity__OnSave(void);
     virtual void C_BasePlayer__OnRestore(void);
-    virtual void C_BaseEntity__ObjectCaps(void);
+    virtual void C_BaseEntity__ObjectCaps(void); // miner50
     virtual int CEntityInstance__RequiredEdictIndex(void);
     virtual void C_BaseEntity__NetworkStateChanged(void);
     virtual void C_BaseEntity__NetworkStateChanged2(unsigned int unk, int unk2, int ChangeAccessorFieldPathIndex_t);
@@ -156,9 +157,8 @@ public:
     virtual void* C_BaseAnimating__GetMouth(void);
     virtual void C_BaseEntity__OnBoneTransformsChanged(void);
     virtual void C_BaseEntity__ChangeTeam(DOTATeam_t team);
-    virtual bool C_BaseEntity__InSameTeam(CBaseEntity *otherEnt);
+    virtual bool C_BaseEntity__InSameTeam(CBaseEntity *otherEnt); // double edi
     virtual bool C_BaseEntity__InLocalTeam(void);
-    virtual void C_BaseAnimating__DrawDebugTextOverlays(unsigned long long unk, int unk2);
     virtual bool C_BaseEntity__IsValidIDTarget(void);
     virtual const char* C_BaseEntity__GetIDString(void); // haystack
     virtual bool C_BaseEntity__IsPotentiallyUsable(void);
@@ -213,6 +213,8 @@ public:
     virtual void C_BaseEntity__NotifySystemEvent(void* C_BaseEntity, int notify_system_event_t, void* notify_system_event_params_t);
     virtual void C_BaseEntity__SUB_Remove(void); // "SUB_Remove"
     virtual void sub_2903930();
+    virtual void sub_2F56F60(); // added with dota-anime
+    virtual void sub_2F2C540(); // added with dota-anime
     virtual void sub_273A9D0(); // cmp qword ptr [rsi+50h], 0
     virtual void C_BaseEntity__DispatchTraceAttack(void* CTakeDamageInfo, const Vector &direction, void* CGameTrace);
     virtual void C_BaseEntity__TraceAttack(void* CTakeDamageInfo, const Vector &direction, void* CGameTrace);
@@ -304,21 +306,21 @@ public:
     virtual void sub_26F57A0();
     virtual void sub_2910170(); // 0x80000000h
     virtual void sub_26F57B0();
+    virtual void no_idea_how_this_pad_happened();
     virtual void sub_26F6A90();
+    virtual void sub_2902760(); // returns 0
     virtual void sub_26F57C0();
     virtual void sub_2912B60();
     virtual void sub_26F57D0();
-    virtual void sub_2902720();
-    virtual void sub_2902760();
+    virtual void sub_2902720(); // floater
     virtual void sub_26F5800();
-    virtual void sub_2902630();
+    virtual void sub_2902630(); // mov 3
     virtual void sub_29F9230(); //added w/ new bloom extension 2020
-    virtual void sub_29F9500(); //added w/ new bloom extension 2020 yeeter
-    virtual void sub_28547F0(); //added w/ shader update march 3 2020 -empty func
-    virtual void sub_29D23B0(); //added w/ shader update march 3 2020
+    virtual void sub_29F9500(); //added w/ new bloom extension 2020 cmp byte 2
+    virtual void sub_29D23B0(); //added w/ shader update march 3 2020 - test80
     virtual void sub_292A800();
     virtual void sub_292A800_grug();
-    virtual void sub_292A800_grug2();
+    virtual void sub_292A800_grug2(); // mouther -5
     virtual void C_BaseAnimating__HandleScriptedAnimEvent(void* animevent_t);
     virtual void C_BaseAnimating__HandleBehaviorAnimEvent(void* animevent_t);
     virtual void C_BaseAnimating__SpeechAnimEvent(const char* unk);
@@ -338,7 +340,6 @@ public:
     virtual void C_BaseAnimating__ComputeStencilState(void* ShaderStencilState_t);
     virtual bool C_BaseAnimating__WantsInterpolatedVars(void);
     virtual void sub_29025F0();
-    virtual void C_BasePlayer__FootstepSound(); // sounder +23 virts to the last of class technically
     virtual void sub_26F5880();
     virtual void sub_26F5890();
     virtual void C_BaseFlex__InitPhonemeMappings(void); //"phonemes"

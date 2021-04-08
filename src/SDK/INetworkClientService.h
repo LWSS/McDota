@@ -29,7 +29,6 @@ public:
     virtual void DisconnectGameQueued( int disconnectReasonEnum ) = 0; // 30
     virtual void PrintSpawnGroupStatus( void ) = 0;
     virtual void GetCameraPosition( int splitScreenSlot, void * cTransform ) = 0;
-    virtual CNetworkGameClient* GetGameClient( void ) = 0; // same as GetIGameClient()
     virtual bool IsActiveInGame( void ) = 0;
     virtual bool IsConnected( void ) = 0;
     virtual bool IsMultiplayer( void ) = 0;

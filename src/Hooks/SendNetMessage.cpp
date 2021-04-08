@@ -49,26 +49,12 @@ bool Hooks::SendNetMessage( INetChannel *thisptr, NetMessageHandle_t *messageHan
         }
     }
 
-    if( mc_anti_mute->GetBool() && messageHandle->messageID == 5 ){ //CNETMsg_StringCmd [5]
-        CNETMsg_StringCmd *ree = static_cast<CNETMsg_StringCmd*>( msg );
-        std::string command = std::string(ree->command().c_str());
-        if( command.find("say_team") == 0 ){
-            command.erase(0, 10);
-            command.pop_back();
-            CDOTAClientMsg_TipAlert tip;
-            tip.set_tip_text(command);
-            static auto msgHandle = networkMessages->GetMessageHandleByName("TipAlert");
-            netChannelVMT->GetOriginalMethod<SendNetMessageFn>(68)( thisptr, msgHandle, &tip, BUF_DEFAULT );
-            return true;
-        } else if( command.find("say") == 0 ){
-            command.erase(0, 5);
-            command.pop_back();
-            CDOTAClientMsg_TipAlert tip;
-            tip.set_tip_text(command);
-            static auto msgHandle = networkMessages->GetMessageHandleByName("TipAlert");
-            netChannelVMT->GetOriginalMethod<SendNetMessageFn>(68)( thisptr, msgHandle, &tip, BUF_DEFAULT );
-            return true;
-        }
+    if( mc_anti_mute->GetBool() && messageHandle->messageID == 394 ){ //CDOTAClientMsg_ChatMessage [394]
+        CDOTAClientMsg_ChatMessage *chat = static_cast<CDOTAClientMsg_ChatMessage*>( msg );
+        CDOTAClientMsg_TipAlert tip;
+        tip.set_tip_text(chat->message_text().c_str());
+        netChannelVMT->GetOriginalMethod<SendNetMessageFn>(68)( thisptr, networkMessages->FindNetworkMessage2("CDOTAClientMsg_TipAlert"), &tip, BUF_DEFAULT );
+        return true;
     }
 
     if( mc_send_status->GetBool() ){

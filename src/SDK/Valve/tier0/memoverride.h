@@ -1,6 +1,6 @@
 #pragma once
 
-//memAlloc = *GetSymbolAddress<IMemAlloc**>("./libtier0.so", "g_pMemAlloc");
+#include <cstddef>
 
 class IMemAlloc
 {
@@ -28,3 +28,11 @@ public:
     virtual void sub_45080() = 0;
     virtual size_t GetSize( const void *pMem ) = 0;
 };
+
+// Resolved at runtime in tier0
+extern "C" IMemAlloc *g_pMemAlloc;
+
+// Should override for all of McDota
+void * operator new(size_t size);
+void operator delete(void * p);
+void operator delete(void*p, std::size_t size);

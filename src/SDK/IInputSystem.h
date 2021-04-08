@@ -588,6 +588,7 @@ public:
 	virtual void sub_13B40() = 0;
 	virtual void sub_10A50() = 0;
 	virtual void sub_11A80() = 0;
+	virtual bool sub_E5B0() = 0; // added with dota-anime
 	virtual bool HasMouseFocus( void ) = 0;
 	virtual void GetInputEventName( InputEventType_t ) = 0;
 	virtual bool IsAppActive( void ) = 0;

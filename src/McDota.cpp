@@ -13,6 +13,7 @@
 
 #include <dlfcn.h> //dlopen
 #include <link.h> // link map
+#include <signal.h>
 
 struct sigaction sa;
 struct sigaction oldSa;

@@ -26,12 +26,14 @@ FUNCTION (EXCLUDE_FILES_FROM_DIR_IN_LIST _InFileList _excludeDirName _verbose)
 ENDFUNCTION (EXCLUDE_FILES_FROM_DIR_IN_LIST)
 
 find_package(Protobuf REQUIRED)
-message("Protobuf Version ${Protobuf_VERSION}")
+message("Found Protobuf Version ${Protobuf_VERSION}")
 
-#unfortunately shit will randomly segfault if you're on a newer version.
-if( ${Protobuf_VERSION} VERSION_GREATER "3.7.0" )
-	message(FATAL_ERROR "ATTENTION! ATTENTION! Your Protobuf is newer(${Protobuf_VERSION}) than the Recommended Version! LWSS recommends you build 3.7.0 from Source!")
+#unfortunately shit will randomly segfault if you're on a different version.
+if( NOT ${Protobuf_VERSION} VERSION_EQUAL "3.15.3" )
+	message(FATAL_ERROR "ERROR! ERROR! Your Protobuf is the WRONG VERSION!\nRequired Version is: 3.15.3\nBecause Valve uses Pre-2011 std::string ABI (as of dota-anime update) You need to build protobufs from Source!\nSee the README!")
 endif()
+
+add_definitions(-D_GLIBCXX_USE_CXX11_ABI=0)
 
 #no-pmf-conversions warning for deducing vtable offsets from our class prototypes sdk
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}\
@@ -75,5 +77,5 @@ EXCLUDE_FILES_FROM_DIR_IN_LIST("${SOURCE_FILES}" "${CMAKE_SOURCE_DIR}/src/Utils/
 
 include_directories(${INCLUDE_DIRS} ${PROTOBUF_INCLUDE_DIR})
 
-add_library(McDota SHARED ${SOURCE_FILES})
+add_library(McDota SHARED ${SOURCE_FILES} src/SDK/Valve/tier0/memoverride.cpp)
 target_link_libraries(McDota dl pthread ${PROTOBUF_LIBRARY})

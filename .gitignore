@@ -20,5 +20,5 @@ gdb.txt
 libMcDota.so
 McDota.cbp
 
-protos/*.pb.*
+src/protos/*.pb.*
 Testing/*

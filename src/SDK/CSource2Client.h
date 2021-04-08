@@ -15,7 +15,7 @@ public:
 	char* m_pClassName; //0x0008 //EX: C_DOTAPlayer
 	ClientClass* m_pNext; //0x0010
 	void* m_pCreateFn; //0x0018
-	void* m_pCreateEventFn; //0x0020
+	//void* m_pCreateEventFn; //0x0020 // seems to be removed in dota-anime function.
 	void* m_pDestroyFn; //0x0028
 	char pad_0030[8]; //0x0030
 	char* m_pLibNameAndClassName; //0x0038 //EX: libclient.so!C_DOTAPlayer
@@ -152,8 +152,6 @@ public:
 	virtual void* GetSoundSpatialization(int entIndex, void* SpatializationInfo_t);
 	virtual void sub_2E35350( void *rsi ); // Added with diretide-2020, sets some sort of utlstring.
 	virtual void NotifyClientSignon(int unk);
-    virtual void sub_30E8E20() = 0; // Added with Dota Overwatch update.
-    virtual void sub_30E9B00() = 0; // Added with Dota Overwatch update.
 	virtual int unk_30A6910(); // Added with Furry fetish hero - CUtlString::IsEqual_CaseSensitive
 	virtual bool CanRecordDemo(char * unk, int unk2);
 	virtual void OnDemoRecordStart(const char* name);
@@ -179,11 +177,14 @@ public:
 	virtual void GetCameraPosition(int entIndex, int splitScreenSlot, void* CTransform);
 	virtual void GetEyeAngles(int splitScreenSlot, QAngle *out);
 	virtual void SnapEyeAngles(int splitScreenSlot, const QAngle &viewAngles);
+	virtual void sub_30F5A80(); // added with dota-anime
 	virtual void sub_2B65490();
 	virtual void GetEntity2AbsOrigin(int entIndex, Vector *out);
 	virtual void sub_2B65510();
 	virtual void GetEntity2AbsAngles(int entIndex, QAngle *out);
 	virtual void sub_2B65710();
+	virtual void sub_30F6250(); // added with dota-anime
+    virtual void sub_30F5780(); // added with dota-anime
 	virtual void sub_2B65AA0();
 	virtual void* GetEntityInfo(void);
 	virtual void DescribeNetworkedField();

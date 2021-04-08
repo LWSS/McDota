@@ -20,6 +20,7 @@ public:
 	virtual void sub_20A50() = 0;
 	virtual void sub_20A90() = 0;
 	virtual void sub_20AB0() = 0;
+    virtual void sub_1E7F0() = 0; // Added with dota anime
 	virtual void loc_2BAD0() = 0;
 	virtual void DynamicShaderCompile_ReloadAllShaders(void) = 0;
 	virtual void sub_SomeShaderStuff() = 0; // added sept 2019 dota+ update.

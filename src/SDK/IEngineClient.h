@@ -50,6 +50,7 @@ public:
     virtual bool IsConnected(void) = 0;
     virtual INetChannel* GetNetChannelInfo( int splitScreenSlot = 0 ) = 0;
     virtual bool IsPlayingDemo(void) = 0;
+    virtual void sub_37C290(void) = 0; // added post-overwatch on Feb 11, 2021
     virtual bool IsRecordingDemo(void) = 0;
     virtual bool IsPlayingTimeDemo(void) = 0;
     virtual void ExecuteClientCmd( const char* command ) = 0;
@@ -81,6 +82,7 @@ public:
     virtual int GetDemoPlaybackTotalTicks(void) = 0;
     virtual const char* GetDemoPlaybackFileName(void) = 0;
     // New! Overwatch related functions. Added with Dota Overwatch.
+    virtual void sub_379EA0() = 0; // Snuck in a small update a few days after overwatch update.
     virtual void sub_379D40() = 0;
     virtual bool sub_379D90() = 0;
     virtual void sub_379DE0() = 0;

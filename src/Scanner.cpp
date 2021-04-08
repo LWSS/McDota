@@ -88,7 +88,7 @@ static bool FindVScript()
 
 static bool FindPanelArrayOffset()
 {
-	unsigned int knownGoodOffset = 0x1b8;
+	unsigned int knownGoodOffset = 0x1c0;
 	//  CUIEngine::IsValidPanelPointer()
 	//
 	//   55                      push    rbp
@@ -197,7 +197,7 @@ static bool FindGameEventManager()
     uintptr_t playerInfoChangedFn = reinterpret_cast<uintptr_t>( (void*)(client->*playerInfoChangedPtr) );
 
 
-    auto gameEventManagerAddr = reinterpret_cast<uintptr_t>( GetAbsoluteAddress(playerInfoChangedFn + 52, 3, 7) );
+    auto gameEventManagerAddr = reinterpret_cast<uintptr_t>( GetAbsoluteAddress(playerInfoChangedFn + 54, 3, 7) );
     if( !gameEventManagerAddr ){
         MC_PRINTF_ERROR("Game Event Manager Addr sig broke!\n");
         return false;

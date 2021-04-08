@@ -161,6 +161,7 @@ public:
     virtual void ProcessPacketEntities(CSVCMsg_PacketEntities_t const &) = 0;
     virtual void ProcessSplitScreen(CSVCMsg_SplitScreen_t const &) = 0;
     virtual void ProcessCmdKeyValues(CSVCMsg_CmdKeyValues_t const &) = 0;
+    virtual int sub_356310() = 0; // added with dota-anime - CUtlBuffer::Put() x3
     virtual void ProcessSounds(CSVCMsg_Sounds_t const &) = 0;
     //virtual void ProcessBSPDecal(CSVCMsg_BSPDecal_t const &) = 0; //
     virtual void ProcessPrefetch(CSVCMsg_Prefetch_t const &) = 0;   // this function is either Prefetch or the above BSPDecal. 50/50

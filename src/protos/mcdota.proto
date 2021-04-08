@@ -334,3 +334,8 @@ message CDOTAMatchMetadata {
 	repeated .CMsgMatchTips match_tips = 7;
 	optional .CMsgMatchMatchmakingStats matchmaking_stats = 8;
 }
+// Instead of doing a literal StringCmd "say hello there gamer" chat now has its' own packet.
+message CDOTAClientMsg_ChatMessage {
+	optional uint32 channel_type = 1;
+	optional string message_text = 2;
+}

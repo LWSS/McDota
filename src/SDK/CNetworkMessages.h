@@ -2084,7 +2084,18 @@ enum NetMessageGroups : int
     DECALS = 15,
 };
 
+enum NetworkSerializationMode_t : int
+{
+    NET_SERIALIZATION_MODE_0  = 0,
+    NET_SERIALIZATION_MODE_DEFAULT  = 0,
+    NET_SERIALIZATION_MODE_SERVER  = 0,
+    NET_SERIALIZATION_MODE_1  = 1,
+    NET_SERIALIZATION_MODE_CLIENT  = 1,
+    NET_SERIALIZATION_MODE_COUNT  = 2,
+};
+
 /*
+ * derived from google::protobuf:Message
 class CMsg_Base
 {
 public:
@@ -2092,7 +2103,7 @@ public:
     virtual void DESTROY2() = 0;
     virtual std::string GetTypeName(void) = 0; // google::protobuf::Message::GetTypeName
     virtual void New(void) = 0;
-    virtual void New2() = 0;
+    virtual void New2(void *arena) = 0;
     virtual void sub_1FE1A60() = 0;
     virtual void sub_1FE1A70() = 0;
     virtual void sub_23E6980() = 0;
@@ -2182,7 +2193,7 @@ public:
     T *pProtoBufBody;
 };
 
-class CProtobuffBinding
+class CProtobuffBinding // AKA CNetMessagePB
 {
 public:
     virtual const char* GetName(void) = 0;
@@ -2191,11 +2202,11 @@ public:
     virtual const char *GetGroup(void) = 0;
     virtual ColorRGBA GetGroupColor(void) = 0;
     virtual NetChannelBufType_t GetBufType(void) = 0;
-    virtual bool ReadFromBuffer(google::protobuf::Message *msg, bf_read &); // true if parsing O = 0K
-    virtual bool WriteToBuffer(google::protobuf::Message *msg, bf_write &); // true if parsing O = 0K
-    virtual void AllocateMessage(void) = 0;
+    virtual bool ReadFromBuffer(google::protobuf::Message *msg, bf_read &) = 0; // true if parsing O = 0K
+    virtual bool WriteToBuffer(google::protobuf::Message *msg, bf_write &) = 0; // true if parsing O = 0K
+    virtual void* AllocateMessage(void) = 0;
     virtual void DeallocateMessage(void *) = 0;
-    virtual void AllocateAndCopyConstructNetMessage(void const*) = 0;
+    virtual void* AllocateAndCopyConstructNetMessage(void const* otherProtobufMsg) = 0;
     virtual bool OkToRedispatch(void) = 0;
     virtual void Copy(void const*,void *) = 0;
 };
@@ -2213,8 +2224,8 @@ public:
     virtual void AllocateMessage(void) = 0;
     virtual void DeallocateMessage(void *unk) = 0;
     virtual void AllocateAndCopyConstructNetMessage(void const *) = 0;
-    virtual void Serialize(void *bfWriteRef, void const *, int NetworkSerializationMode_t) = 0;
-    virtual void UnSerialize(bf_read &, void *, int NetworkSerializationMode_t) = 0;
+    virtual void Serialize(bf_write &, void const *, NetworkSerializationMode_t) = 0;
+    virtual void UnSerialize(bf_read &, void *, NetworkSerializationMode_t) = 0;
 
     const char *unscopedName;
     uint32_t categoryMask;
@@ -2252,24 +2263,24 @@ public:
     virtual void RegisterNetworkCategory( unsigned int, const char* ) = 0;
     virtual void AssociateNetMessageWithChannelCategoryAbstract( NetMessageHandle_t *, unsigned int, bool) = 0;
     virtual NetMessageHandle_t* FindOrCreateNetMessage(int, void const* IProtobufBinding, unsigned int, void* INetworkSerializerBindingBuildFilter, bool, bool) = 0;
-    virtual void SerializeAbstract(bf_read &buffer, NetMessageHandle_t *, void const*) = 0;
+    virtual bool SerializeAbstract(bf_read &buffer, NetMessageHandle_t *, void const*) = 0;
     virtual void UnserializeAbstract(bf_read &buffer, NetMessageHandle_t *, void*) = 0;
     virtual void UnserializeAbstract(bf_read &buffer, NetMessageHandle_t **, void **) = 0;
-    virtual void AllocateUnserializedMessage(NetMessageHandle_t *) = 0;
+    virtual void* AllocateUnserializedMessage(NetMessageHandle_t *) = 0;
     virtual void AllocateAndCopyConstructNetMessageAbstract(NetMessageHandle_t *, void const*) = 0;
     virtual void DeallocateUnserializedMessage(NetMessageHandle_t *, void*) = 0;
     virtual void RegisterNetworkFieldSerializer() = 0; // (char const*,NetworkSerializationMode_t,NetworkableDataType_t,int,NetworkFieldResult_t (*)(NetworkSerializerInfo_t const&,int,NetworkableData_t *),NetworkFieldResult_t (*)(NetworkUnserializerInfo_t const&,int,NetworkableData_t const*),ulong (*)(NetworkFieldInfo_t const&),bool (*)(FieldMetaInfo_t const&,CSchemaClassBindingBase const*,NetworkFieldInfo_t const&,void *),bool (*)(NetworkableData_t const*,CUtlString &),char const* (*)(void),NetworkFieldResult_t (*)(NetworkSerializerInfo_t const&,int,NetworkableData_t *),NetworkFieldResult_t (*)(NetworkUnserializerInfo_t const&,int,NetworkableData_t const*))
     virtual void RegisterNetworkArrayFieldSerializer() = 0; // (char const*,NetworkSerializationMode_t,NetworkFieldResult_t (*)(NetworkSerializerInfo_t const&,bf_write &,int *,void const**,bool),NetworkFieldResult_t (*)(NetworkUnserializerInfo_t const&,bf_read &,int *,void **,bool,CSchemaClassBindingBase const*),ulong (*)(NetworkFieldInfo_t const&),bool (*)(FieldMetaInfo_t const&,CSchemaClassBindingBase const*,NetworkFieldInfo_t const&,void *),NetworkFieldResult_t (*)(NetworkSerializerInfo_t const&,bf_write &,int *,void const**,bool),NetworkFieldResult_t (*)(NetworkUnserializerInfo_t const&,bf_read &,int *,void **,bool,CSchemaClassBindingBase const*))
     virtual NetMessageInfo_t* GetNetMessageInfo(NetMessageHandle_t *) = 0;
     virtual void* FindNetworkMessage(const char*) = 0;
-    virtual void FindNetworkMessage2() = 0;
-    virtual void FindNetworkMessage3() = 0;
+    virtual NetMessageHandle_t* FindNetworkMessage2(const char*) = 0; // Be Sure to use the Full Name! Only this one works! these 2 are literally the exact same from what I can tell, no idea.  string used in V_Stricmp()
+    virtual void FindGroupId(void *unk, bool createIfNotFound) = 0;
     virtual int GetNetworkGroupCount(void) = 0;
     virtual const char* GetNetworkGroupName(int groupId) = 0;
     virtual int FindNetworkGroup(const char*, bool) = 0;
     virtual void AssociateNetMessageGroupIdWithChannelCategory(unsigned int, const char*) = 0; // "AssociateNetMessageGroupIdWithChannelCategory: Trying to use"
     virtual void RegisterSchemaAtomicTypeOverride(unsigned int, void *CSchemaType) = 0;
-    virtual void SetNextworkSerializationContextData(const char*, int NetworkSerializationMode_t, void*) = 0;
+    virtual void SetNetworkSerializationContextData(const char*, NetworkSerializationMode_t, void*) = 0;
     virtual void sub_1E1570() = 0;
     virtual void sub_1E1070() = 0;
     virtual void RegisterNetworkFieldChangeCallback() = 0; //(char const*,NetworkFieldChangedDelegateType_t,CUtlAbstractDelegate,NetworkFieldChangeCallbackPerformType_t,int)
@@ -2284,15 +2295,6 @@ public:
     virtual void sub_1E2170() = 0;
     virtual void sub_1E4020() = 0;
     virtual void sub_1E4C50() = 0;
-
-    NetMessageHandle_t* GetMessageHandleByName( const char *partialName ){
-        for( size_t i = 0; i < this->messageList->messages.size(); i++ ){
-            if( strcasestr( this->messageList->messages[i].entry->unscopedName, partialName ) ){
-                return this->messageList->messages[i].entry;
-            }
-        }
-        return nullptr;
-    }
 
     char _pad[0x1F0 - sizeof(void*)];
     MessageEntries *messageList; // usermessage list @ +0x1F0
