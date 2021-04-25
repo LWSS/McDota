@@ -53,6 +53,11 @@ namespace panorama
         virtual bool CreateChildren(const char *) = 0;
         virtual void UnloadLayout(void) = 0;
         virtual bool IsLoaded(void) = 0;
+        virtual void sub_F15B0() = 0; // Added post-anime update
+        virtual void sub_F1900() = 0; // Added post-anime update
+        virtual void sub_F15A0() = 0; // Added post-anime update
+        virtual void sub_E7B00() = 0; // Added post-anime update
+        virtual void sub_EB010() = 0; // Added post-anime update
         virtual void SetParent(IUIPanel *parent) = 0;
         virtual IUIPanel* GetParent(void) = 0;
         virtual IUIWindow* GetParentWindow(void) = 0;
