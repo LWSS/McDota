@@ -574,7 +574,7 @@ public:
 	virtual void SetCursorPosition( int x, int y, PlatWindow_t__ *window ) = 0;
 	virtual void IsWindowAttached( PlatWindow_t__ * ) = 0;
 	virtual void GetStandardCursor( InputStandardCursor_t ) = 0;
-	virtual void SetStandardCursor( InputStandardCursor_t, InputCursorHandle_t *) = 0;
+	virtual void SetStandardCursor( InputStandardCursor_t, InputCursorHandle_t *) = 0; // 50
 	virtual void sub_10A00() = 0;
 	virtual void sub_10A20() = 0;
 	virtual void sub_10A30() = 0;
@@ -599,7 +599,7 @@ public:
 	virtual void EnableSystemCommands( unsigned int, bool ) = 0;
 	virtual void SetMouseParams( const int *, int ) = 0;
 	virtual void GetMouseParams( int *, int ) = 0;
-	virtual void SetRelativeMouseMode( bool ) = 0;
+	virtual void SetRelativeMouseMode( bool ) = 0; // 75
 	virtual void DebugSpew( void ) = 0;
 	virtual char GetASCIICharForButtonPressed( const InputEvent_t & ) = 0;
 	virtual unsigned int ButtonCodeToSDLKey( ButtonCode_t code ) = 0;
@@ -612,7 +612,8 @@ public:
 	virtual void IME_Stuff() = 0;
 	virtual void sub_10E30() = 0;
 	virtual void sub_10E90() = 0;
-	virtual void sub_10AA0() = 0;
+	virtual void sub_10AA0() = 0; // Added with nemestice
+	virtual void sub_11D60() = 0; // Added with nemestice
 	virtual void DESTROY() = 0;
 	virtual void DESTROY2() = 0;
 

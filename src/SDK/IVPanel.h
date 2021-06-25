@@ -45,6 +45,9 @@ enum RenderFx_t : unsigned char
 	kRenderFxMax,
 };
 
+// Xref "ShutdownRequest" to CVGui::ShutdownMessage() - xref it back to vtable.
+// Go down 1 vfunc, this is CVGui::AllocPanel()
+// AllocPanel() will make a VPanel. First Function after operator new() is VPanel::VPanel() (vtable is inside)
 class IVPanel : IAppSystem
 {
 public:
@@ -141,7 +144,6 @@ public:
 	virtual void SetMessageContextId(VPANEL panel,int msgContextID);
 	virtual int GetMessageContextId(VPANEL panel);
 	virtual void GetUnpackStructure(VPANEL panel);
-	virtual void OnUnserialized(VPANEL panel, void* CDmxElement);
 	virtual void SetSiblingPin(VPANEL panel,VPANEL panel2,unsigned char unk,unsigned char unk2);
 	virtual void MoveBehindSibling(VPANEL panel,VPANEL sibling);
 	virtual void Client(VPANEL panel);

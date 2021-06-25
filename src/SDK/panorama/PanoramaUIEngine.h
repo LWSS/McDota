@@ -6,7 +6,7 @@
 #include "CPanel2D.h"
 
 
-// Xref "english" to first function, then vtable.
+// Xref "english" to first function, then vtable. (StartupSubsystems)
 namespace panorama
 {
     inline unsigned int panelArrayOffset;
@@ -22,7 +22,7 @@ namespace panorama
         virtual void StartupSubsystems(panorama::IUISettings *,void* PlatWindow_t__) = 0;
         virtual void ConCommandInit(void* IConCommandBaseAccessor) = 0;
         virtual void Shutdown(void) = 0;
-        virtual void RequestShutdown(void) = 0;
+        virtual void RequestShutdown(void) = 0; // mov     byte ptr [rdi+59h], 1
         virtual void Run(void) = 0;
         virtual void RunFrame(void) = 0;
         virtual void SetAggressiveFrameRateLimit(bool) = 0;
@@ -66,15 +66,13 @@ namespace panorama
         virtual void UnregisterForUnhandledEvent(panorama::CPanoramaSymbol&,CUtlAbstractDelegate) = 0;
         virtual void UnregisterForUnhandledEvents(void *) = 0;
         virtual bool HaveEventHandlersRegisteredForType(panorama::CPanoramaSymbol) = 0;
-        virtual void RegisterPanelTypeEventHandler(panorama::CPanoramaSymbol&,panorama::CPanoramaSymbol&,CUtlAbstractDelegate,bool) = 0;
+        virtual void RegisterPanelTypeEventHandler(panorama::CPanoramaSymbol&,panorama::CPanoramaSymbol&,CUtlAbstractDelegate,bool) = 0; //samey
         virtual void DispatchEvent(panorama::IUIEvent *) = 0;
         virtual void DispatchEventAsync(float,panorama::IUIEvent *) = 0;
         virtual bool AnyHandlerRegisteredForEvent(panorama::CPanoramaSymbol const&) = 0;
-        virtual CPanoramaSymbol* GetLastDispatchedEventSymbol(void) = 0; // 52
-        virtual IUIPanel* GetLastDispatchedEventTargetPanel(void) = 0;
-        virtual void RegisterEventFilter(CUtlAbstractDelegate) = 0;
-        virtual void UnregisterEventFilter(CUtlAbstractDelegate) = 0;
-        virtual void LayoutAndPaintWindows(void) = 0;
+        virtual void RegisterEventFilter(CUtlAbstractDelegate) = 0; //vprof1
+        virtual void UnregisterEventFilter(CUtlAbstractDelegate) = 0;//vprof2
+        virtual void LayoutAndPaintWindows(void) = 0; //vprof3
         virtual const char* GetApplicationInstallPath(void) = 0;
         virtual const char* GetApplicationUserDataPath(void) = 0;
         virtual void RegisterNamedLocalPath(char const*,char const*,bool,bool) = 0;
@@ -186,6 +184,8 @@ namespace panorama
         virtual bool GetPaintCountTrackingEnabled(void) = 0;
         virtual void IncrementPaintCountForPanel(unsigned long long,bool,double) = 0;
         virtual void GetPanelPaintInfo(unsigned long long,unsigned int &,bool &,double &) = 0;
+        virtual bool sub_8E640(void) = 0; // added with nemestice update
+        virtual void sub_90E20() = 0; // added with nemestice update
         virtual bool HasAnyWindows(void) = 0;
         virtual void TextEntryFocusChange(panorama::IUIPanel *) = 0;
         virtual void TextEntryInvalid(panorama::IUIPanel *) = 0;

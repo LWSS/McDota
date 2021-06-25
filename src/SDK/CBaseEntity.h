@@ -193,6 +193,7 @@ public:
     virtual void unk_NewFunc(); // added with summer scrub pt2
     virtual void C_BaseEntity__InitPredictable(void* C_BasePlayer);
     virtual void C_BaseAnimating__SetPredictable(bool predictable);
+    virtual int sub_2F50EC0(void); // added with nemestice - returns 1
     virtual void C_BaseEntity__DecalTrace(void* CGameTrace, const char* unk);
     virtual void C_BaseEntity__ImpactTrace(void* CGameTrace, int unk, const char* unk2);
     virtual bool C_DOTAPlayer__ShouldPredict(void);
@@ -294,11 +295,11 @@ public:
     virtual void C_BaseModelEntity__DamageDecal(int unk, int unk2);
     virtual void sub_26F56F0();
     virtual void sub_26F5700(); // added sept 26 dota+ update -- empty function.
+    virtual void sub_30C20C0(); // added with nemestice update.
     virtual void sub_25DDF10(); // "m_vecX" quantizedfloat meme
     virtual bool C_BaseModelEntity__CanBeSeenByTeam(DOTATeam_t team) = 0;
     virtual bool C_BaseModelEntity__IsPartOfFOWSystem(void); // F.O.W. = Fog Of War
     virtual void C_BaseAnimating__SetTransmit(void* CCheckTransmitInfo, bool unk);
-    virtual void sub_2F9D910(); // added with aghanim's labyrinth. Empty func.
     virtual void C_BaseAnimating__GetRenderData(void* unk, int ModelDataCategory_t); // StudioFrameAdvance wrapper
     virtual void C_BaseAnimating__UpdateClientSideAnimation(void);
     virtual void C_BaseAnimating__ComputeClientSideAnimationFlags(void);

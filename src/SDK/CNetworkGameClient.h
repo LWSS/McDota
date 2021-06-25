@@ -82,11 +82,12 @@ public:
     virtual bool IsInGame(void) = 0;
     virtual bool IsBackgroundMap(void) = 0;
     virtual int GetMaxClients(void) = 0;
-    virtual void Simulate(EventClientSimulate_t const&) = 0;
+    virtual void* GetPrerequisiteStatus(void) = 0;
     virtual void ClientPollNetworking(EventClientPollNetworking_t const&) = 0;
     virtual void ClientProcessNetworking(EventClientProcessNetworking_t const&) = 0;
     virtual void OnClientSendInput(EventClientSendInput_t const&) = 0;
     virtual void OnClientProcessGameInput(EventClientProcessGameInput_t const&) = 0;
+    virtual void sub_356C10() = 0; // Added with Nemestice update (empty func)
     virtual void OnClientFrameSimulate(EventClientFrameSimulate_t const&) = 0;
     virtual void OnClientAdvanceTick(EventClientAdvanceTick_t const&) = 0;
     virtual void OnClientPostAdvanceTick(EventClientPostAdvanceTick_t const&) = 0;
@@ -101,18 +102,17 @@ public:
     virtual void SendStringCmd(int splitScreenSlot, const char* cmd) = 0;
     virtual void SplitScreenConnect(int splitScreenSlot) = 0;
     virtual int GetMaxSplitScreenPlayers(void) = 0;
-    virtual INetChannel* GetNetChannel(int splitScreenSlot) = 0;
     virtual void* GetViewEntity(void) = 0;
+    virtual INetChannel* GetNetChannel(int splitScreenSlot) = 0;
     virtual void UpdateAudioState(AudioState_t *, int splitScreenSlot) = 0;
     virtual void ClockDrift_AdjustFrameTime(float) = 0;
     virtual float GetTickInterval(void) = 0;
-    virtual float GetTime(void) = 0;
     virtual void ComputeNextRenderTime(float) = 0;
     virtual void ReencodeForVConsole(int entIndex) = 0;
     virtual void PrepareSteamConnectResponse(unsigned long long, bool, void const * ns_address, C2S_CONNECT_Message_t &) = 0;
     virtual bool IsLowViolence(void) = 0;
     virtual void* GetHostVersion(void) = 0;
-    virtual void GetLastTimestamp(void) = 0;
+    virtual float GetLastTimestamp(void) = 0;
     virtual int GetLastServerTick(void) = 0;
     virtual void SetGameSessionManifest(HGameResourceManifest *, HGameResourceManifest *) = 0;
     virtual void SpewSerializer(const char *) = 0;
@@ -122,14 +122,17 @@ public:
     virtual void* GetWorldSession(void) = 0;
     virtual const char*  GetSpawnGroupName(unsigned int) = 0;
     virtual void StartChangeLevel(void) = 0;
-    virtual void FinishChangeLevel(CClientChangeLevelState *) = 0;
+    virtual void FinishChangeLevel(CClientChangeLevelState *) = 0; // "CNetworkGameClientBase::FinishChan"
     virtual bool IsChangeLevelPending(void) = 0;
     virtual void GetAllLoadingSpawnGroups();//(CUtlVector<uint,CUtlMemory<uint,int>> *)
-    virtual void UpdateSceneObjects(CCallQueue &) = 0;
     virtual void ProcessConnectionlessPacket(void *a2) = 0; //virtual void ProcessConnectionlessPacket(void const * ns_address, void * bf_read) = 0;
     virtual void BlockDisconnectionTracking(bool) = 0;
+    virtual void TransmitNetChannel() = 0; // "CL:  TransmitNetChannel"
+    virtual void* sub_35CBD0() = 0; // lea     rax, [rdi+244h]
+    virtual void sub_37A6A0(float arg) = 0;
     virtual void DESTROY() = 0;
     virtual void DESTROY2() = 0;
+    virtual bool sub_35C5C0() = 0; // Added with Nemestice update
     virtual void FilterMessage(NetMessageHandle_t *, void const *) = 0;
     virtual void OnShutdownChannel(INetChannel const *, bool) = 0;
     virtual void OnGameEventReceived(NetMessageHandle_t *, NetMessageInfo_t const *, void const *) = 0;

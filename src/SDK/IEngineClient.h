@@ -67,7 +67,7 @@ public:
     virtual void GetAvailableAsyncThread(void) = 0;
     virtual void GetScreenSize( int &width, int &height ) = 0;
     virtual bool IsDrawingLoadingImage(void) = 0;
-    virtual void HideLoadingPlaque(void) = 0; // 46
+    virtual void HideLoadingPlaque(void) = 0; // 47
     virtual const char* GetLevelName(void) = 0;
     virtual const char* GetLevelNameShort(void) = 0;
     virtual void* GetVoiceTweakAPI(void) = 0;
@@ -180,7 +180,7 @@ public:
     virtual void RenderSystemOptionFlags() = 0;
     virtual void sub_36BA50() = 0;
     virtual void sub_36BA40() = 0;
-    virtual void sub_36BA20() = 0;
+    virtual void sub_36BA20() = 0; // hlp 100
     virtual void sub_36BA00() = 0;
     virtual void sub_36B9F0() = 0;
     virtual void sub_36B9E0() = 0;
@@ -199,4 +199,10 @@ public:
     virtual void LowViolence2() = 0;
     virtual void sub_36B890() = 0;
     virtual void sub_36B8B0() = 0;
+    virtual void sub_3828E0() = 0;
+    virtual void hlp_120() = 0;
+    virtual void sub_3828D0() = 0;
+    virtual void NEW_NEMESTICE() = 0; // added with nemestice
+    virtual void sub_3819C0() = 0;
+    virtual void sub_381C50() = 0;
 };

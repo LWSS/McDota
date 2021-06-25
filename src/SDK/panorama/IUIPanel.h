@@ -22,7 +22,7 @@ namespace panorama
         //Make sure to check panel pointer when using this!
         std::array<PanelArraySlot, 4096> slots;
     };
-    // "CUIPanel::RemoveAndDeleteChildren" XREF to Function
+    // "CUIPanel::RemoveAndDeleteChildren" XREF to Function (libpanorama.so)
     class IUIPanel
     {
     public:
@@ -53,6 +53,11 @@ namespace panorama
         virtual bool CreateChildren(const char *) = 0;
         virtual void UnloadLayout(void) = 0;
         virtual bool IsLoaded(void) = 0;
+        virtual void sub_F15B0() = 0; // Added post-anime update
+        virtual void sub_F1900() = 0; // Added post-anime update
+        virtual void sub_F15A0() = 0; // Added post-anime update
+        virtual void sub_E7B00() = 0; // Added post-anime update
+        virtual void sub_EB010() = 0; // Added post-anime update
         virtual void SetParent(IUIPanel *parent) = 0;
         virtual IUIPanel* GetParent(void) = 0;
         virtual IUIWindow* GetParentWindow(void) = 0;
@@ -250,6 +255,7 @@ namespace panorama
         virtual void SetInputNamespace(const char *) = 0;
         virtual void MarkStylesDirty(bool state) = 0; // "CUIPanel::MarkStylesDirty"
         virtual bool StylesDirty(void) = 0;
+        virtual void sub_EB920() = 0; // Added with Nemestice update
         virtual bool ChildStylesDirty() = 0;
         virtual bool ParsePanelEvent(CPanoramaSymbol, const char *) = 0;
         virtual bool IsPanelEventSet(CPanoramaSymbol) = 0;
