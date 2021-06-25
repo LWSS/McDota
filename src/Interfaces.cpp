@@ -43,7 +43,7 @@ bool Interfaces::FindExportedInterfaces( )
 
 void Interfaces::DumpInterfaces( const char *fileName )
 {
-	static std::vector<dlinfo_t> modules;
+    static std::vector<dlinfo_t> modules;
     struct stat buffer;
 
     // already exists? skip
@@ -51,20 +51,20 @@ void Interfaces::DumpInterfaces( const char *fileName )
         return;
     }
 
-	dl_iterate_phdr([] (struct dl_phdr_info* info, size_t, void*) {
-		dlinfo_t library_info = {};
+    dl_iterate_phdr([] (struct dl_phdr_info* info, size_t, void*) {
+        dlinfo_t library_info = {};
 
-		library_info.library = info->dlpi_name;
-		library_info.address = info->dlpi_addr + info->dlpi_phdr[0].p_vaddr;
-		library_info.size = info->dlpi_phdr[0].p_memsz;
+        library_info.library = info->dlpi_name;
+        library_info.address = info->dlpi_addr + info->dlpi_phdr[0].p_vaddr;
+        library_info.size = info->dlpi_phdr[0].p_memsz;
 
-		modules.push_back(library_info);
+        modules.push_back(library_info);
 
-		return 0;
-	}, nullptr);
+        return 0;
+    }, nullptr);
 
-	FILE *logFile;
-	logFile = fopen(fileName, "a");
+    FILE *logFile;
+    logFile = fopen(fileName, "a");
     setbuf( logFile, nullptr ); // turn off buffered I/O so it writes even if a crash occurs soon after.
     fprintf(logFile, "\n\n***************** Start of Log *****************\n");
     for ( const dlinfo_t& module: modules )
@@ -126,7 +126,7 @@ void Interfaces::DumpInterfaces( const char *fileName )
 
         fprintf(logFile, "\n");
     }
-	fclose(logFile);
+    fclose(logFile);
 }
 
 // Hook VMTs for interfaces that are not static (in-game entities, etc.)
