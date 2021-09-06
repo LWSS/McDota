@@ -32,6 +32,7 @@ First, uninstall any protobuf-devel package your distro may have. (Just the head
 
 git clone https://github.com/protocolbuffers/protobuf
 git checkout v3.15.3
+./autogen.sh && ./configure
 make -j8 CFLAGS=-D_GLIBCXX_USE_CXX11_ABI=0 CXXFLAGS=-D_GLIBCXX_USE_CXX11_ABI=0
 cd src
 sudo make install
