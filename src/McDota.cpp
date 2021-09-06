@@ -181,8 +181,8 @@ int __attribute__((constructor)) Startup()
         if( engine->GetNetChannelInfo() ) {
             MC_PRINTF( "Grabbing new NetChannel VMT - %p\n", (void*)engine->GetNetChannelInfo() );
             netChannelVMT = std::unique_ptr<VMT>(new VMT( engine->GetNetChannelInfo( ) ));
-            netChannelVMT->HookVM( Hooks::SendNetMessage, 68 );
-            netChannelVMT->HookVM( Hooks::PostReceivedNetMessage, 86 );
+            netChannelVMT->HookVM( Hooks::SendNetMessage, 69 );
+            netChannelVMT->HookVM( Hooks::PostReceivedNetMessage, 87 );
             netChannelVMT->ApplyVMT( );
         } else {
             MC_PRINTF_WARN("GetNetChannelInfo returned null! Aborting NetChannel VMT!\n");

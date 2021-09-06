@@ -46,6 +46,7 @@ public:
     virtual void sub_CC650() = 0; // added with 2020 BP
     virtual void sub_CC300() = 0; // added with 2020 BP
     virtual void sub_CC330() = 0; // added with 2020 BP
+    virtual void sub_C2220(bool state) = 0; // added post-nemestice, 09-01-21, Sets bool this+0x57
     virtual void DESTROY() = 0;
     virtual void DESTROY2() = 0;
     virtual int GetTotalPacketBytes(int,int) = 0;

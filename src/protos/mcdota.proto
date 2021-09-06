@@ -18,6 +18,23 @@ message CDOTAClientMsg_RankWager {
 	optional bool announce_wager = 1;
 }
 
+message CCLCMsg_Move {
+	optional bytes data = 3;
+	optional uint32 command_number = 4;
+	optional uint32 num_commands = 5;
+}
+
+message CNETMsg_Tick {
+	optional uint32 tick = 1;
+	optional uint32 host_frametime = 2;
+	optional uint32 host_frametime_std_deviation = 3;
+	optional uint32 host_computationtime = 4;
+	optional uint32 host_computationtime_std_deviation = 5;
+	optional uint32 host_framestarttime_std_deviation = 6;
+	optional uint32 host_loss = 7;
+	optional uint32 host_unfiltered_frametime = 8;
+}
+
 message CDOTAClientMsg_EventPointsTip {
 	optional uint32 recipient_player_id = 1;
 }

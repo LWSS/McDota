@@ -35,7 +35,7 @@ static const uint32_t baseNPCNum = 185;
 static const uint32_t panoramaUIPanelNum = 366;
 static const uint32_t uiEngineNum = 185;
 static const uint32_t networkGameClientNum = 127;
-static const uint32_t netChannelNum = 95;
+static const uint32_t netChannelNum = 96;
 
 bool Integrity::VMTsHaveMisMatch( ) {
     bool mismatchFound = false;
