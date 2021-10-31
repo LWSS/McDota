@@ -9,9 +9,9 @@
 
 bool Interfaces::FindExportedInterfaces( )
 {
-    client = GetInterface<CSource2Client>("../../dota/bin/linuxsteamrt64/libclient.so", "Source2Client002", 136 );
+    client = GetInterface<CSource2Client>("../../dota/bin/linuxsteamrt64/libclient.so", "Source2Client002", 139 );
     cvar = GetInterface<ICvar>( "./libtier0.so", "VEngineCvar007", 41 );
-    engine = GetInterface<IEngineClient>( "./libengine2.so", "Source2EngineToClient001", 172 );
+    engine = GetInterface<IEngineClient>( "./libengine2.so", "Source2EngineToClient001", 173 );
     inputSystem = GetInterface<IInputSystem>( "./libinputsystem.so", "InputSystemVersion001", 92 );
     inputInternal = GetInterface<IInputInternal>("./libvgui2.so", "VGUI_InputInternal001", 101 );
     networkClientService = GetInterface<INetworkClientService>("./libengine2.so", "NetworkClientService_001", 68 );
@@ -20,12 +20,12 @@ bool Interfaces::FindExportedInterfaces( )
     panoramaEngine = GetInterface<IPanoramaUIEngine>("./libpanorama.so", "PanoramaUIEngine001", 17 );
     fontManager = GetInterface<CFontManager>("./libmaterialsystem2.so", "FontManager_001", 45 );
     engineServiceMgr = GetInterface<CEngineServiceMgr>("./libengine2.so", "EngineServiceMgr001", 51 );
-    particleSystemMgr = GetInterface<CParticleSystemMgr>("./libparticles.so", "ParticleSystemMgr003", 50 );
+    particleSystemMgr = GetInterface<CParticleSystemMgr>("./libparticles.so", "ParticleSystemMgr003", 49 );
     networkMessages = GetInterface<CNetworkMessages>("./libnetworksystem.so", "NetworkMessagesVersion001", 35 );
     gameEventSystem = GetInterface<CGameEventSystem>("./libengine2.so", "GameEventSystemClientV001", 21 );
     networkStrings = GetInterface<CNetworkStringTableContainer>("./libengine2.so", "Source2EngineToClientStringTable001", 19);
     materialSystem = GetInterface<IMaterialSystem>("./libmaterialsystem2.so", "VMaterialSystem2_001", 39);
-    networkSystem = GetInterface<CNetworkSystem>("./libnetworksystem.so", "NetworkSystemVersion001", 64);
+    networkSystem = GetInterface<CNetworkSystem>("./libnetworksystem.so", "NetworkSystemVersion001", 65);
     fileSystem = GetInterface<CBaseFileSystem>( "./libfilesystem_stdio.so", "VFileSystem017", 148);
     soundOpSystem = GetInterface<CSoundOpSystem>( "./libsoundsystem.so", "SoundOpSystem001", 157);
     fs = fileSystem;
@@ -139,7 +139,7 @@ void Interfaces::HookDynamicVMTs( ) {
         cameraVMT = std::unique_ptr<VMT>(new VMT( camera ));
         cameraVMT->HookVM( Hooks::GetFogEnd, 19 );
         cameraVMT->HookVM( Hooks::GetZFar, 20 );
-        cameraVMT->HookVM( Hooks::GetFoWAmount, 26 );
+        cameraVMT->HookVM( Hooks::GetFoWAmount, 29 );
         cameraVMT->ApplyVMT();
     } else {
         MC_PRINTF_WARN("GetCurrentCamera() returned null! Aborting CameraVMT.\n");

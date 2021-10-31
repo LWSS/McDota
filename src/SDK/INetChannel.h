@@ -59,6 +59,7 @@ public:
     virtual void _unk3() = 0; // this is Transmit()
     virtual const char* GetRemoteAddress(void) = 0;
     virtual void _unk4() = 0;
+    virtual void sub_C4AC0() = 0; // added with Road2TI10
     virtual void CanPacket() = 0;
     virtual bool IsOverflowed(void) = 0;
     virtual bool HasPendingReliableData(void) = 0;

@@ -1,21 +1,33 @@
 #include "Gui.h"
 
 #include <algorithm>
+#include <fstream>
 
 #include "../Interfaces.h"
 
-// Javascript to force root panel to have our child and raise it.
-const char *cuckProtocol =
-                "var parentPanel = $.GetContextPanel();\n"
-                "var mcDota = parentPanel.FindChild(\"McDotaMain\");\n"
-                "$.Msg(\"Loading Panel: \" + mcDota.id);"
-                "mcDota.BLoadLayoutFromString( \"%s\", false, false);\n";
-
-static const unsigned int JS_MAX = 65535;
-char jsCode[JS_MAX];
 std::string mainXML =
 #include "Main.xml"
 ;
+
+// https://stackoverflow.com/questions/440133/how-do-i-create-a-random-alpha-numeric-string-in-c
+std::string gen_random(const int len)
+{
+    std::string tmp_s;
+    static const char alphanum[] =
+            "0123456789"
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            "abcdefghijklmnopqrstuvwxyz";
+
+    srand((unsigned) time(NULL));
+
+    tmp_s.reserve(len);
+
+    for (int i = 0; i < len; ++i)
+        tmp_s += alphanum[rand() % (sizeof(alphanum) - 1)];
+
+
+    return tmp_s;
+}
 
 static panorama::IUIPanel* GetHudRoot( ){
     panorama::IUIPanel *itr = nullptr;
@@ -36,28 +48,20 @@ static panorama::IUIPanel* GetHudRoot( ){
     return nullptr;
 }
 
-static inline void EscapeQuotes( std::string *xml ) {
-    std::string result;
-
-    for(char i : *xml){
-        switch( i ){
-            case '"':
-                result += '\\';
-
-            default:
-                result += i;
-        }
-    }
-    *xml = result;
-}
 static bool SetupAndCheckPanels()
 {
+    static std::string xmlFile = "/tmp/";
     static bool bFirst = true;
-    if( bFirst ){
-        /* Get rid of newlines in the XML, they mess up the javascript syntax */
-        std::replace(mainXML.begin(), mainXML.end(), '\n', ' ');
-        /* Escape double-quotes in the XML */
-        EscapeQuotes( &mainXML );
+    // Dump our XML to file, then make the game load it, nice and EZ
+    if( bFirst )
+    {
+        xmlFile += gen_random(6);
+        xmlFile += ".xml";
+
+        std::ofstream out(xmlFile);
+        out << mainXML;
+        out.close();
+
         bFirst = false;
     }
     /* Grab needed root panel if we don't have it already */
@@ -105,17 +109,19 @@ static bool SetupAndCheckPanels()
     /* Create our custom panel */
     if( !panoramaEngine->AccessUIEngine()->IsValidPanelPointer( UI::mcDota ) ){
         MC_PRINTF("Creating McDota Panel...\n");
-        // Get rid of newlines, they mess up the javascript syntax
-        std::replace(mainXML.begin(), mainXML.end(), '\n', ' ');
-        snprintf(jsCode, JS_MAX, cuckProtocol, mainXML.c_str());
 
         panorama::CPanoramaSymbol type = panoramaEngine->AccessUIEngine()->MakeSymbol("Panel");
         UI::mcDota = panoramaEngine->AccessUIEngine()->CreatePanel(&type, "McDotaMain", root)->panel;
         MC_PRINTF("Root ID: %s\n", root->GetID());
         UI::mcDota->SetParent( root );
     }
+    // Load the file, then delete it
     if( !UI::mcDota->HasBeenLayedOut() )
-        panoramaEngine->AccessUIEngine()->RunScript(root, jsCode, engine->IsInGame() ? "panorama/layout/base_hud.xml" : "panorama/layout/base.xml", 8, 10, false);
+    {
+        std::string fileStr = "file://" + xmlFile;
+        UI::mcDota->LoadLayoutFile(fileStr.c_str(), true);
+        remove(xmlFile.c_str());
+    }
 
     return true;
 }

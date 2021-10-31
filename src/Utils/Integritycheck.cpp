@@ -30,12 +30,12 @@ static std::vector<VMTEntry> vms = {
         { "networkClientService", (void**)&networkClientService, 69 },
 };
 
-static const uint32_t dotaPlayerNum = 374;
+static const uint32_t dotaPlayerNum = 380;
 static const uint32_t baseNPCNum = 185;
-static const uint32_t panoramaUIPanelNum = 366;
+static const uint32_t panoramaUIPanelNum = 360;
 static const uint32_t uiEngineNum = 185;
-static const uint32_t networkGameClientNum = 127;
-static const uint32_t netChannelNum = 96;
+static const uint32_t networkGameClientNum = 128;
+static const uint32_t netChannelNum = 101;
 
 bool Integrity::VMTsHaveMisMatch( ) {
     bool mismatchFound = false;

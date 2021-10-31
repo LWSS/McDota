@@ -39,18 +39,13 @@ namespace panorama
         virtual const char* GetID(void) = 0; // ID in the XML, (EX: <Panel id="ShopCourierControls">)
         virtual void GetPanelType(void) = 0;
         virtual bool HasID() = 0;
-        virtual void unk() = 0;
-        virtual void unk2() = 0;
-        virtual void unk3() = 0;
-        virtual void unk4() = 0;
-        virtual void unk5() = 0;
-        virtual void _unk6() = 0;
-        virtual void _unk7() = 0;
-        virtual bool LoadLayout(const char *pathToXML, bool, bool) = 0;
-        virtual bool LoadLayoutFromString(const char *layoutXML, bool, bool) = 0;
+        virtual void* LoadLayoutFile(const char *file, bool option) = 0;
+        virtual void* LoadLayoutFileWithError(const char *file) = 0;
+        virtual void* LoadSnippet(const char *snippet) = 0;
+        virtual void* LoadSnippetWithError(const char *snippet) = 0;
+        virtual void* sneed(const char* string) = 0;
         virtual void LoadLayoutAsync(const char *pathToXML, bool, bool) = 0;
         virtual void LoadLayoutFromStringAsync(const char *layoutXML, bool, bool) = 0;
-        virtual bool CreateChildren(const char *) = 0;
         virtual void UnloadLayout(void) = 0;
         virtual bool IsLoaded(void) = 0;
         virtual void sub_F15B0() = 0; // Added post-anime update
@@ -227,7 +222,6 @@ namespace panorama
         virtual bool IsSelected(void) = 0;
         virtual bool HasKeyFocus(void) = 0;
         virtual bool HasDescendantKeyFocus(void) = 0;
-        virtual bool IsLayoutLoading(void) = 0;
         virtual void SetEnabled(bool state) = 0;
         virtual bool IsEnabled(void) = 0;
         virtual void unk_146920() = 0;

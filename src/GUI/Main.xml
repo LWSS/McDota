@@ -64,26 +64,7 @@ R"zz(
 		}
 
 		function addWarning( text ){
-			var parent = $('#McDotaMain');
-			var tooltip = parent.FindChild('McToolTip');
-			if( tooltip == null ){
-				tooltip = $.CreatePanel('Panel', parent, 'McToolTip');
-				tooltip.BLoadLayoutFromString("
-				<root>
-					<styles>
-
-					</styles>
-					<scripts>
-
-					</scripts>
-					<Panel style='width: 300px; height: 80px; horizontal-align: center; vertical-align: top; z-index: 9999; background-color: gradient( linear, 0% 0%, 0% 100%, from( #CC1015 ), to( #DC7510 ) ); flow-children: down;'>
-						<Label id='McTitle' style='horizontal-align: center; font-size: 20; color: #000000; font-weight: bold;' text='WARNING' />
-						<Label id='McText' style='font-size: 16; color: #000000;' text='" + text + "' />
-					</Panel>
-				</root>
-				", false, false);
-			}
-			tooltip.visible = true;
+			/* broken */
 		}
 
 		function removeWarning( ){

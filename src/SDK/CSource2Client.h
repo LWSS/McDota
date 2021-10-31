@@ -223,6 +223,9 @@ public:
 	virtual void sub_2B61940();
     virtual void sub_2E32F90(); // added with Diretide-2020
     virtual void sub_2E359D0(); // added with Diretide-2020
-	virtual void sub_2B65BD0();
+    virtual void sub_358E350(); // added with Road to TI10
+    virtual void sub_3591680(); // added with Road to TI10
+    virtual void sub_35959C0(); // added with Road to TI10
+	virtual void sub_2B65BD0(); // guard_acquire
 	virtual void sub_someDebugShit(); //%5d: %8.6f msec change ',27h,'%s()',27h,' on field %s(path=%s) fo' db 'r ent %s(%s) name=',27h,'%s',27h,0Ah
 };

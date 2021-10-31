@@ -57,8 +57,9 @@ struct NetMessagePacketStart_t;
 struct NetMessagePacketEnd_t;
 
 
-
-// xref "Connection lost" to ProcessConnectionCrashed()  (libengine2)
+// (libengine2)
+// xref "Connection lost" to ProcessConnectionCrashed()
+// or "CNetworkGameClientBase::FullConnect" to FullConnect()
 class CNetworkGameClient // AKA: CNetworkGameClientBase
 {
 public:
@@ -178,6 +179,7 @@ public:
     virtual void ProcessChangeSplitScreenUser(NetMessageSplitscreenUserChanged_t const &) = 0;
     virtual void ProcessPacketStart(NetMessagePacketStart_t const &) = 0;
     virtual void ProcessPacketEnd(NetMessagePacketEnd_t const &) = 0;
+    virtual void sub_361A00() = 0; // Added with Road2TI10
     virtual void Clear(bool) = 0;
     virtual void FullConnect(void const * ns_address) = 0;
     virtual void SetSignonState(SignonState_t, int, CNETMsg_SignonState_t const *) = 0;

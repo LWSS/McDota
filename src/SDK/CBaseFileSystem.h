@@ -102,6 +102,26 @@ class CUtlBuffer;
 class CBaseFileSystem : IAppSystem
 {
 public:
+    virtual void sub_12AD0() = 0;
+    virtual void sub_11330() = 0;
+    virtual FileHandle_t Open( const char *pFileName, const char *pOptions, const char *pathID = 0 ) = 0;     // if pathID is NULL, all paths will be searched for the file
+    virtual void Close( FileHandle_t file ) = 0;
+    virtual void Seek( FileHandle_t file, int pos, FileSystemSeek_t seekType ) = 0;
+    virtual unsigned int Tell( FileHandle_t file ) = 0;
+    virtual unsigned int Size( FileHandle_t file ) = 0;
+    virtual unsigned int Size( const char *pFileName, const char *pPathID = 0 ) = 0; // "FS:  Tried to Size NULL filename!"
+    virtual void Flush( FileHandle_t file ) = 0;
+    virtual bool Precache( const char *pFileName, const char *pPathID = 0 ) = 0;
+    virtual void loc_2A870() = 0;
+    virtual void loc_2ABE0() = 0;
+    virtual int Read( void* pOutput, int size, FileHandle_t file ) = 0;
+    virtual int	Write( void const* pInput, int size, FileHandle_t file ) = 0;
+    virtual bool ReadFile() = 0;//const char *pFileName, const char *pPath, CUtlBuffer &buf, int nMaxBytes = 0, int nStartingByte = 0, FSAllocFunc_t pfnAlloc = NULL ) = 0;
+    virtual bool WriteFile( const char *pFileName, const char *pPath, CUtlBuffer &buf ) = 0;
+    virtual bool UnzipFile( const char *pFileName, const char *pPath, const char *pDestination ) = 0;    // zip stuff Not "hooked up" for linux
+    virtual bool CopyAFile( const char *pFileName, const char *pPath, const char *pDestination, bool unk ) = 0;
+    virtual void sub_19350() = 0;
+    virtual void sub_29580() = 0;
     virtual void AddSearchPath( const char *pPath, const char *pathID, SearchPathAdd_t addType, int searchPathPriority ) = 0;// 11
     virtual void RemoveSearchPath( const char *pPath, const char *pathID ) = 0;
     virtual void SaveSearchPathState( const char * ) = 0;
@@ -195,43 +215,13 @@ public:
     virtual void CreateFilenameforUGCFile() = 0;
     virtual void OpenUGCFile() = 0;
     virtual void sub_10E00() = 0; // DLC-related functions. Changed with battlepass 2020
-    //Removed with Diretide 2020?? - might return at a later date.
-    //virtual void sub_10E10() = 0; // DLC-related functions. Changed with battlepass 2020
-    //virtual void sub_10E20() = 0; // DLC-related functions. Changed with battlepass 2020
-    //virtual void sub_10E30() = 0; // DLC-related functions. Changed with battlepass 2020
-    //virtual void sub_10E40() = 0; // DLC-related functions. Changed with battlepass 2020
-    //virtual void sub_10E60() = 0; // DLC-related functions. Changed with battlepass 2020
-    //virtual void sub_10E50() = 0; // DLC-related functions. Changed with battlepass 2020
-    //virtual void loc_11F80() = 0; // DLC-related functions. Changed with battlepass 2020
-    //virtual void sub_10E70() = 0; // DLC-related functions. Changed with battlepass 2020
     virtual void DeleteDirectory() = 0;
     virtual void DeleteDirectoryAndContents() = 0;
     virtual void IsPathInvalidForFilesystem() = 0; //strLener
     virtual void GetAvailableDrives() = 0;
     virtual void Readline() = 0;
     virtual void sub_238A0() = 0;
-    virtual void sub_12AD0() = 0;
-    virtual void sub_11330() = 0;
-    virtual void sub_10E40_2() = 0;
-    virtual void loc_125E0() = 0;
-    virtual FileHandle_t Open( const char *pFileName, const char *pOptions, const char *pathID = 0 ) = 0;     // if pathID is NULL, all paths will be searched for the file
-    virtual void Close( FileHandle_t file ) = 0;
-    virtual void Seek( FileHandle_t file, int pos, FileSystemSeek_t seekType ) = 0;
-    virtual unsigned int Tell( FileHandle_t file ) = 0;
-    virtual unsigned int Size( FileHandle_t file ) = 0;
-    virtual unsigned int Size( const char *pFileName, const char *pPathID = 0 ) = 0;
-    virtual void Flush( FileHandle_t file ) = 0;
-    virtual bool Precache( const char *pFileName, const char *pPathID = 0 ) = 0;
-    virtual int Read( void* pOutput, int size, FileHandle_t file ) = 0;
-    virtual int	Write( void const* pInput, int size, FileHandle_t file ) = 0;
-    virtual bool ReadFile() = 0;//const char *pFileName, const char *pPath, CUtlBuffer &buf, int nMaxBytes = 0, int nStartingByte = 0, FSAllocFunc_t pfnAlloc = NULL ) = 0;
-    virtual bool WriteFile( const char *pFileName, const char *pPath, CUtlBuffer &buf ) = 0;
-
-
-    // zip stuff Not "hooked up" for linux
-    virtual bool UnzipFile( const char *pFileName, const char *pPath, const char *pDestination ) = 0;
-    virtual bool CopyAFile( const char *pFileName, const char *pPath, const char *pDestination, bool unk ) = 0;
-    virtual void loc_26460() = 0;
+    virtual void loc_26460() = 0; // "WARNING: Local content might be corrupt"
     virtual void loc_25B30() = 0;
     virtual void unk_26910() = 0;
     virtual void unk_26D50() = 0;
@@ -248,4 +238,5 @@ public:
     virtual void pure16() = 0;
     virtual void pure17() = 0;
     virtual void sub_10DE0() = 0;
+    virtual void pure18() = 0;
 };

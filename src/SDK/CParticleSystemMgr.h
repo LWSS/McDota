@@ -71,7 +71,6 @@ public:
     virtual void sub_144660() = 0; // added post-anime
     virtual IParticleSnapshot CreateParticleSnapshot( void ) = 0;
     virtual void DestroyParticleSnapshot( IParticleSnapshot * ) = 0;
-    virtual void loc_12FD40() = 0; // added with dota-anime
     virtual void sub_135A80() = 0;
     virtual void sub_135A90() = 0;
     virtual void sub_135D60() = 0;

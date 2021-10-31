@@ -88,6 +88,7 @@ public:
     virtual void sub_379DE0() = 0;
     virtual void sub_379E30() = 0;
     virtual void sub_379E80() = 0;
+    virtual void sub_387190() = 0; // added w/ Road to TI10
     virtual bool IsHLTV(void) = 0;
     //
     virtual void GetUILanguage( char** buffer, int bufferLen ) = 0;

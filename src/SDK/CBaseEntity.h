@@ -137,6 +137,8 @@ public:
     virtual void C_BaseEntity__VPhysicsUpdate(void* IPhysicsObject);
     virtual void C_BaseAnimating__VPhysicsGetObjectList(void** IPhysicsObject, int unk);
     virtual bool C_BaseEntity__VPhysicsIsFlesh(void);
+    virtual int sub_32BD9A0() = 0; // Added with TI10
+    virtual int sub_35A2D60() = 0; // Added with TI10
     virtual void* C_BaseEntity__GetShadowDrawMaterial(void);
     virtual bool C_BaseEntity__IsAbleToHaveFireEffect(void); // Checks for low violence mode, kek.
     virtual bool C_BaseEntity__IsSelectable(void);
@@ -221,7 +223,6 @@ public:
     virtual void C_BaseEntity__TraceAttack(void* CTakeDamageInfo, const Vector &direction, void* CGameTrace);
     virtual bool C_BaseEntity__ShouldDrawWaterImpacts(void);
     virtual bool C_BaseEntity__ShouldDrawUnderwaterBulletBubbles(void);
-    virtual void HandleShotImpactingWater();//(FireBulletsInfo_t const&,Vector const&,ITraceFilter *,Vector*) "gunshotsplash"
     virtual ColorRGBA C_BaseCombatCharacter__BloodColor(void);
     virtual bool unk_something_new(void); //added with TI2019 battlepass, setz al // Note: One of these is missing, couldn't tell which one, they all return 0
     virtual bool C_DOTAPlayer__IsPlayer(void); // Note: One of these is missing, couldn't tell which one, they all return 0
@@ -241,14 +242,14 @@ public:
     virtual int C_BaseEntity__GetHealth(void);
     virtual int C_BaseEntity__GetActualHealth(void);
     virtual void C_BaseEntity__ModifyOrAppendCriteria(void* CResponseCriteriaSet); // "unitname"
-    virtual bool C_BaseEntity__WantSpawnCallOnPreData(void);
+    virtual void sub_3310EF0() = 0; // added or moved with TI10
+    virtual bool C_BaseEntity__WantSpawnCallOnPreData(void); // 1
     virtual Vector* C_DOTAPlayer__EyePosition(void);
     virtual QAngle* C_DOTAPlayer__EyeAngles(void);
     virtual QAngle* C_BasePlayer__LocalEyeAngles(void);
     virtual Vector* C_BasePlayer__EarPosition(void);
     virtual float C_BaseEntity__GetFriction(void);
     virtual Vector* C_BaseModelEntity__GetViewOffset(void);
-    virtual float C_BaseEntity__GetSmoothedVelocity(void);
     virtual void C_BaseEntity__GetVelocity(Vector *out1, Vector *out2);
     virtual bool C_BaseEntity__IsMoving(void);
     virtual void C_BaseEntity__OnGroundChanged(void* C_BaseEntity, void* C_BaseEntity2);
@@ -319,7 +320,11 @@ public:
     virtual void sub_29F9230(); //added w/ new bloom extension 2020
     virtual void sub_29F9500(); //added w/ new bloom extension 2020 cmp byte 2
     virtual void sub_29D23B0(); //added w/ shader update march 3 2020 - test80
-    virtual void sub_292A800();
+    virtual void sub_32BE010(); //added w/ TI10
+    virtual void sub_32BE020(); //added w/ TI10
+    virtual void sub_32BE030(); //added w/ TI10
+    virtual void sub_32BE040(); //added w/ TI10
+    virtual void sub_292A800(); //samey
     virtual void sub_292A800_grug();
     virtual void sub_292A800_grug2(); // mouther -5
     virtual void C_BaseAnimating__HandleScriptedAnimEvent(void* animevent_t);

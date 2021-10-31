@@ -310,7 +310,7 @@ static bool FindGCFunctions()
 {
 	// GCSDK::CGCClient::DispatchPacket(GCSDK::IMsgNetPacket *)
 	// xref for "You have been waiting for"
-	DispatchPacketFnAddr = PatternFinder::FindPatternInModule( "libclient.so", "55 48 89 E5 41 57 41 56 41 55 41 54 49 89 FC 53 48 89 F3 48 83 EC ?? 48 8B 3D", "DispatchPacket()" );
+	DispatchPacketFnAddr = PatternFinder::FindPatternInModule( "libclient.so", "55 48 89 E5 41 57 49 89 FF 41 56 41 55 41 54 53 48 89 F3 48 83 EC 48 48 8B 3D", "DispatchPacket()" );
 
 	if( !DispatchPacketFnAddr ){
 		MC_PRINTF_ERROR("DispatchPacketFn sig is broke!\n");
@@ -373,7 +373,7 @@ static bool FindPhysicsQuery()
     // 0x183001
     // 0x181003
     // 0x3011
-	uintptr_t physicsQueryLine = PatternFinder::FindPatternInModule( "libclient.so", "48 8B 05 ?? ?? ?? ?? 48 C7 85 ?? ?? ?? ?? ?? ?? ?? ?? 48 8B 38 E8", "_g_pPhysicsQuery" );
+	uintptr_t physicsQueryLine = PatternFinder::FindPatternInModule( "libclient.so", "48 8B 05 ? ? ? ? 48 8B 38 E8 ? ? ? ? 45 31 D2", "g_pPhysicsQuery" );
 	if( !physicsQueryLine ){
 		MC_PRINTF_ERROR("FindPhysicsQuery sig is broke!\n");
 		return false;
@@ -437,8 +437,10 @@ static bool FindTraceFuncs()
 {
     // Xref "Pass table - Inputs: start, end, min, max, mask, ignore  -- outputs: pos, fraction, hit, enthit, startsolid" to CVScriptGameSystem::InstallScriptBindings()
     // Script_Traceline will be loaded into rax shortly below.
-    // look for CGameTrace::Init() at the start of a big chunk
-    uintptr_t line = PatternFinder::FindPatternInModule( "libclient.so", "55 48 89 E5 41 57 41 56 41 55 41 54 53 48 89 FB 48 83 EC 18 4C 8B 25 ?? ?? ?? ?? 4D", "CGameTrace::Init()" );
+    // go into it and look for CGameTrace::Init() at the start of a big chunk
+
+    // Or just xref "invalid_hitbox" back to CGameTrace::Init()
+    uintptr_t line = PatternFinder::FindPatternInModule( "libclient.so", "55 48 89 E5 41 57 41 56 41 55 41 54 53 48 89 FB 48 81 EC ? ? 00 00 4C 8B 25 ? ? ? ? 64 48 8B 04 25 ? ? ? ? 48 89 45 C8 31 C0 4D", "CGameTrace::Init()" );
     if( !line ){
         MC_PRINTF_ERROR("CGameTrace::Init() sig is broke!\n");
         return false;
@@ -447,13 +449,23 @@ static bool FindTraceFuncs()
 
     // towards the end of that big chunk where u found Init(), look for another function. This function will have `mov dword ptr [rdi+28h], 7` in the first chunk.
     // This function is CTraceFilterSimple::CTraceFilterSimple(IHandleEntity const*, int, bool (*)(IHandleEntity*, int))
-    line = PatternFinder::FindPatternInModule( "libclient.so", "55 48 8D 05 ?? ?? ?? ?? 48 89 E5 41 56 41 89 D6", "CTraceFilter::CTraceFilter()" );
-    if( !line ){
-        MC_PRINTF_ERROR("CTraceFilter::CTraceFilter sig is broke!\n");
-        return false;
-    }
 
-    CTraceFilter_Constructor = reinterpret_cast<CTraceFilterConstructorFn>( line );
+    // or search for "48 81 E1 FF FF F7 FF",
+    // in the chunk below, go into the function that is called.
+    // The function will be a couple blocks down on the left
+    // 4C 89 85 48 FF FF FF    mov     [rbp+var_B8], r8
+    // E8 77 69 FA FF          call    CTraceFilter__CTraceFilter
+    // 4D 89 F1                mov     r9, r14
+    // 4C 89 E1                mov     rcx, r12
+
+    // Function has been inlined! Do not Pass! Do not collect 200$
+    //line = PatternFinder::FindPatternInModule( "libclient.so", "55 48 8D 05 ?? ?? ?? ?? 48 89 E5 41 56 41 89 D6", "CTraceFilter::CTraceFilter()" );
+    //if( !line ){
+    //    MC_PRINTF_ERROR("CTraceFilter::CTraceFilter sig is broke!\n");
+    //    return false;
+    //}
+//
+    //CTraceFilter_Constructor = reinterpret_cast<CTraceFilterConstructorFn>( line );
     return true;
 }
 
